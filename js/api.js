@@ -110,7 +110,7 @@ window.MeteoApi = (() => {
     for (const candidate of candidates) {
       try {
         const data = await getHourlyModelForecast(location, candidate.model, 2);
-        if (data?.hourly?.time?.length) return { ...candidate, data };
+        if (data?.hourly?.time?.length) return { ...candidate, data, fetchedAt: new Date().toISOString() };
       } catch (error) {
         console.warn(`AROME indisponible avec ${candidate.model}`, error);
       }
@@ -131,10 +131,10 @@ window.MeteoApi = (() => {
     const tasks = MeteoConfig.modelDefinitions.map(async definition => {
       try {
         const data = await getForecast(location, 5, definition.model);
-        return { ...definition, data };
+        return { ...definition, data, fetchedAt: new Date().toISOString() };
       } catch (error) {
         console.warn(`Modèle ${definition.label} indisponible`, error);
-        return { ...definition, data: null };
+        return { ...definition, data: null, fetchedAt: new Date().toISOString() };
       }
     });
     return Promise.all(tasks);

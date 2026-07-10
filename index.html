@@ -40,6 +40,19 @@
 <div id="daily"></div>
 </section>
 
+
+<section class="card model-status-card" id="model-status-section">
+  <div class="model-status-heading">
+    <div>
+      <h2>🛰️ Mise à jour des modèles</h2>
+      <p class="chart-subtitle">
+        Heure de récupération et run estimé. Le run exact peut différer selon la publication de l’API.
+      </p>
+    </div>
+    <span id="models-global-refresh" class="refresh-badge">En attente…</span>
+  </div>
+  <div id="model-status-grid" class="model-status-grid" aria-live="polite"></div>
+</section>
 <section class="card">
 <h2>Comparaison des modèles</h2>
 <canvas id="modelsChart"></canvas>

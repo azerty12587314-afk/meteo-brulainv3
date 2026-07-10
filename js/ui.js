@@ -166,8 +166,96 @@ window.MeteoUI = (() => {
     });
   }
 
+
+  function estimateLatestRun(definition, referenceDate = new Date()) {
+    const runHours = definition?.runHoursUtc || [0, 6, 12, 18];
+    const delayMs = Number(definition?.estimatedDelayHours || 0) * 60 * 60 * 1000;
+    const availableReference = new Date(referenceDate.getTime() - delayMs);
+
+    let best = null;
+    for (let dayOffset = 0; dayOffset <= 1; dayOffset += 1) {
+      const day = new Date(Date.UTC(
+        availableReference.getUTCFullYear(),
+        availableReference.getUTCMonth(),
+        availableReference.getUTCDate() - dayOffset,
+        0, 0, 0
+      ));
+      for (const hour of runHours) {
+        const candidate = new Date(day.getTime() + hour * 60 * 60 * 1000);
+        if (candidate <= availableReference && (!best || candidate > best)) best = candidate;
+      }
+    }
+    return best;
+  }
+
+  function formatRun(runDate) {
+    if (!runDate) return 'Run inconnu';
+    const hour = String(runDate.getUTCHours()).padStart(2, '0');
+    const day = new Intl.DateTimeFormat('fr-FR', {
+      day: '2-digit',
+      month: 'short',
+      timeZone: 'UTC'
+    }).format(runDate);
+    return `Run estimé ${hour}Z · ${day}`;
+  }
+
+  function formatAge(date) {
+    if (!date) return 'âge inconnu';
+    const minutes = Math.max(0, Math.round((Date.now() - date.getTime()) / 60000));
+    if (minutes < 2) return 'à l’instant';
+    if (minutes < 60) return `il y a ${minutes} min`;
+    const hours = Math.floor(minutes / 60);
+    const remaining = minutes % 60;
+    return remaining ? `il y a ${hours} h ${remaining} min` : `il y a ${hours} h`;
+  }
+
+  function renderModelStatuses(models, aromeResult) {
+    const grid = document.getElementById('model-status-grid');
+    const globalBadge = document.getElementById('models-global-refresh');
+    if (!grid) return;
+
+    const modelDefinitions = MeteoConfig.modelDefinitions || [];
+    const cards = modelDefinitions.map(definition => {
+      const result = models.find(item => item.key === definition.key);
+      return {
+        definition,
+        available: Boolean(result?.data),
+        fetchedAt: result?.fetchedAt ? new Date(result.fetchedAt) : new Date()
+      };
+    });
+
+    cards.unshift({
+      definition: MeteoConfig.aromeRunDefinition,
+      available: Boolean(aromeResult?.data),
+      fetchedAt: aromeResult?.fetchedAt ? new Date(aromeResult.fetchedAt) : new Date()
+    });
+
+    grid.innerHTML = cards.map(({ definition, available, fetchedAt }) => {
+      const run = estimateLatestRun(definition, fetchedAt);
+      return `
+        <article class="model-status-item ${available ? 'is-online' : 'is-offline'}">
+          <div class="model-status-topline">
+            <strong>${definition.label}</strong>
+            <span class="status-dot" aria-hidden="true"></span>
+          </div>
+          <span class="model-run">${formatRun(run)}</span>
+          <span class="model-fetch">
+            ${available ? 'Données reçues' : 'Données indisponibles'} · ${formatAge(fetchedAt)}
+          </span>
+        </article>`;
+    }).join('');
+
+    if (globalBadge) {
+      globalBadge.textContent = `Actualisé à ${new Intl.DateTimeFormat('fr-FR', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      }).format(new Date())}`;
+    }
+  }
+
   return {
     ensureToolbar, setLoading, showMessage, renderCurrent,
-    renderDashboard, renderHourly, renderDaily, renderSearchResults
+    renderDashboard, renderHourly, renderDaily, renderSearchResults, renderModelStatuses
   };
 })();

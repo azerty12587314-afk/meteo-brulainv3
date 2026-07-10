@@ -11,6 +11,7 @@ Tableau de bord météo statique, responsive et installable, conçu pour GitHub 
 - comparaison ARPEGE, ICON, GFS et ECMWF avec Chart.js ;
 - graphique AROME 48 h avec température, pluie et rafales ;
 - tendance ECMWF IFS de J+5 à J+10 ;
+- suivi de l’heure de récupération et du run estimé de chaque modèle ;
 - recherche de ville et géolocalisation ;
 - carte Ventusky ;
 - PWA avec cache hors ligne de l’interface ;
@@ -86,3 +87,11 @@ defaultLocation: {
 - Ventusky peut modifier ses paramètres d’intégration.
 - Le cache du service worker conserve l’interface, mais les données météo hors ligne
   ne sont disponibles que si elles ont déjà été consultées.
+
+
+## À propos des runs affichés
+
+L’API ne communique pas toujours l’heure exacte d’initialisation de chaque modèle.
+Le site calcule donc un **run estimé** à partir des horaires théoriques et d’un délai
+approximatif de mise à disposition. L’heure « Données reçues » correspond, elle, à
+l’heure réelle de la requête effectuée par le navigateur.

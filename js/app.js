@@ -33,6 +33,7 @@ window.MeteoApp = (() => {
       MeteoUI.renderDashboard(forecast, air);
       MeteoUI.renderHourly(forecast);
       MeteoUI.renderDaily(forecast);
+      MeteoUI.renderModelStatuses(models, arome);
       MeteoCharts.renderModels(models);
       MeteoCharts.renderArome(arome, 'temp');
       MeteoCharts.renderEcmwfLong(ecmwfLong);

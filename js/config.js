@@ -19,9 +19,39 @@ window.MeteoConfig = Object.freeze({
     geocoding: 'https://geocoding-api.open-meteo.com/v1/search'
   },
   modelDefinitions: [
-    { key: 'arpege', label: 'ARPEGE', model: 'meteofrance_arpege_europe' },
-    { key: 'icon', label: 'ICON', model: 'icon_seamless' },
-    { key: 'gfs', label: 'GFS', model: 'gfs_seamless' },
-    { key: 'ecmwf', label: 'ECMWF IFS', model: 'ecmwf_ifs' }
-  ]
+    {
+      key: 'arpege',
+      label: 'ARPEGE',
+      model: 'meteofrance_arpege_europe',
+      runHoursUtc: [0, 6, 12, 18],
+      estimatedDelayHours: 3
+    },
+    {
+      key: 'icon',
+      label: 'ICON',
+      model: 'icon_seamless',
+      runHoursUtc: [0, 3, 6, 9, 12, 15, 18, 21],
+      estimatedDelayHours: 2
+    },
+    {
+      key: 'gfs',
+      label: 'GFS',
+      model: 'gfs_seamless',
+      runHoursUtc: [0, 6, 12, 18],
+      estimatedDelayHours: 4
+    },
+    {
+      key: 'ecmwf',
+      label: 'ECMWF IFS',
+      model: 'ecmwf_ifs',
+      runHoursUtc: [0, 6, 12, 18],
+      estimatedDelayHours: 6
+    }
+  ],
+  aromeRunDefinition: {
+    key: 'arome',
+    label: 'AROME',
+    runHoursUtc: [0, 6, 12, 18],
+    estimatedDelayHours: 3
+  }
 });
