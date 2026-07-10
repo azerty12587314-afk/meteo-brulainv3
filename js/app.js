@@ -21,10 +21,12 @@ window.MeteoApp = (() => {
     if (force) MeteoApi.clearCache();
 
     try {
-      const [forecast, air, models] = await Promise.all([
+      const [forecast, air, models, arome, ecmwfLong] = await Promise.all([
         MeteoApi.getForecast(location),
         MeteoApi.getAirQuality(location).catch(() => null),
-        MeteoApi.getModelForecasts(location)
+        MeteoApi.getModelForecasts(location),
+        MeteoApi.getArome48h(location),
+        MeteoApi.getEcmwfLongRange(location)
       ]);
 
       MeteoUI.renderCurrent(forecast, location);
@@ -32,6 +34,8 @@ window.MeteoApp = (() => {
       MeteoUI.renderHourly(forecast);
       MeteoUI.renderDaily(forecast);
       MeteoCharts.renderModels(models);
+      MeteoCharts.renderArome(arome, 'temp');
+      MeteoCharts.renderEcmwfLong(ecmwfLong);
       MeteoRadar.update(location);
       MeteoAnimations.updateTheme(forecast.current.weather_code, forecast.current.is_day);
     } catch (error) {
@@ -103,6 +107,9 @@ window.MeteoApp = (() => {
     document.getElementById('location-form')?.addEventListener('submit', handleSearch);
     document.getElementById('geolocate-button')?.addEventListener('click', geolocate);
     document.getElementById('refresh-button')?.addEventListener('click', () => loadAll(true));
+    document.querySelectorAll('[data-arome-type]').forEach(button => {
+      button.addEventListener('click', () => MeteoCharts.setAromeType(button.dataset.aromeType));
+    });
     window.addEventListener('online', () => loadAll(true));
   }
 

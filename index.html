@@ -45,6 +45,35 @@
 <canvas id="modelsChart"></canvas>
 </section>
 
+<section class="card advanced-chart-card" id="arome-section">
+  <div class="chart-heading">
+    <div>
+      <h2 class="arome-title">🎯 Maille Fine Haute Résolution (48 h)</h2>
+      <p id="arome-model-label" class="chart-subtitle">Chargement du modèle officiel AROME…</p>
+    </div>
+    <div class="chart-tabs" role="tablist" aria-label="Variable du graphique AROME">
+      <button class="chart-tab active" type="button" data-arome-type="temp" aria-pressed="true">🌡️ Temp</button>
+      <button class="chart-tab" type="button" data-arome-type="rain" aria-pressed="false">🌧️ Pluie</button>
+      <button class="chart-tab" type="button" data-arome-type="wind" aria-pressed="false">💨 Vent</button>
+    </div>
+  </div>
+  <div class="chart-shell chart-shell-large">
+    <canvas id="aromeChart"></canvas>
+  </div>
+</section>
+
+<section class="card advanced-chart-card" id="ecmwf-long-section">
+  <div class="chart-heading">
+    <div>
+      <h2 class="ecmwf-title">🔮 Suite Long Terme : uniquement ECMWF IFS (5 à 10 jours)</h2>
+      <p class="chart-subtitle">Vue exclusive sur la fin de l’échéance via le modèle européen ECMWF IFS.</p>
+    </div>
+  </div>
+  <div class="chart-shell">
+    <canvas id="ecmwfLongChart"></canvas>
+  </div>
+</section>
+
 <section class="card">
 <h2>Radar météo</h2>
 <iframe id="ventusky" loading="lazy"></iframe>

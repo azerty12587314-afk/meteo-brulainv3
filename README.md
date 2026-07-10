@@ -9,6 +9,8 @@ Tableau de bord météo statique, responsive et installable, conçu pour GitHub 
 - lever et coucher du soleil, UV, humidité, pression et vent ;
 - qualité de l’air et synthèse des pollens ;
 - comparaison ARPEGE, ICON, GFS et ECMWF avec Chart.js ;
+- graphique AROME 48 h avec température, pluie et rafales ;
+- tendance ECMWF IFS de J+5 à J+10 ;
 - recherche de ville et géolocalisation ;
 - carte Ventusky ;
 - PWA avec cache hors ligne de l’interface ;

@@ -82,6 +82,51 @@ window.MeteoApi = (() => {
     return data.results || [];
   }
 
+
+  function getHourlyModelForecast(location, model, days) {
+    const params = {
+      latitude: location.latitude,
+      longitude: location.longitude,
+      timezone: location.timezone || 'auto',
+      forecast_days: days,
+      hourly: [
+        'temperature_2m', 'precipitation', 'wind_speed_10m',
+        'wind_gusts_10m', 'weather_code'
+      ].join(','),
+      models: model
+    };
+    return request(
+      buildUrl(endpoints.forecast, params),
+      `hourly-model:${JSON.stringify(params)}`
+    );
+  }
+
+  async function getArome48h(location) {
+    const candidates = [
+      { model: 'meteofrance_arome_france_hd', label: 'Modèle officiel AROME HD (Météo-France · maille fine)' },
+      { model: 'meteofrance_arome_france', label: 'Modèle officiel AROME (Météo-France · maille fine)' }
+    ];
+
+    for (const candidate of candidates) {
+      try {
+        const data = await getHourlyModelForecast(location, candidate.model, 2);
+        if (data?.hourly?.time?.length) return { ...candidate, data };
+      } catch (error) {
+        console.warn(`AROME indisponible avec ${candidate.model}`, error);
+      }
+    }
+    return null;
+  }
+
+  async function getEcmwfLongRange(location) {
+    try {
+      return await getHourlyModelForecast(location, 'ecmwf_ifs', 10);
+    } catch (error) {
+      console.warn('ECMWF IFS longue échéance indisponible', error);
+      return null;
+    }
+  }
+
   async function getModelForecasts(location) {
     const tasks = MeteoConfig.modelDefinitions.map(async definition => {
       try {
@@ -99,5 +144,5 @@ window.MeteoApi = (() => {
     cache.clear();
   }
 
-  return { getForecast, getAirQuality, searchLocation, getModelForecasts, clearCache };
+  return { getForecast, getAirQuality, searchLocation, getModelForecasts, getArome48h, getEcmwfLongRange, clearCache };
 })();
