@@ -943,3 +943,35 @@ main .card:nth-child(4) {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* ---------- Liste compacte des mises à jour visibles ---------- */
+.model-status-card { max-width: 620px; }
+.model-status-note { margin-bottom: 1rem; }
+.model-update-list { display: grid; gap: .35rem; max-width: 430px; }
+.model-update-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  margin: 0; padding: .62rem .75rem;
+  border: 1px solid rgba(148,163,184,.14); border-radius: 11px;
+  background: rgba(15,23,42,.38);
+}
+.model-update-row > span {
+  display: inline-flex; align-items: center; gap: .55rem;
+  color: var(--text-soft); font-weight: 800;
+}
+.model-update-row strong {
+  color: var(--text); font-variant-numeric: tabular-nums;
+}
+.model-update-dot {
+  width: .68rem; height: .68rem; flex: 0 0 auto; border-radius: 999px;
+  background: #94a3b8;
+}
+.model-update-row.is-available .model-update-dot {
+  background: #34d399;
+  box-shadow: 0 0 0 4px rgba(52,211,153,.1), 0 0 12px rgba(52,211,153,.4);
+}
+.model-update-row.is-unavailable .model-update-dot { background: #fb7185; }
+.model-update-row.is-unavailable strong { color: #fda4af; font-size: .82rem; }
+@media (max-width: 560px) {
+  .model-status-card, .model-update-list { max-width: none; }
+}

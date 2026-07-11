@@ -42,16 +42,11 @@
 
 
 <section class="card model-status-card" id="model-status-section">
-  <div class="model-status-heading">
-    <div>
-      <h2>🛰️ Mise à jour des modèles</h2>
-      <p class="chart-subtitle">
-        Heure de récupération et run estimé. Le run exact peut différer selon la publication de l’API.
-      </p>
-    </div>
-    <span id="models-global-refresh" class="refresh-badge">En attente…</span>
-  </div>
-  <div id="model-status-grid" class="model-status-grid" aria-live="polite"></div>
+  <h2>🛰️ Dernière mise à jour des modèles</h2>
+  <p class="chart-subtitle model-status-note">
+    Heure à laquelle ce navigateur a détecté de nouvelles données.
+  </p>
+  <div id="model-update-list" class="model-update-list" aria-live="polite"></div>
 </section>
 <section class="card">
 <h2>Comparaison des modèles</h2>

@@ -95,3 +95,10 @@ L’API ne communique pas toujours l’heure exacte d’initialisation de chaque
 Le site calcule donc un **run estimé** à partir des horaires théoriques et d’un délai
 approximatif de mise à disposition. L’heure « Données reçues » correspond, elle, à
 l’heure réelle de la requête effectuée par le navigateur.
+
+## Heures de mise à jour visibles
+
+La liste compare un échantillon des données reçues à celui de la visite précédente.
+Quand les valeurs changent, l'heure de détection est enregistrée dans le navigateur.
+Elle représente donc une mise à jour réellement visible par ce navigateur, et non
+l'heure officielle d'initialisation du modèle.

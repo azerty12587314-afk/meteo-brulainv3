@@ -167,57 +167,81 @@ window.MeteoUI = (() => {
   }
 
 
-  function estimateLatestRun(definition, referenceDate = new Date()) {
-    const runHours = definition?.runHoursUtc || [0, 6, 12, 18];
-    const delayMs = Number(definition?.estimatedDelayHours || 0) * 60 * 60 * 1000;
-    const availableReference = new Date(referenceDate.getTime() - delayMs);
 
-    let best = null;
-    for (let dayOffset = 0; dayOffset <= 1; dayOffset += 1) {
-      const day = new Date(Date.UTC(
-        availableReference.getUTCFullYear(),
-        availableReference.getUTCMonth(),
-        availableReference.getUTCDate() - dayOffset,
-        0, 0, 0
-      ));
-      for (const hour of runHours) {
-        const candidate = new Date(day.getTime() + hour * 60 * 60 * 1000);
-        if (candidate <= availableReference && (!best || candidate > best)) best = candidate;
-      }
+  const MODEL_UPDATE_STORAGE_KEY = 'meteo-model-observed-updates-v1';
+
+  function loadObservedModelUpdates() {
+    try {
+      return JSON.parse(localStorage.getItem(MODEL_UPDATE_STORAGE_KEY)) || {};
+    } catch {
+      return {};
     }
-    return best;
   }
 
-  function formatRun(runDate) {
-    if (!runDate) return 'Run inconnu';
-    const hour = String(runDate.getUTCHours()).padStart(2, '0');
-    const day = new Intl.DateTimeFormat('fr-FR', {
-      day: '2-digit',
-      month: 'short',
-      timeZone: 'UTC'
-    }).format(runDate);
-    return `Run estimé ${hour}Z · ${day}`;
+  function saveObservedModelUpdates(state) {
+    try {
+      localStorage.setItem(MODEL_UPDATE_STORAGE_KEY, JSON.stringify(state));
+    } catch {}
   }
 
-  function formatAge(date) {
-    if (!date) return 'âge inconnu';
-    const minutes = Math.max(0, Math.round((Date.now() - date.getTime()) / 60000));
-    if (minutes < 2) return 'à l’instant';
-    if (minutes < 60) return `il y a ${minutes} min`;
-    const hours = Math.floor(minutes / 60);
-    const remaining = minutes % 60;
-    return remaining ? `il y a ${hours} h ${remaining} min` : `il y a ${hours} h`;
+  function modelSignature(data) {
+    const h = data?.hourly;
+    if (!h?.time?.length) return null;
+    const indexes = [0, 1, 2, 6, 12, 24, 36, 47].filter(i => i < h.time.length);
+    return JSON.stringify(indexes.map(i => [
+      h.time[i],
+      h.temperature_2m?.[i] ?? null,
+      h.precipitation?.[i] ?? null,
+      h.wind_gusts_10m?.[i] ?? null
+    ]));
+  }
+
+  function observeModelUpdate(key, data, state, nowIso) {
+    const signature = modelSignature(data);
+    if (!signature) return { available: false, observedAt: state[key]?.observedAt || null };
+    if (!state[key] || state[key].signature !== signature) {
+      state[key] = { signature, observedAt: nowIso };
+    }
+    return { available: true, observedAt: state[key].observedAt };
+  }
+
+  function formatObservedTime(iso) {
+    if (!iso) return '--:--';
+    return new Intl.DateTimeFormat('fr-FR', {
+      hour: '2-digit',
+      minute: '2-digit'
+    }).format(new Date(iso));
   }
 
   function renderModelStatuses(models, aromeResult) {
-    const grid = document.getElementById('model-status-grid');
-    const globalBadge = document.getElementById('models-global-refresh');
-    if (!grid) return;
+    const container = document.getElementById('model-update-list');
+    if (!container) return;
 
-    const modelDefinitions = MeteoConfig.modelDefinitions || [];
-    const cards = modelDefinitions.map(definition => {
-      const result = models.find(item => item.key === definition.key);
-      return {
+    const state = loadObservedModelUpdates();
+    const nowIso = new Date().toISOString();
+    const byKey = Object.fromEntries(models.map(model => [model.key, model]));
+
+    const entries = [
+      ['arome', 'AROME', aromeResult?.data],
+      ['arpege', 'ARPEGE', byKey.arpege?.data],
+      ['ecmwf', 'ECMWF', byKey.ecmwf?.data],
+      ['icon', 'ICON', byKey.icon?.data],
+      ['gfs', 'GFS', byKey.gfs?.data]
+    ].map(([key, label, data]) => ({
+      key, label, ...observeModelUpdate(key, data, state, nowIso)
+    }));
+
+    saveObservedModelUpdates(state);
+
+    container.innerHTML = entries.map(entry => `
+      <p class="model-update-row ${entry.available ? 'is-available' : 'is-unavailable'}">
+        <span><span class="model-update-dot" aria-hidden="true"></span>${entry.label}</span>
+        <strong>${entry.available ? formatObservedTime(entry.observedAt) : 'Indisponible'}</strong>
+      </p>
+    `).join('');
+  }
+
+  return {
         definition,
         available: Boolean(result?.data),
         fetchedAt: result?.fetchedAt ? new Date(result.fetchedAt) : new Date()
