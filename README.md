@@ -108,3 +108,10 @@ l'heure officielle d'initialisation du modèle.
 
 Cette version remplace entièrement `ui.js` et `app.js` afin d’éliminer les blocs
 dupliqués qui provoquaient `Unexpected token '}'` et `MeteoUI is not defined`.
+
+
+## Version 5 — Cartes Europe
+
+Cette version ajoute une carte interactive Open-Meteo Maps couvrant l’Europe, le choix des modèles et paramètres dans la carte, ainsi qu’un radar pluie Europe animé basé sur RainViewer et OpenStreetMap.
+
+Services externes : Open-Meteo Maps, RainViewer, OpenStreetMap et Leaflet. Leur disponibilité et leurs conditions d’utilisation s’appliquent.

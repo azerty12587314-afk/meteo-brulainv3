@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'meteo-lab-v4-1';
+const CACHE_NAME = 'meteo-lab-v5-1';
 const APP_SHELL = [
   './',
   './index.html',
@@ -14,6 +14,7 @@ const APP_SHELL = [
   './js/ui.js',
   './js/animations.js',
   './js/radar.js',
+  './js/europe-maps.js',
   './js/app.js'
 ];
 

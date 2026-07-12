@@ -982,3 +982,28 @@ main .card:nth-child(4) {
 #model-status-section .refresh-badge {
   display: none !important;
 }
+
+/* =========================================================
+   V5 — Cartes modèles Europe et radar pluie
+   ========================================================= */
+.europe-maps-card,.europe-radar-card{padding:clamp(1rem,2.4vw,1.7rem)}
+.europe-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1rem}
+.europe-heading h2{margin-bottom:.35rem}
+.europe-open-link{flex-shrink:0;padding:.68rem .95rem;color:#082f49;border-radius:999px;background:linear-gradient(135deg,#7dd3fc,#38bdf8);font-size:.84rem;font-weight:850;text-decoration:none;box-shadow:0 10px 24px rgba(14,165,233,.2)}
+.europe-guide{display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:.9rem}
+.europe-guide span{padding:.45rem .72rem;color:var(--text-soft);border:1px solid var(--border);border-radius:999px;background:rgba(15,23,42,.45);font-size:.76rem}
+.europe-frame-shell{width:100%;height:min(72vh,760px);min-height:520px;overflow:hidden;border:1px solid var(--border);border-radius:16px;background:#0b1220}
+#openmeteo-europe-map{width:100%;height:100%;border:0}
+.radar-status{flex-shrink:0;padding:.48rem .72rem;color:#bae6fd;border:1px solid rgba(56,189,248,.25);border-radius:999px;background:rgba(14,165,233,.1);font-size:.78rem;font-weight:800}
+.radar-status.is-error{color:#fecdd3;border-color:rgba(251,113,133,.35);background:rgba(159,18,57,.2)}
+.radar-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:.55rem;margin-bottom:.8rem}
+.radar-toolbar button{min-height:40px;padding:.58rem .8rem;font-size:.82rem}
+.radar-speed-label{display:inline-flex;align-items:center;gap:.45rem;min-height:40px;padding:.35rem .55rem .35rem .75rem;color:var(--text-soft);border:1px solid var(--border);border-radius:999px;background:rgba(15,23,42,.52);font-size:.8rem;font-weight:750}
+.radar-speed-label select{min-height:30px;padding:.25rem .45rem;color:var(--text);border:1px solid var(--border);border-radius:999px;background:rgba(2,6,23,.8)}
+.radar-time-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:.8rem;margin-bottom:.8rem}
+#radar-timeline{width:100%;accent-color:var(--primary)}
+#radar-time-label{min-width:118px;color:var(--text-soft);font-variant-numeric:tabular-nums;text-align:right}
+.europe-radar-map{width:100%;height:min(68vh,700px);min-height:480px;overflow:hidden;border:1px solid var(--border);border-radius:16px;background:#0b1220}
+.europe-radar-map .leaflet-control-zoom a{color:#0f172a}
+.radar-attribution-note{margin:.65rem 0 0;color:var(--text-muted);font-size:.74rem}
+@media(max-width:760px){.europe-heading{flex-direction:column}.europe-open-link,.radar-status{width:100%;text-align:center}.europe-frame-shell{min-height:450px;height:62vh}.europe-radar-map{min-height:430px;height:58vh}.radar-time-row{grid-template-columns:1fr}#radar-time-label{text-align:left}}
