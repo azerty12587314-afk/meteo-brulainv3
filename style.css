@@ -1196,3 +1196,13 @@ main .card:nth-child(4) {
     gap: .15rem;
   }
 }
+/* Corrige l’affichage du lecteur de cartes V6 */
+[hidden] {
+  display: none !important;
+}
+
+.model-player-placeholder[hidden],
+#model-player-image[hidden],
+#model-player-error[hidden] {
+  display: none !important;
+}
