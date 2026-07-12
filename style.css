@@ -975,3 +975,10 @@ main .card:nth-child(4) {
 @media (max-width: 560px) {
   .model-status-card, .model-update-list { max-width: none; }
 }
+
+/* V4 : neutralisation des anciens styles de grille de statut */
+#model-status-section .model-status-grid,
+#model-status-section .model-status-heading,
+#model-status-section .refresh-badge {
+  display: none !important;
+}

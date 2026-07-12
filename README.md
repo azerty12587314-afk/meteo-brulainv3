@@ -102,3 +102,9 @@ La liste compare un échantillon des données reçues à celui de la visite pré
 Quand les valeurs changent, l'heure de détection est enregistrée dans le navigateur.
 Elle représente donc une mise à jour réellement visible par ce navigateur, et non
 l'heure officielle d'initialisation du modèle.
+
+
+## Version 4
+
+Cette version remplace entièrement `ui.js` et `app.js` afin d’éliminer les blocs
+dupliqués qui provoquaient `Unexpected token '}'` et `MeteoUI is not defined`.
