@@ -191,3 +191,14 @@ La V7 ajoute :
 Après installation, il faut relancer le workflow **Generate weather maps** afin que
 les nouvelles cartes soient régénérées avec les graduations directement inscrites sur
 les images.
+
+
+# V8
+Ajoute ECMWF IFS, AROME, ARPEGE, CAPE, jet stream 300 hPa, Z500 + pression et anomalies de température.
+
+Ordre conseillé dans GitHub Actions :
+1. lancer une fois `Build 1991-2020 climatology` ;
+2. lancer `Generate weather maps` ;
+3. attendre le commit automatique puis recharger GitHub Pages.
+
+Les cartes de base GFS/ICON restent issues du traitement GRIB natif. Les produits avancés et les modèles supplémentaires utilisent une grille synoptique Open-Meteo plus légère afin de rester compatibles avec GitHub Actions.
