@@ -53,6 +53,16 @@ jobs:
             --max-hour "$MAX_HOUR" \
             --step 6
 
+      - name: Generate ECMWF, AROME and ARPEGE advanced maps
+        continue-on-error: true
+        run: |
+          python scripts/render_openmeteo_models.py --output . --models ecmwf arpege arome
+
+      - name: Add CAPE, jet stream and Z500 for GFS and ICON
+        continue-on-error: true
+        run: |
+          python scripts/render_openmeteo_models.py --output . --models gfs icon_eu
+
       - name: Show generated files
         run: |
           find maps -maxdepth 4 -type f | sort
@@ -66,6 +76,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No map changes to commit."
           else
-            git commit -m "chore: update generated weather maps"
+            git commit -m "chore: update V8 multi-model weather maps"
             git push
           fi
