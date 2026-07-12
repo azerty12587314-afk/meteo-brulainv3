@@ -202,3 +202,19 @@ Ordre conseillé dans GitHub Actions :
 3. attendre le commit automatique puis recharger GitHub Pages.
 
 Les cartes de base GFS/ICON restent issues du traitement GRIB natif. Les produits avancés et les modèles supplémentaires utilisent une grille synoptique Open-Meteo plus légère afin de rester compatibles avec GitHub Actions.
+
+
+# V8.1 — climatologie résistante aux limites API
+
+Le workflow de climatologie a été réécrit pour éviter l’erreur HTTP 429 :
+
+- grille Europe allégée à 6° par défaut ;
+- une coordonnée par requête ;
+- périodes découpées en blocs de cinq ans ;
+- pause entre les appels ;
+- temporisation exponentielle et prise en charge de `Retry-After` ;
+- fichier de progression local sauvegardé après chaque requête ;
+- contrôle automatique du fichier final avant le commit.
+
+Dans GitHub Actions, lance **Build 1991-2020 climatology** avec la valeur `6`.
+Une fois le workflow terminé, lance **Generate weather maps** pour créer les anomalies.
