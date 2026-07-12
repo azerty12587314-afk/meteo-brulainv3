@@ -172,3 +172,22 @@ js/model-player.js
 - En cas d’échec partiel d’un modèle, l’autre peut tout de même être publié.
 - Le dépôt peut grossir avec le temps ; le script supprime les anciennes cartes avant
   de produire le nouveau run.
+
+
+# V7 — échelles et lecteur amélioré
+
+La V7 ajoute :
+
+- des valeurs chiffrées et les unités sur les barres de couleurs des images générées ;
+- une légende HTML dynamique sous la carte ;
+- une échelle adaptée à chaque variable ;
+- un compteur d’images ;
+- le téléchargement de la carte courante ;
+- le préchargement des images précédente et suivante ;
+- les raccourcis clavier gauche, droite et espace ;
+- un indicateur de chargement ;
+- une correction générale de l’attribut HTML `hidden`.
+
+Après installation, il faut relancer le workflow **Generate weather maps** afin que
+les nouvelles cartes soient régénérées avec les graduations directement inscrites sur
+les images.

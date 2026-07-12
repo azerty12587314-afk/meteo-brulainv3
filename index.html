@@ -122,6 +122,7 @@
     <button id="model-player-prev" type="button">◀</button>
     <button id="model-player-play" type="button">▶ Lecture</button>
     <button id="model-player-next" type="button">▶</button>
+    <button id="model-player-download" type="button">⇩ Télécharger</button>
     <button id="model-player-fullscreen" type="button">⛶ Plein écran</button>
   </div>
 
@@ -135,7 +136,10 @@
       step="1"
       aria-label="Échéance du modèle"
     >
-    <strong id="model-player-validity">--</strong>
+    <div class="model-player-time-info">
+      <strong id="model-player-validity">--</strong>
+      <span id="model-player-counter">0 / 0</span>
+    </div>
   </div>
 
   <div id="model-player-viewer" class="model-player-viewer">
@@ -156,6 +160,19 @@
       <span id="model-player-hour"></span>
     </div>
   </div>
+
+  <div id="model-player-legend" class="model-player-legend" hidden>
+    <div class="model-player-legend-header">
+      <strong id="model-player-legend-title">Échelle</strong>
+      <span id="model-player-legend-unit"></span>
+    </div>
+    <div id="model-player-legend-bar" class="model-player-legend-bar"></div>
+    <div id="model-player-legend-ticks" class="model-player-legend-ticks"></div>
+  </div>
+
+  <p class="model-player-help">
+    Raccourcis : ← / → pour changer d’échéance · espace pour lecture/pause.
+  </p>
 
   <p id="model-player-error" class="model-player-error" hidden></p>
 </section>

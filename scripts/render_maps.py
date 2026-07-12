@@ -46,6 +46,57 @@ VARIABLE_LABELS = {
 }
 
 
+VARIABLE_LEGENDS = {
+    "temp2m": {
+        "title": "Température à 2 m",
+        "unit": "°C",
+        "ticks": [-30, -20, -10, 0, 10, 20, 30, 40],
+        "gradient": (
+            "linear-gradient(90deg,#30123b,#4145ab,#4675ed,#39a2fc,"
+            "#1bcfd4,#24eca6,#61fc6c,#a4fc3c,#d9ef36,#f9c63a,"
+            "#fb8734,#ed4a27,#c91d15,#7a0403)"
+        ),
+    },
+    "mslp": {
+        "title": "Pression au niveau de la mer",
+        "unit": "hPa",
+        "ticks": [960, 980, 1000, 1020, 1040],
+        "gradient": (
+            "linear-gradient(90deg,#312e81,#2563eb,#22d3ee,"
+            "#4ade80,#fde047,#fb923c,#ef4444)"
+        ),
+    },
+    "precip": {
+        "title": "Précipitations cumulées",
+        "unit": "mm",
+        "ticks": [0.1, 1, 5, 10, 20, 50, 100],
+        "gradient": (
+            "linear-gradient(90deg,#e0f2fe,#7dd3fc,#22d3ee,"
+            "#22c55e,#eab308,#f97316,#dc2626,#7e22ce)"
+        ),
+    },
+    "wind10": {
+        "title": "Vitesse du vent à 10 m",
+        "unit": "km/h",
+        "ticks": [0, 20, 40, 60, 80, 100],
+        "gradient": (
+            "linear-gradient(90deg,#440154,#3b528b,"
+            "#21918c,#5ec962,#fde725)"
+        ),
+    },
+    "z500_mslp": {
+        "title": "Géopotentiel 500 hPa",
+        "unit": "dam · isobares en hPa",
+        "ticks": [480, 500, 520, 540, 560, 580, 600],
+        "gradient": (
+            "linear-gradient(90deg,#30123b,#4145ab,#4675ed,#39a2fc,"
+            "#1bcfd4,#24eca6,#61fc6c,#a4fc3c,#d9ef36,#f9c63a,"
+            "#fb8734,#ed4a27,#c91d15,#7a0403)"
+        ),
+    },
+}
+
+
 @dataclass
 class RunInfo:
     model: str
@@ -148,6 +199,14 @@ def save_figure(fig, destination: Path):
     plt.close(fig)
 
 
+def style_colorbar(cbar, ticks: list[float], unit: str):
+    cbar.set_ticks(ticks)
+    cbar.set_ticklabels([f"{tick:g}" for tick in ticks])
+    cbar.set_label(unit, color="white", fontsize=10, weight="bold")
+    cbar.ax.tick_params(colors="white", labelsize=8, length=4)
+    cbar.outline.set_edgecolor("#94a3b8")
+
+
 def draw_temp(data: xr.DataArray, title: str, subtitle: str, output: Path):
     values = np.asarray(data).squeeze() - 273.15
     lon, lat = coords(data)
@@ -158,8 +217,11 @@ def draw_temp(data: xr.DataArray, title: str, subtitle: str, output: Path):
         transform=ccrs.PlateCarree()
     )
     cbar = fig.colorbar(plot, ax=ax, orientation="horizontal", pad=0.035, shrink=0.8)
-    cbar.set_label("°C", color="white")
-    cbar.ax.tick_params(colors="white")
+    style_colorbar(
+        cbar,
+        VARIABLE_LEGENDS["temp2m"]["ticks"],
+        VARIABLE_LEGENDS["temp2m"]["unit"],
+    )
     save_figure(fig, output)
 
 
@@ -173,6 +235,21 @@ def draw_mslp(data: xr.DataArray, title: str, subtitle: str, output: Path):
         linewidths=0.75, transform=ccrs.PlateCarree()
     )
     ax.clabel(lines, inline=True, fontsize=7, fmt="%d")
+    ax.text(
+        0.012,
+        0.018,
+        "Isobares : pression au niveau de la mer (hPa)",
+        transform=ax.transAxes,
+        color="white",
+        fontsize=9,
+        weight="bold",
+        bbox={
+            "facecolor": "#020617",
+            "edgecolor": "#64748b",
+            "alpha": 0.78,
+            "boxstyle": "round,pad=0.45",
+        },
+    )
     save_figure(fig, output)
 
 
@@ -186,8 +263,11 @@ def draw_precip(data: xr.DataArray, title: str, subtitle: str, output: Path):
         extend="max", transform=ccrs.PlateCarree()
     )
     cbar = fig.colorbar(plot, ax=ax, orientation="horizontal", pad=0.035, shrink=0.8)
-    cbar.set_label("mm", color="white")
-    cbar.ax.tick_params(colors="white")
+    style_colorbar(
+        cbar,
+        VARIABLE_LEGENDS["precip"]["ticks"],
+        VARIABLE_LEGENDS["precip"]["unit"],
+    )
     save_figure(fig, output)
 
 
@@ -213,8 +293,11 @@ def draw_wind(
         transform=ccrs.PlateCarree()
     )
     cbar = fig.colorbar(plot, ax=ax, orientation="horizontal", pad=0.035, shrink=0.8)
-    cbar.set_label("km/h", color="white")
-    cbar.ax.tick_params(colors="white")
+    style_colorbar(
+        cbar,
+        VARIABLE_LEGENDS["wind10"]["ticks"],
+        VARIABLE_LEGENDS["wind10"]["unit"],
+    )
     save_figure(fig, output)
 
 
@@ -242,8 +325,11 @@ def draw_z500_mslp(
     )
     ax.clabel(p_lines, inline=True, fontsize=7, fmt="%d")
     cbar = fig.colorbar(plot, ax=ax, orientation="horizontal", pad=0.035, shrink=0.8)
-    cbar.set_label("Décamètres (Z500)", color="white")
-    cbar.ax.tick_params(colors="white")
+    style_colorbar(
+        cbar,
+        VARIABLE_LEGENDS["z500_mslp"]["ticks"],
+        "dam",
+    )
     save_figure(fig, output)
 
 
@@ -278,7 +364,11 @@ def generate_gfs(output_root: Path, hours: list[int]) -> dict[str, Any]:
     run.model = "gfs"
     temp_dir = Path(tempfile.mkdtemp(prefix="gfs_"))
     variables = {
-        key: {"label": label, "frames": []}
+        key: {
+            "label": label,
+            "legend": VARIABLE_LEGENDS.get(key),
+            "frames": [],
+        }
         for key, label in VARIABLE_LABELS.items()
     }
 
@@ -379,7 +469,11 @@ def generate_icon(output_root: Path, hours: list[int]) -> dict[str, Any]:
     run.model = "icon_eu"
     temp_dir = Path(tempfile.mkdtemp(prefix="icon_"))
     variables = {
-        key: {"label": VARIABLE_LABELS[key], "frames": []}
+        key: {
+            "label": VARIABLE_LABELS[key],
+            "legend": VARIABLE_LEGENDS.get(key),
+            "frames": [],
+        }
         for key in ("temp2m", "mslp", "precip", "wind10")
     }
 

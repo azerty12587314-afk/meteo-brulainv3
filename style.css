@@ -1196,13 +1196,126 @@ main .card:nth-child(4) {
     gap: .15rem;
   }
 }
-/* Corrige l’affichage du lecteur de cartes V6 */
+
+
+/* =========================================================
+   V7 — Légendes chiffrées et lecteur amélioré
+   ========================================================= */
+
 [hidden] {
   display: none !important;
 }
 
-.model-player-placeholder[hidden],
-#model-player-image[hidden],
-#model-player-error[hidden] {
-  display: none !important;
+.model-player-time-info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: .7rem;
+  min-width: 260px;
+}
+
+#model-player-counter {
+  padding: .28rem .52rem;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(15,23,42,.45);
+  font-size: .73rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.model-player-legend {
+  margin-top: .85rem;
+  padding: .85rem .95rem .75rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: rgba(2,6,23,.45);
+}
+
+.model-player-legend-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: .55rem;
+}
+
+.model-player-legend-header strong {
+  color: var(--text-soft);
+  font-size: .83rem;
+}
+
+#model-player-legend-unit {
+  color: var(--text-muted);
+  font-size: .76rem;
+  font-weight: 800;
+}
+
+.model-player-legend-bar {
+  height: 22px;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 999px;
+  box-shadow: inset 0 1px 4px rgba(2,6,23,.45);
+}
+
+.model-player-legend-ticks {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 0;
+  margin-top: .36rem;
+  color: var(--text-muted);
+  font-size: .68rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.model-player-legend-ticks span {
+  position: relative;
+  min-width: 1px;
+  text-align: center;
+}
+
+.model-player-legend-ticks span::before {
+  content: "";
+  position: absolute;
+  top: -.43rem;
+  left: 50%;
+  width: 1px;
+  height: .28rem;
+  background: rgba(203,213,225,.55);
+}
+
+.model-player-help {
+  margin: .58rem 0 0;
+  color: var(--text-muted);
+  font-size: .72rem;
+}
+
+.model-player-viewer.is-loading::after {
+  content: "Chargement de la carte…";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--text-soft);
+  background: rgba(2,6,23,.48);
+  backdrop-filter: blur(2px);
+  font-size: .9rem;
+  font-weight: 800;
+  z-index: 4;
+}
+
+@media (max-width: 760px) {
+  .model-player-time-info {
+    justify-content: flex-start;
+    min-width: 0;
+  }
+
+  .model-player-legend-ticks {
+    font-size: .59rem;
+  }
+
+  .model-player-help {
+    line-height: 1.45;
+  }
 }
