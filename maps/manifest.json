@@ -1,0 +1,53 @@
+{
+  "generatedAt": null,
+  "models": {
+    "gfs": {
+      "label": "GFS",
+      "run": null,
+      "variables": {
+        "temp2m": {
+          "label": "Température à 2 m",
+          "frames": []
+        },
+        "mslp": {
+          "label": "Pression au niveau de la mer",
+          "frames": []
+        },
+        "precip": {
+          "label": "Précipitations cumulées",
+          "frames": []
+        },
+        "wind10": {
+          "label": "Vent à 10 m",
+          "frames": []
+        },
+        "z500_mslp": {
+          "label": "Géopotentiel 500 hPa + pression",
+          "frames": []
+        }
+      }
+    },
+    "icon_eu": {
+      "label": "ICON-EU",
+      "run": null,
+      "variables": {
+        "temp2m": {
+          "label": "Température à 2 m",
+          "frames": []
+        },
+        "mslp": {
+          "label": "Pression au niveau de la mer",
+          "frames": []
+        },
+        "precip": {
+          "label": "Précipitations cumulées",
+          "frames": []
+        },
+        "wind10": {
+          "label": "Vent à 10 m",
+          "frames": []
+        }
+      }
+    }
+  }
+}

@@ -1007,3 +1007,192 @@ main .card:nth-child(4) {
 .europe-radar-map .leaflet-control-zoom a{color:#0f172a}
 .radar-attribution-note{margin:.65rem 0 0;color:var(--text-muted);font-size:.74rem}
 @media(max-width:760px){.europe-heading{flex-direction:column}.europe-open-link,.radar-status{width:100%;text-align:center}.europe-frame-shell{min-height:450px;height:62vh}.europe-radar-map{min-height:430px;height:58vh}.radar-time-row{grid-template-columns:1fr}#radar-time-label{text-align:left}}
+
+
+/* =========================================================
+   V6 — Lecteur autonome de cartes modèles
+   ========================================================= */
+
+.model-player-card {
+  padding: clamp(1rem, 2.4vw, 1.7rem);
+}
+
+.model-player-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.model-player-heading h2 {
+  margin-bottom: .35rem;
+}
+
+.model-player-run {
+  flex-shrink: 0;
+  padding: .48rem .72rem;
+  color: #c7d2fe;
+  border: 1px solid rgba(129,140,248,.28);
+  border-radius: 999px;
+  background: rgba(99,102,241,.11);
+  font-size: .78rem;
+  font-weight: 800;
+}
+
+.model-player-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: .6rem;
+  margin-bottom: .8rem;
+}
+
+.model-player-controls label {
+  display: grid;
+  gap: .28rem;
+  color: var(--text-muted);
+  font-size: .72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.model-player-controls select {
+  min-height: 42px;
+  padding: .55rem .8rem;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(2,6,23,.78);
+}
+
+.model-player-controls button {
+  min-height: 42px;
+  padding: .58rem .82rem;
+  font-size: .82rem;
+}
+
+.model-player-timeline-row {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto;
+  align-items: center;
+  gap: .8rem;
+  margin-bottom: .8rem;
+}
+
+#model-player-timeline {
+  width: 100%;
+  accent-color: #818cf8;
+}
+
+#model-player-validity {
+  min-width: 190px;
+  color: var(--text-soft);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.model-player-viewer {
+  position: relative;
+  display: grid;
+  width: 100%;
+  min-height: 520px;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at center, rgba(30,41,59,.55), rgba(2,6,23,.96));
+}
+
+.model-player-viewer:fullscreen {
+  width: 100vw;
+  height: 100vh;
+  border: 0;
+  border-radius: 0;
+  background: #020617;
+}
+
+#model-player-image {
+  width: 100%;
+  height: 100%;
+  max-height: 780px;
+  object-fit: contain;
+  background: #020617;
+}
+
+.model-player-viewer:fullscreen #model-player-image {
+  max-height: none;
+}
+
+.model-player-placeholder {
+  display: grid;
+  max-width: 540px;
+  gap: .55rem;
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-soft);
+}
+
+.model-player-placeholder strong {
+  color: var(--text);
+  font-size: 1.15rem;
+}
+
+.model-player-overlay {
+  position: absolute;
+  right: .75rem;
+  bottom: .75rem;
+  left: .75rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .55rem .75rem;
+  color: #f8fafc;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 11px;
+  background: rgba(2,6,23,.68);
+  backdrop-filter: blur(8px);
+  font-size: .82rem;
+  font-weight: 800;
+  pointer-events: none;
+}
+
+.model-player-error {
+  margin: .8rem 0 0;
+  padding: .8rem;
+  color: #fecdd3;
+  border: 1px solid rgba(251,113,133,.35);
+  border-radius: 11px;
+  background: rgba(159,18,57,.18);
+}
+
+@media (max-width: 760px) {
+  .model-player-heading {
+    flex-direction: column;
+  }
+
+  .model-player-run {
+    width: 100%;
+    text-align: center;
+  }
+
+  .model-player-timeline-row {
+    grid-template-columns: 1fr;
+  }
+
+  #model-player-validity {
+    min-width: 0;
+    text-align: left;
+  }
+
+  .model-player-viewer {
+    min-height: 390px;
+  }
+
+  .model-player-overlay {
+    flex-direction: column;
+    gap: .15rem;
+  }
+}

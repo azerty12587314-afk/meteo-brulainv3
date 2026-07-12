@@ -115,3 +115,60 @@ dupliqués qui provoquaient `Unexpected token '}'` et `MeteoUI is not defined`.
 Cette version ajoute une carte interactive Open-Meteo Maps couvrant l’Europe, le choix des modèles et paramètres dans la carte, ainsi qu’un radar pluie Europe animé basé sur RainViewer et OpenStreetMap.
 
 Services externes : Open-Meteo Maps, RainViewer, OpenStreetMap et Leaflet. Leur disponibilité et leurs conditions d’utilisation s’appliquent.
+
+
+# V6 — lecteur de cartes générées
+
+Cette version remplace l’iframe des modèles par un lecteur autonome intégré au site.
+
+## Mise en route
+
+1. Dépose tous les fichiers à la racine du dépôt GitHub.
+2. Ouvre l’onglet **Actions** du dépôt.
+3. Sélectionne **Generate weather maps**.
+4. Clique sur **Run workflow**.
+5. Attends la fin du workflow et son commit automatique.
+6. Recharge le site GitHub Pages.
+
+Le workflow se relance ensuite automatiquement quatre fois par jour.
+
+## Modèles et champs de la première version
+
+### GFS
+
+- température à 2 m ;
+- pression au niveau de la mer ;
+- précipitations cumulées ;
+- vent à 10 m ;
+- géopotentiel 500 hPa avec pression au sol.
+
+### ICON-EU
+
+- température à 2 m ;
+- pression au niveau de la mer ;
+- précipitations cumulées ;
+- vent à 10 m.
+
+Les cartes sont produites toutes les six heures d’échéance, de +0 h à +120 h.
+
+## Architecture
+
+```text
+.github/workflows/generate-maps.yml
+scripts/render_maps.py
+scripts/requirements-maps.txt
+maps/manifest.json
+maps/gfs/...
+maps/icon_eu/...
+js/model-player.js
+```
+
+## Points importants
+
+- Le premier workflow peut durer plusieurs dizaines de minutes.
+- Les données brutes GRIB ne sont jamais conservées dans Git.
+- Seules les images WebP et le manifeste sont commités.
+- Le workflow utilise les données GFS de NOAA/NOMADS et ICON-EU du DWD.
+- En cas d’échec partiel d’un modèle, l’autre peut tout de même être publié.
+- Le dépôt peut grossir avec le temps ; le script supprime les anciennes cartes avant
+  de produire le nouveau run.

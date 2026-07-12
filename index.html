@@ -84,22 +84,82 @@
   </div>
 </section>
 
-<section class="card europe-maps-card" id="europe-models-section">
-  <div class="europe-heading">
+
+<section class="card model-player-card" id="generated-models-section">
+  <div class="model-player-heading">
     <div>
-      <h2>🗺️ Cartes modèles Europe</h2>
-      <p class="chart-subtitle">Vue synoptique continentale avec choix du modèle, de la variable, du niveau et de l’échéance directement dans la carte.</p>
+      <h2>🗺️ Cartes modèles Europe — lecteur intégré</h2>
+      <p class="chart-subtitle">
+        Cartes générées automatiquement depuis les données officielles GFS et ICON-EU.
+      </p>
     </div>
-    <a class="europe-open-link" href="https://maps.open-meteo.com/" target="_blank" rel="noopener noreferrer">Plein écran ↗</a>
+    <span id="model-player-run" class="model-player-run">Manifest en attente…</span>
   </div>
-  <div class="europe-guide">
-    <span>Modèles : ICON, GFS, ECMWF et autres modèles disponibles</span>
-    <span>Variables : température, vent, pluie, pression, géopotentiel…</span>
+
+  <div class="model-player-controls">
+    <label>
+      Modèle
+      <select id="model-player-model">
+        <option value="gfs">GFS</option>
+        <option value="icon_eu">ICON-EU</option>
+      </select>
+    </label>
+
+    <label>
+      Variable
+      <select id="model-player-variable"></select>
+    </label>
+
+    <label>
+      Vitesse
+      <select id="model-player-speed">
+        <option value="1400">Lente</option>
+        <option value="800" selected>Normale</option>
+        <option value="400">Rapide</option>
+      </select>
+    </label>
+
+    <button id="model-player-prev" type="button">◀</button>
+    <button id="model-player-play" type="button">▶ Lecture</button>
+    <button id="model-player-next" type="button">▶</button>
+    <button id="model-player-fullscreen" type="button">⛶ Plein écran</button>
   </div>
-  <div class="europe-frame-shell">
-    <iframe id="openmeteo-europe-map" src="https://maps.open-meteo.com/" title="Cartes des modèles météo sur l’Europe" loading="lazy" allowfullscreen></iframe>
+
+  <div class="model-player-timeline-row">
+    <input
+      id="model-player-timeline"
+      type="range"
+      min="0"
+      max="0"
+      value="0"
+      step="1"
+      aria-label="Échéance du modèle"
+    >
+    <strong id="model-player-validity">--</strong>
   </div>
+
+  <div id="model-player-viewer" class="model-player-viewer">
+    <div id="model-player-placeholder" class="model-player-placeholder">
+      <strong>Aucune carte générée pour le moment.</strong>
+      <span>
+        Lance le workflow « Generate weather maps » dans l’onglet Actions de GitHub.
+      </span>
+    </div>
+    <img
+      id="model-player-image"
+      alt="Carte météo du modèle sélectionné"
+      decoding="async"
+      hidden
+    >
+    <div class="model-player-overlay">
+      <span id="model-player-label"></span>
+      <span id="model-player-hour"></span>
+    </div>
+  </div>
+
+  <p id="model-player-error" class="model-player-error" hidden></p>
 </section>
+
 
 <section class="card europe-radar-card" id="europe-radar-section">
   <div class="europe-heading">
@@ -145,6 +205,7 @@
 <script defer src="js/animations.js"></script>
 <script defer src="js/radar.js"></script>
 <script defer src="js/europe-maps.js"></script>
+<script defer src="js/model-player.js"></script>
 <script defer src="js/app.js"></script>
 </body>
 </html>
