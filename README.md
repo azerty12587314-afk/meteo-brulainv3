@@ -480,3 +480,7 @@ contenant uniquement les variables qui ont réellement produit au moins une imag
 
 Ainsi, une erreur API ne peut plus supprimer des cartes GFS/ICON déjà valides et
 laisser le manifeste pointer vers des fichiers absents.
+
+# V15 — centre climatologique local
+
+Lance une première fois `Build climate data`. Le workflow calcule les normales 1991–2020 et les indicateurs locaux, puis s’exécute automatiquement le 2 de chaque mois. Les données proviennent d’ERA5-Land et représentent une réanalyse du point, pas une station officielle.

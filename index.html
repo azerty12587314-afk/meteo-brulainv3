@@ -85,6 +85,96 @@
 </section>
 
 
+
+<section class="card model-comparator-card" id="model-comparator-section">
+  <div class="model-comparator-heading">
+    <div>
+      <h2>⚖️ Comparateur de modèles</h2>
+      <p class="chart-subtitle">
+        Compare deux modèles sur la même variable et la même échéance.
+      </p>
+    </div>
+    <span id="model-comparator-status" class="model-comparator-status">
+      Chargement…
+    </span>
+  </div>
+
+  <div class="model-comparator-controls">
+    <label>
+      Modèle gauche
+      <select id="compare-model-left"></select>
+    </label>
+    <label>
+      Modèle droit
+      <select id="compare-model-right"></select>
+    </label>
+    <label>
+      Variable commune
+      <select id="compare-variable"></select>
+    </label>
+    <label>
+      Vitesse
+      <select id="compare-speed">
+        <option value="1400">Lente</option>
+        <option value="850" selected>Normale</option>
+        <option value="450">Rapide</option>
+      </select>
+    </label>
+
+    <button id="compare-prev" type="button">◀</button>
+    <button id="compare-play" type="button">▶ Lecture</button>
+    <button id="compare-next" type="button">▶</button>
+    <button id="compare-swap" type="button">⇄ Inverser</button>
+  </div>
+
+  <div class="model-comparator-timeline">
+    <input
+      id="compare-timeline"
+      type="range"
+      min="0"
+      max="0"
+      value="0"
+      step="1"
+      aria-label="Échéance comparée"
+    >
+    <strong id="compare-validity">--</strong>
+  </div>
+
+  <div class="model-comparator-grid">
+    <article class="model-compare-pane">
+      <header>
+        <strong id="compare-left-title">Modèle gauche</strong>
+        <span id="compare-left-run"></span>
+      </header>
+      <img id="compare-left-image" alt="Carte du modèle de gauche" hidden>
+      <div id="compare-left-empty" class="model-compare-empty">
+        Aucune carte commune.
+      </div>
+    </article>
+
+    <article class="model-compare-pane">
+      <header>
+        <strong id="compare-right-title">Modèle droit</strong>
+        <span id="compare-right-run"></span>
+      </header>
+      <img id="compare-right-image" alt="Carte du modèle de droite" hidden>
+      <div id="compare-right-empty" class="model-compare-empty">
+        Aucune carte commune.
+      </div>
+    </article>
+  </div>
+
+  <div id="compare-legend" class="model-player-legend" hidden>
+    <div class="model-player-legend-header">
+      <strong id="compare-legend-title">Échelle</strong>
+      <span id="compare-legend-unit"></span>
+    </div>
+    <div id="compare-legend-bar" class="model-player-legend-bar"></div>
+    <div id="compare-legend-ticks" class="model-player-legend-ticks"></div>
+  </div>
+</section>
+
+
 <section class="card model-player-card" id="generated-models-section">
   <div class="model-player-heading">
     <div>
@@ -178,6 +268,7 @@
 
 
 
+<section class="card climate-center-card" id="climate-center-section"><div class="climate-center-heading"><div><h2>📊 Centre climatologique</h2><p class="chart-subtitle">Normales 1991–2020, année en cours, records et indicateurs locaux.</p></div><div class="climate-center-actions"><span id="climate-updated-at" class="climate-updated-at">Chargement…</span><button id="climate-refresh" type="button">↻ Actualiser</button></div></div><div id="climate-kpi-grid" class="climate-kpi-grid"></div><div class="climate-chart-grid"><article class="climate-subcard"><h3>Températures mensuelles</h3><div class="climate-chart-shell"><canvas id="climate-temperature-chart"></canvas></div></article><article class="climate-subcard"><h3>Précipitations mensuelles</h3><div class="climate-chart-shell"><canvas id="climate-precipitation-chart"></canvas></div></article><article class="climate-subcard"><h3>Comparaison des dernières années</h3><div class="climate-chart-shell"><canvas id="climate-years-chart"></canvas></div></article><article class="climate-subcard"><h3>Records locaux de la réanalyse</h3><div id="climate-record-grid" class="climate-record-grid"></div></article></div><p class="climate-disclaimer">Ces valeurs proviennent d’une réanalyse climatique locale et non d’une station officielle implantée sur le terrain.</p></section>
 <section class="card site-data-status-card" id="site-data-status-card">
   <div class="site-data-status-heading">
     <div>
@@ -433,8 +524,10 @@
 <script defer src="js/radar.js"></script>
 <script defer src="js/europe-maps.js"></script>
 <script defer src="js/model-player.js"></script>
+<script defer src="js/model-comparator.js"></script>
 <script defer src="js/interactive-map.js"></script>
 <script defer src="js/site-data.js?v=12"></script>
+<script defer src="js/climate-center.js?v=15"></script>
 <script defer src="js/site-data-status.js?v=12"></script>
 <script defer src="js/observations-config.js?v=11.2"></script>
 <script defer src="js/observations.js?v=11.2"></script>

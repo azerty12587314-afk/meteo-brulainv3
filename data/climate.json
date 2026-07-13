@@ -1,0 +1,19 @@
+{
+  "generatedAt": null,
+  "location": {
+    "name": "Brûlain",
+    "latitude": 46.2025,
+    "longitude": -0.3297,
+    "timezone": "Europe/Paris"
+  },
+  "normalPeriod": "1991-2020",
+  "normals": {
+    "monthly": []
+  },
+  "currentYear": null,
+  "recentYears": [],
+  "records": {},
+  "errors": [
+    "Lance le workflow Build climate data."
+  ]
+}
