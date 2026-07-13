@@ -100,10 +100,6 @@
         "jet300": {
           "label": "Jet stream 300 hPa",
           "frames": []
-        },
-        "anomaly_t2m": {
-          "label": "Anomalie température 2 m",
-          "frames": []
         }
       }
     },
@@ -192,10 +188,6 @@
         "z500_mslp": {
           "label": "Z500 + pression",
           "frames": []
-        },
-        "anomaly_t2m": {
-          "label": "Anomalie température 2 m",
-          "frames": []
         }
       }
     },
@@ -213,10 +205,6 @@
         },
         "z500_mslp": {
           "label": "Z500 + pression",
-          "frames": []
-        },
-        "anomaly_t2m": {
-          "label": "Anomalie température 2 m",
           "frames": []
         }
       }
@@ -236,10 +224,6 @@
         "z500_mslp": {
           "label": "Z500 + pression",
           "frames": []
-        },
-        "anomaly_t2m": {
-          "label": "Anomalie température 2 m",
-          "frames": []
         }
       }
     },
@@ -257,10 +241,6 @@
         },
         "z500_mslp": {
           "label": "Z500 + pression",
-          "frames": []
-        },
-        "anomaly_t2m": {
-          "label": "Anomalie température 2 m",
           "frames": []
         }
       }

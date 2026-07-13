@@ -37,17 +37,7 @@ window.ModelMapPlayer = (() => {
         'linear-gradient(90deg,#440154,#3b528b,#21918c,#5ec962,#fde725)'
     },
     cape: { title: 'CAPE', unit: 'J/kg', ticks: [0,250,500,1000,2000,3000,4000], gradient: 'linear-gradient(90deg,#f8fafc,#bfdbfe,#22c55e,#fde047,#fb923c,#ef4444,#7e22ce)' },
-    jet300: { title: 'Jet stream 300 hPa', unit: 'km/h', ticks: [0,50,100,150,200,250,300], gradient: 'linear-gradient(90deg,#0f172a,#1d4ed8,#06b6d4,#22c55e,#fde047,#f97316,#dc2626,#7e22ce)' },
-    anomaly_t2m: { title: 'Anomalie température à 2 m', unit: '°C vs 1991–2020', ticks: [-10,-6,-3,0,3,6,10], gradient: 'linear-gradient(90deg,#312e81,#2563eb,#7dd3fc,#f8fafc,#fde68a,#f97316,#b91c1c)' },
-    z500_mslp: {
-      title: 'Géopotentiel 500 hPa',
-      unit: 'dam · isobares en hPa',
-      ticks: [480, 500, 520, 540, 560, 580, 600],
-      gradient:
-        'linear-gradient(90deg,#30123b,#4145ab,#4675ed,#39a2fc,' +
-        '#1bcfd4,#24eca6,#61fc6c,#a4fc3c,#d9ef36,#f9c63a,' +
-        '#fb8734,#ed4a27,#c91d15,#7a0403)'
-    }
+    jet300: { title: 'Jet stream 300 hPa', unit: 'km/h', ticks: [0,50,100,150,200,250,300], gradient: 'linear-gradient(90deg,#0f172a,#1d4ed8,#06b6d4,#22c55e,#fde047,#f97316,#dc2626,#7e22ce)' }
   };
 
   let manifest = null;

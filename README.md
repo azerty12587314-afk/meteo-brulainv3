@@ -218,3 +218,19 @@ Le workflow de climatologie a été réécrit pour éviter l’erreur HTTP 429 :
 
 Dans GitHub Actions, lance **Build 1991-2020 climatology** avec la valeur `6`.
 Une fois le workflow terminé, lance **Generate weather maps** pour créer les anomalies.
+
+
+# V8.2 — correction HTTP 429
+
+Le workflow de climatologie 1991–2020 a été retiré. L’API historique gratuite
+refusait encore le volume demandé avec une erreur HTTP 429.
+
+La V8.2 conserve ECMWF, AROME, ARPEGE, GFS, ICON-EU, CAPE, jet stream,
+Z500, température, pluie, vent et pression. Il ne reste qu’un workflow à lancer :
+
+```text
+Generate weather maps
+```
+
+Les anomalies sont désactivées jusqu’à l’utilisation de normales ERA5 mensuelles
+provenant du Copernicus Climate Data Store.
