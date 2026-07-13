@@ -492,3 +492,23 @@ Radar animé, satellite visible NASA, signaux automatiques locaux et workflow Up
 
 # V16.1
 Validation des données avant rafraîchissement, conservation des anciens graphiques si le cache est invalide, records pluie/rafales améliorés, nuits tropicales et bilan hydrique. Relancer Build climate data.
+
+
+# V17 — palettes météo haute saturation
+
+La V17 remplace les palettes Matplotlib génériques par des palettes personnalisées
+plus saturées pour :
+
+- température ;
+- précipitations ;
+- vent et rafales ;
+- CAPE ;
+- jet stream ;
+- pression ;
+- Z500.
+
+Les isobares, frontières et côtes sont renforcées. Le lecteur applique également
+un léger gain de saturation et de contraste aux images pour un rendu plus incisif.
+
+Après installation, relance `Generate weather maps` afin de régénérer toutes les
+images avec les nouvelles palettes.

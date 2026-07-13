@@ -2287,3 +2287,25 @@ main .card:nth-child(4) {
 .climate-kpi-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
 @media(max-width:1050px){.climate-kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:520px){.climate-kpi-grid{grid-template-columns:1fr}}
+
+
+/* =========================================================
+   V17 — Cartes haute saturation
+   ========================================================= */
+
+.model-player-viewer img,
+.model-compare-pane img {
+  filter: saturate(1.18) contrast(1.08);
+}
+
+.model-player-legend-bar,
+.map-data-legend-gradient {
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.22),
+    0 4px 16px rgba(0,0,0,.26);
+}
+
+.model-player-legend-ticks,
+.map-data-legend-ticks {
+  font-weight: 800;
+}
