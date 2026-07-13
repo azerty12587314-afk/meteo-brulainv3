@@ -176,6 +176,100 @@
 
 
 
+
+<section class="card observation-center-card" id="observation-center">
+  <div class="observation-heading">
+    <div>
+      <h2>🔭 Centre d’observation</h2>
+      <p class="chart-subtitle">
+        Air, pollens, UV, rivières, observations d’aérodromes et webcams locales.
+      </p>
+    </div>
+    <button id="observations-refresh" type="button">↻ Actualiser</button>
+  </div>
+
+  <div class="observation-tabs" role="tablist" aria-label="Catégories d’observation">
+    <button class="observation-tab active" type="button" data-observation-tab="air">
+      🍃 Air & pollens
+    </button>
+    <button class="observation-tab" type="button" data-observation-tab="rivers">
+      🌊 Rivières
+    </button>
+    <button class="observation-tab" type="button" data-observation-tab="metar">
+      🛩️ Stations proches
+    </button>
+    <button class="observation-tab" type="button" data-observation-tab="webcams">
+      📷 Webcams
+    </button>
+  </div>
+
+  <div class="observation-panel active" data-observation-panel="air">
+    <div id="air-observation-grid" class="observation-metric-grid"></div>
+
+    <div class="observation-chart-grid">
+      <article class="observation-subcard">
+        <h3>Évolution de la qualité de l’air — 24 h</h3>
+        <div class="observation-chart-shell">
+          <canvas id="air-observation-chart"></canvas>
+        </div>
+      </article>
+
+      <article class="observation-subcard">
+        <h3>Pollens — 24 h</h3>
+        <div class="observation-chart-shell">
+          <canvas id="pollen-observation-chart"></canvas>
+        </div>
+      </article>
+    </div>
+
+    <p class="observation-note">
+      Les pollens sont des prévisions CAMS à l’échelle régionale, et non des mesures
+      effectuées directement sur ton terrain.
+    </p>
+  </div>
+
+  <div class="observation-panel" data-observation-panel="rivers" hidden>
+    <div class="observation-panel-heading">
+      <div>
+        <h3>Stations hydrométriques autour de Brûlain</h3>
+        <p>Hauteurs ou débits quasi temps réel disponibles sur le réseau français.</p>
+      </div>
+      <select id="river-radius" aria-label="Rayon de recherche des rivières">
+        <option value="0.35">Environ 30 km</option>
+        <option value="0.7" selected>Environ 60 km</option>
+        <option value="1.2">Environ 100 km</option>
+      </select>
+    </div>
+    <div id="river-observation-list" class="river-observation-list"></div>
+  </div>
+
+  <div class="observation-panel" data-observation-panel="metar" hidden>
+    <div class="observation-panel-heading">
+      <div>
+        <h3>Observations d’aérodromes proches</h3>
+        <p>
+          Données METAR mises en cache dans le dépôt pour éviter les restrictions CORS.
+        </p>
+      </div>
+      <span id="metar-updated-at" class="observation-updated-badge">En attente…</span>
+    </div>
+    <div id="metar-observation-grid" class="metar-observation-grid"></div>
+  </div>
+
+  <div class="observation-panel" data-observation-panel="webcams" hidden>
+    <div class="observation-panel-heading">
+      <div>
+        <h3>Webcams configurables</h3>
+        <p>
+          Ajoute tes propres images ou liens dans <code>js/observations-config.js</code>.
+        </p>
+      </div>
+    </div>
+    <div id="webcam-observation-grid" class="webcam-observation-grid"></div>
+  </div>
+</section>
+
+
 <section class="card interactive-weather-map-card" id="interactive-map-section">
   <div class="interactive-map-heading">
     <div>

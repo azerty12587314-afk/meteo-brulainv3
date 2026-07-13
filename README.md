@@ -288,3 +288,55 @@ La résolution normale est recommandée pour un usage courant.
 Ces couches sont indépendantes du workflow GitHub Actions. Le workflow
 « Generate weather maps » reste nécessaire uniquement pour les cartes de modèles
 pré-générées.
+
+
+# V11 — centre d’observation
+
+La V11 ajoute :
+
+- qualité de l’air et AQI européen ;
+- PM2.5, PM10, ozone et UV ;
+- pollens de graminées, bouleau, aulne, armoise et ambroisie ;
+- graphiques sur 24 heures ;
+- stations hydrométriques françaises proches et dernières mesures disponibles ;
+- observations METAR de Niort, La Rochelle et Poitiers ;
+- emplacements configurables pour des webcams.
+
+## Nouveau workflow
+
+Lance une première fois :
+
+```text
+Update observations
+```
+
+Il met à jour `observations/metar.json`. Le workflow est ensuite planifié deux fois
+par heure.
+
+Les METAR ne sont pas appelés directement depuis le navigateur, car l’API
+AviationWeather ne permet pas le CORS. Le cache GitHub Actions évite cette
+restriction et limite les appels.
+
+## Ajouter une webcam
+
+Modifie `js/observations-config.js` :
+
+```js
+webcams: [
+  {
+    name: 'Vue du jardin',
+    description: 'Caméra orientée vers le potager',
+    imageUrl: 'https://exemple.fr/image.jpg',
+    pageUrl: 'https://exemple.fr/webcam'
+  }
+]
+```
+
+L’URL d’image doit autoriser l’affichage depuis un autre site.
+
+## Nature des données
+
+Les données de pollution et de pollen sont des analyses et prévisions CAMS à
+résolution régionale. Les données hydrométriques proviennent du réseau français
+Hub’Eau/Vigicrues. Elles ne doivent pas être utilisées seules pour une décision de
+sécurité en situation de crue.

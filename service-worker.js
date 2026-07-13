@@ -1,12 +1,13 @@
 'use strict';
 
-const CACHE_NAME = 'meteo-lab-v10-1';
+const CACHE_NAME = 'meteo-lab-v11-1';
 const APP_SHELL = [
   './',
   './index.html',
   './style.css',
   './manifest.json',
   './maps/manifest.json',
+  './observations/metar.json',
   './assets/icon.svg',
   './js/config.js',
   './js/api.js',
@@ -18,6 +19,8 @@ const APP_SHELL = [
   './js/europe-maps.js',
   './js/model-player.js',
   './js/interactive-map.js',
+  './js/observations-config.js',
+  './js/observations.js',
   './js/app.js'
 ];
 
