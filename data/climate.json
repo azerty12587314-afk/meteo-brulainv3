@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T15:17:19.105959+00:00",
+  "generatedAt": "2026-07-13T17:06:29.659701+00:00",
   "location": {
     "name": "Brûlain",
     "latitude": 46.2025,
@@ -176,6 +176,8 @@
     "frostDays": 9,
     "summerDays": 37,
     "hotDays": 25,
+    "tropicalNights": 11,
+    "dryDays": 0,
     "rainDays": 0,
     "heatingDegreeDays": 1060.3,
     "monthly": [
@@ -347,6 +349,8 @@
       "frostDays": 28,
       "summerDays": 39,
       "hotDays": 9,
+      "tropicalNights": 3,
+      "dryDays": 0,
       "rainDays": 0,
       "heatingDegreeDays": 2187.5,
       "monthly": [
@@ -517,6 +521,8 @@
       "frostDays": 20,
       "summerDays": 91,
       "hotDays": 31,
+      "tropicalNights": 19,
+      "dryDays": 0,
       "rainDays": 0,
       "heatingDegreeDays": 1816.3,
       "monthly": [
@@ -687,6 +693,8 @@
       "frostDays": 24,
       "summerDays": 80,
       "hotDays": 16,
+      "tropicalNights": 12,
+      "dryDays": 0,
       "rainDays": 0,
       "heatingDegreeDays": 1861.9,
       "monthly": [
@@ -857,6 +865,8 @@
       "frostDays": 12,
       "summerDays": 39,
       "hotDays": 6,
+      "tropicalNights": 6,
+      "dryDays": 0,
       "rainDays": 0,
       "heatingDegreeDays": 1931.2,
       "monthly": [
@@ -1027,6 +1037,8 @@
       "frostDays": 20,
       "summerDays": 64,
       "hotDays": 30,
+      "tropicalNights": 16,
+      "dryDays": 0,
       "rainDays": 0,
       "heatingDegreeDays": 1916.2,
       "monthly": [
@@ -1197,6 +1209,8 @@
       "frostDays": 9,
       "summerDays": 37,
       "hotDays": 25,
+      "tropicalNights": 11,
+      "dryDays": 0,
       "rainDays": 0,
       "heatingDegreeDays": 1060.3,
       "monthly": [
@@ -1362,11 +1376,15 @@
   "records": {
     "highestTemperature": {
       "value": 40.3,
-      "date": "2026-06-23"
+      "date": "2026-06-23",
+      "estimated": false,
+      "sourceVariable": "temperature_2m_max"
     },
     "lowestTemperature": {
       "value": -12.9,
-      "date": "2012-02-09"
+      "date": "2012-02-09",
+      "estimated": false,
+      "sourceVariable": "temperature_2m_min"
     },
     "wettestDay": null,
     "strongestGust": null
