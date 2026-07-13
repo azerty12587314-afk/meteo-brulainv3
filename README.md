@@ -371,3 +371,17 @@ le JSON depuis son propre domaine GitHub Pages.
 4. Recharge le site avec `Ctrl + F5`.
 
 Le cache PWA est nommé `meteo-lab-v11-2`.
+
+
+# V11.2 — correctif de chargement
+
+La section HTML du centre d’observation était présente, mais `index.html` ne
+chargeait pas les fichiers suivants :
+
+```text
+js/observations-config.js
+js/observations.js
+```
+
+La V11.2 ajoute les balises script manquantes, renforce l’initialisation et passe
+le cache PWA à `meteo-lab-v11-3`.

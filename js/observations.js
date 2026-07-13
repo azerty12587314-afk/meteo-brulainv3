@@ -536,4 +536,10 @@ window.ObservationCenter = (() => {
   };
 })();
 
-document.addEventListener('DOMContentLoaded', ObservationCenter.init);
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    window.ObservationCenter.init();
+  });
+} else {
+  window.ObservationCenter.init();
+}
