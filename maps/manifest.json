@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-07-13T15:53:15.418367+00:00",
+  "generatedAt": "2026-07-13T17:21:34.977813+00:00",
   "models": {
     "gfs": {
       "label": "GFS",
-      "run": "2026-07-13T06:00:00+00:00",
+      "run": "2026-07-13T12:00:00+00:00",
       "variables": {
         "temp2m": {
           "label": "Température à 2 m",
@@ -25,107 +25,107 @@
           "frames": [
             {
               "forecastHour": 0,
-              "validTime": "2026-07-13T06:00:00+00:00",
+              "validTime": "2026-07-13T12:00:00+00:00",
               "image": "./maps/gfs/temp2m/f000.webp"
             },
             {
               "forecastHour": 6,
-              "validTime": "2026-07-13T12:00:00+00:00",
+              "validTime": "2026-07-13T18:00:00+00:00",
               "image": "./maps/gfs/temp2m/f006.webp"
             },
             {
               "forecastHour": 12,
-              "validTime": "2026-07-13T18:00:00+00:00",
+              "validTime": "2026-07-14T00:00:00+00:00",
               "image": "./maps/gfs/temp2m/f012.webp"
             },
             {
               "forecastHour": 18,
-              "validTime": "2026-07-14T00:00:00+00:00",
+              "validTime": "2026-07-14T06:00:00+00:00",
               "image": "./maps/gfs/temp2m/f018.webp"
             },
             {
               "forecastHour": 24,
-              "validTime": "2026-07-14T06:00:00+00:00",
+              "validTime": "2026-07-14T12:00:00+00:00",
               "image": "./maps/gfs/temp2m/f024.webp"
             },
             {
               "forecastHour": 30,
-              "validTime": "2026-07-14T12:00:00+00:00",
+              "validTime": "2026-07-14T18:00:00+00:00",
               "image": "./maps/gfs/temp2m/f030.webp"
             },
             {
               "forecastHour": 36,
-              "validTime": "2026-07-14T18:00:00+00:00",
+              "validTime": "2026-07-15T00:00:00+00:00",
               "image": "./maps/gfs/temp2m/f036.webp"
             },
             {
               "forecastHour": 42,
-              "validTime": "2026-07-15T00:00:00+00:00",
+              "validTime": "2026-07-15T06:00:00+00:00",
               "image": "./maps/gfs/temp2m/f042.webp"
             },
             {
               "forecastHour": 48,
-              "validTime": "2026-07-15T06:00:00+00:00",
+              "validTime": "2026-07-15T12:00:00+00:00",
               "image": "./maps/gfs/temp2m/f048.webp"
             },
             {
               "forecastHour": 54,
-              "validTime": "2026-07-15T12:00:00+00:00",
+              "validTime": "2026-07-15T18:00:00+00:00",
               "image": "./maps/gfs/temp2m/f054.webp"
             },
             {
               "forecastHour": 60,
-              "validTime": "2026-07-15T18:00:00+00:00",
+              "validTime": "2026-07-16T00:00:00+00:00",
               "image": "./maps/gfs/temp2m/f060.webp"
             },
             {
               "forecastHour": 66,
-              "validTime": "2026-07-16T00:00:00+00:00",
+              "validTime": "2026-07-16T06:00:00+00:00",
               "image": "./maps/gfs/temp2m/f066.webp"
             },
             {
               "forecastHour": 72,
-              "validTime": "2026-07-16T06:00:00+00:00",
+              "validTime": "2026-07-16T12:00:00+00:00",
               "image": "./maps/gfs/temp2m/f072.webp"
             },
             {
               "forecastHour": 78,
-              "validTime": "2026-07-16T12:00:00+00:00",
+              "validTime": "2026-07-16T18:00:00+00:00",
               "image": "./maps/gfs/temp2m/f078.webp"
             },
             {
               "forecastHour": 84,
-              "validTime": "2026-07-16T18:00:00+00:00",
+              "validTime": "2026-07-17T00:00:00+00:00",
               "image": "./maps/gfs/temp2m/f084.webp"
             },
             {
               "forecastHour": 90,
-              "validTime": "2026-07-17T00:00:00+00:00",
+              "validTime": "2026-07-17T06:00:00+00:00",
               "image": "./maps/gfs/temp2m/f090.webp"
             },
             {
               "forecastHour": 96,
-              "validTime": "2026-07-17T06:00:00+00:00",
+              "validTime": "2026-07-17T12:00:00+00:00",
               "image": "./maps/gfs/temp2m/f096.webp"
             },
             {
               "forecastHour": 102,
-              "validTime": "2026-07-17T12:00:00+00:00",
+              "validTime": "2026-07-17T18:00:00+00:00",
               "image": "./maps/gfs/temp2m/f102.webp"
             },
             {
               "forecastHour": 108,
-              "validTime": "2026-07-17T18:00:00+00:00",
+              "validTime": "2026-07-18T00:00:00+00:00",
               "image": "./maps/gfs/temp2m/f108.webp"
             },
             {
               "forecastHour": 114,
-              "validTime": "2026-07-18T00:00:00+00:00",
+              "validTime": "2026-07-18T06:00:00+00:00",
               "image": "./maps/gfs/temp2m/f114.webp"
             },
             {
               "forecastHour": 120,
-              "validTime": "2026-07-18T06:00:00+00:00",
+              "validTime": "2026-07-18T12:00:00+00:00",
               "image": "./maps/gfs/temp2m/f120.webp"
             }
           ]
@@ -147,107 +147,107 @@
           "frames": [
             {
               "forecastHour": 0,
-              "validTime": "2026-07-13T06:00:00+00:00",
+              "validTime": "2026-07-13T12:00:00+00:00",
               "image": "./maps/gfs/mslp/f000.webp"
             },
             {
               "forecastHour": 6,
-              "validTime": "2026-07-13T12:00:00+00:00",
+              "validTime": "2026-07-13T18:00:00+00:00",
               "image": "./maps/gfs/mslp/f006.webp"
             },
             {
               "forecastHour": 12,
-              "validTime": "2026-07-13T18:00:00+00:00",
+              "validTime": "2026-07-14T00:00:00+00:00",
               "image": "./maps/gfs/mslp/f012.webp"
             },
             {
               "forecastHour": 18,
-              "validTime": "2026-07-14T00:00:00+00:00",
+              "validTime": "2026-07-14T06:00:00+00:00",
               "image": "./maps/gfs/mslp/f018.webp"
             },
             {
               "forecastHour": 24,
-              "validTime": "2026-07-14T06:00:00+00:00",
+              "validTime": "2026-07-14T12:00:00+00:00",
               "image": "./maps/gfs/mslp/f024.webp"
             },
             {
               "forecastHour": 30,
-              "validTime": "2026-07-14T12:00:00+00:00",
+              "validTime": "2026-07-14T18:00:00+00:00",
               "image": "./maps/gfs/mslp/f030.webp"
             },
             {
               "forecastHour": 36,
-              "validTime": "2026-07-14T18:00:00+00:00",
+              "validTime": "2026-07-15T00:00:00+00:00",
               "image": "./maps/gfs/mslp/f036.webp"
             },
             {
               "forecastHour": 42,
-              "validTime": "2026-07-15T00:00:00+00:00",
+              "validTime": "2026-07-15T06:00:00+00:00",
               "image": "./maps/gfs/mslp/f042.webp"
             },
             {
               "forecastHour": 48,
-              "validTime": "2026-07-15T06:00:00+00:00",
+              "validTime": "2026-07-15T12:00:00+00:00",
               "image": "./maps/gfs/mslp/f048.webp"
             },
             {
               "forecastHour": 54,
-              "validTime": "2026-07-15T12:00:00+00:00",
+              "validTime": "2026-07-15T18:00:00+00:00",
               "image": "./maps/gfs/mslp/f054.webp"
             },
             {
               "forecastHour": 60,
-              "validTime": "2026-07-15T18:00:00+00:00",
+              "validTime": "2026-07-16T00:00:00+00:00",
               "image": "./maps/gfs/mslp/f060.webp"
             },
             {
               "forecastHour": 66,
-              "validTime": "2026-07-16T00:00:00+00:00",
+              "validTime": "2026-07-16T06:00:00+00:00",
               "image": "./maps/gfs/mslp/f066.webp"
             },
             {
               "forecastHour": 72,
-              "validTime": "2026-07-16T06:00:00+00:00",
+              "validTime": "2026-07-16T12:00:00+00:00",
               "image": "./maps/gfs/mslp/f072.webp"
             },
             {
               "forecastHour": 78,
-              "validTime": "2026-07-16T12:00:00+00:00",
+              "validTime": "2026-07-16T18:00:00+00:00",
               "image": "./maps/gfs/mslp/f078.webp"
             },
             {
               "forecastHour": 84,
-              "validTime": "2026-07-16T18:00:00+00:00",
+              "validTime": "2026-07-17T00:00:00+00:00",
               "image": "./maps/gfs/mslp/f084.webp"
             },
             {
               "forecastHour": 90,
-              "validTime": "2026-07-17T00:00:00+00:00",
+              "validTime": "2026-07-17T06:00:00+00:00",
               "image": "./maps/gfs/mslp/f090.webp"
             },
             {
               "forecastHour": 96,
-              "validTime": "2026-07-17T06:00:00+00:00",
+              "validTime": "2026-07-17T12:00:00+00:00",
               "image": "./maps/gfs/mslp/f096.webp"
             },
             {
               "forecastHour": 102,
-              "validTime": "2026-07-17T12:00:00+00:00",
+              "validTime": "2026-07-17T18:00:00+00:00",
               "image": "./maps/gfs/mslp/f102.webp"
             },
             {
               "forecastHour": 108,
-              "validTime": "2026-07-17T18:00:00+00:00",
+              "validTime": "2026-07-18T00:00:00+00:00",
               "image": "./maps/gfs/mslp/f108.webp"
             },
             {
               "forecastHour": 114,
-              "validTime": "2026-07-18T00:00:00+00:00",
+              "validTime": "2026-07-18T06:00:00+00:00",
               "image": "./maps/gfs/mslp/f114.webp"
             },
             {
               "forecastHour": 120,
-              "validTime": "2026-07-18T06:00:00+00:00",
+              "validTime": "2026-07-18T12:00:00+00:00",
               "image": "./maps/gfs/mslp/f120.webp"
             }
           ]
@@ -271,102 +271,102 @@
           "frames": [
             {
               "forecastHour": 6,
-              "validTime": "2026-07-13T12:00:00+00:00",
+              "validTime": "2026-07-13T18:00:00+00:00",
               "image": "./maps/gfs/precip/f006.webp"
             },
             {
               "forecastHour": 12,
-              "validTime": "2026-07-13T18:00:00+00:00",
+              "validTime": "2026-07-14T00:00:00+00:00",
               "image": "./maps/gfs/precip/f012.webp"
             },
             {
               "forecastHour": 18,
-              "validTime": "2026-07-14T00:00:00+00:00",
+              "validTime": "2026-07-14T06:00:00+00:00",
               "image": "./maps/gfs/precip/f018.webp"
             },
             {
               "forecastHour": 24,
-              "validTime": "2026-07-14T06:00:00+00:00",
+              "validTime": "2026-07-14T12:00:00+00:00",
               "image": "./maps/gfs/precip/f024.webp"
             },
             {
               "forecastHour": 30,
-              "validTime": "2026-07-14T12:00:00+00:00",
+              "validTime": "2026-07-14T18:00:00+00:00",
               "image": "./maps/gfs/precip/f030.webp"
             },
             {
               "forecastHour": 36,
-              "validTime": "2026-07-14T18:00:00+00:00",
+              "validTime": "2026-07-15T00:00:00+00:00",
               "image": "./maps/gfs/precip/f036.webp"
             },
             {
               "forecastHour": 42,
-              "validTime": "2026-07-15T00:00:00+00:00",
+              "validTime": "2026-07-15T06:00:00+00:00",
               "image": "./maps/gfs/precip/f042.webp"
             },
             {
               "forecastHour": 48,
-              "validTime": "2026-07-15T06:00:00+00:00",
+              "validTime": "2026-07-15T12:00:00+00:00",
               "image": "./maps/gfs/precip/f048.webp"
             },
             {
               "forecastHour": 54,
-              "validTime": "2026-07-15T12:00:00+00:00",
+              "validTime": "2026-07-15T18:00:00+00:00",
               "image": "./maps/gfs/precip/f054.webp"
             },
             {
               "forecastHour": 60,
-              "validTime": "2026-07-15T18:00:00+00:00",
+              "validTime": "2026-07-16T00:00:00+00:00",
               "image": "./maps/gfs/precip/f060.webp"
             },
             {
               "forecastHour": 66,
-              "validTime": "2026-07-16T00:00:00+00:00",
+              "validTime": "2026-07-16T06:00:00+00:00",
               "image": "./maps/gfs/precip/f066.webp"
             },
             {
               "forecastHour": 72,
-              "validTime": "2026-07-16T06:00:00+00:00",
+              "validTime": "2026-07-16T12:00:00+00:00",
               "image": "./maps/gfs/precip/f072.webp"
             },
             {
               "forecastHour": 78,
-              "validTime": "2026-07-16T12:00:00+00:00",
+              "validTime": "2026-07-16T18:00:00+00:00",
               "image": "./maps/gfs/precip/f078.webp"
             },
             {
               "forecastHour": 84,
-              "validTime": "2026-07-16T18:00:00+00:00",
+              "validTime": "2026-07-17T00:00:00+00:00",
               "image": "./maps/gfs/precip/f084.webp"
             },
             {
               "forecastHour": 90,
-              "validTime": "2026-07-17T00:00:00+00:00",
+              "validTime": "2026-07-17T06:00:00+00:00",
               "image": "./maps/gfs/precip/f090.webp"
             },
             {
               "forecastHour": 96,
-              "validTime": "2026-07-17T06:00:00+00:00",
+              "validTime": "2026-07-17T12:00:00+00:00",
               "image": "./maps/gfs/precip/f096.webp"
             },
             {
               "forecastHour": 102,
-              "validTime": "2026-07-17T12:00:00+00:00",
+              "validTime": "2026-07-17T18:00:00+00:00",
               "image": "./maps/gfs/precip/f102.webp"
             },
             {
               "forecastHour": 108,
-              "validTime": "2026-07-17T18:00:00+00:00",
+              "validTime": "2026-07-18T00:00:00+00:00",
               "image": "./maps/gfs/precip/f108.webp"
             },
             {
               "forecastHour": 114,
-              "validTime": "2026-07-18T00:00:00+00:00",
+              "validTime": "2026-07-18T06:00:00+00:00",
               "image": "./maps/gfs/precip/f114.webp"
             },
             {
               "forecastHour": 120,
-              "validTime": "2026-07-18T06:00:00+00:00",
+              "validTime": "2026-07-18T12:00:00+00:00",
               "image": "./maps/gfs/precip/f120.webp"
             }
           ]
@@ -389,107 +389,107 @@
           "frames": [
             {
               "forecastHour": 0,
-              "validTime": "2026-07-13T06:00:00+00:00",
+              "validTime": "2026-07-13T12:00:00+00:00",
               "image": "./maps/gfs/wind10/f000.webp"
             },
             {
               "forecastHour": 6,
-              "validTime": "2026-07-13T12:00:00+00:00",
+              "validTime": "2026-07-13T18:00:00+00:00",
               "image": "./maps/gfs/wind10/f006.webp"
             },
             {
               "forecastHour": 12,
-              "validTime": "2026-07-13T18:00:00+00:00",
+              "validTime": "2026-07-14T00:00:00+00:00",
               "image": "./maps/gfs/wind10/f012.webp"
             },
             {
               "forecastHour": 18,
-              "validTime": "2026-07-14T00:00:00+00:00",
+              "validTime": "2026-07-14T06:00:00+00:00",
               "image": "./maps/gfs/wind10/f018.webp"
             },
             {
               "forecastHour": 24,
-              "validTime": "2026-07-14T06:00:00+00:00",
+              "validTime": "2026-07-14T12:00:00+00:00",
               "image": "./maps/gfs/wind10/f024.webp"
             },
             {
               "forecastHour": 30,
-              "validTime": "2026-07-14T12:00:00+00:00",
+              "validTime": "2026-07-14T18:00:00+00:00",
               "image": "./maps/gfs/wind10/f030.webp"
             },
             {
               "forecastHour": 36,
-              "validTime": "2026-07-14T18:00:00+00:00",
+              "validTime": "2026-07-15T00:00:00+00:00",
               "image": "./maps/gfs/wind10/f036.webp"
             },
             {
               "forecastHour": 42,
-              "validTime": "2026-07-15T00:00:00+00:00",
+              "validTime": "2026-07-15T06:00:00+00:00",
               "image": "./maps/gfs/wind10/f042.webp"
             },
             {
               "forecastHour": 48,
-              "validTime": "2026-07-15T06:00:00+00:00",
+              "validTime": "2026-07-15T12:00:00+00:00",
               "image": "./maps/gfs/wind10/f048.webp"
             },
             {
               "forecastHour": 54,
-              "validTime": "2026-07-15T12:00:00+00:00",
+              "validTime": "2026-07-15T18:00:00+00:00",
               "image": "./maps/gfs/wind10/f054.webp"
             },
             {
               "forecastHour": 60,
-              "validTime": "2026-07-15T18:00:00+00:00",
+              "validTime": "2026-07-16T00:00:00+00:00",
               "image": "./maps/gfs/wind10/f060.webp"
             },
             {
               "forecastHour": 66,
-              "validTime": "2026-07-16T00:00:00+00:00",
+              "validTime": "2026-07-16T06:00:00+00:00",
               "image": "./maps/gfs/wind10/f066.webp"
             },
             {
               "forecastHour": 72,
-              "validTime": "2026-07-16T06:00:00+00:00",
+              "validTime": "2026-07-16T12:00:00+00:00",
               "image": "./maps/gfs/wind10/f072.webp"
             },
             {
               "forecastHour": 78,
-              "validTime": "2026-07-16T12:00:00+00:00",
+              "validTime": "2026-07-16T18:00:00+00:00",
               "image": "./maps/gfs/wind10/f078.webp"
             },
             {
               "forecastHour": 84,
-              "validTime": "2026-07-16T18:00:00+00:00",
+              "validTime": "2026-07-17T00:00:00+00:00",
               "image": "./maps/gfs/wind10/f084.webp"
             },
             {
               "forecastHour": 90,
-              "validTime": "2026-07-17T00:00:00+00:00",
+              "validTime": "2026-07-17T06:00:00+00:00",
               "image": "./maps/gfs/wind10/f090.webp"
             },
             {
               "forecastHour": 96,
-              "validTime": "2026-07-17T06:00:00+00:00",
+              "validTime": "2026-07-17T12:00:00+00:00",
               "image": "./maps/gfs/wind10/f096.webp"
             },
             {
               "forecastHour": 102,
-              "validTime": "2026-07-17T12:00:00+00:00",
+              "validTime": "2026-07-17T18:00:00+00:00",
               "image": "./maps/gfs/wind10/f102.webp"
             },
             {
               "forecastHour": 108,
-              "validTime": "2026-07-17T18:00:00+00:00",
+              "validTime": "2026-07-18T00:00:00+00:00",
               "image": "./maps/gfs/wind10/f108.webp"
             },
             {
               "forecastHour": 114,
-              "validTime": "2026-07-18T00:00:00+00:00",
+              "validTime": "2026-07-18T06:00:00+00:00",
               "image": "./maps/gfs/wind10/f114.webp"
             },
             {
               "forecastHour": 120,
-              "validTime": "2026-07-18T06:00:00+00:00",
+              "validTime": "2026-07-18T12:00:00+00:00",
               "image": "./maps/gfs/wind10/f120.webp"
             }
           ]
@@ -513,107 +513,107 @@
           "frames": [
             {
               "forecastHour": 0,
-              "validTime": "2026-07-13T06:00:00+00:00",
+              "validTime": "2026-07-13T12:00:00+00:00",
               "image": "./maps/gfs/z500_mslp/f000.webp"
             },
             {
               "forecastHour": 6,
-              "validTime": "2026-07-13T12:00:00+00:00",
+              "validTime": "2026-07-13T18:00:00+00:00",
               "image": "./maps/gfs/z500_mslp/f006.webp"
             },
             {
               "forecastHour": 12,
-              "validTime": "2026-07-13T18:00:00+00:00",
+              "validTime": "2026-07-14T00:00:00+00:00",
               "image": "./maps/gfs/z500_mslp/f012.webp"
             },
             {
               "forecastHour": 18,
-              "validTime": "2026-07-14T00:00:00+00:00",
+              "validTime": "2026-07-14T06:00:00+00:00",
               "image": "./maps/gfs/z500_mslp/f018.webp"
             },
             {
               "forecastHour": 24,
-              "validTime": "2026-07-14T06:00:00+00:00",
+              "validTime": "2026-07-14T12:00:00+00:00",
               "image": "./maps/gfs/z500_mslp/f024.webp"
             },
             {
               "forecastHour": 30,
-              "validTime": "2026-07-14T12:00:00+00:00",
+              "validTime": "2026-07-14T18:00:00+00:00",
               "image": "./maps/gfs/z500_mslp/f030.webp"
             },
             {
               "forecastHour": 36,
-              "validTime": "2026-07-14T18:00:00+00:00",
+              "validTime": "2026-07-15T00:00:00+00:00",
               "image": "./maps/gfs/z500_mslp/f036.webp"
             },
             {
               "forecastHour": 42,
-              "validTime": "2026-07-15T00:00:00+00:00",
+              "validTime": "2026-07-15T06:00:00+00:00",
               "image": "./maps/gfs/z500_mslp/f042.webp"
             },
             {
               "forecastHour": 48,
-              "validTime": "2026-07-15T06:00:00+00:00",
+              "validTime": "2026-07-15T12:00:00+00:00",
               "image": "./maps/gfs/z500_mslp/f048.webp"
             },
             {
               "forecastHour": 54,
-              "validTime": "2026-07-15T12:00:00+00:00",
+              "validTime": "2026-07-15T18:00:00+00:00",
               "image": "./maps/gfs/z500_mslp/f054.webp"
             },
             {
               "forecastHour": 60,
-              "validTime": "2026-07-15T18:00:00+00:00",
+              "validTime": "2026-07-16T00:00:00+00:00",
               "image": "./maps/gfs/z500_mslp/f060.webp"
             },
             {
               "forecastHour": 66,
-              "validTime": "2026-07-16T00:00:00+00:00",
+              "validTime": "2026-07-16T06:00:00+00:00",
               "image": "./maps/gfs/z500_mslp/f066.webp"
             },
             {
               "forecastHour": 72,
-              "validTime": "2026-07-16T06:00:00+00:00",
+              "validTime": "2026-07-16T12:00:00+00:00",
               "image": "./maps/gfs/z500_mslp/f072.webp"
             },
             {
               "forecastHour": 78,
-              "validTime": "2026-07-16T12:00:00+00:00",
+              "validTime": "2026-07-16T18:00:00+00:00",
               "image": "./maps/gfs/z500_mslp/f078.webp"
             },
             {
               "forecastHour": 84,
-              "validTime": "2026-07-16T18:00:00+00:00",
+              "validTime": "2026-07-17T00:00:00+00:00",
               "image": "./maps/gfs/z500_mslp/f084.webp"
             },
             {
               "forecastHour": 90,
-              "validTime": "2026-07-17T00:00:00+00:00",
+              "validTime": "2026-07-17T06:00:00+00:00",
               "image": "./maps/gfs/z500_mslp/f090.webp"
             },
             {
               "forecastHour": 96,
-              "validTime": "2026-07-17T06:00:00+00:00",
+              "validTime": "2026-07-17T12:00:00+00:00",
               "image": "./maps/gfs/z500_mslp/f096.webp"
             },
             {
               "forecastHour": 102,
-              "validTime": "2026-07-17T12:00:00+00:00",
+              "validTime": "2026-07-17T18:00:00+00:00",
               "image": "./maps/gfs/z500_mslp/f102.webp"
             },
             {
               "forecastHour": 108,
-              "validTime": "2026-07-17T18:00:00+00:00",
+              "validTime": "2026-07-18T00:00:00+00:00",
               "image": "./maps/gfs/z500_mslp/f108.webp"
             },
             {
               "forecastHour": 114,
-              "validTime": "2026-07-18T00:00:00+00:00",
+              "validTime": "2026-07-18T06:00:00+00:00",
               "image": "./maps/gfs/z500_mslp/f114.webp"
             },
             {
               "forecastHour": 120,
-              "validTime": "2026-07-18T06:00:00+00:00",
+              "validTime": "2026-07-18T12:00:00+00:00",
               "image": "./maps/gfs/z500_mslp/f120.webp"
             }
           ]
@@ -622,7 +622,7 @@
     },
     "icon_eu": {
       "label": "ICON-EU",
-      "run": "2026-07-13T09:00:00+00:00",
+      "run": "2026-07-13T12:00:00+00:00",
       "variables": {
         "temp2m": {
           "label": "Température à 2 m",
@@ -644,48 +644,108 @@
           "frames": [
             {
               "forecastHour": 0,
-              "validTime": "2026-07-13T09:00:00+00:00",
+              "validTime": "2026-07-13T12:00:00+00:00",
               "image": "./maps/icon_eu/temp2m/f000.webp"
             },
             {
               "forecastHour": 6,
-              "validTime": "2026-07-13T15:00:00+00:00",
+              "validTime": "2026-07-13T18:00:00+00:00",
               "image": "./maps/icon_eu/temp2m/f006.webp"
             },
             {
               "forecastHour": 12,
-              "validTime": "2026-07-13T21:00:00+00:00",
+              "validTime": "2026-07-14T00:00:00+00:00",
               "image": "./maps/icon_eu/temp2m/f012.webp"
             },
             {
               "forecastHour": 18,
-              "validTime": "2026-07-14T03:00:00+00:00",
+              "validTime": "2026-07-14T06:00:00+00:00",
               "image": "./maps/icon_eu/temp2m/f018.webp"
             },
             {
               "forecastHour": 24,
-              "validTime": "2026-07-14T09:00:00+00:00",
+              "validTime": "2026-07-14T12:00:00+00:00",
               "image": "./maps/icon_eu/temp2m/f024.webp"
             },
             {
               "forecastHour": 30,
-              "validTime": "2026-07-14T15:00:00+00:00",
+              "validTime": "2026-07-14T18:00:00+00:00",
               "image": "./maps/icon_eu/temp2m/f030.webp"
             },
             {
               "forecastHour": 36,
-              "validTime": "2026-07-14T21:00:00+00:00",
+              "validTime": "2026-07-15T00:00:00+00:00",
               "image": "./maps/icon_eu/temp2m/f036.webp"
             },
             {
               "forecastHour": 42,
-              "validTime": "2026-07-15T03:00:00+00:00",
+              "validTime": "2026-07-15T06:00:00+00:00",
               "image": "./maps/icon_eu/temp2m/f042.webp"
             },
             {
               "forecastHour": 48,
-              "validTime": "2026-07-15T09:00:00+00:00",
+              "validTime": "2026-07-15T12:00:00+00:00",
               "image": "./maps/icon_eu/temp2m/f048.webp"
+            },
+            {
+              "forecastHour": 54,
+              "validTime": "2026-07-15T18:00:00+00:00",
+              "image": "./maps/icon_eu/temp2m/f054.webp"
+            },
+            {
+              "forecastHour": 60,
+              "validTime": "2026-07-16T00:00:00+00:00",
+              "image": "./maps/icon_eu/temp2m/f060.webp"
+            },
+            {
+              "forecastHour": 66,
+              "validTime": "2026-07-16T06:00:00+00:00",
+              "image": "./maps/icon_eu/temp2m/f066.webp"
+            },
+            {
+              "forecastHour": 72,
+              "validTime": "2026-07-16T12:00:00+00:00",
+              "image": "./maps/icon_eu/temp2m/f072.webp"
+            },
+            {
+              "forecastHour": 78,
+              "validTime": "2026-07-16T18:00:00+00:00",
+              "image": "./maps/icon_eu/temp2m/f078.webp"
+            },
+            {
+              "forecastHour": 84,
+              "validTime": "2026-07-17T00:00:00+00:00",
+              "image": "./maps/icon_eu/temp2m/f084.webp"
+            },
+            {
+              "forecastHour": 90,
+              "validTime": "2026-07-17T06:00:00+00:00",
+              "image": "./maps/icon_eu/temp2m/f090.webp"
+            },
+            {
+              "forecastHour": 96,
+              "validTime": "2026-07-17T12:00:00+00:00",
+              "image": "./maps/icon_eu/temp2m/f096.webp"
+            },
+            {
+              "forecastHour": 102,
+              "validTime": "2026-07-17T18:00:00+00:00",
+              "image": "./maps/icon_eu/temp2m/f102.webp"
+            },
+            {
+              "forecastHour": 108,
+              "validTime": "2026-07-18T00:00:00+00:00",
+              "image": "./maps/icon_eu/temp2m/f108.webp"
+            },
+            {
+              "forecastHour": 114,
+              "validTime": "2026-07-18T06:00:00+00:00",
+              "image": "./maps/icon_eu/temp2m/f114.webp"
+            },
+            {
+              "forecastHour": 120,
+              "validTime": "2026-07-18T12:00:00+00:00",
+              "image": "./maps/icon_eu/temp2m/f120.webp"
             }
           ]
         },
@@ -706,48 +766,108 @@
           "frames": [
             {
               "forecastHour": 0,
-              "validTime": "2026-07-13T09:00:00+00:00",
+              "validTime": "2026-07-13T12:00:00+00:00",
               "image": "./maps/icon_eu/mslp/f000.webp"
             },
             {
               "forecastHour": 6,
-              "validTime": "2026-07-13T15:00:00+00:00",
+              "validTime": "2026-07-13T18:00:00+00:00",
               "image": "./maps/icon_eu/mslp/f006.webp"
             },
             {
               "forecastHour": 12,
-              "validTime": "2026-07-13T21:00:00+00:00",
+              "validTime": "2026-07-14T00:00:00+00:00",
               "image": "./maps/icon_eu/mslp/f012.webp"
             },
             {
               "forecastHour": 18,
-              "validTime": "2026-07-14T03:00:00+00:00",
+              "validTime": "2026-07-14T06:00:00+00:00",
               "image": "./maps/icon_eu/mslp/f018.webp"
             },
             {
               "forecastHour": 24,
-              "validTime": "2026-07-14T09:00:00+00:00",
+              "validTime": "2026-07-14T12:00:00+00:00",
               "image": "./maps/icon_eu/mslp/f024.webp"
             },
             {
               "forecastHour": 30,
-              "validTime": "2026-07-14T15:00:00+00:00",
+              "validTime": "2026-07-14T18:00:00+00:00",
               "image": "./maps/icon_eu/mslp/f030.webp"
             },
             {
               "forecastHour": 36,
-              "validTime": "2026-07-14T21:00:00+00:00",
+              "validTime": "2026-07-15T00:00:00+00:00",
               "image": "./maps/icon_eu/mslp/f036.webp"
             },
             {
               "forecastHour": 42,
-              "validTime": "2026-07-15T03:00:00+00:00",
+              "validTime": "2026-07-15T06:00:00+00:00",
               "image": "./maps/icon_eu/mslp/f042.webp"
             },
             {
               "forecastHour": 48,
-              "validTime": "2026-07-15T09:00:00+00:00",
+              "validTime": "2026-07-15T12:00:00+00:00",
               "image": "./maps/icon_eu/mslp/f048.webp"
+            },
+            {
+              "forecastHour": 54,
+              "validTime": "2026-07-15T18:00:00+00:00",
+              "image": "./maps/icon_eu/mslp/f054.webp"
+            },
+            {
+              "forecastHour": 60,
+              "validTime": "2026-07-16T00:00:00+00:00",
+              "image": "./maps/icon_eu/mslp/f060.webp"
+            },
+            {
+              "forecastHour": 66,
+              "validTime": "2026-07-16T06:00:00+00:00",
+              "image": "./maps/icon_eu/mslp/f066.webp"
+            },
+            {
+              "forecastHour": 72,
+              "validTime": "2026-07-16T12:00:00+00:00",
+              "image": "./maps/icon_eu/mslp/f072.webp"
+            },
+            {
+              "forecastHour": 78,
+              "validTime": "2026-07-16T18:00:00+00:00",
+              "image": "./maps/icon_eu/mslp/f078.webp"
+            },
+            {
+              "forecastHour": 84,
+              "validTime": "2026-07-17T00:00:00+00:00",
+              "image": "./maps/icon_eu/mslp/f084.webp"
+            },
+            {
+              "forecastHour": 90,
+              "validTime": "2026-07-17T06:00:00+00:00",
+              "image": "./maps/icon_eu/mslp/f090.webp"
+            },
+            {
+              "forecastHour": 96,
+              "validTime": "2026-07-17T12:00:00+00:00",
+              "image": "./maps/icon_eu/mslp/f096.webp"
+            },
+            {
+              "forecastHour": 102,
+              "validTime": "2026-07-17T18:00:00+00:00",
+              "image": "./maps/icon_eu/mslp/f102.webp"
+            },
+            {
+              "forecastHour": 108,
+              "validTime": "2026-07-18T00:00:00+00:00",
+              "image": "./maps/icon_eu/mslp/f108.webp"
+            },
+            {
+              "forecastHour": 114,
+              "validTime": "2026-07-18T06:00:00+00:00",
+              "image": "./maps/icon_eu/mslp/f114.webp"
+            },
+            {
+              "forecastHour": 120,
+              "validTime": "2026-07-18T12:00:00+00:00",
+              "image": "./maps/icon_eu/mslp/f120.webp"
             }
           ]
         },
@@ -770,48 +890,108 @@
           "frames": [
             {
               "forecastHour": 0,
-              "validTime": "2026-07-13T09:00:00+00:00",
+              "validTime": "2026-07-13T12:00:00+00:00",
               "image": "./maps/icon_eu/precip/f000.webp"
             },
             {
               "forecastHour": 6,
-              "validTime": "2026-07-13T15:00:00+00:00",
+              "validTime": "2026-07-13T18:00:00+00:00",
               "image": "./maps/icon_eu/precip/f006.webp"
             },
             {
               "forecastHour": 12,
-              "validTime": "2026-07-13T21:00:00+00:00",
+              "validTime": "2026-07-14T00:00:00+00:00",
               "image": "./maps/icon_eu/precip/f012.webp"
             },
             {
               "forecastHour": 18,
-              "validTime": "2026-07-14T03:00:00+00:00",
+              "validTime": "2026-07-14T06:00:00+00:00",
               "image": "./maps/icon_eu/precip/f018.webp"
             },
             {
               "forecastHour": 24,
-              "validTime": "2026-07-14T09:00:00+00:00",
+              "validTime": "2026-07-14T12:00:00+00:00",
               "image": "./maps/icon_eu/precip/f024.webp"
             },
             {
               "forecastHour": 30,
-              "validTime": "2026-07-14T15:00:00+00:00",
+              "validTime": "2026-07-14T18:00:00+00:00",
               "image": "./maps/icon_eu/precip/f030.webp"
             },
             {
               "forecastHour": 36,
-              "validTime": "2026-07-14T21:00:00+00:00",
+              "validTime": "2026-07-15T00:00:00+00:00",
               "image": "./maps/icon_eu/precip/f036.webp"
             },
             {
               "forecastHour": 42,
-              "validTime": "2026-07-15T03:00:00+00:00",
+              "validTime": "2026-07-15T06:00:00+00:00",
               "image": "./maps/icon_eu/precip/f042.webp"
             },
             {
               "forecastHour": 48,
-              "validTime": "2026-07-15T09:00:00+00:00",
+              "validTime": "2026-07-15T12:00:00+00:00",
               "image": "./maps/icon_eu/precip/f048.webp"
+            },
+            {
+              "forecastHour": 54,
+              "validTime": "2026-07-15T18:00:00+00:00",
+              "image": "./maps/icon_eu/precip/f054.webp"
+            },
+            {
+              "forecastHour": 60,
+              "validTime": "2026-07-16T00:00:00+00:00",
+              "image": "./maps/icon_eu/precip/f060.webp"
+            },
+            {
+              "forecastHour": 66,
+              "validTime": "2026-07-16T06:00:00+00:00",
+              "image": "./maps/icon_eu/precip/f066.webp"
+            },
+            {
+              "forecastHour": 72,
+              "validTime": "2026-07-16T12:00:00+00:00",
+              "image": "./maps/icon_eu/precip/f072.webp"
+            },
+            {
+              "forecastHour": 78,
+              "validTime": "2026-07-16T18:00:00+00:00",
+              "image": "./maps/icon_eu/precip/f078.webp"
+            },
+            {
+              "forecastHour": 84,
+              "validTime": "2026-07-17T00:00:00+00:00",
+              "image": "./maps/icon_eu/precip/f084.webp"
+            },
+            {
+              "forecastHour": 90,
+              "validTime": "2026-07-17T06:00:00+00:00",
+              "image": "./maps/icon_eu/precip/f090.webp"
+            },
+            {
+              "forecastHour": 96,
+              "validTime": "2026-07-17T12:00:00+00:00",
+              "image": "./maps/icon_eu/precip/f096.webp"
+            },
+            {
+              "forecastHour": 102,
+              "validTime": "2026-07-17T18:00:00+00:00",
+              "image": "./maps/icon_eu/precip/f102.webp"
+            },
+            {
+              "forecastHour": 108,
+              "validTime": "2026-07-18T00:00:00+00:00",
+              "image": "./maps/icon_eu/precip/f108.webp"
+            },
+            {
+              "forecastHour": 114,
+              "validTime": "2026-07-18T06:00:00+00:00",
+              "image": "./maps/icon_eu/precip/f114.webp"
+            },
+            {
+              "forecastHour": 120,
+              "validTime": "2026-07-18T12:00:00+00:00",
+              "image": "./maps/icon_eu/precip/f120.webp"
             }
           ]
         },
@@ -833,48 +1013,108 @@
           "frames": [
             {
               "forecastHour": 0,
-              "validTime": "2026-07-13T09:00:00+00:00",
+              "validTime": "2026-07-13T12:00:00+00:00",
               "image": "./maps/icon_eu/wind10/f000.webp"
             },
             {
               "forecastHour": 6,
-              "validTime": "2026-07-13T15:00:00+00:00",
+              "validTime": "2026-07-13T18:00:00+00:00",
               "image": "./maps/icon_eu/wind10/f006.webp"
             },
             {
               "forecastHour": 12,
-              "validTime": "2026-07-13T21:00:00+00:00",
+              "validTime": "2026-07-14T00:00:00+00:00",
               "image": "./maps/icon_eu/wind10/f012.webp"
             },
             {
               "forecastHour": 18,
-              "validTime": "2026-07-14T03:00:00+00:00",
+              "validTime": "2026-07-14T06:00:00+00:00",
               "image": "./maps/icon_eu/wind10/f018.webp"
             },
             {
               "forecastHour": 24,
-              "validTime": "2026-07-14T09:00:00+00:00",
+              "validTime": "2026-07-14T12:00:00+00:00",
               "image": "./maps/icon_eu/wind10/f024.webp"
             },
             {
               "forecastHour": 30,
-              "validTime": "2026-07-14T15:00:00+00:00",
+              "validTime": "2026-07-14T18:00:00+00:00",
               "image": "./maps/icon_eu/wind10/f030.webp"
             },
             {
               "forecastHour": 36,
-              "validTime": "2026-07-14T21:00:00+00:00",
+              "validTime": "2026-07-15T00:00:00+00:00",
               "image": "./maps/icon_eu/wind10/f036.webp"
             },
             {
               "forecastHour": 42,
-              "validTime": "2026-07-15T03:00:00+00:00",
+              "validTime": "2026-07-15T06:00:00+00:00",
               "image": "./maps/icon_eu/wind10/f042.webp"
             },
             {
               "forecastHour": 48,
-              "validTime": "2026-07-15T09:00:00+00:00",
+              "validTime": "2026-07-15T12:00:00+00:00",
               "image": "./maps/icon_eu/wind10/f048.webp"
+            },
+            {
+              "forecastHour": 54,
+              "validTime": "2026-07-15T18:00:00+00:00",
+              "image": "./maps/icon_eu/wind10/f054.webp"
+            },
+            {
+              "forecastHour": 60,
+              "validTime": "2026-07-16T00:00:00+00:00",
+              "image": "./maps/icon_eu/wind10/f060.webp"
+            },
+            {
+              "forecastHour": 66,
+              "validTime": "2026-07-16T06:00:00+00:00",
+              "image": "./maps/icon_eu/wind10/f066.webp"
+            },
+            {
+              "forecastHour": 72,
+              "validTime": "2026-07-16T12:00:00+00:00",
+              "image": "./maps/icon_eu/wind10/f072.webp"
+            },
+            {
+              "forecastHour": 78,
+              "validTime": "2026-07-16T18:00:00+00:00",
+              "image": "./maps/icon_eu/wind10/f078.webp"
+            },
+            {
+              "forecastHour": 84,
+              "validTime": "2026-07-17T00:00:00+00:00",
+              "image": "./maps/icon_eu/wind10/f084.webp"
+            },
+            {
+              "forecastHour": 90,
+              "validTime": "2026-07-17T06:00:00+00:00",
+              "image": "./maps/icon_eu/wind10/f090.webp"
+            },
+            {
+              "forecastHour": 96,
+              "validTime": "2026-07-17T12:00:00+00:00",
+              "image": "./maps/icon_eu/wind10/f096.webp"
+            },
+            {
+              "forecastHour": 102,
+              "validTime": "2026-07-17T18:00:00+00:00",
+              "image": "./maps/icon_eu/wind10/f102.webp"
+            },
+            {
+              "forecastHour": 108,
+              "validTime": "2026-07-18T00:00:00+00:00",
+              "image": "./maps/icon_eu/wind10/f108.webp"
+            },
+            {
+              "forecastHour": 114,
+              "validTime": "2026-07-18T06:00:00+00:00",
+              "image": "./maps/icon_eu/wind10/f114.webp"
+            },
+            {
+              "forecastHour": 120,
+              "validTime": "2026-07-18T12:00:00+00:00",
+              "image": "./maps/icon_eu/wind10/f120.webp"
             }
           ]
         }
@@ -882,7 +1122,7 @@
     },
     "ecmwf": {
       "label": "ECMWF IFS",
-      "run": "2026-07-13T15:00:00+00:00",
+      "run": "2026-07-13T17:00:00+00:00",
       "variables": {
         "temp2m": {
           "label": "Température à 2 m",
@@ -902,107 +1142,107 @@
           "frames": [
             {
               "forecastHour": 0,
-              "validTime": "2026-07-13T15:00:00+00:00",
+              "validTime": "2026-07-13T17:00:00+00:00",
               "image": "./maps/ecmwf/temp2m/f000.webp"
             },
             {
               "forecastHour": 12,
-              "validTime": "2026-07-14T03:00:00+00:00",
+              "validTime": "2026-07-14T05:00:00+00:00",
               "image": "./maps/ecmwf/temp2m/f012.webp"
             },
             {
               "forecastHour": 24,
-              "validTime": "2026-07-14T15:00:00+00:00",
+              "validTime": "2026-07-14T17:00:00+00:00",
               "image": "./maps/ecmwf/temp2m/f024.webp"
             },
             {
               "forecastHour": 36,
-              "validTime": "2026-07-15T03:00:00+00:00",
+              "validTime": "2026-07-15T05:00:00+00:00",
               "image": "./maps/ecmwf/temp2m/f036.webp"
             },
             {
               "forecastHour": 48,
-              "validTime": "2026-07-15T15:00:00+00:00",
+              "validTime": "2026-07-15T17:00:00+00:00",
               "image": "./maps/ecmwf/temp2m/f048.webp"
             },
             {
               "forecastHour": 60,
-              "validTime": "2026-07-16T03:00:00+00:00",
+              "validTime": "2026-07-16T05:00:00+00:00",
               "image": "./maps/ecmwf/temp2m/f060.webp"
             },
             {
               "forecastHour": 72,
-              "validTime": "2026-07-16T15:00:00+00:00",
+              "validTime": "2026-07-16T17:00:00+00:00",
               "image": "./maps/ecmwf/temp2m/f072.webp"
             },
             {
               "forecastHour": 84,
-              "validTime": "2026-07-17T03:00:00+00:00",
+              "validTime": "2026-07-17T05:00:00+00:00",
               "image": "./maps/ecmwf/temp2m/f084.webp"
             },
             {
               "forecastHour": 96,
-              "validTime": "2026-07-17T15:00:00+00:00",
+              "validTime": "2026-07-17T17:00:00+00:00",
               "image": "./maps/ecmwf/temp2m/f096.webp"
             },
             {
               "forecastHour": 108,
-              "validTime": "2026-07-18T03:00:00+00:00",
+              "validTime": "2026-07-18T05:00:00+00:00",
               "image": "./maps/ecmwf/temp2m/f108.webp"
             },
             {
               "forecastHour": 120,
-              "validTime": "2026-07-18T15:00:00+00:00",
+              "validTime": "2026-07-18T17:00:00+00:00",
               "image": "./maps/ecmwf/temp2m/f120.webp"
             },
             {
               "forecastHour": 132,
-              "validTime": "2026-07-19T03:00:00+00:00",
+              "validTime": "2026-07-19T05:00:00+00:00",
               "image": "./maps/ecmwf/temp2m/f132.webp"
             },
             {
               "forecastHour": 144,
-              "validTime": "2026-07-19T15:00:00+00:00",
+              "validTime": "2026-07-19T17:00:00+00:00",
               "image": "./maps/ecmwf/temp2m/f144.webp"
             },
             {
               "forecastHour": 156,
-              "validTime": "2026-07-20T03:00:00+00:00",
+              "validTime": "2026-07-20T05:00:00+00:00",
               "image": "./maps/ecmwf/temp2m/f156.webp"
             },
             {
               "forecastHour": 168,
-              "validTime": "2026-07-20T15:00:00+00:00",
+              "validTime": "2026-07-20T17:00:00+00:00",
               "image": "./maps/ecmwf/temp2m/f168.webp"
             },
             {
               "forecastHour": 180,
-              "validTime": "2026-07-21T03:00:00+00:00",
+              "validTime": "2026-07-21T05:00:00+00:00",
               "image": "./maps/ecmwf/temp2m/f180.webp"
             },
             {
               "forecastHour": 192,
-              "validTime": "2026-07-21T15:00:00+00:00",
+              "validTime": "2026-07-21T17:00:00+00:00",
               "image": "./maps/ecmwf/temp2m/f192.webp"
             },
             {
               "forecastHour": 204,
-              "validTime": "2026-07-22T03:00:00+00:00",
+              "validTime": "2026-07-22T05:00:00+00:00",
               "image": "./maps/ecmwf/temp2m/f204.webp"
             },
             {
               "forecastHour": 216,
-              "validTime": "2026-07-22T15:00:00+00:00",
+              "validTime": "2026-07-22T17:00:00+00:00",
               "image": "./maps/ecmwf/temp2m/f216.webp"
             },
             {
               "forecastHour": 228,
-              "validTime": "2026-07-23T03:00:00+00:00",
+              "validTime": "2026-07-23T05:00:00+00:00",
               "image": "./maps/ecmwf/temp2m/f228.webp"
             },
             {
               "forecastHour": 240,
-              "validTime": "2026-07-23T15:00:00+00:00",
+              "validTime": "2026-07-23T17:00:00+00:00",
               "image": "./maps/ecmwf/temp2m/f240.webp"
             }
           ]
@@ -1024,107 +1264,107 @@
           "frames": [
             {
               "forecastHour": 0,
-              "validTime": "2026-07-13T15:00:00+00:00",
+              "validTime": "2026-07-13T17:00:00+00:00",
               "image": "./maps/ecmwf/precip/f000.webp"
             },
             {
               "forecastHour": 12,
-              "validTime": "2026-07-14T03:00:00+00:00",
+              "validTime": "2026-07-14T05:00:00+00:00",
               "image": "./maps/ecmwf/precip/f012.webp"
             },
             {
               "forecastHour": 24,
-              "validTime": "2026-07-14T15:00:00+00:00",
+              "validTime": "2026-07-14T17:00:00+00:00",
               "image": "./maps/ecmwf/precip/f024.webp"
             },
             {
               "forecastHour": 36,
-              "validTime": "2026-07-15T03:00:00+00:00",
+              "validTime": "2026-07-15T05:00:00+00:00",
               "image": "./maps/ecmwf/precip/f036.webp"
             },
             {
               "forecastHour": 48,
-              "validTime": "2026-07-15T15:00:00+00:00",
+              "validTime": "2026-07-15T17:00:00+00:00",
               "image": "./maps/ecmwf/precip/f048.webp"
             },
             {
               "forecastHour": 60,
-              "validTime": "2026-07-16T03:00:00+00:00",
+              "validTime": "2026-07-16T05:00:00+00:00",
               "image": "./maps/ecmwf/precip/f060.webp"
             },
             {
               "forecastHour": 72,
-              "validTime": "2026-07-16T15:00:00+00:00",
+              "validTime": "2026-07-16T17:00:00+00:00",
               "image": "./maps/ecmwf/precip/f072.webp"
             },
             {
               "forecastHour": 84,
-              "validTime": "2026-07-17T03:00:00+00:00",
+              "validTime": "2026-07-17T05:00:00+00:00",
               "image": "./maps/ecmwf/precip/f084.webp"
             },
             {
               "forecastHour": 96,
-              "validTime": "2026-07-17T15:00:00+00:00",
+              "validTime": "2026-07-17T17:00:00+00:00",
               "image": "./maps/ecmwf/precip/f096.webp"
             },
             {
               "forecastHour": 108,
-              "validTime": "2026-07-18T03:00:00+00:00",
+              "validTime": "2026-07-18T05:00:00+00:00",
               "image": "./maps/ecmwf/precip/f108.webp"
             },
             {
               "forecastHour": 120,
-              "validTime": "2026-07-18T15:00:00+00:00",
+              "validTime": "2026-07-18T17:00:00+00:00",
               "image": "./maps/ecmwf/precip/f120.webp"
             },
             {
               "forecastHour": 132,
-              "validTime": "2026-07-19T03:00:00+00:00",
+              "validTime": "2026-07-19T05:00:00+00:00",
               "image": "./maps/ecmwf/precip/f132.webp"
             },
             {
               "forecastHour": 144,
-              "validTime": "2026-07-19T15:00:00+00:00",
+              "validTime": "2026-07-19T17:00:00+00:00",
               "image": "./maps/ecmwf/precip/f144.webp"
             },
             {
               "forecastHour": 156,
-              "validTime": "2026-07-20T03:00:00+00:00",
+              "validTime": "2026-07-20T05:00:00+00:00",
               "image": "./maps/ecmwf/precip/f156.webp"
             },
             {
               "forecastHour": 168,
-              "validTime": "2026-07-20T15:00:00+00:00",
+              "validTime": "2026-07-20T17:00:00+00:00",
               "image": "./maps/ecmwf/precip/f168.webp"
             },
             {
               "forecastHour": 180,
-              "validTime": "2026-07-21T03:00:00+00:00",
+              "validTime": "2026-07-21T05:00:00+00:00",
               "image": "./maps/ecmwf/precip/f180.webp"
             },
             {
               "forecastHour": 192,
-              "validTime": "2026-07-21T15:00:00+00:00",
+              "validTime": "2026-07-21T17:00:00+00:00",
               "image": "./maps/ecmwf/precip/f192.webp"
             },
             {
               "forecastHour": 204,
-              "validTime": "2026-07-22T03:00:00+00:00",
+              "validTime": "2026-07-22T05:00:00+00:00",
               "image": "./maps/ecmwf/precip/f204.webp"
             },
             {
               "forecastHour": 216,
-              "validTime": "2026-07-22T15:00:00+00:00",
+              "validTime": "2026-07-22T17:00:00+00:00",
               "image": "./maps/ecmwf/precip/f216.webp"
             },
             {
               "forecastHour": 228,
-              "validTime": "2026-07-23T03:00:00+00:00",
+              "validTime": "2026-07-23T05:00:00+00:00",
               "image": "./maps/ecmwf/precip/f228.webp"
             },
             {
               "forecastHour": 240,
-              "validTime": "2026-07-23T15:00:00+00:00",
+              "validTime": "2026-07-23T17:00:00+00:00",
               "image": "./maps/ecmwf/precip/f240.webp"
             }
           ]
@@ -1146,107 +1386,107 @@
           "frames": [
             {
               "forecastHour": 0,
-              "validTime": "2026-07-13T15:00:00+00:00",
+              "validTime": "2026-07-13T17:00:00+00:00",
               "image": "./maps/ecmwf/wind10/f000.webp"
             },
             {
               "forecastHour": 12,
-              "validTime": "2026-07-14T03:00:00+00:00",
+              "validTime": "2026-07-14T05:00:00+00:00",
               "image": "./maps/ecmwf/wind10/f012.webp"
             },
             {
               "forecastHour": 24,
-              "validTime": "2026-07-14T15:00:00+00:00",
+              "validTime": "2026-07-14T17:00:00+00:00",
               "image": "./maps/ecmwf/wind10/f024.webp"
             },
             {
               "forecastHour": 36,
-              "validTime": "2026-07-15T03:00:00+00:00",
+              "validTime": "2026-07-15T05:00:00+00:00",
               "image": "./maps/ecmwf/wind10/f036.webp"
             },
             {
               "forecastHour": 48,
-              "validTime": "2026-07-15T15:00:00+00:00",
+              "validTime": "2026-07-15T17:00:00+00:00",
               "image": "./maps/ecmwf/wind10/f048.webp"
             },
             {
               "forecastHour": 60,
-              "validTime": "2026-07-16T03:00:00+00:00",
+              "validTime": "2026-07-16T05:00:00+00:00",
               "image": "./maps/ecmwf/wind10/f060.webp"
             },
             {
               "forecastHour": 72,
-              "validTime": "2026-07-16T15:00:00+00:00",
+              "validTime": "2026-07-16T17:00:00+00:00",
               "image": "./maps/ecmwf/wind10/f072.webp"
             },
             {
               "forecastHour": 84,
-              "validTime": "2026-07-17T03:00:00+00:00",
+              "validTime": "2026-07-17T05:00:00+00:00",
               "image": "./maps/ecmwf/wind10/f084.webp"
             },
             {
               "forecastHour": 96,
-              "validTime": "2026-07-17T15:00:00+00:00",
+              "validTime": "2026-07-17T17:00:00+00:00",
               "image": "./maps/ecmwf/wind10/f096.webp"
             },
             {
               "forecastHour": 108,
-              "validTime": "2026-07-18T03:00:00+00:00",
+              "validTime": "2026-07-18T05:00:00+00:00",
               "image": "./maps/ecmwf/wind10/f108.webp"
             },
             {
               "forecastHour": 120,
-              "validTime": "2026-07-18T15:00:00+00:00",
+              "validTime": "2026-07-18T17:00:00+00:00",
               "image": "./maps/ecmwf/wind10/f120.webp"
             },
             {
               "forecastHour": 132,
-              "validTime": "2026-07-19T03:00:00+00:00",
+              "validTime": "2026-07-19T05:00:00+00:00",
               "image": "./maps/ecmwf/wind10/f132.webp"
             },
             {
               "forecastHour": 144,
-              "validTime": "2026-07-19T15:00:00+00:00",
+              "validTime": "2026-07-19T17:00:00+00:00",
               "image": "./maps/ecmwf/wind10/f144.webp"
             },
             {
               "forecastHour": 156,
-              "validTime": "2026-07-20T03:00:00+00:00",
+              "validTime": "2026-07-20T05:00:00+00:00",
               "image": "./maps/ecmwf/wind10/f156.webp"
             },
             {
               "forecastHour": 168,
-              "validTime": "2026-07-20T15:00:00+00:00",
+              "validTime": "2026-07-20T17:00:00+00:00",
               "image": "./maps/ecmwf/wind10/f168.webp"
             },
             {
               "forecastHour": 180,
-              "validTime": "2026-07-21T03:00:00+00:00",
+              "validTime": "2026-07-21T05:00:00+00:00",
               "image": "./maps/ecmwf/wind10/f180.webp"
             },
             {
               "forecastHour": 192,
-              "validTime": "2026-07-21T15:00:00+00:00",
+              "validTime": "2026-07-21T17:00:00+00:00",
               "image": "./maps/ecmwf/wind10/f192.webp"
             },
             {
               "forecastHour": 204,
-              "validTime": "2026-07-22T03:00:00+00:00",
+              "validTime": "2026-07-22T05:00:00+00:00",
               "image": "./maps/ecmwf/wind10/f204.webp"
             },
             {
               "forecastHour": 216,
-              "validTime": "2026-07-22T15:00:00+00:00",
+              "validTime": "2026-07-22T17:00:00+00:00",
               "image": "./maps/ecmwf/wind10/f216.webp"
             },
             {
               "forecastHour": 228,
-              "validTime": "2026-07-23T03:00:00+00:00",
+              "validTime": "2026-07-23T05:00:00+00:00",
               "image": "./maps/ecmwf/wind10/f228.webp"
             },
             {
               "forecastHour": 240,
-              "validTime": "2026-07-23T15:00:00+00:00",
+              "validTime": "2026-07-23T17:00:00+00:00",
               "image": "./maps/ecmwf/wind10/f240.webp"
             }
           ]
@@ -1268,107 +1508,107 @@
           "frames": [
             {
               "forecastHour": 0,
-              "validTime": "2026-07-13T15:00:00+00:00",
+              "validTime": "2026-07-13T17:00:00+00:00",
               "image": "./maps/ecmwf/gusts/f000.webp"
             },
             {
               "forecastHour": 12,
-              "validTime": "2026-07-14T03:00:00+00:00",
+              "validTime": "2026-07-14T05:00:00+00:00",
               "image": "./maps/ecmwf/gusts/f012.webp"
             },
             {
               "forecastHour": 24,
-              "validTime": "2026-07-14T15:00:00+00:00",
+              "validTime": "2026-07-14T17:00:00+00:00",
               "image": "./maps/ecmwf/gusts/f024.webp"
             },
             {
               "forecastHour": 36,
-              "validTime": "2026-07-15T03:00:00+00:00",
+              "validTime": "2026-07-15T05:00:00+00:00",
               "image": "./maps/ecmwf/gusts/f036.webp"
             },
             {
               "forecastHour": 48,
-              "validTime": "2026-07-15T15:00:00+00:00",
+              "validTime": "2026-07-15T17:00:00+00:00",
               "image": "./maps/ecmwf/gusts/f048.webp"
             },
             {
               "forecastHour": 60,
-              "validTime": "2026-07-16T03:00:00+00:00",
+              "validTime": "2026-07-16T05:00:00+00:00",
               "image": "./maps/ecmwf/gusts/f060.webp"
             },
             {
               "forecastHour": 72,
-              "validTime": "2026-07-16T15:00:00+00:00",
+              "validTime": "2026-07-16T17:00:00+00:00",
               "image": "./maps/ecmwf/gusts/f072.webp"
             },
             {
               "forecastHour": 84,
-              "validTime": "2026-07-17T03:00:00+00:00",
+              "validTime": "2026-07-17T05:00:00+00:00",
               "image": "./maps/ecmwf/gusts/f084.webp"
             },
             {
               "forecastHour": 96,
-              "validTime": "2026-07-17T15:00:00+00:00",
+              "validTime": "2026-07-17T17:00:00+00:00",
               "image": "./maps/ecmwf/gusts/f096.webp"
             },
             {
               "forecastHour": 108,
-              "validTime": "2026-07-18T03:00:00+00:00",
+              "validTime": "2026-07-18T05:00:00+00:00",
               "image": "./maps/ecmwf/gusts/f108.webp"
             },
             {
               "forecastHour": 120,
-              "validTime": "2026-07-18T15:00:00+00:00",
+              "validTime": "2026-07-18T17:00:00+00:00",
               "image": "./maps/ecmwf/gusts/f120.webp"
             },
             {
               "forecastHour": 132,
-              "validTime": "2026-07-19T03:00:00+00:00",
+              "validTime": "2026-07-19T05:00:00+00:00",
               "image": "./maps/ecmwf/gusts/f132.webp"
             },
             {
               "forecastHour": 144,
-              "validTime": "2026-07-19T15:00:00+00:00",
+              "validTime": "2026-07-19T17:00:00+00:00",
               "image": "./maps/ecmwf/gusts/f144.webp"
             },
             {
               "forecastHour": 156,
-              "validTime": "2026-07-20T03:00:00+00:00",
+              "validTime": "2026-07-20T05:00:00+00:00",
               "image": "./maps/ecmwf/gusts/f156.webp"
             },
             {
               "forecastHour": 168,
-              "validTime": "2026-07-20T15:00:00+00:00",
+              "validTime": "2026-07-20T17:00:00+00:00",
               "image": "./maps/ecmwf/gusts/f168.webp"
             },
             {
               "forecastHour": 180,
-              "validTime": "2026-07-21T03:00:00+00:00",
+              "validTime": "2026-07-21T05:00:00+00:00",
               "image": "./maps/ecmwf/gusts/f180.webp"
             },
             {
               "forecastHour": 192,
-              "validTime": "2026-07-21T15:00:00+00:00",
+              "validTime": "2026-07-21T17:00:00+00:00",
               "image": "./maps/ecmwf/gusts/f192.webp"
             },
             {
               "forecastHour": 204,
-              "validTime": "2026-07-22T03:00:00+00:00",
+              "validTime": "2026-07-22T05:00:00+00:00",
               "image": "./maps/ecmwf/gusts/f204.webp"
             },
             {
               "forecastHour": 216,
-              "validTime": "2026-07-22T15:00:00+00:00",
+              "validTime": "2026-07-22T17:00:00+00:00",
               "image": "./maps/ecmwf/gusts/f216.webp"
             },
             {
               "forecastHour": 228,
-              "validTime": "2026-07-23T03:00:00+00:00",
+              "validTime": "2026-07-23T05:00:00+00:00",
               "image": "./maps/ecmwf/gusts/f228.webp"
             },
             {
               "forecastHour": 240,
-              "validTime": "2026-07-23T15:00:00+00:00",
+              "validTime": "2026-07-23T17:00:00+00:00",
               "image": "./maps/ecmwf/gusts/f240.webp"
             }
           ]
@@ -1390,107 +1630,107 @@
           "frames": [
             {
               "forecastHour": 0,
-              "validTime": "2026-07-13T15:00:00+00:00",
+              "validTime": "2026-07-13T17:00:00+00:00",
               "image": "./maps/ecmwf/cloud/f000.webp"
             },
             {
               "forecastHour": 12,
-              "validTime": "2026-07-14T03:00:00+00:00",
+              "validTime": "2026-07-14T05:00:00+00:00",
               "image": "./maps/ecmwf/cloud/f012.webp"
             },
             {
               "forecastHour": 24,
-              "validTime": "2026-07-14T15:00:00+00:00",
+              "validTime": "2026-07-14T17:00:00+00:00",
               "image": "./maps/ecmwf/cloud/f024.webp"
             },
             {
               "forecastHour": 36,
-              "validTime": "2026-07-15T03:00:00+00:00",
+              "validTime": "2026-07-15T05:00:00+00:00",
               "image": "./maps/ecmwf/cloud/f036.webp"
             },
             {
               "forecastHour": 48,
-              "validTime": "2026-07-15T15:00:00+00:00",
+              "validTime": "2026-07-15T17:00:00+00:00",
               "image": "./maps/ecmwf/cloud/f048.webp"
             },
             {
               "forecastHour": 60,
-              "validTime": "2026-07-16T03:00:00+00:00",
+              "validTime": "2026-07-16T05:00:00+00:00",
               "image": "./maps/ecmwf/cloud/f060.webp"
             },
             {
               "forecastHour": 72,
-              "validTime": "2026-07-16T15:00:00+00:00",
+              "validTime": "2026-07-16T17:00:00+00:00",
               "image": "./maps/ecmwf/cloud/f072.webp"
             },
             {
               "forecastHour": 84,
-              "validTime": "2026-07-17T03:00:00+00:00",
+              "validTime": "2026-07-17T05:00:00+00:00",
               "image": "./maps/ecmwf/cloud/f084.webp"
             },
             {
               "forecastHour": 96,
-              "validTime": "2026-07-17T15:00:00+00:00",
+              "validTime": "2026-07-17T17:00:00+00:00",
               "image": "./maps/ecmwf/cloud/f096.webp"
             },
             {
               "forecastHour": 108,
-              "validTime": "2026-07-18T03:00:00+00:00",
+              "validTime": "2026-07-18T05:00:00+00:00",
               "image": "./maps/ecmwf/cloud/f108.webp"
             },
             {
               "forecastHour": 120,
-              "validTime": "2026-07-18T15:00:00+00:00",
+              "validTime": "2026-07-18T17:00:00+00:00",
               "image": "./maps/ecmwf/cloud/f120.webp"
             },
             {
               "forecastHour": 132,
-              "validTime": "2026-07-19T03:00:00+00:00",
+              "validTime": "2026-07-19T05:00:00+00:00",
               "image": "./maps/ecmwf/cloud/f132.webp"
             },
             {
               "forecastHour": 144,
-              "validTime": "2026-07-19T15:00:00+00:00",
+              "validTime": "2026-07-19T17:00:00+00:00",
               "image": "./maps/ecmwf/cloud/f144.webp"
             },
             {
               "forecastHour": 156,
-              "validTime": "2026-07-20T03:00:00+00:00",
+              "validTime": "2026-07-20T05:00:00+00:00",
               "image": "./maps/ecmwf/cloud/f156.webp"
             },
             {
               "forecastHour": 168,
-              "validTime": "2026-07-20T15:00:00+00:00",
+              "validTime": "2026-07-20T17:00:00+00:00",
               "image": "./maps/ecmwf/cloud/f168.webp"
             },
             {
               "forecastHour": 180,
-              "validTime": "2026-07-21T03:00:00+00:00",
+              "validTime": "2026-07-21T05:00:00+00:00",
               "image": "./maps/ecmwf/cloud/f180.webp"
             },
             {
               "forecastHour": 192,
-              "validTime": "2026-07-21T15:00:00+00:00",
+              "validTime": "2026-07-21T17:00:00+00:00",
               "image": "./maps/ecmwf/cloud/f192.webp"
             },
             {
               "forecastHour": 204,
-              "validTime": "2026-07-22T03:00:00+00:00",
+              "validTime": "2026-07-22T05:00:00+00:00",
               "image": "./maps/ecmwf/cloud/f204.webp"
             },
             {
               "forecastHour": 216,
-              "validTime": "2026-07-22T15:00:00+00:00",
+              "validTime": "2026-07-22T17:00:00+00:00",
               "image": "./maps/ecmwf/cloud/f216.webp"
             },
             {
               "forecastHour": 228,
-              "validTime": "2026-07-23T03:00:00+00:00",
+              "validTime": "2026-07-23T05:00:00+00:00",
               "image": "./maps/ecmwf/cloud/f228.webp"
             },
             {
               "forecastHour": 240,
-              "validTime": "2026-07-23T15:00:00+00:00",
+              "validTime": "2026-07-23T17:00:00+00:00",
               "image": "./maps/ecmwf/cloud/f240.webp"
             }
           ]
@@ -1511,107 +1751,107 @@
           "frames": [
             {
               "forecastHour": 0,
-              "validTime": "2026-07-13T15:00:00+00:00",
+              "validTime": "2026-07-13T17:00:00+00:00",
               "image": "./maps/ecmwf/mslp/f000.webp"
             },
             {
               "forecastHour": 12,
-              "validTime": "2026-07-14T03:00:00+00:00",
+              "validTime": "2026-07-14T05:00:00+00:00",
               "image": "./maps/ecmwf/mslp/f012.webp"
             },
             {
               "forecastHour": 24,
-              "validTime": "2026-07-14T15:00:00+00:00",
+              "validTime": "2026-07-14T17:00:00+00:00",
               "image": "./maps/ecmwf/mslp/f024.webp"
             },
             {
               "forecastHour": 36,
-              "validTime": "2026-07-15T03:00:00+00:00",
+              "validTime": "2026-07-15T05:00:00+00:00",
               "image": "./maps/ecmwf/mslp/f036.webp"
             },
             {
               "forecastHour": 48,
-              "validTime": "2026-07-15T15:00:00+00:00",
+              "validTime": "2026-07-15T17:00:00+00:00",
               "image": "./maps/ecmwf/mslp/f048.webp"
             },
             {
               "forecastHour": 60,
-              "validTime": "2026-07-16T03:00:00+00:00",
+              "validTime": "2026-07-16T05:00:00+00:00",
               "image": "./maps/ecmwf/mslp/f060.webp"
             },
             {
               "forecastHour": 72,
-              "validTime": "2026-07-16T15:00:00+00:00",
+              "validTime": "2026-07-16T17:00:00+00:00",
               "image": "./maps/ecmwf/mslp/f072.webp"
             },
             {
               "forecastHour": 84,
-              "validTime": "2026-07-17T03:00:00+00:00",
+              "validTime": "2026-07-17T05:00:00+00:00",
               "image": "./maps/ecmwf/mslp/f084.webp"
             },
             {
               "forecastHour": 96,
-              "validTime": "2026-07-17T15:00:00+00:00",
+              "validTime": "2026-07-17T17:00:00+00:00",
               "image": "./maps/ecmwf/mslp/f096.webp"
             },
             {
               "forecastHour": 108,
-              "validTime": "2026-07-18T03:00:00+00:00",
+              "validTime": "2026-07-18T05:00:00+00:00",
               "image": "./maps/ecmwf/mslp/f108.webp"
             },
             {
               "forecastHour": 120,
-              "validTime": "2026-07-18T15:00:00+00:00",
+              "validTime": "2026-07-18T17:00:00+00:00",
               "image": "./maps/ecmwf/mslp/f120.webp"
             },
             {
               "forecastHour": 132,
-              "validTime": "2026-07-19T03:00:00+00:00",
+              "validTime": "2026-07-19T05:00:00+00:00",
               "image": "./maps/ecmwf/mslp/f132.webp"
             },
             {
               "forecastHour": 144,
-              "validTime": "2026-07-19T15:00:00+00:00",
+              "validTime": "2026-07-19T17:00:00+00:00",
               "image": "./maps/ecmwf/mslp/f144.webp"
             },
             {
               "forecastHour": 156,
-              "validTime": "2026-07-20T03:00:00+00:00",
+              "validTime": "2026-07-20T05:00:00+00:00",
               "image": "./maps/ecmwf/mslp/f156.webp"
             },
             {
               "forecastHour": 168,
-              "validTime": "2026-07-20T15:00:00+00:00",
+              "validTime": "2026-07-20T17:00:00+00:00",
               "image": "./maps/ecmwf/mslp/f168.webp"
             },
             {
               "forecastHour": 180,
-              "validTime": "2026-07-21T03:00:00+00:00",
+              "validTime": "2026-07-21T05:00:00+00:00",
               "image": "./maps/ecmwf/mslp/f180.webp"
             },
             {
               "forecastHour": 192,
-              "validTime": "2026-07-21T15:00:00+00:00",
+              "validTime": "2026-07-21T17:00:00+00:00",
               "image": "./maps/ecmwf/mslp/f192.webp"
             },
             {
               "forecastHour": 204,
-              "validTime": "2026-07-22T03:00:00+00:00",
+              "validTime": "2026-07-22T05:00:00+00:00",
               "image": "./maps/ecmwf/mslp/f204.webp"
             },
             {
               "forecastHour": 216,
-              "validTime": "2026-07-22T15:00:00+00:00",
+              "validTime": "2026-07-22T17:00:00+00:00",
               "image": "./maps/ecmwf/mslp/f216.webp"
             },
             {
               "forecastHour": 228,
-              "validTime": "2026-07-23T03:00:00+00:00",
+              "validTime": "2026-07-23T05:00:00+00:00",
               "image": "./maps/ecmwf/mslp/f228.webp"
             },
             {
               "forecastHour": 240,
-              "validTime": "2026-07-23T15:00:00+00:00",
+              "validTime": "2026-07-23T17:00:00+00:00",
               "image": "./maps/ecmwf/mslp/f240.webp"
             }
           ]
@@ -1634,107 +1874,107 @@
           "frames": [
             {
               "forecastHour": 0,
-              "validTime": "2026-07-13T15:00:00+00:00",
+              "validTime": "2026-07-13T17:00:00+00:00",
               "image": "./maps/ecmwf/cape/f000.webp"
             },
             {
               "forecastHour": 12,
-              "validTime": "2026-07-14T03:00:00+00:00",
+              "validTime": "2026-07-14T05:00:00+00:00",
               "image": "./maps/ecmwf/cape/f012.webp"
             },
             {
               "forecastHour": 24,
-              "validTime": "2026-07-14T15:00:00+00:00",
+              "validTime": "2026-07-14T17:00:00+00:00",
               "image": "./maps/ecmwf/cape/f024.webp"
             },
             {
               "forecastHour": 36,
-              "validTime": "2026-07-15T03:00:00+00:00",
+              "validTime": "2026-07-15T05:00:00+00:00",
               "image": "./maps/ecmwf/cape/f036.webp"
             },
             {
               "forecastHour": 48,
-              "validTime": "2026-07-15T15:00:00+00:00",
+              "validTime": "2026-07-15T17:00:00+00:00",
               "image": "./maps/ecmwf/cape/f048.webp"
             },
             {
               "forecastHour": 60,
-              "validTime": "2026-07-16T03:00:00+00:00",
+              "validTime": "2026-07-16T05:00:00+00:00",
               "image": "./maps/ecmwf/cape/f060.webp"
             },
             {
               "forecastHour": 72,
-              "validTime": "2026-07-16T15:00:00+00:00",
+              "validTime": "2026-07-16T17:00:00+00:00",
               "image": "./maps/ecmwf/cape/f072.webp"
             },
             {
               "forecastHour": 84,
-              "validTime": "2026-07-17T03:00:00+00:00",
+              "validTime": "2026-07-17T05:00:00+00:00",
               "image": "./maps/ecmwf/cape/f084.webp"
             },
             {
               "forecastHour": 96,
-              "validTime": "2026-07-17T15:00:00+00:00",
+              "validTime": "2026-07-17T17:00:00+00:00",
               "image": "./maps/ecmwf/cape/f096.webp"
             },
             {
               "forecastHour": 108,
-              "validTime": "2026-07-18T03:00:00+00:00",
+              "validTime": "2026-07-18T05:00:00+00:00",
               "image": "./maps/ecmwf/cape/f108.webp"
             },
             {
               "forecastHour": 120,
-              "validTime": "2026-07-18T15:00:00+00:00",
+              "validTime": "2026-07-18T17:00:00+00:00",
               "image": "./maps/ecmwf/cape/f120.webp"
             },
             {
               "forecastHour": 132,
-              "validTime": "2026-07-19T03:00:00+00:00",
+              "validTime": "2026-07-19T05:00:00+00:00",
               "image": "./maps/ecmwf/cape/f132.webp"
             },
             {
               "forecastHour": 144,
-              "validTime": "2026-07-19T15:00:00+00:00",
+              "validTime": "2026-07-19T17:00:00+00:00",
               "image": "./maps/ecmwf/cape/f144.webp"
             },
             {
               "forecastHour": 156,
-              "validTime": "2026-07-20T03:00:00+00:00",
+              "validTime": "2026-07-20T05:00:00+00:00",
               "image": "./maps/ecmwf/cape/f156.webp"
             },
             {
               "forecastHour": 168,
-              "validTime": "2026-07-20T15:00:00+00:00",
+              "validTime": "2026-07-20T17:00:00+00:00",
               "image": "./maps/ecmwf/cape/f168.webp"
             },
             {
               "forecastHour": 180,
-              "validTime": "2026-07-21T03:00:00+00:00",
+              "validTime": "2026-07-21T05:00:00+00:00",
               "image": "./maps/ecmwf/cape/f180.webp"
             },
             {
               "forecastHour": 192,
-              "validTime": "2026-07-21T15:00:00+00:00",
+              "validTime": "2026-07-21T17:00:00+00:00",
               "image": "./maps/ecmwf/cape/f192.webp"
             },
             {
               "forecastHour": 204,
-              "validTime": "2026-07-22T03:00:00+00:00",
+              "validTime": "2026-07-22T05:00:00+00:00",
               "image": "./maps/ecmwf/cape/f204.webp"
             },
             {
               "forecastHour": 216,
-              "validTime": "2026-07-22T15:00:00+00:00",
+              "validTime": "2026-07-22T17:00:00+00:00",
               "image": "./maps/ecmwf/cape/f216.webp"
             },
             {
               "forecastHour": 228,
-              "validTime": "2026-07-23T03:00:00+00:00",
+              "validTime": "2026-07-23T05:00:00+00:00",
               "image": "./maps/ecmwf/cape/f228.webp"
             },
             {
               "forecastHour": 240,
-              "validTime": "2026-07-23T15:00:00+00:00",
+              "validTime": "2026-07-23T17:00:00+00:00",
               "image": "./maps/ecmwf/cape/f240.webp"
             }
           ]
@@ -1757,107 +1997,107 @@
           "frames": [
             {
               "forecastHour": 0,
-              "validTime": "2026-07-13T15:00:00+00:00",
+              "validTime": "2026-07-13T17:00:00+00:00",
               "image": "./maps/ecmwf/jet300/f000.webp"
             },
             {
               "forecastHour": 12,
-              "validTime": "2026-07-14T03:00:00+00:00",
+              "validTime": "2026-07-14T05:00:00+00:00",
               "image": "./maps/ecmwf/jet300/f012.webp"
             },
             {
               "forecastHour": 24,
-              "validTime": "2026-07-14T15:00:00+00:00",
+              "validTime": "2026-07-14T17:00:00+00:00",
               "image": "./maps/ecmwf/jet300/f024.webp"
             },
             {
               "forecastHour": 36,
-              "validTime": "2026-07-15T03:00:00+00:00",
+              "validTime": "2026-07-15T05:00:00+00:00",
               "image": "./maps/ecmwf/jet300/f036.webp"
             },
             {
               "forecastHour": 48,
-              "validTime": "2026-07-15T15:00:00+00:00",
+              "validTime": "2026-07-15T17:00:00+00:00",
               "image": "./maps/ecmwf/jet300/f048.webp"
             },
             {
               "forecastHour": 60,
-              "validTime": "2026-07-16T03:00:00+00:00",
+              "validTime": "2026-07-16T05:00:00+00:00",
               "image": "./maps/ecmwf/jet300/f060.webp"
             },
             {
               "forecastHour": 72,
-              "validTime": "2026-07-16T15:00:00+00:00",
+              "validTime": "2026-07-16T17:00:00+00:00",
               "image": "./maps/ecmwf/jet300/f072.webp"
             },
             {
               "forecastHour": 84,
-              "validTime": "2026-07-17T03:00:00+00:00",
+              "validTime": "2026-07-17T05:00:00+00:00",
               "image": "./maps/ecmwf/jet300/f084.webp"
             },
             {
               "forecastHour": 96,
-              "validTime": "2026-07-17T15:00:00+00:00",
+              "validTime": "2026-07-17T17:00:00+00:00",
               "image": "./maps/ecmwf/jet300/f096.webp"
             },
             {
               "forecastHour": 108,
-              "validTime": "2026-07-18T03:00:00+00:00",
+              "validTime": "2026-07-18T05:00:00+00:00",
               "image": "./maps/ecmwf/jet300/f108.webp"
             },
             {
               "forecastHour": 120,
-              "validTime": "2026-07-18T15:00:00+00:00",
+              "validTime": "2026-07-18T17:00:00+00:00",
               "image": "./maps/ecmwf/jet300/f120.webp"
             },
             {
               "forecastHour": 132,
-              "validTime": "2026-07-19T03:00:00+00:00",
+              "validTime": "2026-07-19T05:00:00+00:00",
               "image": "./maps/ecmwf/jet300/f132.webp"
             },
             {
               "forecastHour": 144,
-              "validTime": "2026-07-19T15:00:00+00:00",
+              "validTime": "2026-07-19T17:00:00+00:00",
               "image": "./maps/ecmwf/jet300/f144.webp"
             },
             {
               "forecastHour": 156,
-              "validTime": "2026-07-20T03:00:00+00:00",
+              "validTime": "2026-07-20T05:00:00+00:00",
               "image": "./maps/ecmwf/jet300/f156.webp"
             },
             {
               "forecastHour": 168,
-              "validTime": "2026-07-20T15:00:00+00:00",
+              "validTime": "2026-07-20T17:00:00+00:00",
               "image": "./maps/ecmwf/jet300/f168.webp"
             },
             {
               "forecastHour": 180,
-              "validTime": "2026-07-21T03:00:00+00:00",
+              "validTime": "2026-07-21T05:00:00+00:00",
               "image": "./maps/ecmwf/jet300/f180.webp"
             },
             {
               "forecastHour": 192,
-              "validTime": "2026-07-21T15:00:00+00:00",
+              "validTime": "2026-07-21T17:00:00+00:00",
               "image": "./maps/ecmwf/jet300/f192.webp"
             },
             {
               "forecastHour": 204,
-              "validTime": "2026-07-22T03:00:00+00:00",
+              "validTime": "2026-07-22T05:00:00+00:00",
               "image": "./maps/ecmwf/jet300/f204.webp"
             },
             {
               "forecastHour": 216,
-              "validTime": "2026-07-22T15:00:00+00:00",
+              "validTime": "2026-07-22T17:00:00+00:00",
               "image": "./maps/ecmwf/jet300/f216.webp"
             },
             {
               "forecastHour": 228,
-              "validTime": "2026-07-23T03:00:00+00:00",
+              "validTime": "2026-07-23T05:00:00+00:00",
               "image": "./maps/ecmwf/jet300/f228.webp"
             },
             {
               "forecastHour": 240,
-              "validTime": "2026-07-23T15:00:00+00:00",
+              "validTime": "2026-07-23T17:00:00+00:00",
               "image": "./maps/ecmwf/jet300/f240.webp"
             }
           ]
@@ -1880,107 +2120,107 @@
           "frames": [
             {
               "forecastHour": 0,
-              "validTime": "2026-07-13T15:00:00+00:00",
+              "validTime": "2026-07-13T17:00:00+00:00",
               "image": "./maps/ecmwf/z500_mslp/f000.webp"
             },
             {
               "forecastHour": 12,
-              "validTime": "2026-07-14T03:00:00+00:00",
+              "validTime": "2026-07-14T05:00:00+00:00",
               "image": "./maps/ecmwf/z500_mslp/f012.webp"
             },
             {
               "forecastHour": 24,
-              "validTime": "2026-07-14T15:00:00+00:00",
+              "validTime": "2026-07-14T17:00:00+00:00",
               "image": "./maps/ecmwf/z500_mslp/f024.webp"
             },
             {
               "forecastHour": 36,
-              "validTime": "2026-07-15T03:00:00+00:00",
+              "validTime": "2026-07-15T05:00:00+00:00",
               "image": "./maps/ecmwf/z500_mslp/f036.webp"
             },
             {
               "forecastHour": 48,
-              "validTime": "2026-07-15T15:00:00+00:00",
+              "validTime": "2026-07-15T17:00:00+00:00",
               "image": "./maps/ecmwf/z500_mslp/f048.webp"
             },
             {
               "forecastHour": 60,
-              "validTime": "2026-07-16T03:00:00+00:00",
+              "validTime": "2026-07-16T05:00:00+00:00",
               "image": "./maps/ecmwf/z500_mslp/f060.webp"
             },
             {
               "forecastHour": 72,
-              "validTime": "2026-07-16T15:00:00+00:00",
+              "validTime": "2026-07-16T17:00:00+00:00",
               "image": "./maps/ecmwf/z500_mslp/f072.webp"
             },
             {
               "forecastHour": 84,
-              "validTime": "2026-07-17T03:00:00+00:00",
+              "validTime": "2026-07-17T05:00:00+00:00",
               "image": "./maps/ecmwf/z500_mslp/f084.webp"
             },
             {
               "forecastHour": 96,
-              "validTime": "2026-07-17T15:00:00+00:00",
+              "validTime": "2026-07-17T17:00:00+00:00",
               "image": "./maps/ecmwf/z500_mslp/f096.webp"
             },
             {
               "forecastHour": 108,
-              "validTime": "2026-07-18T03:00:00+00:00",
+              "validTime": "2026-07-18T05:00:00+00:00",
               "image": "./maps/ecmwf/z500_mslp/f108.webp"
             },
             {
               "forecastHour": 120,
-              "validTime": "2026-07-18T15:00:00+00:00",
+              "validTime": "2026-07-18T17:00:00+00:00",
               "image": "./maps/ecmwf/z500_mslp/f120.webp"
             },
             {
               "forecastHour": 132,
-              "validTime": "2026-07-19T03:00:00+00:00",
+              "validTime": "2026-07-19T05:00:00+00:00",
               "image": "./maps/ecmwf/z500_mslp/f132.webp"
             },
             {
               "forecastHour": 144,
-              "validTime": "2026-07-19T15:00:00+00:00",
+              "validTime": "2026-07-19T17:00:00+00:00",
               "image": "./maps/ecmwf/z500_mslp/f144.webp"
             },
             {
               "forecastHour": 156,
-              "validTime": "2026-07-20T03:00:00+00:00",
+              "validTime": "2026-07-20T05:00:00+00:00",
               "image": "./maps/ecmwf/z500_mslp/f156.webp"
             },
             {
               "forecastHour": 168,
-              "validTime": "2026-07-20T15:00:00+00:00",
+              "validTime": "2026-07-20T17:00:00+00:00",
               "image": "./maps/ecmwf/z500_mslp/f168.webp"
             },
             {
               "forecastHour": 180,
-              "validTime": "2026-07-21T03:00:00+00:00",
+              "validTime": "2026-07-21T05:00:00+00:00",
               "image": "./maps/ecmwf/z500_mslp/f180.webp"
             },
             {
               "forecastHour": 192,
-              "validTime": "2026-07-21T15:00:00+00:00",
+              "validTime": "2026-07-21T17:00:00+00:00",
               "image": "./maps/ecmwf/z500_mslp/f192.webp"
             },
             {
               "forecastHour": 204,
-              "validTime": "2026-07-22T03:00:00+00:00",
+              "validTime": "2026-07-22T05:00:00+00:00",
               "image": "./maps/ecmwf/z500_mslp/f204.webp"
             },
             {
               "forecastHour": 216,
-              "validTime": "2026-07-22T15:00:00+00:00",
+              "validTime": "2026-07-22T17:00:00+00:00",
               "image": "./maps/ecmwf/z500_mslp/f216.webp"
             },
             {
               "forecastHour": 228,
-              "validTime": "2026-07-23T03:00:00+00:00",
+              "validTime": "2026-07-23T05:00:00+00:00",
               "image": "./maps/ecmwf/z500_mslp/f228.webp"
             },
             {
               "forecastHour": 240,
-              "validTime": "2026-07-23T15:00:00+00:00",
+              "validTime": "2026-07-23T17:00:00+00:00",
               "image": "./maps/ecmwf/z500_mslp/f240.webp"
             }
           ]
@@ -1989,7 +2229,7 @@
     },
     "arome": {
       "label": "AROME",
-      "run": "2026-07-13T15:00:00+00:00",
+      "run": "2026-07-13T17:00:00+00:00",
       "variables": {
         "temp2m": {
           "label": "Température à 2 m",
@@ -2009,87 +2249,87 @@
           "frames": [
             {
               "forecastHour": 0,
-              "validTime": "2026-07-13T15:00:00+00:00",
+              "validTime": "2026-07-13T17:00:00+00:00",
               "image": "./maps/arome/temp2m/f000.webp"
             },
             {
               "forecastHour": 3,
-              "validTime": "2026-07-13T18:00:00+00:00",
+              "validTime": "2026-07-13T20:00:00+00:00",
               "image": "./maps/arome/temp2m/f003.webp"
             },
             {
               "forecastHour": 6,
-              "validTime": "2026-07-13T21:00:00+00:00",
+              "validTime": "2026-07-13T23:00:00+00:00",
               "image": "./maps/arome/temp2m/f006.webp"
             },
             {
               "forecastHour": 9,
-              "validTime": "2026-07-14T00:00:00+00:00",
+              "validTime": "2026-07-14T02:00:00+00:00",
               "image": "./maps/arome/temp2m/f009.webp"
             },
             {
               "forecastHour": 12,
-              "validTime": "2026-07-14T03:00:00+00:00",
+              "validTime": "2026-07-14T05:00:00+00:00",
               "image": "./maps/arome/temp2m/f012.webp"
             },
             {
               "forecastHour": 15,
-              "validTime": "2026-07-14T06:00:00+00:00",
+              "validTime": "2026-07-14T08:00:00+00:00",
               "image": "./maps/arome/temp2m/f015.webp"
             },
             {
               "forecastHour": 18,
-              "validTime": "2026-07-14T09:00:00+00:00",
+              "validTime": "2026-07-14T11:00:00+00:00",
               "image": "./maps/arome/temp2m/f018.webp"
             },
             {
               "forecastHour": 21,
-              "validTime": "2026-07-14T12:00:00+00:00",
+              "validTime": "2026-07-14T14:00:00+00:00",
               "image": "./maps/arome/temp2m/f021.webp"
             },
             {
               "forecastHour": 24,
-              "validTime": "2026-07-14T15:00:00+00:00",
+              "validTime": "2026-07-14T17:00:00+00:00",
               "image": "./maps/arome/temp2m/f024.webp"
             },
             {
               "forecastHour": 27,
-              "validTime": "2026-07-14T18:00:00+00:00",
+              "validTime": "2026-07-14T20:00:00+00:00",
               "image": "./maps/arome/temp2m/f027.webp"
             },
             {
               "forecastHour": 30,
-              "validTime": "2026-07-14T21:00:00+00:00",
+              "validTime": "2026-07-14T23:00:00+00:00",
               "image": "./maps/arome/temp2m/f030.webp"
             },
             {
               "forecastHour": 33,
-              "validTime": "2026-07-15T00:00:00+00:00",
+              "validTime": "2026-07-15T02:00:00+00:00",
               "image": "./maps/arome/temp2m/f033.webp"
             },
             {
               "forecastHour": 36,
-              "validTime": "2026-07-15T03:00:00+00:00",
+              "validTime": "2026-07-15T05:00:00+00:00",
               "image": "./maps/arome/temp2m/f036.webp"
             },
             {
               "forecastHour": 39,
-              "validTime": "2026-07-15T06:00:00+00:00",
+              "validTime": "2026-07-15T08:00:00+00:00",
               "image": "./maps/arome/temp2m/f039.webp"
             },
             {
               "forecastHour": 42,
-              "validTime": "2026-07-15T09:00:00+00:00",
+              "validTime": "2026-07-15T11:00:00+00:00",
               "image": "./maps/arome/temp2m/f042.webp"
             },
             {
               "forecastHour": 45,
-              "validTime": "2026-07-15T12:00:00+00:00",
+              "validTime": "2026-07-15T14:00:00+00:00",
               "image": "./maps/arome/temp2m/f045.webp"
             },
             {
               "forecastHour": 48,
-              "validTime": "2026-07-15T15:00:00+00:00",
+              "validTime": "2026-07-15T17:00:00+00:00",
               "image": "./maps/arome/temp2m/f048.webp"
             }
           ]
@@ -2111,87 +2351,87 @@
           "frames": [
             {
               "forecastHour": 0,
-              "validTime": "2026-07-13T15:00:00+00:00",
+              "validTime": "2026-07-13T17:00:00+00:00",
               "image": "./maps/arome/precip/f000.webp"
             },
             {
               "forecastHour": 3,
-              "validTime": "2026-07-13T18:00:00+00:00",
+              "validTime": "2026-07-13T20:00:00+00:00",
               "image": "./maps/arome/precip/f003.webp"
             },
             {
               "forecastHour": 6,
-              "validTime": "2026-07-13T21:00:00+00:00",
+              "validTime": "2026-07-13T23:00:00+00:00",
               "image": "./maps/arome/precip/f006.webp"
             },
             {
               "forecastHour": 9,
-              "validTime": "2026-07-14T00:00:00+00:00",
+              "validTime": "2026-07-14T02:00:00+00:00",
               "image": "./maps/arome/precip/f009.webp"
             },
             {
               "forecastHour": 12,
-              "validTime": "2026-07-14T03:00:00+00:00",
+              "validTime": "2026-07-14T05:00:00+00:00",
               "image": "./maps/arome/precip/f012.webp"
             },
             {
               "forecastHour": 15,
-              "validTime": "2026-07-14T06:00:00+00:00",
+              "validTime": "2026-07-14T08:00:00+00:00",
               "image": "./maps/arome/precip/f015.webp"
             },
             {
               "forecastHour": 18,
-              "validTime": "2026-07-14T09:00:00+00:00",
+              "validTime": "2026-07-14T11:00:00+00:00",
               "image": "./maps/arome/precip/f018.webp"
             },
             {
               "forecastHour": 21,
-              "validTime": "2026-07-14T12:00:00+00:00",
+              "validTime": "2026-07-14T14:00:00+00:00",
               "image": "./maps/arome/precip/f021.webp"
             },
             {
               "forecastHour": 24,
-              "validTime": "2026-07-14T15:00:00+00:00",
+              "validTime": "2026-07-14T17:00:00+00:00",
               "image": "./maps/arome/precip/f024.webp"
             },
             {
               "forecastHour": 27,
-              "validTime": "2026-07-14T18:00:00+00:00",
+              "validTime": "2026-07-14T20:00:00+00:00",
               "image": "./maps/arome/precip/f027.webp"
             },
             {
               "forecastHour": 30,
-              "validTime": "2026-07-14T21:00:00+00:00",
+              "validTime": "2026-07-14T23:00:00+00:00",
               "image": "./maps/arome/precip/f030.webp"
             },
             {
               "forecastHour": 33,
-              "validTime": "2026-07-15T00:00:00+00:00",
+              "validTime": "2026-07-15T02:00:00+00:00",
               "image": "./maps/arome/precip/f033.webp"
             },
             {
               "forecastHour": 36,
-              "validTime": "2026-07-15T03:00:00+00:00",
+              "validTime": "2026-07-15T05:00:00+00:00",
               "image": "./maps/arome/precip/f036.webp"
             },
             {
               "forecastHour": 39,
-              "validTime": "2026-07-15T06:00:00+00:00",
+              "validTime": "2026-07-15T08:00:00+00:00",
               "image": "./maps/arome/precip/f039.webp"
             },
             {
               "forecastHour": 42,
-              "validTime": "2026-07-15T09:00:00+00:00",
+              "validTime": "2026-07-15T11:00:00+00:00",
               "image": "./maps/arome/precip/f042.webp"
             },
             {
               "forecastHour": 45,
-              "validTime": "2026-07-15T12:00:00+00:00",
+              "validTime": "2026-07-15T14:00:00+00:00",
               "image": "./maps/arome/precip/f045.webp"
             },
             {
               "forecastHour": 48,
-              "validTime": "2026-07-15T15:00:00+00:00",
+              "validTime": "2026-07-15T17:00:00+00:00",
               "image": "./maps/arome/precip/f048.webp"
             }
           ]
@@ -2213,87 +2453,87 @@
           "frames": [
             {
               "forecastHour": 0,
-              "validTime": "2026-07-13T15:00:00+00:00",
+              "validTime": "2026-07-13T17:00:00+00:00",
               "image": "./maps/arome/wind10/f000.webp"
             },
             {
               "forecastHour": 3,
-              "validTime": "2026-07-13T18:00:00+00:00",
+              "validTime": "2026-07-13T20:00:00+00:00",
               "image": "./maps/arome/wind10/f003.webp"
             },
             {
               "forecastHour": 6,
-              "validTime": "2026-07-13T21:00:00+00:00",
+              "validTime": "2026-07-13T23:00:00+00:00",
               "image": "./maps/arome/wind10/f006.webp"
             },
             {
               "forecastHour": 9,
-              "validTime": "2026-07-14T00:00:00+00:00",
+              "validTime": "2026-07-14T02:00:00+00:00",
               "image": "./maps/arome/wind10/f009.webp"
             },
             {
               "forecastHour": 12,
-              "validTime": "2026-07-14T03:00:00+00:00",
+              "validTime": "2026-07-14T05:00:00+00:00",
               "image": "./maps/arome/wind10/f012.webp"
             },
             {
               "forecastHour": 15,
-              "validTime": "2026-07-14T06:00:00+00:00",
+              "validTime": "2026-07-14T08:00:00+00:00",
               "image": "./maps/arome/wind10/f015.webp"
             },
             {
               "forecastHour": 18,
-              "validTime": "2026-07-14T09:00:00+00:00",
+              "validTime": "2026-07-14T11:00:00+00:00",
               "image": "./maps/arome/wind10/f018.webp"
             },
             {
               "forecastHour": 21,
-              "validTime": "2026-07-14T12:00:00+00:00",
+              "validTime": "2026-07-14T14:00:00+00:00",
               "image": "./maps/arome/wind10/f021.webp"
             },
             {
               "forecastHour": 24,
-              "validTime": "2026-07-14T15:00:00+00:00",
+              "validTime": "2026-07-14T17:00:00+00:00",
               "image": "./maps/arome/wind10/f024.webp"
             },
             {
               "forecastHour": 27,
-              "validTime": "2026-07-14T18:00:00+00:00",
+              "validTime": "2026-07-14T20:00:00+00:00",
               "image": "./maps/arome/wind10/f027.webp"
             },
             {
               "forecastHour": 30,
-              "validTime": "2026-07-14T21:00:00+00:00",
+              "validTime": "2026-07-14T23:00:00+00:00",
               "image": "./maps/arome/wind10/f030.webp"
             },
             {
               "forecastHour": 33,
-              "validTime": "2026-07-15T00:00:00+00:00",
+              "validTime": "2026-07-15T02:00:00+00:00",
               "image": "./maps/arome/wind10/f033.webp"
             },
             {
               "forecastHour": 36,
-              "validTime": "2026-07-15T03:00:00+00:00",
+              "validTime": "2026-07-15T05:00:00+00:00",
               "image": "./maps/arome/wind10/f036.webp"
             },
             {
               "forecastHour": 39,
-              "validTime": "2026-07-15T06:00:00+00:00",
+              "validTime": "2026-07-15T08:00:00+00:00",
               "image": "./maps/arome/wind10/f039.webp"
             },
             {
               "forecastHour": 42,
-              "validTime": "2026-07-15T09:00:00+00:00",
+              "validTime": "2026-07-15T11:00:00+00:00",
               "image": "./maps/arome/wind10/f042.webp"
             },
             {
               "forecastHour": 45,
-              "validTime": "2026-07-15T12:00:00+00:00",
+              "validTime": "2026-07-15T14:00:00+00:00",
               "image": "./maps/arome/wind10/f045.webp"
             },
             {
               "forecastHour": 48,
-              "validTime": "2026-07-15T15:00:00+00:00",
+              "validTime": "2026-07-15T17:00:00+00:00",
               "image": "./maps/arome/wind10/f048.webp"
             }
           ]
@@ -2315,87 +2555,87 @@
           "frames": [
             {
               "forecastHour": 0,
-              "validTime": "2026-07-13T15:00:00+00:00",
+              "validTime": "2026-07-13T17:00:00+00:00",
               "image": "./maps/arome/gusts/f000.webp"
             },
             {
               "forecastHour": 3,
-              "validTime": "2026-07-13T18:00:00+00:00",
+              "validTime": "2026-07-13T20:00:00+00:00",
               "image": "./maps/arome/gusts/f003.webp"
             },
             {
               "forecastHour": 6,
-              "validTime": "2026-07-13T21:00:00+00:00",
+              "validTime": "2026-07-13T23:00:00+00:00",
               "image": "./maps/arome/gusts/f006.webp"
             },
             {
               "forecastHour": 9,
-              "validTime": "2026-07-14T00:00:00+00:00",
+              "validTime": "2026-07-14T02:00:00+00:00",
               "image": "./maps/arome/gusts/f009.webp"
             },
             {
               "forecastHour": 12,
-              "validTime": "2026-07-14T03:00:00+00:00",
+              "validTime": "2026-07-14T05:00:00+00:00",
               "image": "./maps/arome/gusts/f012.webp"
             },
             {
               "forecastHour": 15,
-              "validTime": "2026-07-14T06:00:00+00:00",
+              "validTime": "2026-07-14T08:00:00+00:00",
               "image": "./maps/arome/gusts/f015.webp"
             },
             {
               "forecastHour": 18,
-              "validTime": "2026-07-14T09:00:00+00:00",
+              "validTime": "2026-07-14T11:00:00+00:00",
               "image": "./maps/arome/gusts/f018.webp"
             },
             {
               "forecastHour": 21,
-              "validTime": "2026-07-14T12:00:00+00:00",
+              "validTime": "2026-07-14T14:00:00+00:00",
               "image": "./maps/arome/gusts/f021.webp"
             },
             {
               "forecastHour": 24,
-              "validTime": "2026-07-14T15:00:00+00:00",
+              "validTime": "2026-07-14T17:00:00+00:00",
               "image": "./maps/arome/gusts/f024.webp"
             },
             {
               "forecastHour": 27,
-              "validTime": "2026-07-14T18:00:00+00:00",
+              "validTime": "2026-07-14T20:00:00+00:00",
               "image": "./maps/arome/gusts/f027.webp"
             },
             {
               "forecastHour": 30,
-              "validTime": "2026-07-14T21:00:00+00:00",
+              "validTime": "2026-07-14T23:00:00+00:00",
               "image": "./maps/arome/gusts/f030.webp"
             },
             {
               "forecastHour": 33,
-              "validTime": "2026-07-15T00:00:00+00:00",
+              "validTime": "2026-07-15T02:00:00+00:00",
               "image": "./maps/arome/gusts/f033.webp"
             },
             {
               "forecastHour": 36,
-              "validTime": "2026-07-15T03:00:00+00:00",
+              "validTime": "2026-07-15T05:00:00+00:00",
               "image": "./maps/arome/gusts/f036.webp"
             },
             {
               "forecastHour": 39,
-              "validTime": "2026-07-15T06:00:00+00:00",
+              "validTime": "2026-07-15T08:00:00+00:00",
               "image": "./maps/arome/gusts/f039.webp"
             },
             {
               "forecastHour": 42,
-              "validTime": "2026-07-15T09:00:00+00:00",
+              "validTime": "2026-07-15T11:00:00+00:00",
               "image": "./maps/arome/gusts/f042.webp"
             },
             {
               "forecastHour": 45,
-              "validTime": "2026-07-15T12:00:00+00:00",
+              "validTime": "2026-07-15T14:00:00+00:00",
               "image": "./maps/arome/gusts/f045.webp"
             },
             {
               "forecastHour": 48,
-              "validTime": "2026-07-15T15:00:00+00:00",
+              "validTime": "2026-07-15T17:00:00+00:00",
               "image": "./maps/arome/gusts/f048.webp"
             }
           ]
@@ -2418,87 +2658,87 @@
           "frames": [
             {
               "forecastHour": 0,
-              "validTime": "2026-07-13T15:00:00+00:00",
+              "validTime": "2026-07-13T17:00:00+00:00",
               "image": "./maps/arome/cape/f000.webp"
             },
             {
               "forecastHour": 3,
-              "validTime": "2026-07-13T18:00:00+00:00",
+              "validTime": "2026-07-13T20:00:00+00:00",
               "image": "./maps/arome/cape/f003.webp"
             },
             {
               "forecastHour": 6,
-              "validTime": "2026-07-13T21:00:00+00:00",
+              "validTime": "2026-07-13T23:00:00+00:00",
               "image": "./maps/arome/cape/f006.webp"
             },
             {
               "forecastHour": 9,
-              "validTime": "2026-07-14T00:00:00+00:00",
+              "validTime": "2026-07-14T02:00:00+00:00",
               "image": "./maps/arome/cape/f009.webp"
             },
             {
               "forecastHour": 12,
-              "validTime": "2026-07-14T03:00:00+00:00",
+              "validTime": "2026-07-14T05:00:00+00:00",
               "image": "./maps/arome/cape/f012.webp"
             },
             {
               "forecastHour": 15,
-              "validTime": "2026-07-14T06:00:00+00:00",
+              "validTime": "2026-07-14T08:00:00+00:00",
               "image": "./maps/arome/cape/f015.webp"
             },
             {
               "forecastHour": 18,
-              "validTime": "2026-07-14T09:00:00+00:00",
+              "validTime": "2026-07-14T11:00:00+00:00",
               "image": "./maps/arome/cape/f018.webp"
             },
             {
               "forecastHour": 21,
-              "validTime": "2026-07-14T12:00:00+00:00",
+              "validTime": "2026-07-14T14:00:00+00:00",
               "image": "./maps/arome/cape/f021.webp"
             },
             {
               "forecastHour": 24,
-              "validTime": "2026-07-14T15:00:00+00:00",
+              "validTime": "2026-07-14T17:00:00+00:00",
               "image": "./maps/arome/cape/f024.webp"
             },
             {
               "forecastHour": 27,
-              "validTime": "2026-07-14T18:00:00+00:00",
+              "validTime": "2026-07-14T20:00:00+00:00",
               "image": "./maps/arome/cape/f027.webp"
             },
             {
               "forecastHour": 30,
-              "validTime": "2026-07-14T21:00:00+00:00",
+              "validTime": "2026-07-14T23:00:00+00:00",
               "image": "./maps/arome/cape/f030.webp"
             },
             {
               "forecastHour": 33,
-              "validTime": "2026-07-15T00:00:00+00:00",
+              "validTime": "2026-07-15T02:00:00+00:00",
               "image": "./maps/arome/cape/f033.webp"
             },
             {
               "forecastHour": 36,
-              "validTime": "2026-07-15T03:00:00+00:00",
+              "validTime": "2026-07-15T05:00:00+00:00",
               "image": "./maps/arome/cape/f036.webp"
             },
             {
               "forecastHour": 39,
-              "validTime": "2026-07-15T06:00:00+00:00",
+              "validTime": "2026-07-15T08:00:00+00:00",
               "image": "./maps/arome/cape/f039.webp"
             },
             {
               "forecastHour": 42,
-              "validTime": "2026-07-15T09:00:00+00:00",
+              "validTime": "2026-07-15T11:00:00+00:00",
               "image": "./maps/arome/cape/f042.webp"
             },
             {
               "forecastHour": 45,
-              "validTime": "2026-07-15T12:00:00+00:00",
+              "validTime": "2026-07-15T14:00:00+00:00",
               "image": "./maps/arome/cape/f045.webp"
             },
             {
               "forecastHour": 48,
-              "validTime": "2026-07-15T15:00:00+00:00",
+              "validTime": "2026-07-15T17:00:00+00:00",
               "image": "./maps/arome/cape/f048.webp"
             }
           ]
