@@ -1,0 +1,18 @@
+{
+  "generatedAt": null,
+  "location": {
+    "name": "Brûlain",
+    "latitude": 46.2025,
+    "longitude": -0.3297,
+    "timezone": "Europe/Paris"
+  },
+  "providers": {},
+  "weather": null,
+  "air": null,
+  "rivers": [],
+  "metar": [],
+  "radar": null,
+  "errors": [
+    "Le workflow Update site data n’a pas encore été exécuté."
+  ]
+}

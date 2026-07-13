@@ -385,3 +385,46 @@ js/observations.js
 
 La V11.2 ajoute les balises script manquantes, renforce l’initialisation et passe
 le cache PWA à `meteo-lab-v11-3`.
+
+
+# V12 — backend météo statique centralisé
+
+La V12 ajoute un fichier central :
+
+```text
+data/site-data.json
+```
+
+Il contient :
+
+- météo locale ;
+- qualité de l’air et pollens ;
+- métadonnées radar ;
+- stations hydrométriques ;
+- observations METAR ;
+- état et durée de chaque fournisseur.
+
+## Nouveau workflow
+
+Lance une première fois :
+
+```text
+Update site data
+```
+
+Il remplace le workflow `Update observations` et s’exécute ensuite deux fois par
+heure. Le site lit toutes ces données depuis son propre domaine GitHub Pages.
+
+## Compatibilité
+
+`observations/data.json` reste synchronisé automatiquement pour les modules de la
+V11.2. Si le cache central ne peut pas être lu, le centre d’observation conserve
+son repli vers l’ancien fichier.
+
+## Intérêt
+
+- moins d’appels API directs depuis le navigateur ;
+- réduction des problèmes CORS ;
+- état visible de chaque fournisseur ;
+- panne d’une source sans blocage global ;
+- architecture prête pour une future station météo personnelle.

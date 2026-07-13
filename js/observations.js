@@ -2,6 +2,7 @@
 
 window.ObservationCenter = (() => {
   const DATA_URL = './observations/data.json';
+  const CENTRAL_DATA_URL = './data/site-data.json';
 
   let payload = null;
   let airChart = null;
@@ -84,15 +85,37 @@ window.ObservationCenter = (() => {
   }
 
   async function loadCache() {
-    const response = await fetch(`${DATA_URL}?v=${Date.now()}`, {
-      cache: 'no-store'
-    });
+    let central = null;
 
-    if (!response.ok) {
-      throw new Error(`Cache observations HTTP ${response.status}`);
+    if (window.SiteDataStore) {
+      try {
+        central = await window.SiteDataStore.load();
+      } catch {
+        central = null;
+      }
     }
 
-    payload = await response.json();
+    if (central) {
+      payload = {
+        generatedAt: central.generatedAt,
+        location: central.location,
+        air: central.air,
+        rivers: central.rivers || [],
+        metar: central.metar || [],
+        errors: central.errors || []
+      };
+    } else {
+      const response = await fetch(`${DATA_URL}?v=${Date.now()}`, {
+        cache: 'no-store'
+      });
+
+      if (!response.ok) {
+        throw new Error(`Cache observations HTTP ${response.status}`);
+      }
+
+      payload = await response.json();
+    }
+
     renderAll();
 
     const badge = $('metar-updated-at');

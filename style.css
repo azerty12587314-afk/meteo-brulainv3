@@ -2010,3 +2010,115 @@ main .card:nth-child(4) {
   color: #fcd34d;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
+
+
+/* =========================================================
+   V12 — Backend statique centralisé
+   ========================================================= */
+
+.site-data-status-card {
+  padding: clamp(1rem, 2.4vw, 1.7rem);
+}
+
+.site-data-status-heading,
+.site-data-status-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+}
+
+.site-data-status-heading {
+  align-items: flex-start;
+  margin-bottom: .9rem;
+}
+
+.site-data-status-heading h2 {
+  margin-bottom: .3rem;
+}
+
+.site-data-age {
+  padding: .45rem .7rem;
+  color: #bae6fd;
+  border: 1px solid rgba(56,189,248,.25);
+  border-radius: 999px;
+  background: rgba(14,165,233,.1);
+  font-size: .72rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.site-data-provider-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0,1fr));
+  gap: .6rem;
+}
+
+.site-data-provider {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: .65rem;
+  min-height: 86px;
+  padding: .75rem;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: rgba(15,23,42,.42);
+}
+
+.site-data-provider-icon {
+  font-size: 1.4rem;
+}
+
+.site-data-provider strong,
+.site-data-provider small {
+  display: block;
+}
+
+.site-data-provider small {
+  margin-top: .2rem;
+  color: var(--text-muted);
+  font-size: .67rem;
+  overflow-wrap: anywhere;
+}
+
+.site-data-state-dot {
+  position: absolute;
+  top: .7rem;
+  right: .7rem;
+  width: .58rem;
+  height: .58rem;
+  border-radius: 999px;
+  background: #fb7185;
+  box-shadow: 0 0 0 4px rgba(251,113,133,.09);
+}
+
+.site-data-provider.is-ok .site-data-state-dot {
+  background: #34d399;
+  box-shadow: 0 0 0 4px rgba(52,211,153,.09);
+}
+
+@media (max-width: 1000px) {
+  .site-data-provider-grid {
+    grid-template-columns: repeat(3, minmax(0,1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .site-data-status-heading,
+  .site-data-status-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .site-data-provider-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  .site-data-provider-grid {
+    grid-template-columns: 1fr;
+  }
+}

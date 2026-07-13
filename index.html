@@ -177,6 +177,24 @@
 
 
 
+
+<section class="card site-data-status-card" id="site-data-status-card">
+  <div class="site-data-status-heading">
+    <div>
+      <h2>⚙️ État du backend météo</h2>
+      <p class="chart-subtitle">
+        Données centralisées et mises en cache par GitHub Actions.
+      </p>
+    </div>
+    <div class="site-data-status-actions">
+      <span id="site-data-age" class="site-data-age">Chargement…</span>
+      <button id="site-data-refresh" type="button">↻ Relire le cache</button>
+    </div>
+  </div>
+  <div id="site-data-provider-grid" class="site-data-provider-grid"></div>
+</section>
+
+
 <section class="card observation-center-card" id="observation-center">
   <div class="observation-heading">
     <div>
@@ -416,6 +434,8 @@
 <script defer src="js/europe-maps.js"></script>
 <script defer src="js/model-player.js"></script>
 <script defer src="js/interactive-map.js"></script>
+<script defer src="js/site-data.js?v=12"></script>
+<script defer src="js/site-data-status.js?v=12"></script>
 <script defer src="js/observations-config.js?v=11.2"></script>
 <script defer src="js/observations.js?v=11.2"></script>
 <script defer src="js/app.js"></script>
