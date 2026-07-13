@@ -29,17 +29,17 @@ jobs:
       - name: Install dependency
         run: pip install requests
 
-      - name: Download METAR observations
+      - name: Build unified observation cache
         run: python scripts/update_observations.py
 
       - name: Commit observation cache
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add observations/metar.json
+          git add observations/data.json
           if git diff --cached --quiet; then
             echo "No observation changes."
           else
-            git commit -m "chore: update nearby observations"
+            git commit -m "chore: update observation center cache"
             git push
           fi
