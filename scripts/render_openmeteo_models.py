@@ -28,7 +28,7 @@ MODELS = {
         "label": "ECMWF IFS",
         "api": "ecmwf_ifs025",
         "extent": (-25, 45, 30, 72),
-        "spacing": 2.0,
+        "spacing": 4.0,
         "max": 240,
         "step": 12,
     },
@@ -36,7 +36,7 @@ MODELS = {
         "label": "ARPEGE",
         "api": "meteofrance_arpege_europe",
         "extent": (-25, 45, 30, 72),
-        "spacing": 2.0,
+        "spacing": 4.0,
         "max": 114,
         "step": 6,
     },
@@ -44,7 +44,7 @@ MODELS = {
         "label": "AROME",
         "api": "meteofrance_arome_france_hd",
         "extent": (-6, 10, 41, 52),
-        "spacing": 0.5,
+        "spacing": 1.0,
         "max": 48,
         "step": 3,
     },
@@ -186,23 +186,45 @@ def request(batch, model, variables, days):
         "wind_speed_unit": "kmh",
     }
 
-    for attempt in range(4):
+    last_error = None
+
+    for attempt in range(6):
         try:
             response = SESSION.get(API, params=params, timeout=180)
+
+            if response.status_code == 429:
+                retry_after = response.headers.get("Retry-After")
+                wait = int(retry_after) if retry_after and retry_after.isdigit() else min(
+                    300,
+                    30 * (2 ** attempt),
+                )
+                print(
+                    f"HTTP 429 pour {model}; attente {wait} s",
+                    file=sys.stderr,
+                )
+                time.sleep(wait)
+                continue
+
             response.raise_for_status()
             payload = response.json()
             return payload if isinstance(payload, list) else [payload]
-        except Exception:
-            if attempt == 3:
-                raise
-            time.sleep(4 * (attempt + 1))
+
+        except Exception as error:
+            last_error = error
+            if attempt == 5:
+                break
+            time.sleep(min(120, 10 * (attempt + 1)))
+
+    raise RuntimeError(
+        f"Échec Open-Meteo pour {model}: {last_error or 'HTTP 429 persistant'}"
+    )
 
 
 def fetch(config, variables):
     lats, lons, grid_points = points(config["extent"], config["spacing"])
     output = []
 
-    for batch in batches(grid_points, 80):
+    for batch in batches(grid_points, 10):
         output.extend(
             request(
                 batch,
@@ -211,7 +233,7 @@ def fetch(config, variables):
                 math.ceil(config["max"] / 24) + 1,
             )
         )
-        time.sleep(0.2)
+        time.sleep(2.0)
 
     if len(output) != len(grid_points):
         raise RuntimeError(
@@ -340,8 +362,10 @@ def generate(root, model_key):
     })
 
     model_dir = root / "maps" / model_key
-    if model_dir.exists():
-        shutil.rmtree(model_dir)
+    temp_model_dir = root / "maps" / f".{model_key}-building"
+
+    if temp_model_dir.exists():
+        shutil.rmtree(temp_model_dir)
 
     lats, lons, results = fetch(config, requested)
     shape = (len(lats), len(lons))
@@ -569,7 +593,13 @@ def generate(root, model_key):
                     / variable_key
                     / f"f{hour:03d}.webp"
                 )
-                save(figure, root / relative)
+                temporary_relative = (
+                    Path("maps")
+                    / f".{model_key}-building"
+                    / variable_key
+                    / f"f{hour:03d}.webp"
+                )
+                save(figure, root / temporary_relative)
                 frames.append({
                     "forecastHour": hour,
                     "validTime": valid.isoformat(),
@@ -589,6 +619,16 @@ def generate(root, model_key):
                 "legend": LEGENDS[variable_key],
                 "frames": frames,
             }
+
+    if not manifest_variables:
+        shutil.rmtree(temp_model_dir, ignore_errors=True)
+        raise RuntimeError(
+            f"Aucune carte exploitable générée pour {model_key}"
+        )
+
+    if model_dir.exists():
+        shutil.rmtree(model_dir)
+    temp_model_dir.rename(model_dir)
 
     update_manifest(
         root,
