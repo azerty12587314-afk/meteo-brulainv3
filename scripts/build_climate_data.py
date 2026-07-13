@@ -7,7 +7,7 @@ from pathlib import Path
 import requests
 API='https://archive-api.open-meteo.com/v1/archive'
 LOC={'name':'Brûlain','latitude':46.2025,'longitude':-0.3297,'timezone':'Europe/Paris'}
-V=['temperature_2m_max','temperature_2m_min','temperature_2m_mean','precipitation_sum','sunshine_duration','et0_fao_evapotranspiration','wind_gusts_10m_max']
+V=['temperature_2m_max','temperature_2m_min','temperature_2m_mean','precipitation_sum','sunshine_duration','et0_fao_evapotranspiration','wind_gusts_10m_max','wind_speed_10m_max','precipitation_hours']
 S=requests.Session(); S.headers.update({'User-Agent':'Meteo-Lab-V15 climate builder'})
 def get(a,b):
  p={'latitude':LOC['latitude'],'longitude':LOC['longitude'],'start_date':a,'end_date':b,'daily':','.join(V),'timezone':LOC['timezone'],'models':'era5_land'}
@@ -58,11 +58,15 @@ def normals(rs):
  return out
 def annual(y,rs):
  tm=[num(x,'temperature_2m_mean') for x in rs]
- return {'year':y,'temperatureMean':mean(tm),'precipitation':summ([num(x,'precipitation_sum') for x in rs]),'sunshineHours':summ([num(x,'sunshine_duration')/3600 for x in rs]),'evapotranspiration':summ([num(x,'et0_fao_evapotranspiration') for x in rs]),'frostDays':sum(num(x,'temperature_2m_min')<0 for x in rs),'summerDays':sum(num(x,'temperature_2m_max')>=25 for x in rs),'hotDays':sum(num(x,'temperature_2m_max')>=30 for x in rs),'rainDays':sum(num(x,'precipitation_sum')>=1 for x in rs),'heatingDegreeDays':summ([max(0,18-x) for x in tm if math.isfinite(x)]),'monthly':monthly(rs)}
-def rec(rs,k,mx=True):
- a=[(num(x,k),x['date']) for x in rs if math.isfinite(num(x,k))]
+ return {'year':y,'temperatureMean':mean(tm),'precipitation':summ([num(x,'precipitation_sum') for x in rs]),'sunshineHours':summ([num(x,'sunshine_duration')/3600 for x in rs]),'evapotranspiration':summ([num(x,'et0_fao_evapotranspiration') for x in rs]),'frostDays':sum(num(x,'temperature_2m_min')<0 for x in rs),'summerDays':sum(num(x,'temperature_2m_max')>=25 for x in rs),'hotDays':sum(num(x,'temperature_2m_max')>=30 for x in rs),'tropicalNights':sum(num(x,'temperature_2m_min')>=20 for x in rs),'dryDays':sum(num(x,'precipitation_sum')<0.1 for x in rs),'rainDays':sum(num(x,'precipitation_sum')>=1 for x in rs),'heatingDegreeDays':summ([max(0,18-x) for x in tm if math.isfinite(x)]),'monthly':monthly(rs)}
+def rec(rs,k,mx=True,fallback=None,estimated=False):
+ a=[(num(x,k),x['date']) for x in rs if math.isfinite(num(x,k))]; used=False
+ if not a and fallback:
+  a=[(num(x,fallback),x['date']) for x in rs if math.isfinite(num(x,fallback))]; used=bool(a)
  if not a:return None
- v,d=(max(a) if mx else min(a)); return {'value':v,'date':d}
+ v,d=(max(a) if mx else min(a))
+ if used and estimated:v*=1.35
+ return {'value':v,'date':d,'estimated':bool(used and estimated),'sourceVariable':fallback if used else k}
 def main():
  cy=date.today().year; errors=[]; nr=[]
  for a,b in [('1991-01-01','2000-12-31'),('2001-01-01','2010-12-31'),('2011-01-01','2020-12-31')]:
@@ -73,6 +77,6 @@ def main():
   try:
    r=rows(get(f'{y}-01-01',date.today().isoformat() if y==cy else f'{y}-12-31')); rr+=r; recent.append(annual(y,r));time.sleep(2)
   except Exception as e:errors.append(str(e))
- out={'generatedAt':datetime.now(timezone.utc).isoformat(),'location':LOC,'normalPeriod':'1991-2020','normals':{'monthly':normals(nr) if nr else []},'currentYear':recent[-1] if recent and recent[-1]['year']==cy else None,'recentYears':recent,'records':{'highestTemperature':rec(nr+rr,'temperature_2m_max',True),'lowestTemperature':rec(nr+rr,'temperature_2m_min',False),'wettestDay':rec(nr+rr,'precipitation_sum',True),'strongestGust':rec(nr+rr,'wind_gusts_10m_max',True)},'errors':errors}
+ out={'generatedAt':datetime.now(timezone.utc).isoformat(),'location':LOC,'normalPeriod':'1991-2020','normals':{'monthly':normals(nr) if nr else []},'currentYear':recent[-1] if recent and recent[-1]['year']==cy else None,'recentYears':recent,'records':{'highestTemperature':rec(nr+rr,'temperature_2m_max',True),'lowestTemperature':rec(nr+rr,'temperature_2m_min',False),'wettestDay':rec(nr+rr,'precipitation_sum',True),'strongestGust':rec(nr+rr,'wind_gusts_10m_max',True,'wind_speed_10m_max',True)},'errors':errors}
  Path('data/climate.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8'); print(json.dumps(out,ensure_ascii=False,indent=2)); return 0 if out['normals']['monthly'] or recent else 1
 if __name__=='__main__': raise SystemExit(main())
