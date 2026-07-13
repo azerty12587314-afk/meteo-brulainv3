@@ -340,3 +340,34 @@ Les données de pollution et de pollen sont des analyses et prévisions CAMS à
 résolution régionale. Les données hydrométriques proviennent du réseau français
 Hub’Eau/Vigicrues. Elles ne doivent pas être utilisées seules pour une décision de
 sécurité en situation de crue.
+
+
+# V11.1 — centre d’observation fiabilisé
+
+La V11 faisait plusieurs appels directs depuis le navigateur. Selon le fournisseur,
+le CORS, le schéma de réponse ou une indisponibilité temporaire pouvaient laisser
+les panneaux vides.
+
+La V11.1 produit désormais un seul fichier :
+
+```text
+observations/data.json
+```
+
+Le workflow `Update observations` récupère indépendamment :
+
+- l’air, les pollens et les UV ;
+- les stations hydrométriques ;
+- les METAR.
+
+Une source en panne n’empêche plus les autres d’être publiées. Le site lit ensuite
+le JSON depuis son propre domaine GitHub Pages.
+
+## Après installation
+
+1. Vérifie que `observations/data.json` est présent dans le dépôt.
+2. Lance `Update observations` dans l’onglet Actions.
+3. Attends le commit automatique.
+4. Recharge le site avec `Ctrl + F5`.
+
+Le cache PWA est nommé `meteo-lab-v11-2`.

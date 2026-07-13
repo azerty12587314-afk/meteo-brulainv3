@@ -1,13 +1,9 @@
 'use strict';
 
 window.ObservationCenter = (() => {
-  const AIR_ENDPOINT =
-    'https://air-quality-api.open-meteo.com/v1/air-quality';
-  const HYDRO_STATIONS_ENDPOINT =
-    'https://hubeau.eaufrance.fr/api/v2/hydrometrie/referentiel/stations';
-  const HYDRO_OBSERVATIONS_ENDPOINT =
-    'https://hubeau.eaufrance.fr/api/v2/hydrometrie/observations_tr';
+  const DATA_URL = './observations/data.json';
 
+  let payload = null;
   let airChart = null;
   let pollenChart = null;
 
@@ -21,6 +17,7 @@ window.ObservationCenter = (() => {
 
   function formatDate(value) {
     if (!value) return '--';
+
     const date = new Date(value);
     if (Number.isNaN(date.getTime())) return '--';
 
@@ -86,53 +83,66 @@ window.ObservationCenter = (() => {
     });
   }
 
-  async function loadAirQuality() {
-    const location = config().location;
-    const params = new URLSearchParams({
-      latitude: location.latitude,
-      longitude: location.longitude,
-      timezone: location.timezone,
-      forecast_hours: '36',
-      current: [
-        'european_aqi',
-        'pm10',
-        'pm2_5',
-        'nitrogen_dioxide',
-        'ozone',
-        'uv_index',
-        'grass_pollen',
-        'birch_pollen',
-        'alder_pollen',
-        'mugwort_pollen',
-        'ragweed_pollen'
-      ].join(','),
-      hourly: [
-        'european_aqi',
-        'pm10',
-        'pm2_5',
-        'uv_index',
-        'grass_pollen',
-        'birch_pollen',
-        'alder_pollen',
-        'mugwort_pollen',
-        'ragweed_pollen'
-      ].join(',')
-    });
-
-    const response = await fetch(`${AIR_ENDPOINT}?${params}`, {
+  async function loadCache() {
+    const response = await fetch(`${DATA_URL}?v=${Date.now()}`, {
       cache: 'no-store'
     });
 
     if (!response.ok) {
-      throw new Error(`Air Quality HTTP ${response.status}`);
+      throw new Error(`Cache observations HTTP ${response.status}`);
     }
 
-    const data = await response.json();
-    renderAirMetrics(data.current || {});
-    renderAirCharts(data.hourly || {});
+    payload = await response.json();
+    renderAll();
+
+    const badge = $('metar-updated-at');
+    if (badge) {
+      badge.textContent = payload.generatedAt
+        ? `Mis à jour ${formatDate(payload.generatedAt)}`
+        : 'Workflow non exécuté';
+    }
   }
 
-  function renderAirMetrics(current) {
+  function renderAll() {
+    renderAir(payload?.air);
+    renderRivers(payload?.rivers || []);
+    renderMetar(payload?.metar || []);
+    renderWebcams();
+    renderProviderWarnings(payload?.errors || []);
+  }
+
+  function renderProviderWarnings(errors) {
+    document.querySelector('.observation-provider-warning')?.remove();
+
+    if (!errors.length) return;
+
+    const warning = document.createElement('div');
+    warning.className = 'observation-provider-warning';
+    warning.innerHTML = `
+      <strong>Certaines sources sont temporairement indisponibles.</strong>
+      <span>${errors.map(error => error.split(':')[0]).join(', ')}</span>
+    `;
+
+    $('observation-center')?.prepend(warning);
+  }
+
+  function renderAir(air) {
+    const container = $('air-observation-grid');
+
+    if (!air?.current) {
+      if (container) {
+        container.innerHTML = `
+          <div class="observation-empty">
+            Données air non disponibles. Lance le workflow
+            <strong>Update observations</strong>.
+          </div>
+        `;
+      }
+      destroyAirCharts();
+      return;
+    }
+
+    const current = air.current;
     const pollenValues = [
       current.grass_pollen,
       current.birch_pollen,
@@ -182,21 +192,36 @@ window.ObservationCenter = (() => {
       }
     ];
 
-    const container = $('air-observation-grid');
-    if (!container) return;
+    if (container) {
+      container.innerHTML = metrics.map(metric => `
+        <article class="observation-metric">
+          <span class="observation-icon">${metric.icon}</span>
+          <span class="observation-name">${metric.name}</span>
+          <strong>${metric.value}</strong>
+          <small>${metric.detail}</small>
+        </article>
+      `).join('');
+    }
 
-    container.innerHTML = metrics.map(metric => `
-      <article class="observation-metric">
-        <span class="observation-icon">${metric.icon}</span>
-        <span class="observation-name">${metric.name}</span>
-        <strong>${metric.value}</strong>
-        <small>${metric.detail}</small>
-      </article>
-    `).join('');
+    renderAirCharts(air.hourly || {});
+  }
+
+  function destroyAirCharts() {
+    airChart?.destroy();
+    pollenChart?.destroy();
+    airChart = null;
+    pollenChart = null;
   }
 
   function renderAirCharts(hourly) {
-    if (typeof Chart === 'undefined' || !hourly.time?.length) return;
+    if (
+      typeof Chart === 'undefined' ||
+      !hourly.time?.length ||
+      !$('air-observation-chart') ||
+      !$('pollen-observation-chart')
+    ) {
+      return;
+    }
 
     const length = Math.min(24, hourly.time.length);
     const labels = hourly.time.slice(0, length).map(time =>
@@ -206,7 +231,7 @@ window.ObservationCenter = (() => {
       }).format(new Date(time))
     );
 
-    if (airChart) airChart.destroy();
+    airChart?.destroy();
     airChart = new Chart($('air-observation-chart'), {
       type: 'line',
       data: {
@@ -238,31 +263,7 @@ window.ObservationCenter = (() => {
           }
         ]
       },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        interaction: { mode: 'index', intersect: false },
-        plugins: {
-          legend: {
-            position: 'bottom',
-            labels: { usePointStyle: true }
-          }
-        },
-        scales: {
-          x: { grid: { display: false }, ticks: { maxTicksLimit: 8 } },
-          aqi: {
-            position: 'left',
-            beginAtZero: true,
-            title: { display: true, text: 'AQI' }
-          },
-          particles: {
-            position: 'right',
-            beginAtZero: true,
-            grid: { drawOnChartArea: false },
-            title: { display: true, text: 'µg/m³' }
-          }
-        }
-      }
+      options: chartOptions('AQI', 'µg/m³')
     });
 
     const pollenDatasets = [
@@ -279,10 +280,13 @@ window.ObservationCenter = (() => {
       tension: .25
     }));
 
-    if (pollenChart) pollenChart.destroy();
+    pollenChart?.destroy();
     pollenChart = new Chart($('pollen-observation-chart'), {
       type: 'line',
-      data: { labels, datasets: pollenDatasets },
+      data: {
+        labels,
+        datasets: pollenDatasets
+      },
       options: {
         responsive: true,
         maintainAspectRatio: false,
@@ -294,7 +298,10 @@ window.ObservationCenter = (() => {
           }
         },
         scales: {
-          x: { grid: { display: false }, ticks: { maxTicksLimit: 8 } },
+          x: {
+            grid: { display: false },
+            ticks: { maxTicksLimit: 8 }
+          },
           y: {
             beginAtZero: true,
             title: { display: true, text: 'grains/m³' }
@@ -304,243 +311,115 @@ window.ObservationCenter = (() => {
     });
   }
 
-  function stationCoordinates(station) {
-    const latitude = Number(
-      station.latitude_station ??
-      station.latitude ??
-      station.coordonnees?.latitude
-    );
-    const longitude = Number(
-      station.longitude_station ??
-      station.longitude ??
-      station.coordonnees?.longitude
-    );
-
-    return { latitude, longitude };
-  }
-
-  function distanceKm(lat1, lon1, lat2, lon2) {
-    const toRadians = degrees => degrees * Math.PI / 180;
-    const earthRadius = 6371;
-    const dLat = toRadians(lat2 - lat1);
-    const dLon = toRadians(lon2 - lon1);
-    const a =
-      Math.sin(dLat / 2) ** 2 +
-      Math.cos(toRadians(lat1)) *
-      Math.cos(toRadians(lat2)) *
-      Math.sin(dLon / 2) ** 2;
-
-    return earthRadius * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  }
-
-  async function loadRivers() {
-    const container = $('river-observation-list');
-    if (!container) return;
-
-    container.innerHTML =
-      '<div class="observation-loading">Recherche des stations…</div>';
-
-    const location = config().location;
-    const radius = Number($('river-radius')?.value || .7);
-
-    const bbox = [
-      location.longitude - radius,
-      location.latitude - radius,
-      location.longitude + radius,
-      location.latitude + radius
-    ].join(',');
-
-    const params = new URLSearchParams({
-      bbox,
-      size: '50',
-      format: 'json'
-    });
-
-    try {
-      const response = await fetch(`${HYDRO_STATIONS_ENDPOINT}?${params}`, {
-        cache: 'no-store'
-      });
-
-      if (!response.ok) {
-        throw new Error(`Hub’Eau stations HTTP ${response.status}`);
-      }
-
-      const payload = await response.json();
-      const stations = (payload.data || [])
-        .map(station => {
-          const coordinates = stationCoordinates(station);
-          return {
-            ...station,
-            ...coordinates,
-            distance: Number.isFinite(coordinates.latitude) &&
-              Number.isFinite(coordinates.longitude)
-              ? distanceKm(
-                  location.latitude,
-                  location.longitude,
-                  coordinates.latitude,
-                  coordinates.longitude
-                )
-              : Infinity
-          };
-        })
-        .filter(station => Number.isFinite(station.distance))
-        .sort((a, b) => a.distance - b.distance)
-        .slice(0, 6);
-
-      if (!stations.length) {
-        container.innerHTML =
-          '<div class="observation-empty">Aucune station trouvée dans ce rayon.</div>';
-        return;
-      }
-
-      const enriched = await Promise.all(
-        stations.map(station => loadLatestRiverReading(station))
-      );
-
-      renderRivers(enriched);
-    } catch (error) {
-      console.error(error);
-      container.innerHTML =
-        '<div class="observation-error">Les données hydrométriques sont indisponibles.</div>';
-    }
-  }
-
-  async function loadLatestRiverReading(station) {
-    const code =
-      station.code_station ??
-      station.code_entite ??
-      station.code_station_hydro;
-
-    if (!code) return { station, reading: null };
-
-    for (const grandeur of ['H', 'Q']) {
-      try {
-        const params = new URLSearchParams({
-          code_entite: code,
-          grandeur_hydro: grandeur,
-          size: '1',
-          fields: [
-            'code_station',
-            'date_obs',
-            'resultat_obs',
-            'grandeur_hydro'
-          ].join(',')
-        });
-
-        const response = await fetch(
-          `${HYDRO_OBSERVATIONS_ENDPOINT}?${params}`,
-          { cache: 'no-store' }
-        );
-
-        if (!response.ok) continue;
-        const payload = await response.json();
-        const reading = payload.data?.[0];
-
-        if (reading) {
-          return { station, reading: { ...reading, grandeur } };
+  function chartOptions(leftTitle, rightTitle) {
+    return {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: { usePointStyle: true }
         }
-      } catch {
-        // Essayer l’autre grandeur.
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: { maxTicksLimit: 8 }
+        },
+        aqi: {
+          position: 'left',
+          beginAtZero: true,
+          title: { display: true, text: leftTitle }
+        },
+        particles: {
+          position: 'right',
+          beginAtZero: true,
+          grid: { drawOnChartArea: false },
+          title: { display: true, text: rightTitle }
+        }
       }
-    }
-
-    return { station, reading: null };
+    };
   }
 
-  function renderRivers(items) {
+  function renderRivers(rivers) {
     const container = $('river-observation-list');
     if (!container) return;
 
-    container.innerHTML = items.map(({ station, reading }) => {
-      const name =
-        station.libelle_station ??
-        station.libelle_site ??
-        station.nom_station ??
-        station.code_station ??
-        'Station hydrométrique';
+    if (!rivers.length) {
+      container.innerHTML = `
+        <div class="observation-empty">
+          Aucune station hydrométrique disponible dans le cache.
+        </div>
+      `;
+      return;
+    }
 
+    const radius = Number($('river-radius')?.value || .7);
+    const approximateRadiusKm = radius * 90;
+    const filtered = rivers.filter(
+      river => Number(river.distanceKm) <= approximateRadiusKm
+    );
+
+    if (!filtered.length) {
+      container.innerHTML = `
+        <div class="observation-empty">
+          Aucune station dans le rayon sélectionné.
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = filtered.map(river => {
+      const reading = river.reading;
       let readingText = 'Aucune mesure';
-      let unit = '';
       let detail = '';
 
       if (reading) {
-        const value = Number(reading.resultat_obs);
+        const value = Number(reading.value);
 
-        if (reading.grandeur === 'H') {
+        if (reading.quantity === 'H') {
           readingText = Number.isFinite(value)
             ? `${(value / 1000).toFixed(2)} m`
             : '--';
-          unit = 'Hauteur';
+          detail = 'Hauteur';
         } else {
           readingText = Number.isFinite(value)
             ? `${(value / 1000).toFixed(2)} m³/s`
             : '--';
-          unit = 'Débit';
+          detail = 'Débit';
         }
 
-        detail = formatDate(reading.date_obs);
+        if (reading.date) {
+          detail += ` · ${formatDate(reading.date)}`;
+        }
       }
 
       return `
         <article class="river-observation-item">
           <div>
-            <h4>${name}</h4>
-            <p>
-              ${station.distance.toFixed(1)} km ·
-              ${station.code_station ?? station.code_entite ?? ''}
-            </p>
+            <h4>${river.name}</h4>
+            <p>${Number(river.distanceKm).toFixed(1)} km · ${river.code}</p>
           </div>
           <div class="river-reading">
             <strong>${readingText}</strong>
-            <span>${unit}${detail ? ` · ${detail}` : ''}</span>
+            <span>${detail}</span>
           </div>
         </article>
       `;
     }).join('');
   }
 
-  async function loadMetar() {
+  function renderMetar(stations) {
     const container = $('metar-observation-grid');
     if (!container) return;
-
-    container.innerHTML =
-      '<div class="observation-loading">Chargement des observations…</div>';
-
-    try {
-      const response = await fetch(
-        `./observations/metar.json?v=${Date.now()}`,
-        { cache: 'no-store' }
-      );
-
-      if (!response.ok) {
-        throw new Error(`METAR cache HTTP ${response.status}`);
-      }
-
-      const payload = await response.json();
-      renderMetar(payload);
-
-      const badge = $('metar-updated-at');
-      if (badge) {
-        badge.textContent = payload.generatedAt
-          ? `Mis à jour ${formatDate(payload.generatedAt)}`
-          : 'Mise à jour inconnue';
-      }
-    } catch (error) {
-      console.error(error);
-      container.innerHTML =
-        '<div class="observation-error">Le cache METAR n’est pas encore disponible. Lance le workflow Update observations.</div>';
-    }
-  }
-
-  function renderMetar(payload) {
-    const container = $('metar-observation-grid');
-    if (!container) return;
-
-    const stations = payload.stations || [];
 
     if (!stations.length) {
-      container.innerHTML =
-        '<div class="observation-empty">Aucune observation METAR récente.</div>';
+      container.innerHTML = `
+        <div class="observation-empty">
+          Aucune observation METAR récente dans le cache.
+        </div>
+      `;
       return;
     }
 
@@ -549,14 +428,16 @@ window.ObservationCenter = (() => {
         <h4>${station.name || station.icaoId}</h4>
         <p>${station.icaoId} · ${formatDate(station.reportTime)}</p>
         <div class="metar-values">
-          <span>🌡️ ${formatNumber(station.temp, 0)} °C</span>
-          <span>💧 ${formatNumber(station.dewp, 0)} °C rosée</span>
-          <span>💨 ${formatNumber(station.wspd, 0)} kt</span>
-          <span>🧭 ${formatNumber(station.wdir, 0)}°</span>
-          <span>👁️ ${formatNumber(station.visib, 0)} km</span>
-          <span>🔵 ${formatNumber(station.altim, 0)} hPa</span>
+          <span>🌡️ ${formatNumber(station.temp)} °C</span>
+          <span>💧 ${formatNumber(station.dewp)} °C rosée</span>
+          <span>💨 ${formatNumber(station.wspd)} kt</span>
+          <span>🧭 ${formatNumber(station.wdir)}°</span>
+          <span>👁️ ${formatNumber(station.visib)} km</span>
+          <span>🔵 ${formatNumber(station.altim)} hPa</span>
         </div>
-        <div class="metar-raw">${station.rawOb || 'METAR brut indisponible'}</div>
+        <div class="metar-raw">
+          ${station.rawOb || 'METAR brut indisponible'}
+        </div>
       </article>
     `).join('');
   }
@@ -606,30 +487,40 @@ window.ObservationCenter = (() => {
 
   async function refreshAll() {
     const button = $('observations-refresh');
+
     if (button) {
       button.disabled = true;
       button.textContent = 'Chargement…';
     }
 
-    await Promise.allSettled([
-      loadAirQuality(),
-      loadRivers(),
-      loadMetar()
-    ]);
+    try {
+      await loadCache();
+    } catch (error) {
+      console.error(error);
 
-    renderWebcams();
-
-    if (button) {
-      button.disabled = false;
-      button.textContent = '↻ Actualiser';
+      const airContainer = $('air-observation-grid');
+      if (airContainer) {
+        airContainer.innerHTML = `
+          <div class="observation-error">
+            Le fichier observations/data.json est inaccessible.
+            Vérifie que la V11.1 a été entièrement envoyée sur GitHub.
+          </div>
+        `;
+      }
+    } finally {
+      if (button) {
+        button.disabled = false;
+        button.textContent = '↻ Actualiser';
+      }
     }
   }
 
   function bind() {
     bindTabs();
-
     $('observations-refresh')?.addEventListener('click', refreshAll);
-    $('river-radius')?.addEventListener('change', loadRivers);
+    $('river-radius')?.addEventListener('change', () => {
+      renderRivers(payload?.rivers || []);
+    });
   }
 
   async function init() {

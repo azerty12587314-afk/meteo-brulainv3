@@ -1989,3 +1989,24 @@ main .card:nth-child(4) {
     text-align: left;
   }
 }
+
+
+/* V11.1 — état partiel des fournisseurs */
+.observation-provider-warning {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .8rem;
+  margin-bottom: .8rem;
+  padding: .7rem .85rem;
+  color: #fde68a;
+  border: 1px solid rgba(251,191,36,.28);
+  border-radius: 12px;
+  background: rgba(120,53,15,.2);
+  font-size: .76rem;
+}
+
+.observation-provider-warning span {
+  color: #fcd34d;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}

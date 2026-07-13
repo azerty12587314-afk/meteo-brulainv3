@@ -1,0 +1,14 @@
+{
+  "generatedAt": null,
+  "location": {
+    "name": "Brûlain",
+    "latitude": 46.2025,
+    "longitude": -0.3297
+  },
+  "air": null,
+  "rivers": [],
+  "metar": [],
+  "errors": [
+    "Le workflow Update observations n’a pas encore été exécuté."
+  ]
+}
