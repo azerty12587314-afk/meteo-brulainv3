@@ -21,6 +21,58 @@ from urllib.parse import urlencode
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+
+from matplotlib.colors import LinearSegmentedColormap, BoundaryNorm, ListedColormap
+
+PRO_PALETTES = {
+    "temp2m": [
+        "#2b0a5a", "#36228c", "#2547d9", "#1789ff", "#18d7e8",
+        "#21f2b2", "#4dff63", "#b8ff24", "#fff000", "#ffb000",
+        "#ff6800", "#ff2500", "#b80000", "#6d0000"
+    ],
+    "precip": [
+        "#dff7ff", "#8fe7ff", "#29b6f6", "#0066ff", "#1840c9",
+        "#6026b8", "#a316c6", "#e500a4", "#ff1744", "#ff7a00",
+        "#fff200"
+    ],
+    "wind10": [
+        "#26104f", "#3b1b8f", "#2447d8", "#0877ff", "#00b8ff",
+        "#00e5d4", "#2cff81", "#b4ff23", "#fff000", "#ff9800",
+        "#ff3300", "#a80000"
+    ],
+    "gusts": [
+        "#18003b", "#3d168f", "#174ac7", "#007bff", "#00cbe8",
+        "#20f5a0", "#b3ff2c", "#fff000", "#ff9a00", "#ff3300",
+        "#9e0000"
+    ],
+    "cape": [
+        "#f4f4f4", "#bfe8ff", "#39d353", "#d6ff19", "#fff000",
+        "#ff9c00", "#ff3b00", "#d10000", "#7a00a8", "#2e004f"
+    ],
+    "jet300": [
+        "#12002b", "#3a0b78", "#2b32c4", "#0068ff", "#00bfff",
+        "#00f0c8", "#62ff4d", "#d7ff1f", "#fff000", "#ff9700",
+        "#ff3300", "#9f0000"
+    ],
+    "z500_mslp": [
+        "#2d003f", "#51207c", "#353bc0", "#1264ee", "#00a9ff",
+        "#00e5df", "#20f2a0", "#72ff46", "#c9ff21", "#fff000",
+        "#ffbd00", "#ff7a00", "#ff3500", "#b80000", "#700000"
+    ],
+    "mslp": [
+        "#2d0b59", "#3432a8", "#0c6de8", "#00b8ff", "#00e3b8",
+        "#59ee50", "#d7f51b", "#fff000", "#ff9700", "#ff3d00",
+        "#b00000"
+    ],
+    "cloud": [
+        "#0f2740", "#36526f", "#71879a", "#aebdca", "#e8eef2", "#ffffff"
+    ]
+}
+
+def pro_cmap(name: str):
+    colors = PRO_PALETTES.get(name, PRO_PALETTES["z500_mslp"])
+    return LinearSegmentedColormap.from_list(f"pro_{name}", colors, N=256)
+
 import numpy as np
 import requests
 import xarray as xr
@@ -52,9 +104,7 @@ VARIABLE_LEGENDS = {
         "unit": "°C",
         "ticks": [-30, -20, -10, 0, 10, 20, 30, 40],
         "gradient": (
-            "linear-gradient(90deg,#30123b,#4145ab,#4675ed,#39a2fc,"
-            "#1bcfd4,#24eca6,#61fc6c,#a4fc3c,#d9ef36,#f9c63a,"
-            "#fb8734,#ed4a27,#c91d15,#7a0403)"
+            "linear-gradient(90deg,#2b0a5a,#36228c,#2547d9,#1789ff,#18d7e8,#21f2b2,#4dff63,#b8ff24,#fff000,#ffb000,#ff6800,#ff2500,#b80000,#6d0000)"
         ),
     },
     "mslp": {
@@ -71,8 +121,7 @@ VARIABLE_LEGENDS = {
         "unit": "mm",
         "ticks": [0.1, 1, 5, 10, 20, 50, 100],
         "gradient": (
-            "linear-gradient(90deg,#e0f2fe,#7dd3fc,#22d3ee,"
-            "#22c55e,#eab308,#f97316,#dc2626,#7e22ce)"
+            "linear-gradient(90deg,#dff7ff,#8fe7ff,#29b6f6,#0066ff,#1840c9,#6026b8,#a316c6,#e500a4,#ff1744,#ff7a00,#fff200)"
         ),
     },
     "wind10": {
@@ -80,8 +129,7 @@ VARIABLE_LEGENDS = {
         "unit": "km/h",
         "ticks": [0, 20, 40, 60, 80, 100],
         "gradient": (
-            "linear-gradient(90deg,#440154,#3b528b,"
-            "#21918c,#5ec962,#fde725)"
+            "linear-gradient(90deg,#26104f,#3b1b8f,#2447d8,#0877ff,#00b8ff,#00e5d4,#2cff81,#b4ff23,#fff000,#ff9800,#ff3300,#a80000)"
         ),
     },
     "z500_mslp": {
@@ -89,9 +137,7 @@ VARIABLE_LEGENDS = {
         "unit": "dam · isobares en hPa",
         "ticks": [480, 500, 520, 540, 560, 580, 600],
         "gradient": (
-            "linear-gradient(90deg,#30123b,#4145ab,#4675ed,#39a2fc,"
-            "#1bcfd4,#24eca6,#61fc6c,#a4fc3c,#d9ef36,#f9c63a,"
-            "#fb8734,#ed4a27,#c91d15,#7a0403)"
+            "linear-gradient(90deg,#2d003f,#51207c,#353bc0,#1264ee,#00a9ff,#00e5df,#20f2a0,#72ff46,#c9ff21,#fff000,#ffbd00,#ff7a00,#ff3500,#b80000,#700000)"
         ),
     },
 }
@@ -176,8 +222,8 @@ def setup_axes(title: str, subtitle: str):
     ax.set_extent(EUROPE_EXTENT, crs=ccrs.PlateCarree())
     ax.add_feature(cfeature.LAND, facecolor="#101827", zorder=0)
     ax.add_feature(cfeature.OCEAN, facecolor="#07111f", zorder=0)
-    ax.add_feature(cfeature.COASTLINE, edgecolor="#dbeafe", linewidth=0.55)
-    ax.add_feature(cfeature.BORDERS, edgecolor="#94a3b8", linewidth=0.35)
+    ax.add_feature(cfeature.COASTLINE, edgecolor="#dbeafe", linewidth=0.8)
+    ax.add_feature(cfeature.BORDERS, edgecolor="#94a3b8", linewidth=0.55)
     ax.gridlines(
         draw_labels=False, linewidth=0.25, color="#64748b", alpha=0.35
     )
@@ -213,7 +259,7 @@ def draw_temp(data: xr.DataArray, title: str, subtitle: str, output: Path):
     fig, ax = setup_axes(title, subtitle)
     levels = np.arange(-30, 43, 3)
     plot = ax.contourf(
-        lon, lat, values, levels=levels, cmap="turbo", extend="both",
+        lon, lat, values, levels=levels, cmap=pro_cmap("temp2m"), extend="both",
         transform=ccrs.PlateCarree()
     )
     cbar = fig.colorbar(plot, ax=ax, orientation="horizontal", pad=0.035, shrink=0.8)
@@ -259,7 +305,7 @@ def draw_precip(data: xr.DataArray, title: str, subtitle: str, output: Path):
     fig, ax = setup_axes(title, subtitle)
     levels = [0.1, 0.5, 1, 2, 5, 10, 20, 30, 50, 80, 120]
     plot = ax.contourf(
-        lon, lat, values, levels=levels, cmap="gist_ncar",
+        lon, lat, values, levels=levels, cmap=pro_cmap("precip"),
         extend="max", transform=ccrs.PlateCarree()
     )
     cbar = fig.colorbar(plot, ax=ax, orientation="horizontal", pad=0.035, shrink=0.8)
@@ -281,7 +327,7 @@ def draw_wind(
     fig, ax = setup_axes(title, subtitle)
     levels = np.arange(0, 101, 5)
     plot = ax.contourf(
-        lon, lat, speed, levels=levels, cmap="viridis",
+        lon, lat, speed, levels=levels, cmap=pro_cmap("wind10"),
         extend="max", transform=ccrs.PlateCarree()
     )
     step = max(1, speed.shape[-1] // 35)
@@ -311,7 +357,7 @@ def draw_z500_mslp(
     fig, ax = setup_axes(title, subtitle)
     fill_levels = np.arange(480, 605, 4)
     plot = ax.contourf(
-        lon, lat, z_values, levels=fill_levels, cmap="turbo",
+        lon, lat, z_values, levels=fill_levels, cmap=pro_cmap("temp2m"),
         extend="both", transform=ccrs.PlateCarree()
     )
     z_lines = ax.contour(
@@ -321,7 +367,7 @@ def draw_z500_mslp(
     ax.clabel(z_lines, inline=True, fontsize=6, fmt="%d")
     p_lines = ax.contour(
         p_lon, p_lat, p_values, levels=np.arange(960, 1045, 4),
-        colors="white", linewidths=0.75, transform=ccrs.PlateCarree()
+        colors="white", linewidths=1.15, transform=ccrs.PlateCarree()
     )
     ax.clabel(p_lines, inline=True, fontsize=7, fmt="%d")
     cbar = fig.colorbar(plot, ax=ax, orientation="horizontal", pad=0.035, shrink=0.8)
