@@ -488,3 +488,7 @@ Lance une première fois `Build climate data`. Le workflow calcule les normales 
 
 # V16 — Centre de surveillance
 Radar animé, satellite visible NASA, signaux automatiques locaux et workflow Update surveillance toutes les 15 minutes.
+
+
+# V16.1
+Validation des données avant rafraîchissement, conservation des anciens graphiques si le cache est invalide, records pluie/rafales améliorés, nuits tropicales et bilan hydrique. Relancer Build climate data.
