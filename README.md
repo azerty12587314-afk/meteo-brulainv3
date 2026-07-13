@@ -234,3 +234,30 @@ Generate weather maps
 
 Les anomalies sont désactivées jusqu’à l’utilisation de normales ERA5 mensuelles
 provenant du Copernicus Climate Data Store.
+
+
+# V9 — carte météo interactive
+
+La V9 ajoute une vraie carte Leaflet multicouche :
+
+- fond routier OpenStreetMap ;
+- fond topographique OpenTopoMap ;
+- satellite NASA GIBS ;
+- radar animé RainViewer ;
+- cadrages Europe, France et Brûlain ;
+- géolocalisation ;
+- lecture/pause et chronologie radar ;
+- interrogation de la météo actuelle par simple clic sur la carte ;
+- popup avec température, ressenti, humidité, pluie, vent, rafales et pression ;
+- mode plein écran.
+
+## Services utilisés
+
+- OpenStreetMap pour le fond principal ;
+- OpenTopoMap pour le relief ;
+- NASA GIBS pour l’imagerie satellite quotidienne ;
+- RainViewer pour les images radar ;
+- Open-Meteo pour la météo ponctuelle.
+
+Les couches externes dépendent de la disponibilité et des conditions d’utilisation
+de leurs fournisseurs.

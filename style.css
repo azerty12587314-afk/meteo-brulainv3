@@ -1319,3 +1319,201 @@ main .card:nth-child(4) {
     line-height: 1.45;
   }
 }
+
+
+/* =========================================================
+   V9 — Carte météo interactive multicouche
+   ========================================================= */
+
+.interactive-weather-map-card {
+  padding: clamp(1rem, 2.4vw, 1.7rem);
+}
+
+.interactive-map-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.interactive-map-heading h2 {
+  margin-bottom: .35rem;
+}
+
+.interactive-map-status {
+  flex-shrink: 0;
+  padding: .48rem .72rem;
+  color: #bbf7d0;
+  border: 1px solid rgba(52, 211, 153, .26);
+  border-radius: 999px;
+  background: rgba(6, 95, 70, .2);
+  font-size: .78rem;
+  font-weight: 800;
+}
+
+.interactive-map-status.is-error {
+  color: #fecdd3;
+  border-color: rgba(251, 113, 133, .34);
+  background: rgba(159, 18, 57, .2);
+}
+
+.interactive-map-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem;
+  margin-bottom: .75rem;
+}
+
+.interactive-map-toolbar button,
+.interactive-map-time-row button {
+  min-height: 40px;
+  padding: .58rem .8rem;
+  font-size: .8rem;
+}
+
+.interactive-map-toolbar button[aria-pressed="true"] {
+  color: #082f49;
+  background: linear-gradient(135deg, #67e8f9, #38bdf8);
+}
+
+.interactive-map-time-row {
+  display: grid;
+  grid-template-columns: auto auto auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .55rem;
+  margin-bottom: .75rem;
+}
+
+#map-radar-timeline {
+  width: 100%;
+  accent-color: #38bdf8;
+}
+
+#map-radar-time {
+  min-width: 108px;
+  color: var(--text-soft);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.interactive-weather-map {
+  width: 100%;
+  height: min(72vh, 760px);
+  min-height: 520px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: #07111f;
+}
+
+.interactive-weather-map:fullscreen {
+  width: 100vw;
+  height: 100vh;
+  border: 0;
+  border-radius: 0;
+}
+
+.interactive-weather-map .leaflet-control-layers {
+  color: #0f172a;
+  border: 0;
+  border-radius: 12px;
+  box-shadow: 0 10px 28px rgba(2, 6, 23, .26);
+}
+
+.interactive-weather-map .leaflet-popup-content-wrapper,
+.interactive-weather-map .leaflet-popup-tip {
+  color: #e2e8f0;
+  background: rgba(15, 23, 42, .96);
+}
+
+.interactive-weather-map .leaflet-popup-content {
+  min-width: 190px;
+  line-height: 1.5;
+}
+
+.map-weather-popup {
+  display: grid;
+  gap: .28rem;
+}
+
+.map-weather-popup strong {
+  font-size: 1rem;
+}
+
+.map-weather-popup-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .3rem .7rem;
+  margin-top: .35rem;
+  color: #cbd5e1;
+  font-size: .82rem;
+}
+
+.interactive-map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .65rem 1rem;
+  margin-top: .7rem;
+  color: var(--text-soft);
+  font-size: .76rem;
+}
+
+.interactive-map-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+}
+
+.legend-dot {
+  width: .65rem;
+  height: .65rem;
+  border-radius: 999px;
+}
+
+.radar-dot {
+  background: #38bdf8;
+}
+
+.satellite-dot {
+  background: #a3e635;
+}
+
+.point-dot {
+  background: #fbbf24;
+}
+
+.interactive-map-help {
+  margin: .55rem 0 0;
+  color: var(--text-muted);
+  font-size: .72rem;
+}
+
+@media (max-width: 760px) {
+  .interactive-map-heading {
+    flex-direction: column;
+  }
+
+  .interactive-map-status {
+    width: 100%;
+    text-align: center;
+  }
+
+  .interactive-map-time-row {
+    grid-template-columns: auto auto auto 1fr;
+  }
+
+  #map-radar-timeline {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  #map-radar-time {
+    min-width: 0;
+  }
+
+  .interactive-weather-map {
+    min-height: 430px;
+    height: 62vh;
+  }
+}

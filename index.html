@@ -175,6 +175,66 @@
 </section>
 
 
+
+<section class="card interactive-weather-map-card" id="interactive-map-section">
+  <div class="interactive-map-heading">
+    <div>
+      <h2>🌍 Carte météo interactive</h2>
+      <p class="chart-subtitle">
+        Superpose le radar, le satellite et les observations ponctuelles sur une même carte.
+      </p>
+    </div>
+    <span id="interactive-map-status" class="interactive-map-status">
+      Initialisation…
+    </span>
+  </div>
+
+  <div class="interactive-map-toolbar" aria-label="Outils de la carte météo">
+    <button id="map-view-europe" type="button">🇪🇺 Europe</button>
+    <button id="map-view-france" type="button">🇫🇷 France</button>
+    <button id="map-view-local" type="button">📍 Brûlain</button>
+    <button id="map-geolocate" type="button">⌖ Ma position</button>
+    <button id="map-toggle-radar" type="button" aria-pressed="true">
+      🌧️ Radar actif
+    </button>
+    <button id="map-toggle-satellite" type="button" aria-pressed="false">
+      🛰️ Satellite
+    </button>
+    <button id="map-fullscreen" type="button">⛶ Plein écran</button>
+  </div>
+
+  <div class="interactive-map-time-row">
+    <button id="map-radar-prev" type="button" title="Image radar précédente">◀</button>
+    <button id="map-radar-play" type="button">▶ Animation radar</button>
+    <button id="map-radar-next" type="button" title="Image radar suivante">▶</button>
+
+    <input
+      id="map-radar-timeline"
+      type="range"
+      min="0"
+      max="0"
+      value="0"
+      step="1"
+      aria-label="Échéance radar de la carte interactive"
+    >
+
+    <strong id="map-radar-time">--:--</strong>
+  </div>
+
+  <div id="interactive-weather-map" class="interactive-weather-map"></div>
+
+  <div class="interactive-map-legend">
+    <span><i class="legend-dot radar-dot"></i> Radar pluie</span>
+    <span><i class="legend-dot satellite-dot"></i> Satellite NASA</span>
+    <span><i class="legend-dot point-dot"></i> Point météo interrogé</span>
+  </div>
+
+  <p class="interactive-map-help">
+    Clique n’importe où sur la carte pour obtenir la météo actuelle du point sélectionné.
+  </p>
+</section>
+
+
 <section class="card europe-radar-card" id="europe-radar-section">
   <div class="europe-heading">
     <div>
@@ -220,6 +280,7 @@
 <script defer src="js/radar.js"></script>
 <script defer src="js/europe-maps.js"></script>
 <script defer src="js/model-player.js"></script>
+<script defer src="js/interactive-map.js"></script>
 <script defer src="js/app.js"></script>
 </body>
 </html>
