@@ -13,6 +13,58 @@ from pathlib import Path
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+
+from matplotlib.colors import LinearSegmentedColormap, BoundaryNorm, ListedColormap
+
+PRO_PALETTES = {
+    "temp2m": [
+        "#2b0a5a", "#36228c", "#2547d9", "#1789ff", "#18d7e8",
+        "#21f2b2", "#4dff63", "#b8ff24", "#fff000", "#ffb000",
+        "#ff6800", "#ff2500", "#b80000", "#6d0000"
+    ],
+    "precip": [
+        "#dff7ff", "#8fe7ff", "#29b6f6", "#0066ff", "#1840c9",
+        "#6026b8", "#a316c6", "#e500a4", "#ff1744", "#ff7a00",
+        "#fff200"
+    ],
+    "wind10": [
+        "#26104f", "#3b1b8f", "#2447d8", "#0877ff", "#00b8ff",
+        "#00e5d4", "#2cff81", "#b4ff23", "#fff000", "#ff9800",
+        "#ff3300", "#a80000"
+    ],
+    "gusts": [
+        "#18003b", "#3d168f", "#174ac7", "#007bff", "#00cbe8",
+        "#20f5a0", "#b3ff2c", "#fff000", "#ff9a00", "#ff3300",
+        "#9e0000"
+    ],
+    "cape": [
+        "#f4f4f4", "#bfe8ff", "#39d353", "#d6ff19", "#fff000",
+        "#ff9c00", "#ff3b00", "#d10000", "#7a00a8", "#2e004f"
+    ],
+    "jet300": [
+        "#12002b", "#3a0b78", "#2b32c4", "#0068ff", "#00bfff",
+        "#00f0c8", "#62ff4d", "#d7ff1f", "#fff000", "#ff9700",
+        "#ff3300", "#9f0000"
+    ],
+    "z500_mslp": [
+        "#2d003f", "#51207c", "#353bc0", "#1264ee", "#00a9ff",
+        "#00e5df", "#20f2a0", "#72ff46", "#c9ff21", "#fff000",
+        "#ffbd00", "#ff7a00", "#ff3500", "#b80000", "#700000"
+    ],
+    "mslp": [
+        "#2d0b59", "#3432a8", "#0c6de8", "#00b8ff", "#00e3b8",
+        "#59ee50", "#d7f51b", "#fff000", "#ff9700", "#ff3d00",
+        "#b00000"
+    ],
+    "cloud": [
+        "#0f2740", "#36526f", "#71879a", "#aebdca", "#e8eef2", "#ffffff"
+    ]
+}
+
+def pro_cmap(name: str):
+    colors = PRO_PALETTES.get(name, PRO_PALETTES["z500_mslp"])
+    return LinearSegmentedColormap.from_list(f"pro_{name}", colors, N=256)
+
 import numpy as np
 import requests
 import cartopy.crs as ccrs
@@ -73,7 +125,7 @@ VARIABLES = {
         "unit": "°C",
         "ticks": [-20, -10, 0, 10, 20, 30, 40],
         "levels": list(range(-20, 43, 3)),
-        "cmap": "turbo",
+        "cmap": "temp2m",
     },
     "precip": {
         "label": "Précipitations",
@@ -81,7 +133,7 @@ VARIABLES = {
         "unit": "mm",
         "ticks": [0.1, 1, 5, 10, 20, 50],
         "levels": [0.1, 0.5, 1, 2, 5, 10, 20, 30, 50],
-        "cmap": "gist_ncar",
+        "cmap": "precip",
     },
     "wind10": {
         "label": "Vent à 10 m",
@@ -89,7 +141,7 @@ VARIABLES = {
         "unit": "km/h",
         "ticks": [0, 20, 40, 60, 80, 100],
         "levels": list(range(0, 105, 5)),
-        "cmap": "viridis",
+        "cmap": "wind10",
     },
     "gusts": {
         "label": "Rafales",
@@ -97,7 +149,7 @@ VARIABLES = {
         "unit": "km/h",
         "ticks": [0, 30, 60, 90, 120, 150],
         "levels": list(range(0, 165, 10)),
-        "cmap": "plasma",
+        "cmap": "gusts",
     },
     "cloud": {
         "label": "Nébulosité",
@@ -105,7 +157,7 @@ VARIABLES = {
         "unit": "%",
         "ticks": [0, 20, 40, 60, 80, 100],
         "levels": list(range(0, 110, 10)),
-        "cmap": "Greys",
+        "cmap": "cloud",
     },
     "mslp": {
         "label": "Pression au niveau de la mer",
@@ -113,7 +165,7 @@ VARIABLES = {
         "unit": "hPa",
         "ticks": [970, 980, 1000, 1020, 1040],
         "levels": list(range(960, 1046, 2)),
-        "cmap": "coolwarm",
+        "cmap": "mslp",
     },
     "cape": {
         "label": "CAPE",
@@ -121,7 +173,7 @@ VARIABLES = {
         "unit": "J/kg",
         "ticks": [0, 250, 500, 1000, 2000, 3000, 4000],
         "levels": [0, 100, 250, 500, 750, 1000, 1500, 2000, 3000, 4000, 5000],
-        "cmap": "turbo",
+        "cmap": "cape",
     },
     "jet300": {
         "label": "Jet stream 300 hPa",
@@ -129,7 +181,7 @@ VARIABLES = {
         "unit": "km/h",
         "ticks": [0, 50, 100, 150, 200, 250, 300],
         "levels": list(range(0, 321, 20)),
-        "cmap": "plasma",
+        "cmap": "jet300",
     },
     "z500_mslp": {
         "label": "Z500 + pression",
@@ -137,7 +189,7 @@ VARIABLES = {
         "unit": "dam",
         "ticks": [480, 500, 520, 540, 560, 580, 600],
         "levels": list(range(480, 608, 4)),
-        "cmap": "turbo",
+        "cmap": "z500_mslp",
     },
 }
 
@@ -282,12 +334,12 @@ def axes(extent, title, subtitle):
     axis.add_feature(
         cfeature.COASTLINE,
         edgecolor="#dbeafe",
-        linewidth=0.55,
+        linewidth=0.8,
     )
     axis.add_feature(
         cfeature.BORDERS,
         edgecolor="#94a3b8",
-        linewidth=0.35,
+        linewidth=0.55,
     )
     figure.patch.set_facecolor("#020617")
     axis.set_facecolor("#020617")
@@ -399,7 +451,7 @@ def generate(root, model_key):
                     plot = axis.contourf(
                         x_grid, y_grid, values,
                         levels=definition["levels"],
-                        cmap=definition["cmap"],
+                        cmap=pro_cmap(definition["cmap"]),
                         extend="both",
                         transform=ccrs.PlateCarree(),
                     )
@@ -412,7 +464,7 @@ def generate(root, model_key):
                     plot = axis.contourf(
                         x_grid, y_grid, values,
                         levels=definition["levels"],
-                        cmap=definition["cmap"],
+                        cmap=pro_cmap(definition["cmap"]),
                         extend="max",
                         transform=ccrs.PlateCarree(),
                     )
@@ -434,7 +486,7 @@ def generate(root, model_key):
                     plot = axis.contourf(
                         x_grid, y_grid, speed,
                         levels=definition["levels"],
-                        cmap=definition["cmap"],
+                        cmap=pro_cmap(definition["cmap"]),
                         extend="max",
                         transform=ccrs.PlateCarree(),
                     )
@@ -445,7 +497,7 @@ def generate(root, model_key):
                         u[::skip, ::skip],
                         v[::skip, ::skip],
                         length=4,
-                        linewidth=0.35,
+                        linewidth=0.55,
                         color="white",
                     )
 
@@ -457,7 +509,7 @@ def generate(root, model_key):
                     plot = axis.contourf(
                         x_grid, y_grid, values,
                         levels=definition["levels"],
-                        cmap=definition["cmap"],
+                        cmap=pro_cmap(definition["cmap"]),
                         extend="max",
                         transform=ccrs.PlateCarree(),
                     )
@@ -470,7 +522,7 @@ def generate(root, model_key):
                     plot = axis.contourf(
                         x_grid, y_grid, values,
                         levels=definition["levels"],
-                        cmap=definition["cmap"],
+                        cmap=pro_cmap(definition["cmap"]),
                         extend="neither",
                         transform=ccrs.PlateCarree(),
                     )
@@ -483,7 +535,7 @@ def generate(root, model_key):
                     plot = axis.contourf(
                         x_grid, y_grid, values,
                         levels=definition["levels"],
-                        cmap=definition["cmap"],
+                        cmap=pro_cmap(definition["cmap"]),
                         extend="both",
                         transform=ccrs.PlateCarree(),
                     )
@@ -491,7 +543,7 @@ def generate(root, model_key):
                         x_grid, y_grid, values,
                         levels=np.arange(960, 1045, 4),
                         colors="white",
-                        linewidths=0.75,
+                        linewidths=1.15,
                     )
                     axis.clabel(lines, fontsize=7, fmt="%d")
 
@@ -503,7 +555,7 @@ def generate(root, model_key):
                     plot = axis.contourf(
                         x_grid, y_grid, values,
                         levels=definition["levels"],
-                        cmap=definition["cmap"],
+                        cmap=pro_cmap(definition["cmap"]),
                         extend="max",
                         transform=ccrs.PlateCarree(),
                     )
@@ -530,7 +582,7 @@ def generate(root, model_key):
                     plot = axis.contourf(
                         x_grid, y_grid, speed,
                         levels=definition["levels"],
-                        cmap=definition["cmap"],
+                        cmap=pro_cmap(definition["cmap"]),
                         extend="max",
                         transform=ccrs.PlateCarree(),
                     )
@@ -541,7 +593,7 @@ def generate(root, model_key):
                         u[::skip, ::skip],
                         v[::skip, ::skip],
                         length=4,
-                        linewidth=0.35,
+                        linewidth=0.55,
                         color="white",
                     )
 
@@ -564,14 +616,14 @@ def generate(root, model_key):
                     plot = axis.contourf(
                         x_grid, y_grid, z500,
                         levels=definition["levels"],
-                        cmap=definition["cmap"],
+                        cmap=pro_cmap(definition["cmap"]),
                         extend="both",
                     )
                     pressure_lines = axis.contour(
                         x_grid, y_grid, pressure,
                         levels=np.arange(960, 1045, 4),
                         colors="white",
-                        linewidths=0.75,
+                        linewidths=1.15,
                     )
                     axis.clabel(
                         pressure_lines,
