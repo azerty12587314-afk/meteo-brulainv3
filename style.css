@@ -1517,3 +1517,136 @@ main .card:nth-child(4) {
     height: 62vh;
   }
 }
+
+
+/* =========================================================
+   V10 — Couches météo interactives et vent animé
+   ========================================================= */
+
+.live-layer-panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: .6rem;
+  margin: 0 0 .8rem;
+  padding: .75rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: rgba(2, 6, 23, .34);
+}
+
+.live-layer-panel label {
+  display: grid;
+  gap: .28rem;
+  color: var(--text-muted);
+  font-size: .7rem;
+  font-weight: 850;
+  letter-spacing: .055em;
+  text-transform: uppercase;
+}
+
+.live-layer-panel select {
+  min-height: 40px;
+  padding: .5rem .72rem;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: rgba(2, 6, 23, .8);
+}
+
+.live-layer-panel button {
+  min-height: 40px;
+  padding: .56rem .82rem;
+  font-size: .8rem;
+}
+
+.live-layer-panel button[aria-pressed="true"] {
+  color: #082f49;
+  background: linear-gradient(135deg, #67e8f9, #22d3ee);
+}
+
+.map-data-legend {
+  margin-top: .75rem;
+  padding: .75rem .85rem .65rem;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: rgba(2, 6, 23, .42);
+}
+
+.map-data-legend-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: .48rem;
+}
+
+.map-data-legend-heading strong {
+  color: var(--text-soft);
+  font-size: .8rem;
+}
+
+#map-data-legend-unit {
+  color: var(--text-muted);
+  font-size: .72rem;
+  font-weight: 800;
+}
+
+.map-data-legend-gradient {
+  height: 18px;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 999px;
+}
+
+.map-data-legend-ticks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: .32rem;
+  color: var(--text-muted);
+  font-size: .65rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.map-live-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+  margin-top: .65rem;
+}
+
+.map-live-summary span {
+  padding: .42rem .65rem;
+  color: var(--text-soft);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(15, 23, 42, .46);
+  font-size: .72rem;
+}
+
+.wind-particle-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 425;
+  pointer-events: none;
+}
+
+.live-data-point {
+  border: 1px solid rgba(255,255,255,.34);
+  box-shadow: 0 3px 10px rgba(2,6,23,.25);
+}
+
+@media (max-width: 680px) {
+  .live-layer-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .live-layer-panel label:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .live-layer-panel select,
+  .live-layer-panel button {
+    width: 100%;
+  }
+}

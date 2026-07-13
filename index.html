@@ -203,6 +203,36 @@
     <button id="map-fullscreen" type="button">⛶ Plein écran</button>
   </div>
 
+  <div class="live-layer-panel" aria-label="Couches météo calculées">
+    <label for="map-live-layer">
+      Couche météo
+      <select id="map-live-layer">
+        <option value="none">Aucune</option>
+        <option value="temperature">🌡️ Température</option>
+        <option value="cloud">☁️ Nébulosité</option>
+        <option value="cape">⚡ CAPE</option>
+        <option value="pressure">🔵 Pression</option>
+      </select>
+    </label>
+
+    <button id="map-load-live-data" type="button">
+      ↻ Charger les données
+    </button>
+
+    <button id="map-toggle-wind" type="button" aria-pressed="false">
+      💨 Vent animé
+    </button>
+
+    <label for="map-grid-resolution">
+      Résolution
+      <select id="map-grid-resolution">
+        <option value="6">Économe</option>
+        <option value="4" selected>Normale</option>
+        <option value="3">Fine</option>
+      </select>
+    </label>
+  </div>
+
   <div class="interactive-map-time-row">
     <button id="map-radar-prev" type="button" title="Image radar précédente">◀</button>
     <button id="map-radar-play" type="button">▶ Animation radar</button>
@@ -228,6 +258,17 @@
     <span><i class="legend-dot satellite-dot"></i> Satellite NASA</span>
     <span><i class="legend-dot point-dot"></i> Point météo interrogé</span>
   </div>
+
+  <div id="map-data-legend" class="map-data-legend" hidden>
+    <div class="map-data-legend-heading">
+      <strong id="map-data-legend-title">Échelle</strong>
+      <span id="map-data-legend-unit"></span>
+    </div>
+    <div id="map-data-legend-gradient" class="map-data-legend-gradient"></div>
+    <div id="map-data-legend-ticks" class="map-data-legend-ticks"></div>
+  </div>
+
+  <div id="map-live-summary" class="map-live-summary" hidden></div>
 
   <p class="interactive-map-help">
     Clique n’importe où sur la carte pour obtenir la météo actuelle du point sélectionné.

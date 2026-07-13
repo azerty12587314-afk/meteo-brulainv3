@@ -261,3 +261,30 @@ La V9 ajoute une vraie carte Leaflet multicouche :
 
 Les couches externes dépendent de la disponibilité et des conditions d’utilisation
 de leurs fournisseurs.
+
+
+# V10 — couches météo interactives
+
+La V10 enrichit la carte Leaflet avec des données calculées à la demande :
+
+- température actuelle ;
+- nébulosité ;
+- CAPE ;
+- pression au niveau de la mer ;
+- particules de vent animées ;
+- trois résolutions de grille ;
+- échelle dynamique et résumé de la zone visible.
+
+## Utilisation
+
+1. Cadre la zone voulue, idéalement Europe ou France.
+2. Choisis une couche dans « Couche météo ».
+3. Clique sur « Charger les données ».
+4. Active « Vent animé » pour afficher les particules.
+
+La résolution fine produit davantage de points et sollicite plus fortement l’API.
+La résolution normale est recommandée pour un usage courant.
+
+Ces couches sont indépendantes du workflow GitHub Actions. Le workflow
+« Generate weather maps » reste nécessaire uniquement pour les cartes de modèles
+pré-générées.
