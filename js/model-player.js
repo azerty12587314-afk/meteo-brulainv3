@@ -9,7 +9,7 @@ window.ModelMapPlayer = (() => {
       unit: '°C',
       ticks: [-30, -20, -10, 0, 10, 20, 30, 40],
       gradient:
-        'linear-gradient(90deg,#30123b,#4145ab,#4675ed,#39a2fc,' +
+        'linear-gradient(90deg,#2b0a5a,#36228c,#2547d9,#1789ff,#18d7e8,#21f2b2,#4dff63,#b8ff24,#fff000,#ffb000,#ff6800,#ff2500,#b80000,#6d0000)' +
         '#1bcfd4,#24eca6,#61fc6c,#a4fc3c,#d9ef36,#f9c63a,' +
         '#fb8734,#ed4a27,#c91d15,#7a0403)'
     },
@@ -26,7 +26,7 @@ window.ModelMapPlayer = (() => {
       unit: 'mm',
       ticks: [0.1, 1, 5, 10, 20, 50, 100],
       gradient:
-        'linear-gradient(90deg,#e0f2fe,#7dd3fc,#22d3ee,#22c55e,' +
+        'linear-gradient(90deg,#dff7ff,#8fe7ff,#29b6f6,#0066ff,#1840c9,#6026b8,#a316c6,#e500a4,#ff1744,#ff7a00,#fff200)' +
         '#eab308,#f97316,#dc2626,#7e22ce)'
     },
     wind10: {
@@ -34,10 +34,10 @@ window.ModelMapPlayer = (() => {
       unit: 'km/h',
       ticks: [0, 20, 40, 60, 80, 100],
       gradient:
-        'linear-gradient(90deg,#440154,#3b528b,#21918c,#5ec962,#fde725)'
+        'linear-gradient(90deg,#26104f,#3b1b8f,#2447d8,#0877ff,#00b8ff,#00e5d4,#2cff81,#b4ff23,#fff000,#ff9800,#ff3300,#a80000)'
     },
-    cape: { title: 'CAPE', unit: 'J/kg', ticks: [0,250,500,1000,2000,3000,4000], gradient: 'linear-gradient(90deg,#f8fafc,#bfdbfe,#22c55e,#fde047,#fb923c,#ef4444,#7e22ce)' },
-    jet300: { title: 'Jet stream 300 hPa', unit: 'km/h', ticks: [0,50,100,150,200,250,300], gradient: 'linear-gradient(90deg,#0f172a,#1d4ed8,#06b6d4,#22c55e,#fde047,#f97316,#dc2626,#7e22ce)' }
+    cape: { title: 'CAPE', unit: 'J/kg', ticks: [0,250,500,1000,2000,3000,4000], gradient: 'linear-gradient(90deg,#f4f4f4,#bfe8ff,#39d353,#d6ff19,#fff000,#ff9c00,#ff3b00,#d10000,#7a00a8,#2e004f)' },
+    jet300: { title: 'Jet stream 300 hPa', unit: 'km/h', ticks: [0,50,100,150,200,250,300], gradient: 'linear-gradient(90deg,#12002b,#3a0b78,#2b32c4,#0068ff,#00bfff,#00f0c8,#62ff4d,#d7ff1f,#fff000,#ff9700,#ff3300,#9f0000)' }
   };
 
   let manifest = null;
