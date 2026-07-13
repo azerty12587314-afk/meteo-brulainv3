@@ -428,3 +428,55 @@ son repli vers l’ancien fichier.
 - état visible de chaque fournisseur ;
 - panne d’une source sans blocage global ;
 - architecture prête pour une future station météo personnelle.
+
+
+# V14 — comparateur et variables par modèle
+
+La V14 ajoute un comparateur synchronisé entre deux modèles :
+
+- même variable ;
+- même échéance ;
+- lecture/pause ;
+- inversion gauche/droite ;
+- légende commune ;
+- runs affichés séparément.
+
+## Correction AROME
+
+AROME avait disparu parce que le lecteur masque automatiquement les modèles sans
+aucune image disponible. La V14 régénère pour AROME uniquement des champs adaptés :
+
+- température à 2 m ;
+- précipitations ;
+- vent à 10 m ;
+- rafales ;
+- nébulosité ;
+- pression au niveau de la mer ;
+- CAPE si la source le fournit.
+
+Z500 et jet 300 hPa ne sont plus demandés à AROME.
+
+Le script supprime d’abord l’ancien dossier du modèle, puis écrit un manifeste
+contenant uniquement les variables qui ont réellement produit au moins une image.
+
+## Après installation
+
+1. Lance `Generate weather maps`.
+2. Attends le commit automatique.
+3. Vérifie que `maps/manifest.json` contient `arome`.
+4. Recharge avec `Ctrl + F5`.
+
+
+# V14.1 — correctif HTTP 429 et fichiers 404
+
+- lots Open-Meteo réduits de 80 à 10 points ;
+- grilles ECMWF/ARPEGE allégées à 4° ;
+- grille AROME allégée à 1° ;
+- prise en compte de l’en-tête `Retry-After` ;
+- pauses entre ECMWF, ARPEGE et AROME ;
+- génération dans un dossier temporaire ;
+- remplacement des anciennes cartes uniquement après succès complet ;
+- suppression du second passage Open-Meteo sur GFS et ICON.
+
+Ainsi, une erreur API ne peut plus supprimer des cartes GFS/ICON déjà valides et
+laisser le manifeste pointer vers des fichiers absents.
