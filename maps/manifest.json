@@ -1465,22 +1465,7 @@
             }
           ]
         },
-        "z500_mslp": {
-          "label": "Z500 + pression",
-          "legend": {
-            "title": "Z500 + pression",
-            "unit": "dam",
-            "ticks": [
-              480,
-              500,
-              520,
-              540,
-              560,
-              580,
-              600
-            ]
-          },
-          "frames": [
+      "frames": [
             {
               "forecastHour": 0,
               "validTime": "2026-07-13T08:00:00+00:00",
