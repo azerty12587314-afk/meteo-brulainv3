@@ -484,3 +484,7 @@ laisser le manifeste pointer vers des fichiers absents.
 # V15 — centre climatologique local
 
 Lance une première fois `Build climate data`. Le workflow calcule les normales 1991–2020 et les indicateurs locaux, puis s’exécute automatiquement le 2 de chaque mois. Les données proviennent d’ERA5-Land et représentent une réanalyse du point, pas une station officielle.
+
+
+# V16 — Centre de surveillance
+Radar animé, satellite visible NASA, signaux automatiques locaux et workflow Update surveillance toutes les 15 minutes.
