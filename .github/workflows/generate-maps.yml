@@ -53,15 +53,26 @@ jobs:
             --max-hour "$MAX_HOUR" \
             --step 6
 
-      - name: Generate ECMWF, AROME and ARPEGE advanced maps
+      - name: Generate ECMWF maps
         continue-on-error: true
         run: |
-          python scripts/render_openmeteo_models.py --output . --models ecmwf arpege arome
+          python scripts/render_openmeteo_models.py --output . --models ecmwf
 
-      - name: Add CAPE, jet stream and Z500 for GFS and ICON
+      - name: Pause before ARPEGE
+        run: sleep 60
+
+      - name: Generate ARPEGE maps
         continue-on-error: true
         run: |
-          python scripts/render_openmeteo_models.py --output . --models gfs icon_eu
+          python scripts/render_openmeteo_models.py --output . --models arpege
+
+      - name: Pause before AROME
+        run: sleep 60
+
+      - name: Generate AROME maps
+        continue-on-error: true
+        run: |
+          python scripts/render_openmeteo_models.py --output . --models arome
 
       - name: Show generated files
         run: |
@@ -76,6 +87,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No map changes to commit."
           else
-            git commit -m "chore: update V14 model maps"
+            git commit -m "chore: update V14.1 stable model maps"
             git push
           fi
