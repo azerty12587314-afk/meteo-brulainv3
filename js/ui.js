@@ -292,8 +292,10 @@ window.MeteoUI = (() => {
 
     if (!daily?.time?.length || !container) {
       if (status) {
+        const unavailable = sourceDefinition(selection);
         status.textContent =
-          'Cette source est momentanément indisponible. Choisis Fusion.';
+          `${unavailable.icon} ${unavailable.label} est momentanément indisponible. ` +
+          `Les cartes précédentes sont conservées.`;
       }
       return;
     }

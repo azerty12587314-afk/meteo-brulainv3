@@ -44,6 +44,9 @@ window.MeteoApp = (() => {
         forecast
       );
 
+      const dailySelect = document.getElementById('daily-model-select');
+      if (dailySelect) dailySelect.value = dailySource;
+
       MeteoUI.renderDaily(dailyBundle, dailySource);
       MeteoUI.renderModelStatuses(models, arome);
 
@@ -169,6 +172,17 @@ window.MeteoApp = (() => {
     document
       .getElementById('refresh-button')
       ?.addEventListener('click', () => loadAll(true));
+
+    const dailySelect = document.getElementById('daily-model-select');
+
+    if (dailySelect) {
+      dailySelect.value = dailySource;
+      dailySelect.addEventListener('change', handleDailyModelChange);
+    }
+
+    document
+      .getElementById('daily-comparison-close')
+      ?.addEventListener('click', MeteoUI.closeDailyComparison);
 
     document.querySelectorAll('[data-arome-type]').forEach(button => {
       button.addEventListener('click', () => {

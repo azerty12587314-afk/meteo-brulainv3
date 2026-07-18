@@ -545,3 +545,16 @@ La V18 ajoute :
 - repli automatique vers un autre modèle lorsqu’une source est indisponible.
 
 Le cache PWA passe à `meteo-lab-v18-1`.
+
+
+## Correctif V18.1
+
+- branchement du véritable événement `change` du sélecteur journalier ;
+- mise à jour immédiate des températures, précipitations et rafales ;
+- synchronisation du menu avec le choix mémorisé ;
+- bouton de fermeture de la comparaison correctement branché ;
+- cache-busting `v=18.1` pour les scripts principaux ;
+- réseau prioritaire pour HTML, JavaScript et CSS dans le service worker.
+
+Après déploiement, une seule actualisation supplémentaire peut être nécessaire
+pour que l'ancien service worker soit remplacé.

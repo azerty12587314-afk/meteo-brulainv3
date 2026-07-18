@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'meteo-lab-v18-1';
+const CACHE_NAME = 'meteo-lab-v18-1-selector-fix';
 const APP_SHELL = [
   './',
   './index.html',
@@ -60,6 +60,25 @@ self.addEventListener('fetch', event => {
         .then(response => {
           const copy = response.clone();
           caches.open(CACHE_NAME).then(cache => cache.put(request, copy));
+          return response;
+        })
+        .catch(() => caches.match(request))
+    );
+    return;
+  }
+
+  const isFreshAsset =
+    request.mode === 'navigate' ||
+    ['script', 'style'].includes(request.destination);
+
+  if (isFreshAsset) {
+    event.respondWith(
+      fetch(request, { cache: 'no-cache' })
+        .then(response => {
+          if (response.ok && url.origin === self.location.origin) {
+            const copy = response.clone();
+            caches.open(CACHE_NAME).then(cache => cache.put(request, copy));
+          }
           return response;
         })
         .catch(() => caches.match(request))
