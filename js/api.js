@@ -235,14 +235,31 @@ window.MeteoApi = (() => {
 
     const tempSpread = spread(maxima);
     const rainSpread = spread(rainProbabilities);
-    const modelCount = Math.max(maxima.length, rainProbabilities.length);
+    const modelCount = maxima.length;
 
+    /*
+     * V18.2 :
+     * La confiance affichée sur les cartes journalières concerne surtout
+     * la température. Elle dépend donc de l'écart réel entre les modèles,
+     * sans imposer artificiellement quatre modèles disponibles.
+     */
     let stars = 1;
 
-    if (modelCount >= 4 && tempSpread <= 1.5 && rainSpread <= 15) stars = 5;
-    else if (modelCount >= 3 && tempSpread <= 2.5 && rainSpread <= 25) stars = 4;
-    else if (modelCount >= 3 && tempSpread <= 4 && rainSpread <= 40) stars = 3;
-    else if (modelCount >= 2) stars = 2;
+    if (modelCount >= 4) {
+      if (tempSpread <= 1) stars = 5;
+      else if (tempSpread <= 2) stars = 4;
+      else if (tempSpread <= 3.5) stars = 3;
+      else if (tempSpread <= 5) stars = 2;
+    } else if (modelCount === 3) {
+      if (tempSpread <= 1) stars = 5;
+      else if (tempSpread <= 2) stars = 4;
+      else if (tempSpread <= 3.5) stars = 3;
+      else if (tempSpread <= 5) stars = 2;
+    } else if (modelCount === 2) {
+      if (tempSpread <= 1) stars = 4;
+      else if (tempSpread <= 2) stars = 3;
+      else if (tempSpread <= 4) stars = 2;
+    }
 
     return {
       stars,

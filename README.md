@@ -558,3 +558,20 @@ Le cache PWA passe à `meteo-lab-v18-1`.
 
 Après déploiement, une seule actualisation supplémentaire peut être nécessaire
 pour que l'ancien service worker soit remplacé.
+
+
+## Correctif V18.2 — confiance des températures
+
+L'indice n'est plus limité artificiellement à deux étoiles lorsque seulement
+deux ou trois modèles sont disponibles.
+
+Barème principal :
+
+- écart ≤ 1 °C : très bonne ou bonne confiance ;
+- écart ≤ 2 °C : bonne confiance ;
+- écart ≤ 3,5 °C : confiance moyenne ;
+- écart ≤ 5 °C : confiance faible ;
+- un seul modèle disponible : une étoile.
+
+L'indice affiché sur les cartes représente désormais principalement l'accord
+des modèles sur la température maximale.
