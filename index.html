@@ -37,9 +37,46 @@
 <div id="hourly"></div>
 </section>
 
-<section class="card">
-<h2>Prévisions 7 jours</h2>
-<div id="daily"></div>
+<section class="card daily-forecast-card" id="daily-forecast-section">
+  <div class="daily-forecast-heading">
+    <div>
+      <h2>Prévisions journalières</h2>
+      <p class="chart-subtitle">
+        Choisis le modèle ou utilise la fusion automatique selon l’échéance.
+      </p>
+    </div>
+
+    <label class="daily-model-selector">
+      Source
+      <select id="daily-model-select">
+        <option value="fusion">🤖 Fusion recommandée</option>
+        <option value="arome">🇫🇷 AROME</option>
+        <option value="arpege">🇫🇷 ARPEGE</option>
+        <option value="ecmwf">🌍 ECMWF</option>
+        <option value="gfs">🇺🇸 GFS</option>
+        <option value="icon">🇩🇪 ICON</option>
+      </select>
+    </label>
+  </div>
+
+  <div id="daily-model-status" class="daily-model-status">
+    Chargement de la fusion…
+  </div>
+
+  <div id="daily"></div>
+
+  <div id="daily-comparison" class="daily-comparison" hidden>
+    <div class="daily-comparison-heading">
+      <div>
+        <h3 id="daily-comparison-title">Comparaison</h3>
+        <p id="daily-comparison-confidence"></p>
+      </div>
+      <button id="daily-comparison-close" type="button" aria-label="Fermer">
+        ✕
+      </button>
+    </div>
+    <div id="daily-comparison-grid" class="daily-comparison-grid"></div>
+  </div>
 </section>
 
 

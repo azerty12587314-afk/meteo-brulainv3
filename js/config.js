@@ -53,5 +53,50 @@ window.MeteoConfig = Object.freeze({
     label: 'AROME',
     runHoursUtc: [0, 6, 12, 18],
     estimatedDelayHours: 3
+  },
+  dailyForecastModels: {
+    fusion: {
+      key: 'fusion',
+      label: 'Fusion',
+      icon: '🤖'
+    },
+    arome: {
+      key: 'arome',
+      label: 'AROME',
+      icon: '🇫🇷',
+      candidates: [
+        'meteofrance_arome_france_hd',
+        'meteofrance_arome_france'
+      ],
+      days: 3
+    },
+    arpege: {
+      key: 'arpege',
+      label: 'ARPEGE',
+      icon: '🇫🇷',
+      candidates: ['meteofrance_arpege_europe'],
+      days: 5
+    },
+    ecmwf: {
+      key: 'ecmwf',
+      label: 'ECMWF',
+      icon: '🌍',
+      candidates: ['ecmwf_ifs025', 'ecmwf_ifs'],
+      days: 10
+    },
+    gfs: {
+      key: 'gfs',
+      label: 'GFS',
+      icon: '🇺🇸',
+      candidates: ['gfs_seamless'],
+      days: 10
+    },
+    icon: {
+      key: 'icon',
+      label: 'ICON',
+      icon: '🇩🇪',
+      candidates: ['icon_seamless', 'icon_eu'],
+      days: 7
+    }
   }
 });

@@ -512,3 +512,36 @@ un léger gain de saturation et de contraste aux images pour un rendu plus incis
 
 Après installation, relance `Generate weather maps` afin de régénérer toutes les
 images avec les nouvelles palettes.
+
+
+# V17.1 — correction des précipitations climatologiques
+
+- utilisation d'ERA5 pour les séries historiques ;
+- validation explicite de `precipitation_sum` ;
+- les données absentes restent `null` au lieu de devenir artificiellement `0` ;
+- la période de l'année en cours s'arrête cinq jours avant aujourd'hui ;
+- le fichier `data/climate.json` n'est pas écrasé si aucune pluie valide n'est reçue.
+
+Après installation, lancer `Build climate data`.
+
+
+# V18 — sélecteur de modèles pour les prévisions journalières
+
+La V18 ajoute :
+
+- mode Fusion recommandé ;
+- choix AROME, ARPEGE, ECMWF, GFS ou ICON ;
+- mémorisation du dernier choix ;
+- source affichée sur chaque journée ;
+- indice de confiance calculé à partir de la dispersion des modèles ;
+- comparaison détaillée au clic sur une journée.
+
+## Stratégie Fusion
+
+- J0 à J2 : AROME ;
+- J3 à J4 : ARPEGE ;
+- J5 à J7 : ECMWF ;
+- J8 à J10 : GFS ;
+- repli automatique vers un autre modèle lorsqu’une source est indisponible.
+
+Le cache PWA passe à `meteo-lab-v18-1`.

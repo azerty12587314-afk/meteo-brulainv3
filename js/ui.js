@@ -243,18 +243,82 @@ window.MeteoUI = (() => {
       .join('');
   }
 
-  function renderDaily(forecast) {
-    const daily = forecast.daily;
+  let dailyBundle = null;
+  let dailySelection = 'fusion';
+
+  function sourceDefinition(key) {
+    return MeteoConfig.dailyForecastModels[key] || {
+      label: 'Automatique',
+      icon: '🌐'
+    };
+  }
+
+  function confidenceStars(confidence) {
+    const count = confidence?.stars || 1;
+    return `${'★'.repeat(count)}${'☆'.repeat(5 - count)}`;
+  }
+
+  function selectedDailyForecast(bundle, selection) {
+    if (selection === 'fusion') {
+      return bundle?.fusion || null;
+    }
+
+    const source = bundle?.sources?.[selection];
+    if (!source) return null;
+
+    const dates = source.data?.daily?.time || [];
+    return {
+      timezone: source.data?.timezone,
+      daily: source.data?.daily,
+      days: dates.map(date => ({
+        date,
+        sourceKey: selection,
+        sourceLabel: source.label,
+        sourceIcon: source.icon,
+        confidence: bundle.fusion?.days?.find(day => day.date === date)
+          ?.confidence
+      }))
+    };
+  }
+
+  function renderDaily(bundle, selection = 'fusion') {
+    dailyBundle = bundle;
+    dailySelection = selection;
+
+    const forecast = selectedDailyForecast(bundle, selection);
+    const daily = forecast?.daily;
     const container = document.getElementById('daily');
-    if (!daily || !container) return;
+    const status = document.getElementById('daily-model-status');
+
+    if (!daily?.time?.length || !container) {
+      if (status) {
+        status.textContent =
+          'Cette source est momentanément indisponible. Choisis Fusion.';
+      }
+      return;
+    }
+
+    const definition = sourceDefinition(selection);
+
+    if (status) {
+      status.textContent = selection === 'fusion'
+        ? 'Fusion : AROME J0–J2, ARPEGE J3–J4, ECMWF J5–J7, GFS ensuite.'
+        : `${definition.icon} Prévisions brutes ${definition.label}.`;
+    }
 
     container.innerHTML = daily.time
-      .slice(0, 7)
+      .slice(0, 10)
       .map((time, index) => {
         const info = WeatherUtils.info(daily.weather_code[index], 1);
+        const metadata = forecast.days?.[index] || {};
+        const confidence = metadata.confidence;
 
         return `
-          <article class="daily-item">
+          <button
+            class="daily-item daily-item-button source-${metadata.sourceKey || selection}"
+            type="button"
+            data-daily-index="${index}"
+          >
             <span class="day-name">
               ${
                 index === 0
@@ -262,9 +326,16 @@ window.MeteoUI = (() => {
                   : WeatherUtils.formatDay(time, forecast.timezone)
               }
             </span>
+
+            <span class="day-source">
+              ${metadata.sourceIcon || definition.icon}
+              ${metadata.sourceLabel || definition.label}
+            </span>
+
             <span class="day-icon" title="${info.text}">
               ${info.icon}
             </span>
+
             <div class="day-temp">
               <span class="day-max">
                 ${WeatherUtils.formatTemperature(daily.temperature_2m_max[index])}
@@ -273,17 +344,106 @@ window.MeteoUI = (() => {
                 ${WeatherUtils.formatTemperature(daily.temperature_2m_min[index])}
               </span>
             </div>
+
             <small>
               ${WeatherUtils.formatNumber(
                 daily.precipitation_probability_max[index],
                 '%'
               )} pluie
             </small>
-          </article>
+
+            <span
+              class="day-confidence"
+              title="${confidence?.label || 'Confiance non calculée'}"
+            >
+              ${confidenceStars(confidence)}
+            </span>
+          </button>
         `;
       })
       .join('');
+
+    container.querySelectorAll('[data-daily-index]').forEach(button => {
+      button.addEventListener('click', () => {
+        renderDailyComparison(Number(button.dataset.dailyIndex));
+      });
+    });
   }
+
+  function renderDailyComparison(index) {
+    const selected = selectedDailyForecast(dailyBundle, dailySelection);
+    const date = selected?.daily?.time?.[index];
+    const panel = document.getElementById('daily-comparison');
+    const grid = document.getElementById('daily-comparison-grid');
+
+    if (!date || !panel || !grid) return;
+
+    const fusionDay = dailyBundle?.fusion?.days?.find(day => day.date === date);
+    const confidence = fusionDay?.confidence;
+
+    document.getElementById('daily-comparison-title').textContent =
+      `Comparaison du ${WeatherUtils.formatDay(date, selected.timezone)}`;
+
+    document.getElementById('daily-comparison-confidence').textContent =
+      confidence
+        ? `${confidenceStars(confidence)} ${confidence.label} · ` +
+          `${confidence.modelCount} modèles · écart température ` +
+          `${confidence.temperatureSpread.toFixed(1)} °C`
+        : 'Confiance non calculée';
+
+    const rows = Object.entries(dailyBundle?.sources || {})
+      .map(([key, source]) => {
+        const daily = source.data?.daily;
+        const sourceIndex = daily?.time?.indexOf(date) ?? -1;
+
+        if (sourceIndex < 0) return '';
+
+        return `
+          <article class="daily-comparison-model source-${key}">
+            <strong>${source.icon} ${source.label}</strong>
+            <span>
+              🌡️ ${WeatherUtils.formatTemperature(
+                daily.temperature_2m_max[sourceIndex]
+              )} /
+              ${WeatherUtils.formatTemperature(
+                daily.temperature_2m_min[sourceIndex]
+              )}
+            </span>
+            <span>
+              🌧️ ${WeatherUtils.formatNumber(
+                daily.precipitation_probability_max[sourceIndex],
+                '%'
+              )} ·
+              ${WeatherUtils.formatNumber(
+                daily.precipitation_sum[sourceIndex],
+                ' mm',
+                1
+              )}
+            </span>
+            <span>
+              💨 ${WeatherUtils.formatNumber(
+                daily.wind_gusts_10m_max[sourceIndex],
+                ' km/h'
+              )}
+            </span>
+          </article>
+        `;
+      })
+      .filter(Boolean)
+      .join('');
+
+    grid.innerHTML = rows ||
+      '<p class="daily-comparison-empty">Aucune comparaison disponible.</p>';
+
+    panel.hidden = false;
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function closeDailyComparison() {
+    const panel = document.getElementById('daily-comparison');
+    if (panel) panel.hidden = true;
+  }
+
 
   function renderSearchResults(results, onSelect) {
     const container = document.getElementById('search-results');
@@ -437,6 +597,7 @@ window.MeteoUI = (() => {
     renderDashboard,
     renderHourly,
     renderDaily,
+    closeDailyComparison,
     renderSearchResults,
     renderModelStatuses
   };

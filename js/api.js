@@ -140,9 +140,220 @@ window.MeteoApi = (() => {
     return Promise.all(tasks);
   }
 
+
+  function getDailyForecast(location, days, model) {
+    const params = {
+      latitude: location.latitude,
+      longitude: location.longitude,
+      timezone: location.timezone || 'auto',
+      forecast_days: days,
+      daily: [
+        'weather_code',
+        'temperature_2m_max',
+        'temperature_2m_min',
+        'apparent_temperature_max',
+        'apparent_temperature_min',
+        'precipitation_sum',
+        'precipitation_probability_max',
+        'wind_speed_10m_max',
+        'wind_gusts_10m_max',
+        'sunrise',
+        'sunset',
+        'uv_index_max'
+      ].join(','),
+      models: model
+    };
+
+    return request(
+      buildUrl(endpoints.forecast, params),
+      `daily-model:${JSON.stringify(params)}`
+    );
+  }
+
+  async function getDailyForecastSource(location, sourceKey) {
+    const definition = MeteoConfig.dailyForecastModels[sourceKey];
+
+    if (!definition || sourceKey === 'fusion') {
+      throw new Error(`Source journalière inconnue : ${sourceKey}`);
+    }
+
+    let lastError = null;
+
+    for (const model of definition.candidates) {
+      try {
+        const data = await getDailyForecast(
+          location,
+          definition.days,
+          model
+        );
+
+        if (data?.daily?.time?.length) {
+          return {
+            key: sourceKey,
+            label: definition.label,
+            icon: definition.icon,
+            model,
+            data
+          };
+        }
+      } catch (error) {
+        lastError = error;
+        console.warn(
+          `Prévision journalière ${definition.label} indisponible avec ${model}`,
+          error
+        );
+      }
+    }
+
+    throw lastError || new Error(`${definition.label} indisponible`);
+  }
+
+  function dailyValue(data, field, date) {
+    const daily = data?.daily;
+    const index = daily?.time?.indexOf(date) ?? -1;
+    return index >= 0 ? daily[field]?.[index] : null;
+  }
+
+  function confidenceForDate(sources, date) {
+    const maxima = [];
+    const rainProbabilities = [];
+
+    Object.values(sources).forEach(source => {
+      const max = Number(
+        dailyValue(source.data, 'temperature_2m_max', date)
+      );
+      const rain = Number(
+        dailyValue(source.data, 'precipitation_probability_max', date)
+      );
+
+      if (Number.isFinite(max)) maxima.push(max);
+      if (Number.isFinite(rain)) rainProbabilities.push(rain);
+    });
+
+    const spread = values =>
+      values.length > 1 ? Math.max(...values) - Math.min(...values) : 0;
+
+    const tempSpread = spread(maxima);
+    const rainSpread = spread(rainProbabilities);
+    const modelCount = Math.max(maxima.length, rainProbabilities.length);
+
+    let stars = 1;
+
+    if (modelCount >= 4 && tempSpread <= 1.5 && rainSpread <= 15) stars = 5;
+    else if (modelCount >= 3 && tempSpread <= 2.5 && rainSpread <= 25) stars = 4;
+    else if (modelCount >= 3 && tempSpread <= 4 && rainSpread <= 40) stars = 3;
+    else if (modelCount >= 2) stars = 2;
+
+    return {
+      stars,
+      modelCount,
+      temperatureSpread: tempSpread,
+      rainSpread,
+      label: [
+        '',
+        'Très faible',
+        'Faible',
+        'Moyenne',
+        'Bonne',
+        'Très bonne'
+      ][stars]
+    };
+  }
+
+  function buildFusion(sources, fallbackForecast) {
+    const fallbackDates = fallbackForecast?.daily?.time || [];
+    const sourceByHorizon = [
+      'arome', 'arome', 'arome',
+      'arpege', 'arpege',
+      'ecmwf', 'ecmwf', 'ecmwf',
+      'gfs', 'gfs'
+    ];
+
+    const fields = [
+      'weather_code',
+      'temperature_2m_max',
+      'temperature_2m_min',
+      'apparent_temperature_max',
+      'apparent_temperature_min',
+      'precipitation_sum',
+      'precipitation_probability_max',
+      'wind_speed_10m_max',
+      'wind_gusts_10m_max',
+      'sunrise',
+      'sunset',
+      'uv_index_max'
+    ];
+
+    const daily = { time: fallbackDates.slice(0, 10) };
+    fields.forEach(field => {
+      daily[field] = [];
+    });
+
+    const days = daily.time.map((date, index) => {
+      const preferred = sourceByHorizon[index] || 'gfs';
+      const fallbackOrder = [
+        preferred,
+        'ecmwf',
+        'arpege',
+        'icon',
+        'gfs',
+        'arome'
+      ];
+
+      const selectedKey = fallbackOrder.find(key =>
+        sources[key]?.data?.daily?.time?.includes(date)
+      );
+
+      const selected = selectedKey ? sources[selectedKey] : null;
+
+      fields.forEach(field => {
+        const value = selected
+          ? dailyValue(selected.data, field, date)
+          : dailyValue(fallbackForecast, field, date);
+
+        daily[field].push(value);
+      });
+
+      return {
+        date,
+        sourceKey: selectedKey || 'auto',
+        sourceLabel: selected?.label || 'Automatique',
+        sourceIcon: selected?.icon || '🌐',
+        confidence: confidenceForDate(sources, date)
+      };
+    });
+
+    return {
+      timezone: fallbackForecast?.timezone,
+      daily,
+      days
+    };
+  }
+
+  async function getDailyForecastBundle(location, fallbackForecast) {
+    const keys = ['arome', 'arpege', 'ecmwf', 'gfs', 'icon'];
+
+    const settled = await Promise.allSettled(
+      keys.map(key => getDailyForecastSource(location, key))
+    );
+
+    const sources = {};
+
+    settled.forEach((result, index) => {
+      if (result.status === 'fulfilled') {
+        sources[keys[index]] = result.value;
+      }
+    });
+
+    return {
+      sources,
+      fusion: buildFusion(sources, fallbackForecast)
+    };
+  }
+
   function clearCache() {
     cache.clear();
   }
 
-  return { getForecast, getAirQuality, searchLocation, getModelForecasts, getArome48h, getEcmwfLongRange, clearCache };
+  return { getForecast, getAirQuality, searchLocation, getModelForecasts, getArome48h, getEcmwfLongRange, getDailyForecastBundle, clearCache };
 })();

@@ -3,6 +3,9 @@
 window.MeteoApp = (() => {
   let currentLocation = loadLocation() || { ...MeteoConfig.defaultLocation };
   let refreshTimer = null;
+  let dailyBundle = null;
+  let dailySource =
+    localStorage.getItem('daily-forecast-model') || 'fusion';
 
   function loadLocation() {
     try {
@@ -36,7 +39,12 @@ window.MeteoApp = (() => {
       MeteoUI.renderCurrent(forecast, currentLocation);
       MeteoUI.renderDashboard(forecast, air);
       MeteoUI.renderHourly(forecast);
-      MeteoUI.renderDaily(forecast);
+      dailyBundle = await MeteoApi.getDailyForecastBundle(
+        currentLocation,
+        forecast
+      );
+
+      MeteoUI.renderDaily(dailyBundle, dailySource);
       MeteoUI.renderModelStatuses(models, arome);
 
       MeteoCharts.renderModels(models);
@@ -132,6 +140,21 @@ window.MeteoApp = (() => {
         maximumAge: 300000
       }
     );
+  }
+
+
+  function handleDailyModelChange(event) {
+    dailySource = event.target.value || 'fusion';
+
+    try {
+      localStorage.setItem('daily-forecast-model', dailySource);
+    } catch {
+      // Le choix reste valable pendant la session.
+    }
+
+    if (dailyBundle) {
+      MeteoUI.renderDaily(dailyBundle, dailySource);
+    }
   }
 
   function bindEvents() {

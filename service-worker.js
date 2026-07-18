@@ -1,16 +1,11 @@
 'use strict';
 
-const CACHE_NAME = 'meteo-lab-v17-1';
+const CACHE_NAME = 'meteo-lab-v18-1';
 const APP_SHELL = [
   './',
   './index.html',
   './style.css',
   './manifest.json',
-  './maps/manifest.json',
-  './observations/data.json',
-  './data/site-data.json',
-  './data/climate.json',
-  './surveillance/data.json',
   './js/surveillance-center.js',
   './js/climate-center.js',
   './js/site-data-status.js',
