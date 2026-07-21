@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-20T12:28:43.213466+00:00",
+  "generatedAt": "2026-07-21T11:26:56.457850+00:00",
   "location": {
     "name": "Brûlain",
     "latitude": 46.2025,
@@ -169,16 +169,16 @@
   },
   "currentYear": {
     "year": 2026,
-    "temperatureMean": 14.439487179487179,
-    "precipitation": 439.9,
-    "sunshineHours": 1908.5693888888889,
-    "evapotranspiration": 613.18,
+    "temperatureMean": 14.50204081632653,
+    "precipitation": 447.9,
+    "sunshineHours": 1919.2673666666667,
+    "evapotranspiration": 618.05,
     "frostDays": 8,
-    "summerDays": 50,
-    "hotDays": 36,
-    "tropicalNights": 9,
+    "summerDays": 51,
+    "hotDays": 37,
+    "tropicalNights": 10,
     "dryDays": 89,
-    "rainDays": 69,
+    "rainDays": 70,
     "heatingDegreeDays": 1054.6,
     "monthly": [
       {
@@ -262,15 +262,15 @@
       {
         "month": 7,
         "label": "Jul",
-        "temperatureMean": 27.035714285714285,
-        "temperatureMaxMean": 34.635714285714286,
-        "temperatureMinMean": 18.435714285714287,
-        "precipitation": 0.1,
-        "sunshineHours": 206.16030833333332,
-        "evapotranspiration": 100.08,
+        "temperatureMean": 27.013333333333332,
+        "temperatureMaxMean": 34.593333333333334,
+        "temperatureMinMean": 18.653333333333332,
+        "precipitation": 8.1,
+        "sunshineHours": 216.8582861111111,
+        "evapotranspiration": 104.95,
         "frostDays": 0,
-        "summerDays": 14,
-        "hotDays": 13
+        "summerDays": 15,
+        "hotDays": 14
       },
       {
         "month": 8,
@@ -1202,16 +1202,16 @@
     },
     {
       "year": 2026,
-      "temperatureMean": 14.439487179487179,
-      "precipitation": 439.9,
-      "sunshineHours": 1908.5693888888889,
-      "evapotranspiration": 613.18,
+      "temperatureMean": 14.50204081632653,
+      "precipitation": 447.9,
+      "sunshineHours": 1919.2673666666667,
+      "evapotranspiration": 618.05,
       "frostDays": 8,
-      "summerDays": 50,
-      "hotDays": 36,
-      "tropicalNights": 9,
+      "summerDays": 51,
+      "hotDays": 37,
+      "tropicalNights": 10,
       "dryDays": 89,
-      "rainDays": 69,
+      "rainDays": 70,
       "heatingDegreeDays": 1054.6,
       "monthly": [
         {
@@ -1295,15 +1295,15 @@
         {
           "month": 7,
           "label": "Jul",
-          "temperatureMean": 27.035714285714285,
-          "temperatureMaxMean": 34.635714285714286,
-          "temperatureMinMean": 18.435714285714287,
-          "precipitation": 0.1,
-          "sunshineHours": 206.16030833333332,
-          "evapotranspiration": 100.08,
+          "temperatureMean": 27.013333333333332,
+          "temperatureMaxMean": 34.593333333333334,
+          "temperatureMinMean": 18.653333333333332,
+          "precipitation": 8.1,
+          "sunshineHours": 216.8582861111111,
+          "evapotranspiration": 104.95,
           "frostDays": 0,
-          "summerDays": 14,
-          "hotDays": 13
+          "summerDays": 15,
+          "hotDays": 14
         },
         {
           "month": 8,
