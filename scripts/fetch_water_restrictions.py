@@ -18,11 +18,27 @@ def valid(v):
 
 def location():
     cfg = json.loads(LOC.read_text(encoding="utf-8")) if LOC.exists() else {}
+
     print("LOCATION FILE =", LOC)
-    print("LOCATION JSON =", cfg)    lat=os.getenv('SITE_LATITUDE',cfg.get('latitude'))
-    lon=os.getenv('SITE_LONGITUDE',cfg.get('longitude'))
-    if not valid(lat) or not valid(lon): raise ValueError('Coordonnées invalides')
-    return {'name':os.getenv('SITE_NAME') or cfg.get('name') or 'Zone du site','latitude':float(lat),'longitude':float(lon),'insee':os.getenv('SITE_INSEE') or cfg.get('insee')}
+    print("LOCATION JSON =", cfg)
+
+    lat = os.getenv("SITE_LATITUDE") or cfg.get("latitude")
+    lon = os.getenv("SITE_LONGITUDE") or cfg.get("longitude")
+
+    print("LATITUDE =", repr(lat))
+    print("LONGITUDE =", repr(lon))
+
+    if not valid(lat) or not valid(lon):
+        raise ValueError(
+            f"Coordonnées invalides : latitude={lat!r}, longitude={lon!r}"
+        )
+
+    return {
+        "name": os.getenv("SITE_NAME") or cfg.get("name") or "Zone du site",
+        "latitude": float(lat),
+        "longitude": float(lon),
+        "insee": os.getenv("SITE_INSEE") or cfg.get("insee"),
+    }
 
 def request(loc):
     q=urllib.parse.urlencode({'lat':loc['latitude'],'lon':loc['longitude'],'profil':'particulier'})
