@@ -1,18 +1,79 @@
 {
-  "generatedAt": null,
-  "location": {
-    "name": "Brûlain",
-    "latitude": 46.2025,
-    "longitude": -0.3297,
-    "timezone": "Europe/Paris"
+  "generatedAt": "2026-07-23T16:41:08.228286+00:00",
+  "providers": {
+    "weather": {
+      "status": "error",
+      "updatedAt": null,
+      "message": "Données météo indisponibles"
+    },
+    "radar": {
+      "status": "error",
+      "updatedAt": null,
+      "message": "Radar indisponible"
+    },
+    "air": {
+      "status": "error",
+      "updatedAt": null,
+      "message": "Air indisponible"
+    },
+    "rivers": {
+      "status": "error",
+      "updatedAt": null,
+      "message": "Rivières indisponibles"
+    },
+    "metar": {
+      "status": "error",
+      "updatedAt": null,
+      "message": "METAR indisponible"
+    },
+    "water": {
+      "status": "error",
+      "updatedAt": null,
+      "message": "VigiEau indisponible"
+    }
   },
-  "providers": {},
-  "weather": null,
-  "air": null,
-  "rivers": [],
-  "metar": [],
-  "radar": null,
-  "errors": [
-    "Le workflow Update site data n’a pas encore été exécuté."
-  ]
+  "observations": {
+    "generatedAt": null,
+    "location": {
+      "name": "Brûlain",
+      "latitude": 46.2025,
+      "longitude": -0.3297
+    },
+    "air": null,
+    "rivers": [],
+    "metar": [],
+    "errors": [
+      "Le workflow Update observations n’a pas encore été exécuté."
+    ]
+  },
+  "surveillance": {
+    "generatedAt": null,
+    "location": {
+      "name": "Brûlain",
+      "latitude": 46.2025,
+      "longitude": -0.3297
+    },
+    "radar": null,
+    "weather": null,
+    "alerts": [],
+    "providers": {},
+    "errors": [
+      "Lance Update surveillance."
+    ]
+  },
+  "waterRestrictions": {
+    "status": "pending",
+    "source": "VigiEau",
+    "generatedAt": null,
+    "location": {
+      "name": "Brûlain",
+      "latitude": 46.2006,
+      "longitude": -0.3194,
+      "insee": "79058"
+    },
+    "highestLevel": null,
+    "highestLevelLabel": "Première mise à jour en attente",
+    "zones": [],
+    "notice": "Informations indicatives : l’arrêté préfectoral fait foi."
+  }
 }
