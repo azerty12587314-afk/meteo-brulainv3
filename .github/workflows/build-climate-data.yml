@@ -1,1 +1,28 @@
-
+name: Build climate data
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '20 4 2 * *'
+permissions:
+  contents: write
+concurrency:
+  group: climate-data-build
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests
+      - name: Build local climate data
+        run: python scripts/build_climate_data.py
+      - name: Commit climate cache
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/climate.json
+          if git diff --cached --quiet; then echo 'No climate changes.'; else git commit -m 'chore: update local climate data'; git push; fi
