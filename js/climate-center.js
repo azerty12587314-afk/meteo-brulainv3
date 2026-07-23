@@ -1,55 +1,460 @@
 'use strict';
 
 window.ClimateCenter = (() => {
-  const DATA_URL = './data/climate.json';
+  const STATIC_DATA_URL = './data/climate.json';
+  const ARCHIVE_URL = 'https://archive-api.open-meteo.com/v1/archive';
+  const CACHE_PREFIX = 'meteo-climate-dynamic-v3:';
+  const CACHE_DURATION_MS = 24 * 60 * 60 * 1000;
+  const NORMAL_START = '1991-01-01';
+  const NORMAL_END = '2020-12-31';
+  const RECENT_YEAR_COUNT = 10;
+
+  const DAILY_FIELDS = [
+    'temperature_2m_mean',
+    'temperature_2m_max',
+    'temperature_2m_min',
+    'precipitation_sum',
+    'sunshine_duration',
+    'wind_gusts_10m_max',
+    'et0_fao_evapotranspiration'
+  ];
+
   const byId = id => document.getElementById(id);
-  let data;
-  let temperatureChart;
-  let precipitationChart;
-  let yearsChart;
 
-  const numeric = value => {
-    const parsed = Number(value);
-    return Number.isFinite(parsed) ? parsed : null;
-  };
+  let data = null;
+  let activeLocation = null;
+  let temperatureChart = null;
+  let precipitationChart = null;
+  let yearsChart = null;
+  let requestController = null;
+  let requestSequence = 0;
 
-  const displayNumber = (value, digits = 0) => {
-    const parsed = numeric(value);
-    return parsed === null ? '--' : parsed.toFixed(digits);
-  };
+  function finite(value) {
+    return value !== null &&
+      value !== undefined &&
+      value !== '' &&
+      Number.isFinite(Number(value));
+  }
 
-  const formatDate = value => {
+  function numeric(value) {
+    return finite(value) ? Number(value) : null;
+  }
+
+  function rounded(value, digits = 1) {
+    const number = numeric(value);
+    return number === null ? null : Number(number.toFixed(digits));
+  }
+
+  function displayNumber(value, digits = 0) {
+    const number = numeric(value);
+    return number === null ? '--' : number.toFixed(digits);
+  }
+
+  function formatDate(value) {
     if (!value) return '--';
-    const parsed = new Date(value);
+    const parsed = new Date(`${value}T12:00:00`);
     if (Number.isNaN(parsed.getTime())) return '--';
     return new Intl.DateTimeFormat('fr-FR', {
       day: '2-digit',
       month: 'short',
       year: 'numeric'
     }).format(parsed);
-  };
+  }
 
-  const isValid = value =>
-    Boolean(
+  function validLocation(location) {
+    const latitude = numeric(location?.latitude);
+    const longitude = numeric(location?.longitude);
+    return latitude !== null &&
+      longitude !== null &&
+      latitude >= -90 &&
+      latitude <= 90 &&
+      longitude >= -180 &&
+      longitude <= 180;
+  }
+
+  function normalizeLocation(location) {
+    if (!validLocation(location)) return null;
+    return {
+      name: String(location.name || 'Localisation'),
+      latitude: Number(location.latitude),
+      longitude: Number(location.longitude),
+      timezone: String(location.timezone || 'auto')
+    };
+  }
+
+  function locationsMatch(first, second) {
+    if (!validLocation(first) || !validLocation(second)) return false;
+    return Math.abs(Number(first.latitude) - Number(second.latitude)) < 0.0001 &&
+      Math.abs(Number(first.longitude) - Number(second.longitude)) < 0.0001;
+  }
+
+  function savedLocation() {
+    try {
+      return normalizeLocation(
+        JSON.parse(localStorage.getItem('meteo-location') || 'null')
+      );
+    } catch {
+      return null;
+    }
+  }
+
+  function cacheKey(location) {
+    const latitude = Number(location.latitude).toFixed(3);
+    const longitude = Number(location.longitude).toFixed(3);
+    return `${CACHE_PREFIX}${latitude},${longitude}`;
+  }
+
+  function readCache(location) {
+    try {
+      const cached = JSON.parse(localStorage.getItem(cacheKey(location)) || 'null');
+      if (!cached?.savedAt || !isComplete(cached.data)) return null;
+      if (Date.now() - cached.savedAt > CACHE_DURATION_MS) return null;
+      return cached.data;
+    } catch {
+      return null;
+    }
+  }
+
+  function writeCache(location, value) {
+    try {
+      localStorage.setItem(
+        cacheKey(location),
+        JSON.stringify({ savedAt: Date.now(), data: value })
+      );
+    } catch {
+      // Le navigateur peut refuser le stockage si le quota est dépassé.
+    }
+  }
+
+  function setStatus(message) {
+    const target = byId('climate-updated-at');
+    if (target) target.textContent = message;
+  }
+
+  function setLoading(loading, message = '') {
+    const section = byId('climate-center-section');
+    if (section) section.classList.toggle('is-loading', loading);
+
+    const button = byId('climate-refresh');
+    if (button) {
+      button.disabled = loading;
+      button.textContent = loading ? 'Chargement…' : '↻ Actualiser';
+    }
+
+    if (message) setStatus(message);
+  }
+
+  function isoDate(date) {
+    return date.toISOString().slice(0, 10);
+  }
+
+  function archiveEndDate() {
+    const date = new Date();
+    date.setUTCDate(date.getUTCDate() - 7);
+    return isoDate(date);
+  }
+
+  function buildUrl(location, startDate, endDate) {
+    const params = new URLSearchParams({
+      latitude: String(location.latitude),
+      longitude: String(location.longitude),
+      start_date: startDate,
+      end_date: endDate,
+      daily: DAILY_FIELDS.join(','),
+      timezone: location.timezone || 'auto',
+      temperature_unit: 'celsius',
+      wind_speed_unit: 'kmh',
+      precipitation_unit: 'mm',
+      cell_selection: 'land',
+      models: 'era5_land'
+    });
+    return `${ARCHIVE_URL}?${params.toString()}`;
+  }
+
+  async function fetchArchive(location, startDate, endDate, signal) {
+    const response = await fetch(
+      buildUrl(location, startDate, endDate),
+      { cache: 'no-store', signal }
+    );
+
+    if (!response.ok) {
+      let reason = `HTTP ${response.status}`;
+      try {
+        const error = await response.json();
+        reason = error?.reason || reason;
+      } catch {
+        // Réponse non JSON.
+      }
+      throw new Error(reason);
+    }
+
+    const payload = await response.json();
+    if (payload?.error) throw new Error(payload.reason || 'Erreur Open-Meteo');
+
+    const daily = payload?.daily;
+    if (!Array.isArray(daily?.time) || daily.time.length === 0) {
+      throw new Error('Aucune donnée climatique reçue');
+    }
+
+    return daily.time.map((day, index) => {
+      const row = { date: day };
+      for (const field of DAILY_FIELDS) {
+        row[field] = Array.isArray(daily[field]) ? daily[field][index] : null;
+      }
+      return row;
+    });
+  }
+
+  function values(rows, key) {
+    return rows
+      .map(row => numeric(row[key]))
+      .filter(value => value !== null);
+  }
+
+  function mean(rows, key) {
+    const list = values(rows, key);
+    return list.length
+      ? list.reduce((sum, value) => sum + value, 0) / list.length
+      : null;
+  }
+
+  function total(rows, key) {
+    const list = values(rows, key);
+    return list.length
+      ? list.reduce((sum, value) => sum + value, 0)
+      : null;
+  }
+
+  function groupBy(rows, selector) {
+    return rows.reduce((groups, row) => {
+      const key = selector(row);
+      (groups[key] ||= []).push(row);
+      return groups;
+    }, {});
+  }
+
+  function annualSummary(year, rows) {
+    const byMonth = groupBy(
+      rows,
+      row => Number(row.date.slice(5, 7))
+    );
+
+    const sunshineSeconds = total(rows, 'sunshine_duration');
+    const precipitation = total(rows, 'precipitation_sum');
+    const evapotranspiration = total(rows, 'et0_fao_evapotranspiration');
+
+    const monthly = Array.from({ length: 12 }, (_, index) => {
+      const month = index + 1;
+      const monthRows = byMonth[month] || [];
+      return {
+        month,
+        temperatureMean: rounded(mean(monthRows, 'temperature_2m_mean')),
+        temperatureMax: rounded(mean(monthRows, 'temperature_2m_max')),
+        temperatureMin: rounded(mean(monthRows, 'temperature_2m_min')),
+        precipitation: rounded(total(monthRows, 'precipitation_sum'))
+      };
+    });
+
+    return {
+      year,
+      daysAvailable: rows.length,
+      temperatureMean: rounded(mean(rows, 'temperature_2m_mean')),
+      precipitation: rounded(precipitation),
+      sunshineHours: rounded(
+        sunshineSeconds === null ? null : sunshineSeconds / 3600
+      ),
+      evapotranspiration: rounded(evapotranspiration),
+      frostDays: rows.filter(
+        row => finite(row.temperature_2m_min) &&
+          Number(row.temperature_2m_min) < 0
+      ).length,
+      hotDays: rows.filter(
+        row => finite(row.temperature_2m_max) &&
+          Number(row.temperature_2m_max) >= 30
+      ).length,
+      tropicalNights: rows.filter(
+        row => finite(row.temperature_2m_min) &&
+          Number(row.temperature_2m_min) >= 20
+      ).length,
+      heatingDegreeDays: Math.round(
+        rows.reduce((sum, row) => {
+          const temperature = numeric(row.temperature_2m_mean);
+          return sum + (temperature === null ? 0 : Math.max(0, 18 - temperature));
+        }, 0)
+      ),
+      monthly
+    };
+  }
+
+  function buildNormals(normalRows) {
+    const byMonth = groupBy(
+      normalRows,
+      row => Number(row.date.slice(5, 7))
+    );
+
+    return Array.from({ length: 12 }, (_, index) => {
+      const month = index + 1;
+      const monthRows = byMonth[month] || [];
+      const byYear = groupBy(
+        monthRows,
+        row => Number(row.date.slice(0, 4))
+      );
+
+      const yearlyRain = Object.values(byYear)
+        .map(rows => total(rows, 'precipitation_sum'))
+        .filter(value => value !== null);
+
+      return {
+        month,
+        temperatureMean: rounded(mean(monthRows, 'temperature_2m_mean')),
+        temperatureMax: rounded(mean(monthRows, 'temperature_2m_max')),
+        temperatureMin: rounded(mean(monthRows, 'temperature_2m_min')),
+        precipitation: rounded(
+          yearlyRain.length
+            ? yearlyRain.reduce((sum, value) => sum + value, 0) / yearlyRain.length
+            : null
+        )
+      };
+    });
+  }
+
+  function findRecord(rows, key, highest = true) {
+    const candidates = rows
+      .filter(row => finite(row[key]))
+      .map(row => ({ value: Number(row[key]), date: row.date }));
+
+    if (!candidates.length) return null;
+
+    return candidates.reduce((selected, candidate) => {
+      if (!selected) return candidate;
+      return highest
+        ? (candidate.value > selected.value ? candidate : selected)
+        : (candidate.value < selected.value ? candidate : selected);
+    }, null);
+  }
+
+  function assembleData(location, rows, endDate) {
+    const normalRows = rows.filter(
+      row => row.date >= NORMAL_START && row.date <= NORMAL_END
+    );
+
+    const byYear = groupBy(
+      rows,
+      row => Number(row.date.slice(0, 4))
+    );
+
+    const currentYear = Number(endDate.slice(0, 4));
+    const recentYears = [];
+
+    for (
+      let year = Math.max(1991, currentYear - RECENT_YEAR_COUNT);
+      year < currentYear;
+      year += 1
+    ) {
+      if (byYear[year]?.length) {
+        recentYears.push(annualSummary(year, byYear[year]));
+      }
+    }
+
+    const result = {
+      generatedAt: new Date().toISOString(),
+      source: {
+        name: 'Open-Meteo Historical Weather API',
+        model: 'ERA5-Land',
+        archiveEnd: endDate,
+        dynamic: true
+      },
+      location,
+      normalPeriod: '1991-2020',
+      normals: { monthly: buildNormals(normalRows) },
+      currentYear: annualSummary(currentYear, byYear[currentYear] || []),
+      recentYears,
+      records: {
+        highestTemperature: findRecord(rows, 'temperature_2m_max', true),
+        lowestTemperature: findRecord(rows, 'temperature_2m_min', false),
+        wettestDay: findRecord(rows, 'precipitation_sum', true),
+        strongestGust: findRecord(rows, 'wind_gusts_10m_max', true)
+      },
+      errors: []
+    };
+
+    for (const record of Object.values(result.records)) {
+      if (record) record.estimated = true;
+    }
+
+    return result;
+  }
+
+  function isComplete(value) {
+    return Boolean(
       value &&
       Array.isArray(value?.normals?.monthly) &&
       value.normals.monthly.length === 12 &&
       Array.isArray(value?.recentYears) &&
       value.recentYears.length > 0 &&
-      value?.currentYear
+      value?.currentYear &&
+      Array.isArray(value.currentYear.monthly)
     );
+  }
 
-  async function load(force = false) {
-    const version = force ? Date.now() : 'climate-2';
-    const response = await fetch(`${DATA_URL}?v=${version}`, { cache: 'no-store' });
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  async function loadDynamic(location, force = false) {
+    const normalized = normalizeLocation(location);
+    if (!normalized) throw new Error('Localisation climatique invalide');
 
-    const received = await response.json();
-    if (!isValid(received)) {
-      throw new Error('Données climatiques incomplètes');
+    activeLocation = normalized;
+    const sequence = ++requestSequence;
+
+    if (!force) {
+      const cached = readCache(normalized);
+      if (cached) {
+        data = cached;
+        render();
+        return;
+      }
     }
 
-    data = received;
+    requestController?.abort();
+    requestController = new AbortController();
+
+    setLoading(
+      true,
+      `Calcul climatologique pour ${normalized.name}…`
+    );
+
+    const endDate = archiveEndDate();
+    const rows = await fetchArchive(
+      normalized,
+      NORMAL_START,
+      endDate,
+      requestController.signal
+    );
+
+    if (sequence !== requestSequence) return;
+
+    const generated = assembleData(normalized, rows, endDate);
+    if (!isComplete(generated)) {
+      throw new Error('Données climatiques calculées incomplètes');
+    }
+
+    data = generated;
+    writeCache(normalized, generated);
+    render();
+  }
+
+  async function loadStaticFallback() {
+    const response = await fetch(
+      `${STATIC_DATA_URL}?v=${Date.now()}`,
+      { cache: 'no-store' }
+    );
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+    const fallback = await response.json();
+    if (!isComplete(fallback)) {
+      throw new Error('Cache climatique statique incomplet');
+    }
+
+    data = fallback;
+    activeLocation = normalizeLocation(fallback.location);
     render();
   }
 
@@ -61,51 +466,79 @@ window.ClimateCenter = (() => {
   }
 
   function normalTemperature() {
-    const values = data.normals.monthly
+    const list = data.normals.monthly
       .map(month => numeric(month.temperatureMean))
       .filter(value => value !== null);
-    return values.length
-      ? values.reduce((sum, value) => sum + value, 0) / values.length
+
+    return list.length
+      ? list.reduce((sum, value) => sum + value, 0) / list.length
       : null;
   }
 
   function render() {
+    if (!isComplete(data)) return;
+
     const current = data.currentYear;
     const meanNormal = normalTemperature();
     const rainNormal = normalPrecipitation();
-    const tempAnomaly =
-      meanNormal === null || numeric(current.temperatureMean) === null
-        ? null
-        : Number(current.temperatureMean) - meanNormal;
-    const rainDifference =
-      !rainNormal || numeric(current.precipitation) === null
-        ? null
-        : Number(current.precipitation) - rainNormal;
 
-    const updated = byId('climate-updated-at');
-    if (updated) {
-      const locationName = data?.location?.name || '';
-      updated.textContent = `${locationName} · ${new Intl.DateTimeFormat('fr-FR', {
-        day: '2-digit',
-        month: 'short',
-        hour: '2-digit',
-        minute: '2-digit'
-      }).format(new Date(data.generatedAt))}`;
-    }
+    const currentTemperature = numeric(current.temperatureMean);
+    const currentRain = numeric(current.precipitation);
+
+    const temperatureAnomaly =
+      meanNormal === null || currentTemperature === null
+        ? null
+        : currentTemperature - meanNormal;
+
+    const rainDifference =
+      !rainNormal || currentRain === null
+        ? null
+        : currentRain - rainNormal;
+
+    const generatedDate = new Date(data.generatedAt);
+    const generatedText = Number.isNaN(generatedDate.getTime())
+      ? ''
+      : new Intl.DateTimeFormat('fr-FR', {
+          day: '2-digit',
+          month: 'short',
+          hour: '2-digit',
+          minute: '2-digit'
+        }).format(generatedDate);
+
+    const mode = data?.source?.dynamic ? 'dynamique' : 'cache GitHub';
+    setStatus(`${data.location.name} · ${generatedText} · ${mode}`);
 
     const cards = [
-      ['🌡️', `Température ${current.year || ''}`, `${displayNumber(current.temperatureMean, 1)} °C`,
-        tempAnomaly === null ? 'Anomalie indisponible' : `${tempAnomaly >= 0 ? '+' : ''}${tempAnomaly.toFixed(1)} °C`],
-      ['🌧️', 'Pluie cumulée', `${displayNumber(current.precipitation)} mm`,
-        rainDifference === null ? 'Écart indisponible' : `${rainDifference >= 0 ? '+' : ''}${rainDifference.toFixed(0)} mm`],
+      [
+        '🌡️',
+        `Température ${current.year || ''}`,
+        `${displayNumber(current.temperatureMean, 1)} °C`,
+        temperatureAnomaly === null
+          ? 'Anomalie indisponible'
+          : `${temperatureAnomaly >= 0 ? '+' : ''}${temperatureAnomaly.toFixed(1)} °C`
+      ],
+      [
+        '🌧️',
+        'Pluie cumulée',
+        `${displayNumber(current.precipitation)} mm`,
+        rainDifference === null
+          ? 'Écart indisponible'
+          : `${rainDifference >= 0 ? '+' : ''}${rainDifference.toFixed(0)} mm`
+      ],
       ['❄️', 'Jours de gel', displayNumber(current.frostDays), 'Minimum < 0 °C'],
       ['🔥', 'Jours ≥ 30 °C', displayNumber(current.hotDays), 'Jours très chauds'],
       ['☀️', 'Ensoleillement', `${displayNumber(current.sunshineHours)} h`, 'Durée cumulée'],
       ['🏠', 'Degrés-jours', displayNumber(current.heatingDegreeDays), 'Base 18 °C'],
       ['🌙', 'Nuits tropicales', displayNumber(current.tropicalNights), 'Minimum ≥ 20 °C'],
-      ['🌾', 'Bilan hydrique',
-        `${displayNumber((numeric(current.precipitation) || 0) - (numeric(current.evapotranspiration) || 0))} mm`,
-        'Pluie - ETP']
+      [
+        '🌾',
+        'Bilan hydrique',
+        `${displayNumber(
+          (numeric(current.precipitation) || 0) -
+          (numeric(current.evapotranspiration) || 0)
+        )} mm`,
+        'Pluie - ETP'
+      ]
     ];
 
     const grid = byId('climate-kpi-grid');
@@ -122,6 +555,7 @@ window.ClimateCenter = (() => {
 
     renderCharts();
     renderRecords();
+    setLoading(false);
   }
 
   function chartOptions(unit) {
@@ -130,7 +564,10 @@ window.ClimateCenter = (() => {
       maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
       plugins: {
-        legend: { position: 'bottom', labels: { usePointStyle: true } }
+        legend: {
+          position: 'bottom',
+          labels: { usePointStyle: true }
+        }
       },
       scales: {
         x: { grid: { display: false } },
@@ -144,8 +581,10 @@ window.ClimateCenter = (() => {
       throw new Error('Chart.js n’est pas chargé');
     }
 
-    const labels = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin',
-      'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc'];
+    const labels = [
+      'Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin',
+      'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc'
+    ];
     const normals = data.normals.monthly;
     const currentMonths = data.currentYear.monthly || [];
 
@@ -261,44 +700,76 @@ window.ClimateCenter = (() => {
   }
 
   async function refresh() {
-    const button = byId('climate-refresh');
-    if (button) {
-      button.disabled = true;
-      button.textContent = 'Chargement…';
+    const location = activeLocation || savedLocation();
+    if (!location) {
+      setStatus('Choisis une localisation avant l’actualisation');
+      return;
     }
 
     try {
-      await load(true);
+      await loadDynamic(location, true);
     } catch (error) {
+      if (error?.name === 'AbortError') return;
       console.error(error);
-      const updated = byId('climate-updated-at');
-      if (updated) updated.textContent = 'Données indisponibles — lance Build climate data';
-    } finally {
-      if (button) {
-        button.disabled = false;
-        button.textContent = '↻ Actualiser';
-      }
+      setLoading(false);
+      setStatus(`Erreur climatologique : ${error.message}`);
+    }
+  }
+
+  async function handleLocationChange(event) {
+    const location = normalizeLocation(event?.detail);
+    if (!location) return;
+    if (locationsMatch(location, activeLocation)) return;
+
+    try {
+      await loadDynamic(location);
+    } catch (error) {
+      if (error?.name === 'AbortError') return;
+      console.error(error);
+      setLoading(false);
+      setStatus(`Climatologie indisponible pour ${location.name}`);
     }
   }
 
   async function init() {
     if (!byId('climate-center-section')) return;
+
     byId('climate-refresh')?.addEventListener('click', refresh);
+    window.addEventListener('meteo-location-changed', handleLocationChange);
+
+    const location = savedLocation();
+
+    if (location) {
+      try {
+        await loadDynamic(location);
+        return;
+      } catch (error) {
+        if (error?.name === 'AbortError') return;
+        console.warn('Calcul dynamique indisponible, utilisation du cache', error);
+      }
+    }
 
     try {
-      await load();
+      await loadStaticFallback();
     } catch (error) {
       console.error(error);
-      const updated = byId('climate-updated-at');
-      if (updated) updated.textContent = 'Lance Build climate data';
+      setLoading(false);
+      setStatus('Lance Build climate data ou choisis une localisation');
     }
   }
 
-  return { init, refresh };
+  return {
+    init,
+    refresh,
+    loadLocation: location => loadDynamic(location, true)
+  };
 })();
 
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => window.ClimateCenter.init());
+  document.addEventListener(
+    'DOMContentLoaded',
+    () => window.ClimateCenter.init()
+  );
 } else {
   window.ClimateCenter.init();
 }
