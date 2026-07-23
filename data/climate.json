@@ -1,9 +1,14 @@
 {
-  "generatedAt": "2026-07-23T18:14:53.355229+00:00",
+  "generatedAt": null,
+  "source": {
+    "name": "Open-Meteo Historical Weather API",
+    "model": "best_match",
+    "archiveEnd": null
+  },
   "location": {
-    "name": "Brûlain",
-    "latitude": 46.2025,
-    "longitude": -0.3297,
+    "name": "À calculer",
+    "latitude": null,
+    "longitude": null,
     "timezone": "Europe/Paris"
   },
   "normalPeriod": "1991-2020",
