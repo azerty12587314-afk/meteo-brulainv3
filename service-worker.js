@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'meteo-lab-v19-water-restrictions';
+const CACHE_NAME = 'meteo-lab-v20-1-workflows';
 const APP_SHELL = [
   './',
   './index.html',
@@ -24,6 +24,7 @@ const APP_SHELL = [
   './js/interactive-map.js',
   './js/observations-config.js',
   './js/observations.js',
+  './js/water-restrictions.js',
   './js/app.js'
 ];
 

@@ -1,7 +1,6 @@
 {
   "status": "pending",
   "source": "VigiEau",
-  "sourceUrl": "https://vigieau.gouv.fr/",
   "generatedAt": null,
   "location": {
     "name": "Brûlain",
@@ -12,5 +11,5 @@
   "highestLevel": null,
   "highestLevelLabel": "Première mise à jour en attente",
   "zones": [],
-  "notice": "Informations fournies à titre indicatif. L'arrêté préfectoral fait foi."
+  "notice": "Informations indicatives : l’arrêté préfectoral fait foi."
 }

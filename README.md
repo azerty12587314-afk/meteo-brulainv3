@@ -588,12 +588,47 @@ des modèles sur la température maximale.
 - le calcul de confiance ignore les valeurs manquantes.
 
 
-# V19 — Restrictions d’usage de l’eau
+# V20 — Restrictions d’usage de l’eau
 
-- données officielles VigiEau pour le profil particulier ;
-- niveau, type d’eau, usages, dates et arrêté préfectoral ;
-- bandeau d’alerte en alerte, alerte renforcée ou crise ;
-- dernière donnée valide conservée si l’API est indisponible ;
-- workflow `Update water restrictions` exécuté quatre fois par jour.
+Cette version repart des fichiers de la dernière version fonctionnelle fournie.
 
-Modifier `data/location.json` ou définir les variables GitHub `SITE_LATITUDE`, `SITE_LONGITUDE`, `SITE_NAME`, `SITE_INSEE`, puis lancer le workflow manuellement une première fois.
+Elle ajoute :
+
+- le niveau VigiEau applicable à Brûlain ;
+- les restrictions destinées aux particuliers ;
+- les règles d’arrosage, de remplissage, de lavage et autres usages publiés ;
+- les périodes de validité ;
+- les liens vers les arrêtés officiels ;
+- un bandeau d’alerte pour les niveaux alerte, alerte renforcée et crise ;
+- une mise à jour automatique quatre fois par jour ;
+- la conservation de la dernière donnée valide si l’API est temporairement indisponible.
+
+Le workflow se trouve dans :
+
+`.github/workflows/update-water-restrictions.yml`
+
+Après installation, le lancer une première fois depuis l’onglet GitHub Actions.
+
+# V20.1 — Pack complet GitHub Actions
+
+Workflows inclus :
+
+- `build-climate-data.yml`
+- `generate-weather-maps.yml`
+- `update-observations.yml`
+- `update-surveillance.yml`
+- `update-site-data.yml`
+- `update-water-restrictions.yml`
+
+Tous les workflows peuvent être lancés manuellement depuis l’onglet **Actions**.
+Les workflows programmés écrivent leurs résultats dans les dossiers `data/`,
+`maps/`, `observations/` et `surveillance/`.
+
+Ordre conseillé pour le premier lancement :
+
+1. Update observations
+2. Update surveillance
+3. Update water restrictions
+4. Update site data
+5. Build climate data
+6. Generate weather maps

@@ -8,7 +8,7 @@
 <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
 <title>Météo Lab V2</title>
 <link rel="manifest" href="manifest.json">
-<link rel="stylesheet" href="style.css?v=19">
+<link rel="stylesheet" href="style.css?v=20">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
@@ -24,8 +24,7 @@
   </div>
 </header>
 
-
-<div id="water-alert-banner" class="water-alert-banner" hidden></div>
+<div id="water-banner" class="water-alert-banner" hidden></div>
 <main>
 <section id="dashboard">
   <div class="card" id="sun-card"></div>
@@ -308,6 +307,31 @@
 
 
 <section class="card surveillance-center-card" id="surveillance-center-section"><div class="surveillance-heading"><div><h2>🚨 Centre de surveillance météo</h2><p class="chart-subtitle">Radar, satellite et signaux locaux sur une timeline unique.</p></div><span id="surveillance-updated-at">Chargement…</span></div><div id="surveillance-alerts" class="surveillance-alerts"></div><div class="surveillance-toolbar"><label>Produit<select id="surveillance-product"><option value="radar">🌧️ Radar pluie</option><option value="visible">🛰️ Satellite visible NASA</option></select></label><label>Opacité<input id="surveillance-opacity" type="range" min="20" max="100" value="72"></label><button id="surveillance-prev">◀</button><button id="surveillance-play">▶ Lecture</button><button id="surveillance-next">▶</button><button id="surveillance-local">📍 Brûlain</button><button id="surveillance-france">🇫🇷 France</button><button id="surveillance-europe">🇪🇺 Europe</button><button id="surveillance-fullscreen">⛶ Plein écran</button></div><div class="surveillance-timeline-row"><input id="surveillance-timeline" type="range" min="0" max="0" value="0"><strong id="surveillance-validity">--</strong></div><div class="surveillance-layout"><div id="surveillance-map" class="surveillance-map"></div><aside class="surveillance-sidebar"><h3>Conditions locales</h3><div id="surveillance-current" class="surveillance-current"></div><h3>État des sources</h3><div id="surveillance-providers"></div><p>Signaux automatiques : ils ne remplacent pas les bulletins officiels.</p></aside></div></section>
+
+<section class="card water-card" id="water-section">
+  <div class="water-heading">
+    <div>
+      <h2>💧 Restrictions d’usage de l’eau</h2>
+      <p class="chart-subtitle">
+        Mesures VigiEau applicables aux particuliers pour Brûlain.
+      </p>
+    </div>
+    <button id="water-refresh" type="button">↻ Actualiser</button>
+  </div>
+
+  <div id="water-status" class="water-status">
+    Chargement des restrictions…
+  </div>
+
+  <div id="water-content" class="water-content">
+    <p>Chargement des données VigiEau…</p>
+  </div>
+
+  <p class="water-notice">
+    Informations indicatives : l’arrêté préfectoral fait foi.
+  </p>
+</section>
+
 <section class="card climate-center-card" id="climate-center-section"><div class="climate-center-heading"><div><h2>📊 Centre climatologique</h2><p class="chart-subtitle">Normales 1991–2020, année en cours, records et indicateurs locaux.</p></div><div class="climate-center-actions"><span id="climate-updated-at" class="climate-updated-at">Chargement…</span><button id="climate-refresh" type="button">↻ Actualiser</button></div></div><div id="climate-kpi-grid" class="climate-kpi-grid"></div><div class="climate-chart-grid"><article class="climate-subcard"><h3>Températures mensuelles</h3><div class="climate-chart-shell"><canvas id="climate-temperature-chart"></canvas></div></article><article class="climate-subcard"><h3>Précipitations mensuelles</h3><div class="climate-chart-shell"><canvas id="climate-precipitation-chart"></canvas></div></article><article class="climate-subcard"><h3>Comparaison des dernières années</h3><div class="climate-chart-shell"><canvas id="climate-years-chart"></canvas></div></article><article class="climate-subcard"><h3>Records locaux de la réanalyse</h3><div id="climate-record-grid" class="climate-record-grid"></div></article></div><p class="climate-disclaimer">Ces valeurs proviennent d’une réanalyse climatique locale et non d’une station officielle implantée sur le terrain.</p></section>
 <section class="card site-data-status-card" id="site-data-status-card">
   <div class="site-data-status-heading">
@@ -549,33 +573,30 @@
 <h2>Radar météo</h2>
 <iframe id="ventusky" loading="lazy"></iframe>
 </section>
-
-<section class="card water-restrictions-card" id="water-restrictions-section"><div class="water-card-heading"><div><span class="section-kicker">VigiEau · service officiel</span><h2>Restrictions d’usage de l’eau</h2><p class="chart-subtitle">Mesures applicables aux particuliers pour la localisation sélectionnée.</p></div><button id="water-restrictions-refresh" type="button">↻ Actualiser</button></div><div id="water-restrictions-status" class="water-summary">Chargement des restrictions…</div><div id="water-restrictions-content" class="water-restrictions-content"><p class="water-empty">Chargement des données VigiEau…</p></div><p id="water-restrictions-notice" class="water-notice">Informations fournies à titre indicatif. L’arrêté préfectoral fait foi.</p></section>
-
 </main>
 
 <footer>
 <p>Météo Lab V2 © 2026</p>
 </footer>
 
-<script defer src="js/config.js?v=18.3"></script>
-<script defer src="js/api.js?v=18.3"></script>
-<script defer src="js/weather.js?v=18.3"></script>
-<script defer src="js/charts.js?v=18.3"></script>
-<script defer src="js/ui.js?v=18.3"></script>
-<script defer src="js/animations.js?v=18.3"></script>
-<script defer src="js/radar.js?v=18.3"></script>
-<script defer src="js/europe-maps.js?v=18.3"></script>
-<script defer src="js/model-player.js?v=18.3"></script>
-<script defer src="js/model-comparator.js?v=18.3"></script>
-<script defer src="js/interactive-map.js?v=18.3"></script>
+<script defer src="js/config.js?v=20"></script>
+<script defer src="js/api.js?v=20"></script>
+<script defer src="js/weather.js?v=20"></script>
+<script defer src="js/charts.js?v=20"></script>
+<script defer src="js/ui.js?v=20"></script>
+<script defer src="js/animations.js?v=20"></script>
+<script defer src="js/radar.js?v=20"></script>
+<script defer src="js/europe-maps.js?v=20"></script>
+<script defer src="js/model-player.js?v=20"></script>
+<script defer src="js/model-comparator.js?v=20"></script>
+<script defer src="js/interactive-map.js?v=20"></script>
 <script defer src="js/site-data.js?v=12"></script>
 <script defer src="js/climate-center.js?v=15"></script>
 <script defer src="js/surveillance-center.js?v=16"></script>
 <script defer src="js/site-data-status.js?v=12"></script>
 <script defer src="js/observations-config.js?v=11.2"></script>
 <script defer src="js/observations.js?v=11.2"></script>
-<script defer src="js/app.js?v=18.3"></script>
-  <script src="js/water-restrictions.js?v=19"></script>
+<script defer src="js/water-restrictions.js?v=20"></script>
+<script defer src="js/app.js?v=20"></script>
 </body>
 </html>

@@ -2520,5 +2520,109 @@ main .card:nth-child(4) {
   letter-spacing: 0;
 }
 
-/* V19 — VigiEau */
-.water-alert-banner{position:sticky;top:0;z-index:900;display:flex;align-items:center;justify-content:center;gap:.8rem;padding:.7rem 1rem;border-bottom:1px solid rgba(255,255,255,.18);background:rgba(127,29,29,.96);color:#fff;backdrop-filter:blur(14px)}.water-alert-banner[hidden]{display:none}.water-alert-banner a{color:#fff;font-weight:800;text-decoration:underline}.water-card-heading,.water-zone-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}.section-kicker,.water-type{display:block;margin-bottom:.2rem;color:var(--text-muted);font-size:.67rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.water-summary{display:flex;align-items:center;gap:.75rem;margin:.85rem 0;padding:.75rem .9rem;border:1px solid var(--border);border-left:5px solid #64748b;border-radius:13px;background:rgba(15,23,42,.46)}.water-summary-icon{font-size:1.55rem}.water-summary div{display:grid;gap:.14rem}.water-summary span{color:var(--text-muted);font-size:.75rem}.water-restrictions-content{display:grid;gap:.8rem}.water-zone{padding:.9rem;border:1px solid var(--border);border-top:4px solid #64748b;border-radius:14px;background:rgba(15,23,42,.42)}.water-zone h3{margin:0;font-size:1rem}.water-level-badge{padding:.38rem .58rem;border:1px solid rgba(255,255,255,.12);border-radius:999px;background:rgba(2,6,23,.55);font-size:.72rem;font-weight:900;white-space:nowrap}.water-level-crise{border-color:#ef4444}.water-level-alert-strong{border-color:#f43f5e}.water-level-alert{border-color:#f97316}.water-level-watch{border-color:#eab308}.water-level-none{border-color:#22c55e}.water-level-unknown{border-color:#64748b}.water-decree-meta{display:flex;flex-wrap:wrap;gap:.45rem 1rem;margin:.65rem 0;color:var(--text-muted);font-size:.7rem}.water-usage-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.55rem}.water-usage{display:flex;gap:.65rem;padding:.7rem;border:1px solid var(--border);border-radius:11px;background:rgba(2,6,23,.28)}.water-usage-icon{font-size:1.2rem}.water-usage h4{margin:0 0 .2rem;font-size:.8rem}.water-usage p{margin:0;color:var(--text-soft);font-size:.72rem;line-height:1.45;white-space:pre-line}.water-links{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.7rem}.water-link{display:inline-flex;padding:.42rem .6rem;border-radius:9px;background:rgba(14,165,233,.16);color:#7dd3fc;font-size:.72rem;font-weight:850}.water-link.secondary{background:rgba(167,139,250,.14);color:#c4b5fd}.water-no-restriction{display:flex;align-items:center;gap:.8rem;padding:1rem;border:1px solid var(--border);border-left:5px solid #22c55e;border-radius:13px;background:rgba(15,23,42,.4)}.water-no-restriction>span{font-size:1.7rem}.water-no-restriction h3,.water-no-restriction p{margin:0}.water-no-restriction p,.water-empty,.water-notice{color:var(--text-muted);font-size:.72rem}.water-notice{margin:.75rem 0 0;font-style:italic}@media(max-width:760px){.water-card-heading,.water-zone-heading{flex-direction:column}.water-usage-list{grid-template-columns:1fr}.water-level-badge{white-space:normal}.water-alert-banner{align-items:flex-start;flex-direction:column}}
+
+/* V20 — Restrictions d’usage de l’eau */
+.water-alert-banner {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .8rem;
+  padding: .7rem 1rem;
+  background: rgba(127, 29, 29, .96);
+  color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,.2);
+  backdrop-filter: blur(12px);
+}
+.water-alert-banner[hidden] { display: none; }
+.water-alert-banner a { color: #fff; font-weight: 800; text-decoration: underline; }
+
+.water-heading,
+.water-zone > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.water-status {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  margin: .8rem 0;
+  padding: .8rem;
+  border: 1px solid var(--border);
+  border-left: 5px solid #64748b;
+  border-radius: 13px;
+  background: rgba(15, 23, 42, .42);
+}
+.water-status > span { font-size: 1.5rem; }
+.water-status div { display: grid; gap: .15rem; }
+.water-status small,
+.water-dates,
+.water-notice { color: var(--text-muted); }
+.water-content { display: grid; gap: .8rem; }
+.water-zone {
+  padding: .9rem;
+  border: 1px solid var(--border);
+  border-top: 4px solid #64748b;
+  border-radius: 14px;
+  background: rgba(15, 23, 42, .4);
+}
+.water-zone h3 { margin: .2rem 0 0; }
+.water-zone header small {
+  color: var(--text-muted);
+  font-size: .68rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+.water-zone header strong {
+  padding: .4rem .6rem;
+  border-radius: 999px;
+  background: rgba(2,6,23,.5);
+  font-size: .73rem;
+}
+.water-dates { font-size: .72rem; }
+.water-uses {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .55rem;
+}
+.water-use {
+  padding: .7rem;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: rgba(2,6,23,.25);
+}
+.water-use b { font-size: .78rem; }
+.water-use p { margin: .35rem 0 0; white-space: pre-line; font-size: .72rem; line-height: 1.45; }
+.water-links { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .7rem; }
+.water-links a {
+  padding: .4rem .6rem;
+  border-radius: 9px;
+  background: rgba(14,165,233,.16);
+  color: #7dd3fc;
+  font-size: .72rem;
+  font-weight: 800;
+}
+.water-empty {
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-left: 5px solid #22c55e;
+  border-radius: 13px;
+}
+.water-crise { border-color: #ef4444; }
+.water-renforcee { border-color: #f43f5e; }
+.water-alerte { border-color: #f97316; }
+.water-vigilance { border-color: #eab308; }
+.water-aucune { border-color: #22c55e; }
+.water-inconnu { border-color: #64748b; }
+.water-notice { margin: .75rem 0 0; font-size: .7rem; font-style: italic; }
+
+@media (max-width: 760px) {
+  .water-heading,
+  .water-zone > header { flex-direction: column; }
+  .water-uses { grid-template-columns: 1fr; }
+  .water-alert-banner { align-items: flex-start; flex-direction: column; }
+}
