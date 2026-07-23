@@ -314,10 +314,13 @@ window.MeteoUI = (() => {
         const info = WeatherUtils.info(daily.weather_code[index], 1);
         const metadata = forecast.days?.[index] || {};
         const confidence = metadata.confidence;
+        const hasTemperature =
+          WeatherUtils.isAvailableValue(daily.temperature_2m_max[index]) &&
+          WeatherUtils.isAvailableValue(daily.temperature_2m_min[index]);
 
         return `
           <button
-            class="daily-item daily-item-button source-${metadata.sourceKey || selection}"
+            class="daily-item daily-item-button source-${metadata.sourceKey || selection}${hasTemperature ? '' : ' daily-item-missing'}"
             type="button"
             data-daily-index="${index}"
           >
@@ -356,9 +359,13 @@ window.MeteoUI = (() => {
 
             <span
               class="day-confidence"
-              title="${confidence?.label || 'Confiance non calculée'}"
+              title="${hasTemperature
+                ? (confidence?.label || 'Confiance non calculée')
+                : 'Données de température indisponibles'}"
             >
-              ${confidenceStars(confidence)}
+              ${hasTemperature
+                ? confidenceStars(confidence)
+                : 'Données indisponibles'}
             </span>
           </button>
         `;

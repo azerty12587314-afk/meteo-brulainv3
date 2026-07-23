@@ -39,13 +39,24 @@ window.WeatherUtils = (() => {
     return { text: entry[0], icon: entry[1], theme: entry[2] };
   }
 
+  function isAvailableValue(value) {
+    return value !== null &&
+      value !== undefined &&
+      value !== '' &&
+      Number.isFinite(Number(value));
+  }
+
   function formatTemperature(value) {
-    return Number.isFinite(Number(value)) ? `${Math.round(Number(value))}°C` : '--°C';
+    return isAvailableValue(value)
+      ? `${Math.round(Number(value))}°C`
+      : '--°C';
   }
 
   function formatNumber(value, unit = '', digits = 0) {
+    if (!isAvailableValue(value)) return `--${unit}`;
+
     const number = Number(value);
-    return Number.isFinite(number) ? `${number.toFixed(digits)}${unit}` : `--${unit}`;
+    return `${number.toFixed(digits)}${unit}`;
   }
 
   function formatTime(iso, timezone) {
@@ -103,7 +114,8 @@ window.WeatherUtils = (() => {
   }
 
   return {
-    info, formatTemperature, formatNumber, formatTime, formatDay,
-    windDirection, airQualityLabel, uvLabel, pollenSummary
+    info, isAvailableValue, formatTemperature, formatNumber,
+    formatTime, formatDay, windDirection, airQualityLabel,
+    uvLabel, pollenSummary
   };
 })();

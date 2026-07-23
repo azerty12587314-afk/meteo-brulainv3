@@ -211,7 +211,29 @@ window.MeteoApi = (() => {
   function dailyValue(data, field, date) {
     const daily = data?.daily;
     const index = daily?.time?.indexOf(date) ?? -1;
-    return index >= 0 ? daily[field]?.[index] : null;
+
+    if (index < 0) return null;
+
+    const value = daily[field]?.[index];
+
+    return value === null || value === undefined || value === ''
+      ? null
+      : value;
+  }
+
+  function validNumber(value) {
+    return value !== null &&
+      value !== undefined &&
+      value !== '' &&
+      Number.isFinite(Number(value));
+  }
+
+  function sourceHasTemperatures(source, date) {
+    return validNumber(
+      dailyValue(source?.data, 'temperature_2m_max', date)
+    ) && validNumber(
+      dailyValue(source?.data, 'temperature_2m_min', date)
+    );
   }
 
   function confidenceForDate(sources, date) {
@@ -219,15 +241,15 @@ window.MeteoApi = (() => {
     const rainProbabilities = [];
 
     Object.values(sources).forEach(source => {
-      const max = Number(
-        dailyValue(source.data, 'temperature_2m_max', date)
-      );
-      const rain = Number(
-        dailyValue(source.data, 'precipitation_probability_max', date)
-      );
+      const maxValue =
+        dailyValue(source.data, 'temperature_2m_max', date);
+      const rainValue =
+        dailyValue(source.data, 'precipitation_probability_max', date);
 
-      if (Number.isFinite(max)) maxima.push(max);
-      if (Number.isFinite(rain)) rainProbabilities.push(rain);
+      if (validNumber(maxValue)) maxima.push(Number(maxValue));
+      if (validNumber(rainValue)) {
+        rainProbabilities.push(Number(rainValue));
+      }
     });
 
     const spread = values =>
@@ -318,15 +340,36 @@ window.MeteoApi = (() => {
       ];
 
       const selectedKey = fallbackOrder.find(key =>
-        sources[key]?.data?.daily?.time?.includes(date)
+        sourceHasTemperatures(sources[key], date)
       );
 
       const selected = selectedKey ? sources[selectedKey] : null;
 
       fields.forEach(field => {
-        const value = selected
-          ? dailyValue(selected.data, field, date)
-          : dailyValue(fallbackForecast, field, date);
+        /*
+         * On privilégie le modèle de la journée, mais chaque champ peut
+         * se rabattre sur un autre modèle ou sur la prévision automatique
+         * lorsqu'il est absent. Ainsi null ne devient jamais artificiellement 0.
+         */
+        const candidates = [
+          selectedKey,
+          ...fallbackOrder.filter(key => key !== selectedKey)
+        ];
+
+        let value = null;
+
+        for (const key of candidates) {
+          const candidate = dailyValue(sources[key]?.data, field, date);
+
+          if (candidate !== null) {
+            value = candidate;
+            break;
+          }
+        }
+
+        if (value === null) {
+          value = dailyValue(fallbackForecast, field, date);
+        }
 
         daily[field].push(value);
       });

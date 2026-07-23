@@ -575,3 +575,14 @@ Barème principal :
 
 L'indice affiché sur les cartes représente désormais principalement l'accord
 des modèles sur la température maximale.
+
+
+## Correctif V18.3 — températures à 0 °C erronées
+
+- `null`, `undefined` et les chaînes vides ne sont plus convertis en zéro ;
+- une température absente s'affiche `--°C` ;
+- le mode Fusion ne sélectionne plus un modèle dont les températures max/min
+  sont incomplètes ;
+- chaque champ absent peut se rabattre sur un autre modèle disponible ;
+- les journées réellement incomplètes sont indiquées comme indisponibles ;
+- le calcul de confiance ignore les valeurs manquantes.
