@@ -21,6 +21,10 @@ window.MeteoApp = (() => {
     } catch {
       // Le site reste fonctionnel sans stockage local.
     }
+
+    window.dispatchEvent(
+      new CustomEvent('meteo-location-changed', { detail: value })
+    );
   }
 
   async function loadAll(force = false) {
