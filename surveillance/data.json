@@ -1,15 +1,52 @@
 {
-  "generatedAt": null,
+  "generatedAt": "2026-07-23T16:56:06.476396+00:00",
   "location": {
     "name": "Brûlain",
-    "latitude": 46.2025,
-    "longitude": -0.3297
+    "latitude": 46.2006,
+    "longitude": -0.3194,
+    "insee": "79058"
   },
-  "radar": null,
-  "weather": null,
+  "radar": {
+    "provider": "RainViewer",
+    "status": "client-side"
+  },
+  "weather": {
+    "latitude": 46.2,
+    "longitude": -0.32000017,
+    "generationtime_ms": 0.9728670120239258,
+    "utc_offset_seconds": 7200,
+    "timezone": "Europe/Paris",
+    "timezone_abbreviation": "GMT+2",
+    "elevation": 60.0,
+    "current_units": {
+      "time": "iso8601",
+      "interval": "seconds",
+      "temperature_2m": "°C",
+      "relative_humidity_2m": "%",
+      "precipitation": "mm",
+      "wind_speed_10m": "km/h",
+      "wind_gusts_10m": "km/h",
+      "surface_pressure": "hPa"
+    },
+    "current": {
+      "time": "2026-07-23T18:45",
+      "interval": 900,
+      "temperature_2m": 30.0,
+      "relative_humidity_2m": 26,
+      "precipitation": 0.0,
+      "wind_speed_10m": 18.8,
+      "wind_gusts_10m": 33.8,
+      "surface_pressure": 1010.0
+    }
+  },
   "alerts": [],
-  "providers": {},
-  "errors": [
-    "Lance Update surveillance."
-  ]
+  "providers": {
+    "radar": {
+      "status": "ok"
+    },
+    "weather": {
+      "status": "ok"
+    }
+  },
+  "errors": []
 }
