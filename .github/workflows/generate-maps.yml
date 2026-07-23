@@ -2,9 +2,17 @@ name: Generate weather maps
 
 on:
   workflow_dispatch:
+    inputs:
+      max_hour:
+        description: "Dernière échéance de prévision"
+        required: false
+        default: "120"
+      step:
+        description: "Pas entre les cartes, en heures"
+        required: false
+        default: "6"
   schedule:
-    # Toutes les 6 heures
-    - cron: "15 */6 * * *"
+    - cron: "35 1,7,13,19 * * *"
 
 permissions:
   contents: write
@@ -16,66 +24,65 @@ concurrency:
 jobs:
   generate:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 120
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - name: Installer Python
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
+          cache: pip
+          cache-dependency-path: scripts/requirements-maps.txt
 
-      - name: Install system libraries
+      - name: Installer les bibliothèques système
         run: |
           sudo apt-get update
-          sudo apt-get install -y \
-            gdal-bin \
-            libgdal-dev \
+          sudo apt-get install -y --no-install-recommends \
+            libeccodes0 \
+            libeccodes-dev \
+            libeccodes-tools \
+            libgeos-dev \
             libproj-dev \
             proj-data \
-            proj-bin \
-            libgeos-dev
+            proj-bin
+          sudo rm -rf /var/lib/apt/lists/*
 
-      - name: Install Python dependencies
+      - name: Installer les dépendances Python
         run: |
           python -m pip install --upgrade pip
+          python -m pip install -r scripts/requirements-maps.txt
 
-          pip install \
-            matplotlib \
-            numpy \
-            scipy \
-            pandas \
-            pillow \
-            requests \
-            xarray \
-            netCDF4 \
-            cartopy \
-            pyproj \
-            shapely \
-            eccodes
-
-      - name: Create output folders
+      - name: Vérifier les dépendances
         run: |
-          mkdir -p maps
-          mkdir -p maps/gfs
-          mkdir -p maps/icon
-          mkdir -p maps/ecmwf
-          mkdir -p maps/arpege
-          mkdir -p maps/arome
+          python --version
+          python -c "import matplotlib, numpy, xarray, cfgrib, eccodes, cartopy; print('Dépendances OK')"
 
-      - name: Generate GFS and ICON-EU maps
+      - name: Générer les cartes GFS et ICON-EU
+        env:
+          MAX_HOUR: ${{ github.event.inputs.max_hour || '120' }}
+          MAP_STEP: ${{ github.event.inputs.step || '6' }}
         run: |
-          python scripts/render_maps.py
+          python scripts/render_maps.py \
+            --output . \
+            --models gfs icon_eu \
+            --max-hour "$MAX_HOUR" \
+            --step "$MAP_STEP"
 
-      - name: Show generated files
+      - name: Vérifier le manifeste et les images
+        run: python scripts/validate_maps.py
+
+      - name: Afficher les fichiers générés
         run: |
-          find maps -type f
+          find maps -type f -printf '%p %k Ko\n' | sort
+          du -sh maps
 
-      - name: Commit generated maps
-        uses: stefanzweifel/git-auto-commit-action@v5
+      - name: Publier les cartes
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "chore(maps): update forecast maps"
-          file_pattern: |
-            maps/**
+          file_pattern: "maps/**"
