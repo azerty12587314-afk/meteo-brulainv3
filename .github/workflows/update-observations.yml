@@ -1,22 +1,15 @@
-name: Update site data
+name: Update observations
 
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows:
-      - Update observations
-      - Update surveillance
-      - Update water restrictions
-    types:
-      - completed
   schedule:
-    - cron: '42 */3 * * *'
+    - cron: '17 */3 * * *'
 
 permissions:
   contents: write
 
 concurrency:
-  group: update-site-data
+  group: update-observations
   cancel-in-progress: true
 
 jobs:
@@ -33,10 +26,12 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Agréger les données
-        run: python scripts/update_site_data.py
-      - name: Publier le cache du site
+      - name: Installer les dépendances
+        run: pip install -r scripts/requirements-data.txt
+      - name: Mettre à jour les observations
+        run: python scripts/update_observations.py
+      - name: Publier les données
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: 'chore(data): update site data'
-          file_pattern: data/site-data.json
+          commit_message: 'chore(data): update observations'
+          file_pattern: observations/data.json

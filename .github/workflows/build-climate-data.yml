@@ -3,69 +3,33 @@ name: Build climate data
 on:
   workflow_dispatch:
   schedule:
-    - cron: "20 4 * * *"
+    - cron: '15 4 1 * *'
 
 permissions:
   contents: write
 
 concurrency:
-  group: meteo-repository-write
+  group: build-climate-data
   cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 55
-
     steps:
-      - name: Checkout
+
+      - name: Récupérer le dépôt
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Set up Python
+      - name: Installer Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: '3.12'
 
-      - name: Install dependency
-        run: pip install requests
-
-      - name: Build local climate data
+      - name: Construire les données climatiques
         run: python scripts/build_climate_data.py
-
-      - name: Commit and publish
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          git add data/climate.json
-
-          if git diff --cached --quiet; then
-            echo "Aucune modification à publier."
-            exit 0
-          fi
-
-          git commit -m "chore: update local climate data"
-
-          for attempt in 1 2 3; do
-            echo "Tentative de publication $attempt/3"
-
-            if ! git pull --rebase origin main; then
-              echo "Échec du rebase."
-              git rebase --abort || true
-              sleep 15
-              continue
-            fi
-
-            if git push origin HEAD:main; then
-              echo "Publication réussie."
-              exit 0
-            fi
-
-            echo "Nouvelle tentative dans 15 secondes."
-            sleep 15
-          done
-
-          echo "Échec de la publication après trois tentatives."
-          exit 1
+      - name: Publier la climatologie
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'chore(data): update climate data'
+          file_pattern: data/climate.json

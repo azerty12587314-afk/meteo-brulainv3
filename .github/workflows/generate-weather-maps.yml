@@ -1,20 +1,21 @@
-name: Update surveillance
+name: Generate weather maps
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '27 */3 * * *'
+    - cron: '35 1,7,13,19 * * *'
 
 permissions:
   contents: write
 
 concurrency:
-  group: update-surveillance
+  group: generate-weather-maps
   cancel-in-progress: true
 
 jobs:
-  update:
+  generate:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
 
       - name: Récupérer le dépôt
@@ -27,11 +28,11 @@ jobs:
           python-version: '3.12'
 
       - name: Installer les dépendances
-        run: pip install -r scripts/requirements-data.txt
-      - name: Mettre à jour la surveillance
-        run: python scripts/update_surveillance.py
-      - name: Publier les données
+        run: pip install -r scripts/requirements-maps.txt
+      - name: Générer ou actualiser les cartes
+        run: python scripts/generate_weather_maps.py
+      - name: Publier les cartes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: 'chore(data): update surveillance'
-          file_pattern: surveillance/data.json
+          commit_message: 'chore(maps): update weather maps'
+          file_pattern: maps
