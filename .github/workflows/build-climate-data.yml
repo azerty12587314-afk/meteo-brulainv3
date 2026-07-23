@@ -1,28 +1,65 @@
 name: Build climate data
+
 on:
   workflow_dispatch:
   schedule:
-    - cron: '20 4 2 * *'
+    - cron: "20 5 * * *"
+  push:
+    paths:
+      - "data/location.json"
+      - "scripts/build_climate_data.py"
+      - "scripts/validate_climate_data.py"
+      - ".github/workflows/build-climate-data.yml"
+
 permissions:
   contents: write
+
 concurrency:
-  group: climate-data-build
+  group: build-climate-data
   cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 55
+    timeout-minutes: 45
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v6
         with:
-          python-version: '3.12'
-      - run: pip install requests
-      - name: Build local climate data
-        run: python scripts/build_climate_data.py
-      - name: Commit climate cache
+          fetch-depth: 0
+
+      - name: Installer Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Installer les dépendances
         run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/climate.json
-          if git diff --cached --quiet; then echo 'No climate changes.'; else git commit -m 'chore: update local climate data'; git push; fi
+          python -m pip install --upgrade pip
+          python -m pip install "requests>=2.32,<3"
+
+      - name: Construire les données climatiques
+        run: python scripts/build_climate_data.py
+
+      - name: Vérifier climate.json
+        run: python scripts/validate_climate_data.py
+
+      - name: Afficher le résumé
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path("data/climate.json").read_text(encoding="utf-8"))
+          print("Localisation :", data["location"]["name"])
+          print("Normales :", len(data["normals"]["monthly"]), "mois")
+          print("Années récentes :", len(data["recentYears"]))
+          print("Année courante :", data["currentYear"]["year"])
+          PY
+
+      - name: Publier climate.json
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "chore(climate): update climate data"
+          file_pattern: "data/climate.json"
