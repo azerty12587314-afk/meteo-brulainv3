@@ -19,16 +19,10 @@ def valid(v):
 def location():
     cfg = json.loads(LOC.read_text(encoding="utf-8")) if LOC.exists() else {}
 
-    print("LOCATION FILE =", LOC)
-    print("LOCATION JSON =", cfg)
-
     lat = os.getenv("SITE_LATITUDE") or cfg.get("latitude")
     lon = os.getenv("SITE_LONGITUDE") or cfg.get("longitude")
 
-    print("LATITUDE =", repr(lat))
-    print("LONGITUDE =", repr(lon))
-
-    if not valid(lat) or not valid(lon):
+   if not valid(lat) or not valid(lon):
         raise ValueError(
             f"Coordonnées invalides : latitude={lat!r}, longitude={lon!r}"
         )
