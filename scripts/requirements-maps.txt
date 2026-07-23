@@ -1,2 +1,8 @@
-requests>=2.31,<3
-Pillow>=10,<12
+matplotlib>=3.9,<4
+numpy>=2.0,<3
+requests>=2.32,<3
+xarray>=2025.1
+cfgrib>=0.9.15
+eccodes>=2.40
+cartopy>=0.24
+pillow>=10
