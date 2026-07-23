@@ -8,7 +8,7 @@
 <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
 <title>Météo Lab V2</title>
 <link rel="manifest" href="manifest.json">
-<link rel="stylesheet" href="style.css?v=18.3">
+<link rel="stylesheet" href="style.css?v=19">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
@@ -24,6 +24,8 @@
   </div>
 </header>
 
+
+<div id="water-alert-banner" class="water-alert-banner" hidden></div>
 <main>
 <section id="dashboard">
   <div class="card" id="sun-card"></div>
@@ -547,6 +549,9 @@
 <h2>Radar météo</h2>
 <iframe id="ventusky" loading="lazy"></iframe>
 </section>
+
+<section class="card water-restrictions-card" id="water-restrictions-section"><div class="water-card-heading"><div><span class="section-kicker">VigiEau · service officiel</span><h2>Restrictions d’usage de l’eau</h2><p class="chart-subtitle">Mesures applicables aux particuliers pour la localisation sélectionnée.</p></div><button id="water-restrictions-refresh" type="button">↻ Actualiser</button></div><div id="water-restrictions-status" class="water-summary">Chargement des restrictions…</div><div id="water-restrictions-content" class="water-restrictions-content"><p class="water-empty">Chargement des données VigiEau…</p></div><p id="water-restrictions-notice" class="water-notice">Informations fournies à titre indicatif. L’arrêté préfectoral fait foi.</p></section>
+
 </main>
 
 <footer>
@@ -571,5 +576,6 @@
 <script defer src="js/observations-config.js?v=11.2"></script>
 <script defer src="js/observations.js?v=11.2"></script>
 <script defer src="js/app.js?v=18.3"></script>
+  <script src="js/water-restrictions.js?v=19"></script>
 </body>
 </html>

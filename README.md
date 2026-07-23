@@ -586,3 +586,14 @@ des modèles sur la température maximale.
 - chaque champ absent peut se rabattre sur un autre modèle disponible ;
 - les journées réellement incomplètes sont indiquées comme indisponibles ;
 - le calcul de confiance ignore les valeurs manquantes.
+
+
+# V19 — Restrictions d’usage de l’eau
+
+- données officielles VigiEau pour le profil particulier ;
+- niveau, type d’eau, usages, dates et arrêté préfectoral ;
+- bandeau d’alerte en alerte, alerte renforcée ou crise ;
+- dernière donnée valide conservée si l’API est indisponible ;
+- workflow `Update water restrictions` exécuté quatre fois par jour.
+
+Modifier `data/location.json` ou définir les variables GitHub `SITE_LATITUDE`, `SITE_LONGITUDE`, `SITE_NAME`, `SITE_INSEE`, puis lancer le workflow manuellement une première fois.

@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'meteo-lab-v18-3-null-values-fix';
+const CACHE_NAME = 'meteo-lab-v19-water-restrictions';
 const APP_SHELL = [
   './',
   './index.html',

@@ -1,0 +1,16 @@
+{
+  "status": "pending",
+  "source": "VigiEau",
+  "sourceUrl": "https://vigieau.gouv.fr/",
+  "generatedAt": null,
+  "location": {
+    "name": "Brûlain",
+    "latitude": 46.2006,
+    "longitude": -0.3194,
+    "insee": "79058"
+  },
+  "highestLevel": null,
+  "highestLevelLabel": "Première mise à jour en attente",
+  "zones": [],
+  "notice": "Informations fournies à titre indicatif. L'arrêté préfectoral fait foi."
+}
