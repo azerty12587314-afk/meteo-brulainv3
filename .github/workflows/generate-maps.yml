@@ -2,91 +2,80 @@ name: Generate weather maps
 
 on:
   workflow_dispatch:
-    inputs:
-      max_hour:
-        description: "Échéance maximale en heures"
-        required: false
-        default: "120"
   schedule:
-    - cron: "35 1,7,13,19 * * *"
+    # Toutes les 6 heures
+    - cron: "15 */6 * * *"
 
 permissions:
   contents: write
 
 concurrency:
-  group: weather-map-generation
+  group: generate-weather-maps
   cancel-in-progress: true
 
 jobs:
   generate:
     runs-on: ubuntu-latest
-    timeout-minutes: 55
+    timeout-minutes: 90
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-          cache: "pip"
-          cache-dependency-path: scripts/requirements-maps.txt
 
       - name: Install system libraries
         run: |
           sudo apt-get update
-          sudo apt-get install -y libeccodes0 libeccodes-dev
+          sudo apt-get install -y \
+            gdal-bin \
+            libgdal-dev \
+            libproj-dev \
+            proj-data \
+            proj-bin \
+            libgeos-dev
 
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r scripts/requirements-maps.txt
+
+          pip install \
+            matplotlib \
+            numpy \
+            scipy \
+            pandas \
+            pillow \
+            requests \
+            xarray \
+            netCDF4 \
+            cartopy \
+            pyproj \
+            shapely \
+            eccodes
+
+      - name: Create output folders
+        run: |
+          mkdir -p maps
+          mkdir -p maps/gfs
+          mkdir -p maps/icon
+          mkdir -p maps/ecmwf
+          mkdir -p maps/arpege
+          mkdir -p maps/arome
 
       - name: Generate GFS and ICON-EU maps
-        env:
-          MAX_HOUR: ${{ github.event.inputs.max_hour || '120' }}
         run: |
-          python scripts/render_maps.py \
-            --output . \
-            --models gfs icon_eu \
-            --max-hour "$MAX_HOUR" \
-            --step 6
-
-      - name: Generate ECMWF maps
-        continue-on-error: true
-        run: |
-          python scripts/render_openmeteo_models.py --output . --models ecmwf
-
-      - name: Pause before ARPEGE
-        run: sleep 60
-
-      - name: Generate ARPEGE maps
-        continue-on-error: true
-        run: |
-          python scripts/render_openmeteo_models.py --output . --models arpege
-
-      - name: Pause before AROME
-        run: sleep 60
-
-      - name: Generate AROME maps
-        continue-on-error: true
-        run: |
-          python scripts/render_openmeteo_models.py --output . --models arome
+          python scripts/render_maps.py
 
       - name: Show generated files
         run: |
-          find maps -maxdepth 4 -type f | sort
-          du -sh maps
+          find maps -type f
 
       - name: Commit generated maps
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add maps
-          if git diff --cached --quiet; then
-            echo "No map changes to commit."
-          else
-            git commit -m "chore: update V14.1 stable model maps"
-            git push
-          fi
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(maps): update forecast maps"
+          file_pattern: |
+            maps/**
