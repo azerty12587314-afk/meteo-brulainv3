@@ -22,7 +22,7 @@ def location():
     lat = os.getenv("SITE_LATITUDE") or cfg.get("latitude")
     lon = os.getenv("SITE_LONGITUDE") or cfg.get("longitude")
 
-   if not valid(lat) or not valid(lon):
+    if not valid(lat) or not valid(lon):
         raise ValueError(
             f"Coordonnées invalides : latitude={lat!r}, longitude={lon!r}"
         )
