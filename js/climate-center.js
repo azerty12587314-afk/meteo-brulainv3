@@ -3,7 +3,7 @@
 window.ClimateCenter = (() => {
   const STATIC_DATA_URL = './data/climate.json';
   const ARCHIVE_URL = 'https://archive-api.open-meteo.com/v1/archive';
-  const CACHE_PREFIX = 'meteo-climate-dynamic-v3:';
+  const CACHE_PREFIX = 'meteo-climate-dynamic-v4:';
   const CACHE_DURATION_MS = 24 * 60 * 60 * 1000;
   const NORMAL_START = '1991-01-01';
   const NORMAL_END = '2020-12-31';
@@ -165,13 +165,12 @@ window.ClimateCenter = (() => {
       temperature_unit: 'celsius',
       wind_speed_unit: 'kmh',
       precipitation_unit: 'mm',
-      cell_selection: 'land',
-      models: 'era5_land'
+      cell_selection: 'land'
     });
     return `${ARCHIVE_URL}?${params.toString()}`;
   }
 
-  async function fetchArchive(location, startDate, endDate, signal) {
+  async function fetchArchiveChunk(location, startDate, endDate, signal) {
     const response = await fetch(
       buildUrl(location, startDate, endDate),
       { cache: 'no-store', signal }
@@ -193,7 +192,7 @@ window.ClimateCenter = (() => {
 
     const daily = payload?.daily;
     if (!Array.isArray(daily?.time) || daily.time.length === 0) {
-      throw new Error('Aucune donnée climatique reçue');
+      throw new Error(`Aucune donnée climatique reçue (${startDate} à ${endDate})`);
     }
 
     return daily.time.map((day, index) => {
@@ -203,6 +202,49 @@ window.ClimateCenter = (() => {
       }
       return row;
     });
+  }
+
+  function yearChunks(startDate, endDate, yearsPerChunk = 8) {
+    const chunks = [];
+    let startYear = Number(startDate.slice(0, 4));
+    const endYear = Number(endDate.slice(0, 4));
+
+    while (startYear <= endYear) {
+      const chunkEndYear = Math.min(startYear + yearsPerChunk - 1, endYear);
+      const chunkStart = startYear === Number(startDate.slice(0, 4))
+        ? startDate
+        : `${startYear}-01-01`;
+      const chunkEnd = chunkEndYear === endYear
+        ? endDate
+        : `${chunkEndYear}-12-31`;
+
+      chunks.push([chunkStart, chunkEnd]);
+      startYear = chunkEndYear + 1;
+    }
+
+    return chunks;
+  }
+
+  async function fetchArchive(location, startDate, endDate, signal) {
+    const rows = [];
+    const chunks = yearChunks(startDate, endDate);
+
+    for (let index = 0; index < chunks.length; index += 1) {
+      const [chunkStart, chunkEnd] = chunks[index];
+      setStatus(
+        `Calcul climatologique pour ${location.name}… ` +
+        `${index + 1}/${chunks.length}`
+      );
+      const chunkRows = await fetchArchiveChunk(
+        location,
+        chunkStart,
+        chunkEnd,
+        signal
+      );
+      rows.push(...chunkRows);
+    }
+
+    return rows;
   }
 
   function values(rows, key) {
@@ -360,7 +402,7 @@ window.ClimateCenter = (() => {
       generatedAt: new Date().toISOString(),
       source: {
         name: 'Open-Meteo Historical Weather API',
-        model: 'ERA5-Land',
+        model: 'best_match',
         archiveEnd: endDate,
         dynamic: true
       },
@@ -385,15 +427,25 @@ window.ClimateCenter = (() => {
     return result;
   }
 
+  function hasMonthlySeries(value, key) {
+    const months = value?.normals?.monthly;
+    return Array.isArray(months) &&
+      months.length === 12 &&
+      months.some(month => finite(month?.[key]));
+  }
+
   function isComplete(value) {
     return Boolean(
       value &&
       Array.isArray(value?.normals?.monthly) &&
       value.normals.monthly.length === 12 &&
+      hasMonthlySeries(value, 'temperatureMean') &&
+      hasMonthlySeries(value, 'precipitation') &&
       Array.isArray(value?.recentYears) &&
       value.recentYears.length > 0 &&
       value?.currentYear &&
-      Array.isArray(value.currentYear.monthly)
+      Array.isArray(value.currentYear.monthly) &&
+      finite(value.currentYear.precipitation)
     );
   }
 
@@ -433,7 +485,7 @@ window.ClimateCenter = (() => {
 
     const generated = assembleData(normalized, rows, endDate);
     if (!isComplete(generated)) {
-      throw new Error('Données climatiques calculées incomplètes');
+      throw new Error('Séries climatiques incomplètes (pluie ou température absente)');
     }
 
     data = generated;
