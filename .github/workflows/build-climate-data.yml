@@ -33,12 +33,19 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-          cache: pip
 
       - name: Installer les dépendances
         run: |
           python -m pip install --upgrade pip
           python -m pip install "requests>=2.32,<3"
+
+      - name: Vérifier les fichiers requis
+        run: |
+          test -f data/location.json
+          test -f scripts/build_climate_data.py
+          test -f scripts/validate_climate_data.py
+          python -m py_compile scripts/build_climate_data.py
+          python -m py_compile scripts/validate_climate_data.py
 
       - name: Construire les données climatiques
         run: python scripts/build_climate_data.py
@@ -51,11 +58,15 @@ jobs:
           python - <<'PY'
           import json
           from pathlib import Path
-          data = json.loads(Path("data/climate.json").read_text(encoding="utf-8"))
+
+          path = Path("data/climate.json")
+          data = json.loads(path.read_text(encoding="utf-8"))
+
           print("Localisation :", data["location"]["name"])
           print("Normales :", len(data["normals"]["monthly"]), "mois")
           print("Années récentes :", len(data["recentYears"]))
           print("Année courante :", data["currentYear"]["year"])
+          print("Fichier :", path, "-", path.stat().st_size, "octets")
           PY
 
       - name: Publier climate.json
