@@ -1,3 +1,304 @@
 'use strict';
-window.ClimateCenter=(()=>{const U='./data/climate.json',$=i=>document.getElementById(i);let d,t,p,y;const n=(v,x=0)=>Number.isFinite(Number(v))?Number(v).toFixed(x):'--',fd=v=>{if(!v)return'--';const z=new Date(v);return Number.isNaN(z.getTime())?'--':new Intl.DateTimeFormat('fr-FR',{day:'2-digit',month:'short',year:'numeric'}).format(z)};function valid(x){return!!(x&&Array.isArray(x?.normals?.monthly)&&x.normals.monthly.length===12&&Array.isArray(x?.recentYears))}async function load(f=false){const r=await fetch(`${U}?v=${f?Date.now():'16.1'}`,{cache:'no-store'});if(!r.ok)throw Error(`HTTP ${r.status}`);const x=await r.json();if(!valid(x))throw Error('Données climatiques incomplètes');d=x;render()}function norm(k){return(d?.normals?.monthly||[]).reduce((s,m)=>s+(Number(m[k])||0),0)}function tempNorm(){const a=(d?.normals?.monthly||[]).map(m=>Number(m.temperatureMean)).filter(Number.isFinite);return a.length?a.reduce((s,v)=>s+v,0)/a.length:null}function render(){const c=d?.currentYear,nt=tempNorm(),nr=norm('precipitation'),ta=c&&nt!=null?Number(c.temperatureMean)-nt:null,rd=c&&nr?Number(c.precipitation)-nr:null;$('climate-updated-at').textContent=d?.generatedAt?new Intl.DateTimeFormat('fr-FR',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}).format(new Date(d.generatedAt)):'Workflow non exécuté';const cards=[['🌡️',`Température ${c?.year||''}`,`${n(c?.temperatureMean,1)} °C`,ta==null?'Anomalie indisponible':`${ta>=0?'+':''}${ta.toFixed(1)} °C`],['🌧️','Pluie cumulée',`${n(c?.precipitation)} mm`,rd==null?'Écart indisponible':`${rd>=0?'+':''}${rd.toFixed(0)} mm`],['❄️','Jours de gel',n(c?.frostDays),'Minimum < 0 °C'],['🔥','Jours ≥ 30 °C',n(c?.hotDays),'Jours très chauds'],['☀️','Ensoleillement',`${n(c?.sunshineHours)} h`,'Durée cumulée'],['🏠','Degrés-jours',n(c?.heatingDegreeDays),'Base 18 °C'],['🌙','Nuits tropicales',n(c?.tropicalNights),'Minimum ≥ 20 °C'],['🌾','Bilan hydrique',`${n(Number(c?.precipitation||0)-Number(c?.evapotranspiration||0))} mm`,'Pluie - ETP']];$('climate-kpi-grid').innerHTML=cards.map(a=>`<article class="climate-kpi"><span>${a[0]}</span><small>${a[1]}</small><strong>${a[2]}</strong><em>${a[3]}</em></article>`).join('');charts();records()}function opts(u){return{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{position:'bottom',labels:{usePointStyle:true}}},scales:{x:{grid:{display:false}},y:{title:{display:true,text:u}}}}}function charts(){if(typeof Chart==='undefined')return;const L=['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Août','Sep','Oct','Nov','Déc'],a=d?.normals?.monthly||[],b=d?.currentYear?.monthly||[];t?.destroy();t=new Chart($('climate-temperature-chart'),{type:'line',data:{labels:L,datasets:[{label:'Normale 1991–2020',data:a.map(m=>m.temperatureMean),borderWidth:2,pointRadius:2,tension:.25},{label:String(d?.currentYear?.year||'Année en cours'),data:b.map(m=>m.temperatureMean),borderWidth:2,pointRadius:2,tension:.25}]},options:opts('°C')});p?.destroy();p=new Chart($('climate-precipitation-chart'),{type:'bar',data:{labels:L,datasets:[{label:'Normale 1991–2020',data:a.map(m=>m.precipitation)},{label:String(d?.currentYear?.year||'Année en cours'),data:b.map(m=>m.precipitation)}]},options:opts('mm')});const r=d?.recentYears||[];y?.destroy();y=new Chart($('climate-years-chart'),{type:'bar',data:{labels:r.map(x=>x.year),datasets:[{label:'Pluie annuelle (mm)',data:r.map(x=>x.precipitation),yAxisID:'rain'},{label:'Température moyenne (°C)',data:r.map(x=>x.temperatureMean),type:'line',borderWidth:2,pointRadius:3,tension:.2,yAxisID:'temperature'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{x:{grid:{display:false}},rain:{position:'left',title:{display:true,text:'mm'}},temperature:{position:'right',grid:{drawOnChartArea:false},title:{display:true,text:'°C'}}}}})}function records(){const r=d?.records||{},a=[['🌡️','Température maximale',r.highestTemperature,'°C'],['❄️','Température minimale',r.lowestTemperature,'°C'],['🌧️','Journée la plus arrosée',r.wettestDay,'mm'],['💨','Rafale maximale',r.strongestGust,'km/h']];$('climate-record-grid').innerHTML=a.map(x=>`<article class="climate-record"><span>${x[0]}</span><div><small>${x[1]}</small><strong>${n(x[2]?.value,1)} ${x[3]}</strong><em>${fd(x[2]?.date)}${x[2]?.estimated?' · estimé':''}</em></div></article>`).join('')}async function refresh(){const b=$('climate-refresh');b.disabled=true;b.textContent='Chargement…';try{await load(true)}catch(e){console.error(e);$('climate-updated-at').textContent='Nouvelles données invalides — anciennes conservées'}finally{b.disabled=false;b.textContent='↻ Actualiser'}}async function init(){if(!$('climate-center-section'))return;$('climate-refresh')?.addEventListener('click',refresh);try{await load()}catch(e){console.error(e);$('climate-updated-at').textContent='Lance Build climate data'}}return{init,refresh}})();
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>window.ClimateCenter.init());else window.ClimateCenter.init();
+
+window.ClimateCenter = (() => {
+  const DATA_URL = './data/climate.json';
+  const byId = id => document.getElementById(id);
+  let data;
+  let temperatureChart;
+  let precipitationChart;
+  let yearsChart;
+
+  const numeric = value => {
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? parsed : null;
+  };
+
+  const displayNumber = (value, digits = 0) => {
+    const parsed = numeric(value);
+    return parsed === null ? '--' : parsed.toFixed(digits);
+  };
+
+  const formatDate = value => {
+    if (!value) return '--';
+    const parsed = new Date(value);
+    if (Number.isNaN(parsed.getTime())) return '--';
+    return new Intl.DateTimeFormat('fr-FR', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric'
+    }).format(parsed);
+  };
+
+  const isValid = value =>
+    Boolean(
+      value &&
+      Array.isArray(value?.normals?.monthly) &&
+      value.normals.monthly.length === 12 &&
+      Array.isArray(value?.recentYears) &&
+      value.recentYears.length > 0 &&
+      value?.currentYear
+    );
+
+  async function load(force = false) {
+    const version = force ? Date.now() : 'climate-2';
+    const response = await fetch(`${DATA_URL}?v=${version}`, { cache: 'no-store' });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+    const received = await response.json();
+    if (!isValid(received)) {
+      throw new Error('Données climatiques incomplètes');
+    }
+
+    data = received;
+    render();
+  }
+
+  function normalPrecipitation() {
+    return data.normals.monthly.reduce(
+      (sum, month) => sum + (numeric(month.precipitation) || 0),
+      0
+    );
+  }
+
+  function normalTemperature() {
+    const values = data.normals.monthly
+      .map(month => numeric(month.temperatureMean))
+      .filter(value => value !== null);
+    return values.length
+      ? values.reduce((sum, value) => sum + value, 0) / values.length
+      : null;
+  }
+
+  function render() {
+    const current = data.currentYear;
+    const meanNormal = normalTemperature();
+    const rainNormal = normalPrecipitation();
+    const tempAnomaly =
+      meanNormal === null || numeric(current.temperatureMean) === null
+        ? null
+        : Number(current.temperatureMean) - meanNormal;
+    const rainDifference =
+      !rainNormal || numeric(current.precipitation) === null
+        ? null
+        : Number(current.precipitation) - rainNormal;
+
+    const updated = byId('climate-updated-at');
+    if (updated) {
+      const locationName = data?.location?.name || '';
+      updated.textContent = `${locationName} · ${new Intl.DateTimeFormat('fr-FR', {
+        day: '2-digit',
+        month: 'short',
+        hour: '2-digit',
+        minute: '2-digit'
+      }).format(new Date(data.generatedAt))}`;
+    }
+
+    const cards = [
+      ['🌡️', `Température ${current.year || ''}`, `${displayNumber(current.temperatureMean, 1)} °C`,
+        tempAnomaly === null ? 'Anomalie indisponible' : `${tempAnomaly >= 0 ? '+' : ''}${tempAnomaly.toFixed(1)} °C`],
+      ['🌧️', 'Pluie cumulée', `${displayNumber(current.precipitation)} mm`,
+        rainDifference === null ? 'Écart indisponible' : `${rainDifference >= 0 ? '+' : ''}${rainDifference.toFixed(0)} mm`],
+      ['❄️', 'Jours de gel', displayNumber(current.frostDays), 'Minimum < 0 °C'],
+      ['🔥', 'Jours ≥ 30 °C', displayNumber(current.hotDays), 'Jours très chauds'],
+      ['☀️', 'Ensoleillement', `${displayNumber(current.sunshineHours)} h`, 'Durée cumulée'],
+      ['🏠', 'Degrés-jours', displayNumber(current.heatingDegreeDays), 'Base 18 °C'],
+      ['🌙', 'Nuits tropicales', displayNumber(current.tropicalNights), 'Minimum ≥ 20 °C'],
+      ['🌾', 'Bilan hydrique',
+        `${displayNumber((numeric(current.precipitation) || 0) - (numeric(current.evapotranspiration) || 0))} mm`,
+        'Pluie - ETP']
+    ];
+
+    const grid = byId('climate-kpi-grid');
+    if (grid) {
+      grid.innerHTML = cards.map(card => `
+        <article class="climate-kpi">
+          <span>${card[0]}</span>
+          <small>${card[1]}</small>
+          <strong>${card[2]}</strong>
+          <em>${card[3]}</em>
+        </article>
+      `).join('');
+    }
+
+    renderCharts();
+    renderRecords();
+  }
+
+  function chartOptions(unit) {
+    return {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { position: 'bottom', labels: { usePointStyle: true } }
+      },
+      scales: {
+        x: { grid: { display: false } },
+        y: { title: { display: true, text: unit } }
+      }
+    };
+  }
+
+  function renderCharts() {
+    if (typeof Chart === 'undefined') {
+      throw new Error('Chart.js n’est pas chargé');
+    }
+
+    const labels = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin',
+      'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc'];
+    const normals = data.normals.monthly;
+    const currentMonths = data.currentYear.monthly || [];
+
+    temperatureChart?.destroy();
+    temperatureChart = new Chart(byId('climate-temperature-chart'), {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [
+          {
+            label: 'Normale 1991–2020',
+            data: normals.map(month => month.temperatureMean),
+            borderWidth: 2,
+            pointRadius: 2,
+            tension: 0.25
+          },
+          {
+            label: String(data.currentYear.year || 'Année en cours'),
+            data: currentMonths.map(month => month.temperatureMean),
+            borderWidth: 2,
+            pointRadius: 2,
+            tension: 0.25
+          }
+        ]
+      },
+      options: chartOptions('°C')
+    });
+
+    precipitationChart?.destroy();
+    precipitationChart = new Chart(byId('climate-precipitation-chart'), {
+      type: 'bar',
+      data: {
+        labels,
+        datasets: [
+          {
+            label: 'Normale 1991–2020',
+            data: normals.map(month => month.precipitation)
+          },
+          {
+            label: String(data.currentYear.year || 'Année en cours'),
+            data: currentMonths.map(month => month.precipitation)
+          }
+        ]
+      },
+      options: chartOptions('mm')
+    });
+
+    const recentYears = data.recentYears;
+    yearsChart?.destroy();
+    yearsChart = new Chart(byId('climate-years-chart'), {
+      type: 'bar',
+      data: {
+        labels: recentYears.map(item => item.year),
+        datasets: [
+          {
+            label: 'Pluie annuelle (mm)',
+            data: recentYears.map(item => item.precipitation),
+            yAxisID: 'rain'
+          },
+          {
+            label: 'Température moyenne (°C)',
+            data: recentYears.map(item => item.temperatureMean),
+            type: 'line',
+            borderWidth: 2,
+            pointRadius: 3,
+            tension: 0.2,
+            yAxisID: 'temperature'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { position: 'bottom' } },
+        scales: {
+          x: { grid: { display: false } },
+          rain: {
+            position: 'left',
+            title: { display: true, text: 'mm' }
+          },
+          temperature: {
+            position: 'right',
+            grid: { drawOnChartArea: false },
+            title: { display: true, text: '°C' }
+          }
+        }
+      }
+    });
+  }
+
+  function renderRecords() {
+    const records = data.records || {};
+    const cards = [
+      ['🌡️', 'Température maximale', records.highestTemperature, '°C'],
+      ['❄️', 'Température minimale', records.lowestTemperature, '°C'],
+      ['🌧️', 'Journée la plus arrosée', records.wettestDay, 'mm'],
+      ['💨', 'Rafale maximale', records.strongestGust, 'km/h']
+    ];
+
+    const grid = byId('climate-record-grid');
+    if (!grid) return;
+
+    grid.innerHTML = cards.map(card => `
+      <article class="climate-record">
+        <span>${card[0]}</span>
+        <div>
+          <small>${card[1]}</small>
+          <strong>${displayNumber(card[2]?.value, 1)} ${card[3]}</strong>
+          <em>${formatDate(card[2]?.date)}${card[2]?.estimated ? ' · réanalyse' : ''}</em>
+        </div>
+      </article>
+    `).join('');
+  }
+
+  async function refresh() {
+    const button = byId('climate-refresh');
+    if (button) {
+      button.disabled = true;
+      button.textContent = 'Chargement…';
+    }
+
+    try {
+      await load(true);
+    } catch (error) {
+      console.error(error);
+      const updated = byId('climate-updated-at');
+      if (updated) updated.textContent = 'Données indisponibles — lance Build climate data';
+    } finally {
+      if (button) {
+        button.disabled = false;
+        button.textContent = '↻ Actualiser';
+      }
+    }
+  }
+
+  async function init() {
+    if (!byId('climate-center-section')) return;
+    byId('climate-refresh')?.addEventListener('click', refresh);
+
+    try {
+      await load();
+    } catch (error) {
+      console.error(error);
+      const updated = byId('climate-updated-at');
+      if (updated) updated.textContent = 'Lance Build climate data';
+    }
+  }
+
+  return { init, refresh };
+})();
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => window.ClimateCenter.init());
+} else {
+  window.ClimateCenter.init();
+}
