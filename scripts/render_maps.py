@@ -78,6 +78,11 @@ import requests
 import xarray as xr
 
 try:
+    from ecmwf.opendata import Client as EcmwfClient
+except ImportError:
+    EcmwfClient = None
+
+try:
     import cartopy.crs as ccrs
     import cartopy.feature as cfeature
 except ImportError as exc:
@@ -575,10 +580,95 @@ def generate_icon(output_root: Path, hours: list[int]) -> dict[str, Any]:
     }
 
 
+
+def generate_ecmwf(output_root: Path, hours: list[int]) -> dict[str, Any]:
+    """Generate ECMWF IFS open-data maps (0.25°, oper control forecast)."""
+    if EcmwfClient is None:
+        raise RuntimeError("ecmwf-opendata is required")
+
+    run = latest_run(8, (0, 12))
+    run.model = "ecmwf"
+    client = EcmwfClient(source="ecmwf")
+    temp_dir = Path(tempfile.mkdtemp(prefix="ecmwf_"))
+    variables = {
+        key: {"label": VARIABLE_LABELS[key], "legend": VARIABLE_LEGENDS.get(key), "frames": []}
+        for key in ("temp2m", "mslp", "precip", "wind10", "z500_mslp")
+    }
+
+    try:
+        for hour in hours:
+            valid = run.date + timedelta(hours=hour)
+            subtitle = (
+                f"Run {run.date:%Y-%m-%d %HZ} · "
+                f"Validité {valid:%Y-%m-%d %H UTC} · +{hour} h"
+            )
+            surface = temp_dir / f"ifs_surface_f{hour:03d}.grib2"
+            upper = temp_dir / f"ifs_500_f{hour:03d}.grib2"
+
+            try:
+                client.retrieve(
+                    date=run.date.strftime("%Y%m%d"), time=run.cycle,
+                    step=hour, stream="oper", type="fc",
+                    param=["2t", "msl", "10u", "10v", "tp"],
+                    target=str(surface),
+                )
+            except Exception as exc:
+                print(f"ECMWF {hour:03d} surface: {exc}", file=sys.stderr)
+                continue
+
+            try:
+                client.retrieve(
+                    date=run.date.strftime("%Y%m%d"), time=run.cycle,
+                    step=hour, stream="oper", type="fc",
+                    param="gh", levelist=500, target=str(upper),
+                )
+            except Exception as exc:
+                print(f"ECMWF {hour:03d} 500 hPa: {exc}", file=sys.stderr)
+
+            fields: dict[str, xr.DataArray] = {}
+            filters = {
+                "temp2m": (surface, {"typeOfLevel": "heightAboveGround", "level": 2, "shortName": "2t"}),
+                "mslp": (surface, {"typeOfLevel": "meanSea", "shortName": "msl"}),
+                "precip": (surface, {"typeOfLevel": "surface", "shortName": "tp"}),
+                "u10": (surface, {"typeOfLevel": "heightAboveGround", "level": 10, "shortName": "10u"}),
+                "v10": (surface, {"typeOfLevel": "heightAboveGround", "level": 10, "shortName": "10v"}),
+            }
+            if upper.exists():
+                filters["z500"] = (upper, {"typeOfLevel": "isobaricInhPa", "level": 500, "shortName": "gh"})
+
+            for name, (path, keys) in filters.items():
+                try:
+                    field = first_data_var(open_grib(path, **keys))
+                    fields[name] = field * 1000.0 if name == "precip" else field
+                except Exception as exc:
+                    print(f"ECMWF {hour:03d} {name}: {exc}", file=sys.stderr)
+
+            specs = []
+            if "temp2m" in fields: specs.append(("temp2m", draw_temp, (fields["temp2m"],)))
+            if "mslp" in fields: specs.append(("mslp", draw_mslp, (fields["mslp"],)))
+            if "precip" in fields: specs.append(("precip", draw_precip, (fields["precip"],)))
+            if "u10" in fields and "v10" in fields:
+                specs.append(("wind10", draw_wind, (fields["u10"], fields["v10"])))
+            if "z500" in fields and "mslp" in fields:
+                specs.append(("z500_mslp", draw_z500_mslp, (fields["z500"], fields["mslp"])))
+
+            for key, renderer, args in specs:
+                rel = Path("maps") / "ecmwf" / key / f"f{hour:03d}.webp"
+                renderer(*args, f"ECMWF IFS · {VARIABLE_LABELS[key]}", subtitle, output_root / rel)
+                variables[key]["frames"].append({
+                    "forecastHour": hour, "validTime": valid.isoformat(), "image": "./" + rel.as_posix()
+                })
+    finally:
+        shutil.rmtree(temp_dir, ignore_errors=True)
+
+    variables = {key: value for key, value in variables.items() if value["frames"]}
+    return {"label": "ECMWF IFS", "run": run.date.isoformat(), "variables": variables}
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", default=".")
-    parser.add_argument("--models", nargs="+", default=["gfs", "icon_eu"])
+    parser.add_argument("--models", nargs="+", default=["gfs", "icon_eu", "ecmwf"])
     parser.add_argument("--max-hour", type=int, default=120)
     parser.add_argument("--step", type=int, default=6)
     args = parser.parse_args()
@@ -611,6 +701,12 @@ def main() -> int:
             manifest["models"]["icon_eu"] = generate_icon(root, hours)
         except Exception as exc:
             print(f"ICON generation failed: {exc}", file=sys.stderr)
+
+    if "ecmwf" in args.models:
+        try:
+            manifest["models"]["ecmwf"] = generate_ecmwf(root, hours)
+        except Exception as exc:
+            print(f"ECMWF generation failed: {exc}", file=sys.stderr)
 
     (maps_dir / "manifest.json").write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2),

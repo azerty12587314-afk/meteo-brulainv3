@@ -85,6 +85,8 @@ window.InteractiveWeatherMap = (() => {
   let pointMarker = null;
   let liveLayerGroup = null;
   let windLayer = null;
+  let alertLayer = null;
+  let alertsEnabled = true;
   let liveData = [];
   let frames = [];
   let currentFrame = 0;
@@ -153,6 +155,7 @@ window.InteractiveWeatherMap = (() => {
     );
 
     liveLayerGroup = L.layerGroup().addTo(map);
+    alertLayer = L.layerGroup().addTo(map);
 
     L.control.layers(
       {
@@ -180,6 +183,26 @@ window.InteractiveWeatherMap = (() => {
     });
 
     return true;
+  }
+
+
+  async function loadAlerts() {
+    if (!alertLayer) return;
+    try {
+      const response = await fetch('./surveillance/data.json?v=' + Date.now(), { cache: 'no-store' });
+      if (!response.ok) return;
+      const payload = await response.json();
+      alertLayer.clearLayers();
+      const items = payload.alerts || payload.signals || [];
+      items.forEach(item => {
+        const lat = Number(item.latitude ?? item.lat);
+        const lon = Number(item.longitude ?? item.lon);
+        if (!Number.isFinite(lat) || !Number.isFinite(lon)) return;
+        L.circleMarker([lat, lon], { radius: 9, weight: 2, fillOpacity: .72 })
+          .bindPopup(`<strong>${item.title || item.name || 'Alerte météo'}</strong><br>${item.description || item.level || ''}`)
+          .addTo(alertLayer);
+      });
+    } catch (error) { console.warn('Alertes cartographiques indisponibles', error); }
   }
 
   async function loadRadarFrames() {
@@ -780,6 +803,7 @@ window.InteractiveWeatherMap = (() => {
 
     $('map-geolocate')?.addEventListener('click', geolocate);
     $('map-toggle-radar')?.addEventListener('click', toggleRadar);
+    $('map-toggle-alerts')?.addEventListener('click', event => { alertsEnabled=!alertsEnabled; event.currentTarget.setAttribute('aria-pressed', String(alertsEnabled)); event.currentTarget.textContent=alertsEnabled?'🚨 Alertes':'🚨 Alertes masquées'; if(alertsEnabled) alertLayer?.addTo(map); else if(alertLayer&&map.hasLayer(alertLayer)) map.removeLayer(alertLayer); });
     $('map-toggle-satellite')?.addEventListener('click', toggleSatellite);
     $('map-radar-play')?.addEventListener('click', toggleAnimation);
     $('map-load-live-data')?.addEventListener('click', loadLiveData);
@@ -831,7 +855,7 @@ window.InteractiveWeatherMap = (() => {
     bind();
 
     try {
-      await loadRadarFrames();
+      await Promise.all([loadRadarFrames(), loadAlerts()]);
     } catch (error) {
       console.error(error);
       status('Radar temporairement indisponible', true);

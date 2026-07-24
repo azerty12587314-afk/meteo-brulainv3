@@ -9,9 +9,7 @@ window.ModelMapPlayer = (() => {
       unit: '°C',
       ticks: [-30, -20, -10, 0, 10, 20, 30, 40],
       gradient:
-        'linear-gradient(90deg,#2b0a5a,#36228c,#2547d9,#1789ff,#18d7e8,#21f2b2,#4dff63,#b8ff24,#fff000,#ffb000,#ff6800,#ff2500,#b80000,#6d0000)' +
-        '#1bcfd4,#24eca6,#61fc6c,#a4fc3c,#d9ef36,#f9c63a,' +
-        '#fb8734,#ed4a27,#c91d15,#7a0403)'
+        'linear-gradient(90deg,#2b0a5a,#36228c,#2547d9,#1789ff,#18d7e8,#21f2b2,#4dff63,#b8ff24,#fff000,#ffb000,#ff6800,#ff2500,#b80000,#6d0000)'
     },
     mslp: {
       title: 'Pression au niveau de la mer',
@@ -26,8 +24,7 @@ window.ModelMapPlayer = (() => {
       unit: 'mm',
       ticks: [0.1, 1, 5, 10, 20, 50, 100],
       gradient:
-        'linear-gradient(90deg,#dff7ff,#8fe7ff,#29b6f6,#0066ff,#1840c9,#6026b8,#a316c6,#e500a4,#ff1744,#ff7a00,#fff200)' +
-        '#eab308,#f97316,#dc2626,#7e22ce)'
+        'linear-gradient(90deg,#dff7ff,#8fe7ff,#29b6f6,#0066ff,#1840c9,#6026b8,#a316c6,#e500a4,#ff1744,#ff7a00,#fff200)'
     },
     wind10: {
       title: 'Vitesse du vent à 10 m',

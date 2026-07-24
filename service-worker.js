@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'meteo-lab-v20-1-workflows';
+const CACHE_NAME = 'meteo-lab-v4-20260724';
 const APP_SHELL = [
   './',
   './index.html',
@@ -9,6 +9,7 @@ const APP_SHELL = [
   './js/surveillance-center.js',
   './js/climate-center.js',
   './js/site-data-status.js',
+  './js/weather-history.js',
   './js/site-data.js',
   './assets/icon.svg',
   './js/config.js',
@@ -52,7 +53,9 @@ self.addEventListener('fetch', event => {
   const isApi = [
     'api.open-meteo.com',
     'air-quality-api.open-meteo.com',
-    'geocoding-api.open-meteo.com'
+    'geocoding-api.open-meteo.com',
+    'archive-api.open-meteo.com',
+    'api.rainviewer.com'
   ].includes(url.hostname);
 
   if (isApi) {
@@ -71,6 +74,14 @@ self.addEventListener('fetch', event => {
   const isFreshAsset =
     request.mode === 'navigate' ||
     ['script', 'style'].includes(request.destination);
+
+  if (request.destination === 'image' && url.origin === self.location.origin) {
+    event.respondWith(caches.match(request).then(cached => {
+      const fresh = fetch(request).then(response => { if (response.ok) caches.open(CACHE_NAME).then(cache => cache.put(request, response.clone())); return response; });
+      return cached || fresh;
+    }));
+    return;
+  }
 
   if (isFreshAsset) {
     event.respondWith(

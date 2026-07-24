@@ -6,16 +6,16 @@
 <meta name="description" content="Tableau de bord météo moderne pour Brûlain et toute autre ville.">
 <meta name="theme-color" content="#0ea5e9">
 <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
-<title>Météo Lab V2</title>
+<title>Météo Lab V4</title>
 <link rel="manifest" href="manifest.json">
-<link rel="stylesheet" href="style.css?v=20">
+<link rel="stylesheet" href="style.css?v=24">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 </head>
 <body>
 <header class="hero">
-  <h1>🌤️ Météo Lab V2</h1>
+  <h1>🌤️ Météo Lab V4</h1>
   <p id="location">Brûlain</p>
   <div id="current-weather">
     <div id="weather-icon">☀️</div>
@@ -332,7 +332,12 @@
   </p>
 </section>
 
-<section class="card climate-center-card" id="climate-center-section"><div class="climate-center-heading"><div><h2>📊 Centre climatologique</h2><p class="chart-subtitle">Normales 1991–2020, année en cours, records et indicateurs locaux.</p></div><div class="climate-center-actions"><span id="climate-updated-at" class="climate-updated-at">Chargement…</span><button id="climate-refresh" type="button">↻ Actualiser</button></div></div><div id="climate-kpi-grid" class="climate-kpi-grid"></div><div class="climate-chart-grid"><article class="climate-subcard"><h3>Températures mensuelles</h3><div class="climate-chart-shell"><canvas id="climate-temperature-chart"></canvas></div></article><article class="climate-subcard"><h3>Précipitations mensuelles</h3><div class="climate-chart-shell"><canvas id="climate-precipitation-chart"></canvas></div></article><article class="climate-subcard"><h3>Comparaison des dernières années</h3><div class="climate-chart-shell"><canvas id="climate-years-chart"></canvas></div></article><article class="climate-subcard"><h3>Records locaux de la réanalyse</h3><div id="climate-record-grid" class="climate-record-grid"></div></article></div><p class="climate-disclaimer">Ces valeurs proviennent d’une réanalyse climatique locale et non d’une station officielle implantée sur le terrain.</p></section>
+<section class="card climate-center-card" id="climate-center-section"><div class="climate-center-heading"><div><h2>📊 Centre climatologique</h2><p class="chart-subtitle">Normales 1991–2020, année en cours, records et indicateurs locaux.</p></div><div class="climate-center-actions"><span id="climate-updated-at" class="climate-updated-at">Chargement…</span><button id="climate-refresh" type="button">↻ Actualiser</button></div></div><div id="climate-kpi-grid" class="climate-kpi-grid"></div><div class="climate-chart-grid"><article class="climate-subcard"><h3>Températures mensuelles</h3><div class="climate-chart-shell"><canvas id="climate-temperature-chart"></canvas></div></article><article class="climate-subcard"><h3>Précipitations mensuelles</h3><div class="climate-chart-shell"><canvas id="climate-precipitation-chart"></canvas></div></article><article class="climate-subcard"><h3>Comparaison des dernières années</h3><div class="climate-chart-shell"><canvas id="climate-years-chart"></canvas></div></article><article class="climate-subcard"><h3>Records locaux de la réanalyse</h3><div id="climate-record-grid" class="climate-record-grid"></div></article><article class="climate-subcard"><h3>Anomalies annuelles</h3><div class="climate-chart-shell"><canvas id="climate-anomaly-chart"></canvas></div></article><article class="climate-subcard"><h3>Tendance sur 30 ans</h3><div class="climate-chart-shell"><canvas id="climate-trend-chart"></canvas></div></article></div><p class="climate-disclaimer">Ces valeurs proviennent d’une réanalyse climatique locale et non d’une station officielle implantée sur le terrain.</p></section>
+
+<section class="card weather-history-card" id="weather-history-section">
+  <div class="weather-history-heading"><div><h2>🌪️ Chronologie météo marquante</h2><p class="chart-subtitle">Épisodes extrêmes détectés dans la réanalyse locale et records associés à la ville sélectionnée.</p></div><select id="weather-history-filter"><option value="all">Tous les événements</option><option value="temperature">Températures</option><option value="rain">Pluie</option><option value="wind">Vent</option></select></div>
+  <div id="weather-history-list" class="weather-history-list" aria-live="polite"></div>
+</section>
 <section class="card site-data-status-card" id="site-data-status-card">
   <div class="site-data-status-heading">
     <div>
@@ -464,6 +469,7 @@
     <button id="map-toggle-radar" type="button" aria-pressed="true">
       🌧️ Radar actif
     </button>
+    <button id="map-toggle-alerts" type="button" aria-pressed="true">🚨 Alertes</button>
     <button id="map-toggle-satellite" type="button" aria-pressed="false">
       🛰️ Satellite
     </button>
@@ -576,27 +582,28 @@
 </main>
 
 <footer>
-<p>Météo Lab V2 © 2026</p>
+<p>Météo Lab V4 © 2026</p>
 </footer>
 
-<script defer src="js/config.js?v=20"></script>
-<script defer src="js/api.js?v=20"></script>
-<script defer src="js/weather.js?v=20"></script>
-<script defer src="js/charts.js?v=20"></script>
-<script defer src="js/ui.js?v=20"></script>
-<script defer src="js/animations.js?v=20"></script>
-<script defer src="js/radar.js?v=20"></script>
-<script defer src="js/europe-maps.js?v=20"></script>
-<script defer src="js/model-player.js?v=20"></script>
-<script defer src="js/model-comparator.js?v=20"></script>
-<script defer src="js/interactive-map.js?v=20"></script>
-<script defer src="js/site-data.js?v=12"></script>
-<script defer src="js/climate-center.js?v=15"></script>
-<script defer src="js/surveillance-center.js?v=16"></script>
-<script defer src="js/site-data-status.js?v=12"></script>
-<script defer src="js/observations-config.js?v=11.2"></script>
-<script defer src="js/observations.js?v=11.2"></script>
-<script defer src="js/water-restrictions.js?v=20"></script>
-<script defer src="js/app.js?v=20"></script>
+<script defer src="js/config.js?v=24"></script>
+<script defer src="js/api.js?v=24"></script>
+<script defer src="js/weather.js?v=24"></script>
+<script defer src="js/charts.js?v=24"></script>
+<script defer src="js/ui.js?v=24"></script>
+<script defer src="js/animations.js?v=24"></script>
+<script defer src="js/radar.js?v=24"></script>
+<script defer src="js/europe-maps.js?v=24"></script>
+<script defer src="js/model-player.js?v=24"></script>
+<script defer src="js/model-comparator.js?v=24"></script>
+<script defer src="js/interactive-map.js?v=24"></script>
+<script defer src="js/site-data.js?v=24"></script>
+<script defer src="js/climate-center.js?v=24"></script>
+<script defer src="js/surveillance-center.js?v=24"></script>
+<script defer src="js/site-data-status.js?v=24"></script>
+<script defer src="js/weather-history.js?v=24"></script>
+<script defer src="js/observations-config.js?v=24"></script>
+<script defer src="js/observations.js?v=24"></script>
+<script defer src="js/water-restrictions.js?v=24"></script>
+<script defer src="js/app.js?v=24"></script>
 </body>
 </html>
