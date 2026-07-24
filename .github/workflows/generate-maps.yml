@@ -60,16 +60,16 @@ jobs:
       - name: Vérifier les dépendances
         run: |
           python --version
-          python -c "import matplotlib, numpy, xarray, cfgrib, eccodes, cartopy; print('Dépendances OK')"
+          python -c "import matplotlib, numpy, xarray, cfgrib, eccodes, cartopy, ecmwf.opendata; print('Dépendances OK')"
 
-      - name: Générer les cartes GFS et ICON-EU
+      - name: Générer les cartes GFS, ICON-EU et ECMWF IFS
         env:
           MAX_HOUR: ${{ github.event.inputs.max_hour || '120' }}
           MAP_STEP: ${{ github.event.inputs.step || '6' }}
         run: |
           python scripts/render_maps.py \
             --output . \
-            --models gfs icon_eu \
+            --models gfs icon_eu ecmwf \
             --max-hour "$MAX_HOUR" \
             --step "$MAP_STEP"
 
