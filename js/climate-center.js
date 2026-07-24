@@ -683,8 +683,7 @@ window.ClimateCenter = (() => {
     const normals = data.normals.monthly;
     const currentMonths = data.currentYear.monthly || [];
 
-    temperatureChart?.destroy();
-    temperatureChart = new Chart(byId('climate-temperature-chart'), {
+    temperatureChart = window.MeteoChartManager.create('climate-temperature', byId('climate-temperature-chart'), {
       type: 'line',
       data: {
         labels,
@@ -712,8 +711,7 @@ window.ClimateCenter = (() => {
       options: chartOptions('°C')
     });
 
-    precipitationChart?.destroy();
-    precipitationChart = new Chart(byId('climate-precipitation-chart'), {
+    precipitationChart = window.MeteoChartManager.create('climate-precipitation', byId('climate-precipitation-chart'), {
       type: 'bar',
       data: {
         labels,
@@ -738,8 +736,7 @@ window.ClimateCenter = (() => {
     });
 
     const recentYears = data.recentYears;
-    yearsChart?.destroy();
-    yearsChart = new Chart(byId('climate-years-chart'), {
+    yearsChart = window.MeteoChartManager.create('climate-years', byId('climate-years-chart'), {
       type: 'bar',
       data: {
         labels: recentYears.map(item => item.year),
@@ -872,8 +869,7 @@ window.ClimateCenter = (() => {
 
     const temperatureCanvas = byId('climate-temperature-anomaly-chart');
     if (temperatureCanvas) {
-      temperatureAnomalyChart?.destroy();
-      temperatureAnomalyChart = new Chart(temperatureCanvas, {
+      temperatureAnomalyChart = window.MeteoChartManager.create('climate-temperature-anomaly', temperatureCanvas, {
         type: 'bar',
         data: {
           labels,
@@ -891,8 +887,7 @@ window.ClimateCenter = (() => {
 
     const rainCanvas = byId('climate-rain-anomaly-chart');
     if (rainCanvas) {
-      rainAnomalyChart?.destroy();
-      rainAnomalyChart = new Chart(rainCanvas, {
+      rainAnomalyChart = window.MeteoChartManager.create('climate-rain-anomaly', rainCanvas, {
         type: 'bar',
         data: {
           labels,
@@ -910,8 +905,7 @@ window.ClimateCenter = (() => {
 
     const trendCanvas = byId('climate-trend-chart');
     if (trendCanvas) {
-      trendChart?.destroy();
-      trendChart = new Chart(trendCanvas, {
+      trendChart = window.MeteoChartManager.create('climate-trend', trendCanvas, {
         type: 'line',
         data: {
           labels,

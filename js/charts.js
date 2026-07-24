@@ -83,8 +83,7 @@ window.MeteoCharts = (() => {
         tension: 0.2
       }));
 
-    if (modelChart) modelChart.destroy();
-    modelChart = new Chart(canvas, {
+    modelChart = window.MeteoChartManager.create('forecast-models', canvas, {
       type: 'line',
       data: { labels, datasets },
       options: {
@@ -158,8 +157,7 @@ window.MeteoCharts = (() => {
     const values = hourly[def.key] || [];
     const length = Math.min(48, hourly.time.length, values.length);
 
-    if (aromeChart) aromeChart.destroy();
-    aromeChart = new Chart(canvas, {
+    aromeChart = window.MeteoChartManager.create('forecast-arome', canvas, {
       type: def.chartType,
       data: {
         labels: hourly.time.slice(0, length).map(time =>
@@ -205,8 +203,7 @@ window.MeteoCharts = (() => {
       labels: { color: '#f8fafc', padding: 16 }
     };
 
-    if (ecmwfLongChart) ecmwfLongChart.destroy();
-    ecmwfLongChart = new Chart(canvas, {
+    ecmwfLongChart = window.MeteoChartManager.create('forecast-ecmwf-long', canvas, {
       type: 'line',
       data: {
         labels: hourly.time.slice(start, end).map(time =>
@@ -229,6 +226,7 @@ window.MeteoCharts = (() => {
   }
 
   function destroy() {
+    ['forecast-models', 'forecast-arome', 'forecast-ecmwf-long'].forEach(key => window.MeteoChartManager?.destroy(key));
     [modelChart, aromeChart, ecmwfLongChart].forEach(chart => chart?.destroy());
     modelChart = aromeChart = ecmwfLongChart = null;
   }

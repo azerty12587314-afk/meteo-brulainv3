@@ -1,12 +1,13 @@
 'use strict';
 
-const CACHE_NAME = 'meteo-lab-v4.2-20260724';
+const CACHE_NAME = 'meteo-lab-v5-chart-manager-20260724';
 const APP_SHELL = [
   './',
   './index.html',
   './style.css',
   './manifest.json',
   './js/surveillance-center.js',
+  './js/chart-manager.js',
   './js/climate-center.js',
   './js/site-data-status.js',
   './js/weather-history.js',

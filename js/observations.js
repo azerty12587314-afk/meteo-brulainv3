@@ -230,6 +230,8 @@ window.ObservationCenter = (() => {
   }
 
   function destroyAirCharts() {
+    window.MeteoChartManager?.destroy('observations-air');
+    window.MeteoChartManager?.destroy('observations-pollen');
     airChart?.destroy();
     pollenChart?.destroy();
     airChart = null;
@@ -254,14 +256,15 @@ window.ObservationCenter = (() => {
       }).format(new Date(time))
     );
 
-    airChart?.destroy();
-    airChart = new Chart($('air-observation-chart'), {
+    airChart = window.MeteoChartManager.create('observations-air', $('air-observation-chart'), {
       type: 'line',
       data: {
         labels,
         datasets: [
           {
             label: 'AQI européen',
+            borderColor: '#38bdf8',
+            backgroundColor: 'rgba(56,189,248,.14)',
             data: hourly.european_aqi?.slice(0, length) || [],
             borderWidth: 2,
             pointRadius: 0,
@@ -270,6 +273,8 @@ window.ObservationCenter = (() => {
           },
           {
             label: 'PM2.5',
+            borderColor: '#f472b6',
+            backgroundColor: 'rgba(244,114,182,.14)',
             data: hourly.pm2_5?.slice(0, length) || [],
             borderWidth: 2,
             pointRadius: 0,
@@ -278,6 +283,8 @@ window.ObservationCenter = (() => {
           },
           {
             label: 'PM10',
+            borderColor: '#a78bfa',
+            backgroundColor: 'rgba(167,139,250,.14)',
             data: hourly.pm10?.slice(0, length) || [],
             borderWidth: 2,
             pointRadius: 0,
@@ -290,21 +297,23 @@ window.ObservationCenter = (() => {
     });
 
     const pollenDatasets = [
-      ['Graminées', hourly.grass_pollen],
-      ['Bouleau', hourly.birch_pollen],
-      ['Aulne', hourly.alder_pollen],
-      ['Armoise', hourly.mugwort_pollen],
-      ['Ambroisie', hourly.ragweed_pollen]
-    ].map(([label, values]) => ({
+      ['Graminées', hourly.grass_pollen, '#84cc16'],
+      ['Bouleau', hourly.birch_pollen, '#fbbf24'],
+      ['Aulne', hourly.alder_pollen, '#fb923c'],
+      ['Armoise', hourly.mugwort_pollen, '#a78bfa'],
+      ['Ambroisie', hourly.ragweed_pollen, '#f472b6']
+    ].map(([label, values, color]) => ({
       label,
       data: values?.slice(0, length) || [],
+      borderColor: color,
+      backgroundColor: 'transparent',
+      pointBackgroundColor: color,
       borderWidth: 2,
       pointRadius: 0,
       tension: .25
     }));
 
-    pollenChart?.destroy();
-    pollenChart = new Chart($('pollen-observation-chart'), {
+    pollenChart = window.MeteoChartManager.create('observations-pollen', $('pollen-observation-chart'), {
       type: 'line',
       data: {
         labels,
