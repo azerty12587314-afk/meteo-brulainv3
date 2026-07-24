@@ -26,7 +26,8 @@ window.ClimateCenter = (() => {
   let temperatureChart = null;
   let precipitationChart = null;
   let yearsChart = null;
-  let anomalyChart = null;
+  let temperatureAnomalyChart = null;
+  let rainAnomalyChart = null;
   let trendChart = null;
   let requestController = null;
   let requestSequence = 0;
@@ -769,6 +770,34 @@ window.ClimateCenter = (() => {
     return values.map((_, index) => Number((intercept + slope * index).toFixed(2)));
   }
 
+  function anomalyOptions(unit, positiveLabel, negativeLabel) {
+    return {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            afterLabel(context) {
+              const value = Number(context.raw);
+              if (!Number.isFinite(value) || value === 0) return 'Conforme à la normale';
+              return value > 0 ? positiveLabel : negativeLabel;
+            }
+          }
+        }
+      },
+      scales: {
+        x: { grid: { display: false } },
+        y: {
+          title: { display: true, text: unit },
+          suggestedMin: unit === '°C' ? -1 : -30,
+          suggestedMax: unit === '°C' ? 1 : 30
+        }
+      }
+    };
+  }
+
   function renderAdvancedCharts() {
     if (typeof Chart === 'undefined') return;
     const years = data.recentYears || [];
@@ -776,19 +805,66 @@ window.ClimateCenter = (() => {
     const annualRainNormal = normalPrecipitation();
     const labels = years.map(item => item.year);
     const tempValues = years.map(item => numeric(item.temperatureMean));
-    const anomalies = tempValues.map(value => value === null || baselineTemp === null ? null : Number((value - baselineTemp).toFixed(2)));
-    const rainAnomalies = years.map(item => { const value=numeric(item.precipitation); return value===null || !annualRainNormal ? null : Number((100*(value-annualRainNormal)/annualRainNormal).toFixed(1)); });
+    const temperatureAnomalies = tempValues.map(value =>
+      value === null || baselineTemp === null
+        ? null
+        : Number((value - baselineTemp).toFixed(2))
+    );
+    const rainAnomalies = years.map(item => {
+      const value = numeric(item.precipitation);
+      return value === null || !annualRainNormal
+        ? null
+        : Number((100 * (value - annualRainNormal) / annualRainNormal).toFixed(1));
+    });
 
-    const anomalyCanvas = byId('climate-anomaly-chart');
-    if (anomalyCanvas) {
-      anomalyChart?.destroy();
-      anomalyChart = new Chart(anomalyCanvas, { type:'bar', data:{labels,datasets:[{label:'Anomalie température (°C)',data:anomalies},{label:'Anomalie pluie (%)',data:rainAnomalies,type:'line',yAxisID:'rainPct',borderWidth:2,tension:.2}]}, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{x:{grid:{display:false}},y:{title:{display:true,text:'°C'}},rainPct:{position:'right',grid:{drawOnChartArea:false},title:{display:true,text:'%'}}}} });
+    const temperatureCanvas = byId('climate-temperature-anomaly-chart');
+    if (temperatureCanvas) {
+      temperatureAnomalyChart?.destroy();
+      temperatureAnomalyChart = new Chart(temperatureCanvas, {
+        type: 'bar',
+        data: {
+          labels,
+          datasets: [{
+            label: 'Écart à la normale (°C)',
+            data: temperatureAnomalies,
+            borderWidth: 1
+          }]
+        },
+        options: anomalyOptions('°C', 'Plus chaude que la normale', 'Plus froide que la normale')
+      });
+    }
+
+    const rainCanvas = byId('climate-rain-anomaly-chart');
+    if (rainCanvas) {
+      rainAnomalyChart?.destroy();
+      rainAnomalyChart = new Chart(rainCanvas, {
+        type: 'bar',
+        data: {
+          labels,
+          datasets: [{
+            label: 'Écart à la normale (%)',
+            data: rainAnomalies,
+            borderWidth: 1
+          }]
+        },
+        options: anomalyOptions('%', 'Plus humide que la normale', 'Plus sèche que la normale')
+      });
     }
 
     const trendCanvas = byId('climate-trend-chart');
     if (trendCanvas) {
       trendChart?.destroy();
-      trendChart = new Chart(trendCanvas, { type:'line', data:{labels,datasets:[{label:'Température moyenne',data:tempValues,borderWidth:2,pointRadius:3,tension:.2},{label:'Tendance linéaire',data:linearTrend(tempValues),borderDash:[8,5],borderWidth:2,pointRadius:0}]}, options:chartOptions('°C') });
+      trendChart = new Chart(trendCanvas, {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [
+            { label: 'Température moyenne', data: tempValues, borderWidth: 2, pointRadius: 3, tension: .2 },
+            { label: 'Tendance linéaire', data: linearTrend(tempValues), borderDash: [8, 5], borderWidth: 2, pointRadius: 0 }
+          ]
+        },
+        options: chartOptions('°C')
+      });
     }
   }
 
