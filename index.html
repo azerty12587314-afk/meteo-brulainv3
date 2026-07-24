@@ -332,11 +332,28 @@
   </p>
 </section>
 
-<section class="card climate-center-card" id="climate-center-section"><div class="climate-center-heading"><div><h2>📊 Centre climatologique</h2><p class="chart-subtitle">Normales 1991–2020, année en cours, records et indicateurs locaux.</p></div><div class="climate-center-actions"><span id="climate-updated-at" class="climate-updated-at">Chargement…</span><button id="climate-refresh" type="button">↻ Actualiser</button></div></div><div id="climate-kpi-grid" class="climate-kpi-grid"></div><div class="climate-chart-grid"><article class="climate-subcard"><h3>Températures mensuelles</h3><div class="climate-chart-shell"><canvas id="climate-temperature-chart"></canvas></div></article><article class="climate-subcard"><h3>Précipitations mensuelles</h3><div class="climate-chart-shell"><canvas id="climate-precipitation-chart"></canvas></div></article><article class="climate-subcard"><h3>Comparaison des dernières années</h3><div class="climate-chart-shell"><canvas id="climate-years-chart"></canvas></div></article><article class="climate-subcard"><h3>Records locaux de la réanalyse</h3><div id="climate-record-grid" class="climate-record-grid"></div></article><article class="climate-subcard"><h3>Anomalies annuelles</h3><div class="climate-chart-shell"><canvas id="climate-anomaly-chart"></canvas></div></article><article class="climate-subcard"><h3>Tendance sur 30 ans</h3><div class="climate-chart-shell"><canvas id="climate-trend-chart"></canvas></div></article></div><p class="climate-disclaimer">Ces valeurs proviennent d’une réanalyse climatique locale et non d’une station officielle implantée sur le terrain.</p></section>
+<section class="card climate-center-card" id="climate-center-section">
+  <div class="climate-center-heading">
+    <div><h2>📊 Centre climatologique</h2><p class="chart-subtitle">Normales 1991–2020, année en cours, records et indicateurs locaux.</p></div>
+    <div class="climate-center-actions"><span id="climate-updated-at" class="climate-updated-at">Chargement…</span><button id="climate-refresh" type="button">↻ Actualiser</button></div>
+  </div>
+  <div id="climate-kpi-grid" class="climate-kpi-grid"></div>
+  <div class="climate-chart-grid">
+    <article class="climate-subcard"><h3>Températures mensuelles</h3><div class="climate-chart-shell"><canvas id="climate-temperature-chart"></canvas></div></article>
+    <article class="climate-subcard"><h3>Précipitations mensuelles</h3><div class="climate-chart-shell"><canvas id="climate-precipitation-chart"></canvas></div></article>
+    <article class="climate-subcard"><h3>Comparaison des dernières années</h3><div class="climate-chart-shell"><canvas id="climate-years-chart"></canvas></div></article>
+    <article class="climate-subcard"><h3>Records locaux de la réanalyse</h3><div id="climate-record-grid" class="climate-record-grid"></div></article>
+    <article class="climate-subcard"><h3>Écart annuel de température</h3><p class="climate-chart-help">Différence en °C par rapport à la normale 1991–2020. Au-dessus de zéro = année plus chaude.</p><div class="climate-chart-shell"><canvas id="climate-temperature-anomaly-chart"></canvas></div></article>
+    <article class="climate-subcard"><h3>Écart annuel de précipitations</h3><p class="climate-chart-help">Écart en % par rapport au cumul annuel normal. Au-dessus de zéro = année plus humide.</p><div class="climate-chart-shell"><canvas id="climate-rain-anomaly-chart"></canvas></div></article>
+    <article class="climate-subcard climate-subcard-wide"><h3>Tendance des températures récentes</h3><p class="climate-chart-help">La ligne pointillée montre la tendance statistique sur les années disponibles, pas une prévision.</p><div class="climate-chart-shell"><canvas id="climate-trend-chart"></canvas></div></article>
+  </div>
+  <p class="climate-disclaimer">Ces valeurs proviennent d’une réanalyse climatique locale et non d’une station officielle implantée sur le terrain.</p>
+</section>
 
 <section class="card weather-history-card" id="weather-history-section">
-  <div class="weather-history-heading"><div><h2>🌪️ Chronologie météo marquante</h2><p class="chart-subtitle">Épisodes extrêmes détectés dans la réanalyse locale et records associés à la ville sélectionnée.</p></div><select id="weather-history-filter"><option value="all">Tous les événements</option><option value="temperature">Températures</option><option value="rain">Pluie</option><option value="wind">Vent</option></select></div>
-  <div id="weather-history-list" class="weather-history-list" aria-live="polite"></div>
+  <div class="weather-history-heading"><div><h2>🏆 Records climatiques de la commune</h2><p class="chart-subtitle">Records journaliers et années remarquables détectés dans la réanalyse disponible.</p></div></div>
+  <div id="weather-history-list" class="weather-history-list climate-record-dashboard" aria-live="polite"></div>
+  <p class="climate-disclaimer">Ces records sont indicatifs et dépendent de la résolution de la réanalyse Open-Meteo.</p>
 </section>
 <section class="card site-data-status-card" id="site-data-status-card">
   <div class="site-data-status-heading">
@@ -597,10 +614,10 @@
 <script defer src="js/model-comparator.js?v=24"></script>
 <script defer src="js/interactive-map.js?v=24"></script>
 <script defer src="js/site-data.js?v=24"></script>
-<script defer src="js/climate-center.js?v=24"></script>
+<script defer src="js/climate-center.js?v=25"></script>
 <script defer src="js/surveillance-center.js?v=24"></script>
 <script defer src="js/site-data-status.js?v=24"></script>
-<script defer src="js/weather-history.js?v=24"></script>
+<script defer src="js/weather-history.js?v=25"></script>
 <script defer src="js/observations-config.js?v=24"></script>
 <script defer src="js/observations.js?v=24"></script>
 <script defer src="js/water-restrictions.js?v=24"></script>
