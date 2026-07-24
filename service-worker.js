@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'meteo-lab-v4-20260724';
+const CACHE_NAME = 'meteo-lab-v4.2-20260724';
 const APP_SHELL = [
   './',
   './index.html',

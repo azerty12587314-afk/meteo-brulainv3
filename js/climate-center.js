@@ -3,7 +3,7 @@
 window.ClimateCenter = (() => {
   const STATIC_DATA_URL = './data/climate.json';
   const ARCHIVE_URL = 'https://archive-api.open-meteo.com/v1/archive';
-  const CACHE_PREFIX = 'meteo-climate-dynamic-v4:';
+  const CACHE_PREFIX = 'meteo-climate-dynamic-v4.2:';
   const CACHE_DURATION_MS = 24 * 60 * 60 * 1000;
   const NORMAL_START = '1991-01-01';
   const NORMAL_END = '2020-12-31';
@@ -615,8 +615,46 @@ window.ClimateCenter = (() => {
     setLoading(false);
   }
 
-  function chartOptions(unit) {
+  function climateColors() {
     return {
+      text: '#dbeafe',
+      muted: '#94a3b8',
+      grid: 'rgba(148, 163, 184, 0.18)',
+      blue: '#38bdf8',
+      blueFill: 'rgba(56, 189, 248, 0.62)',
+      blueBorder: '#0ea5e9',
+      pink: '#fb7185',
+      pinkFill: 'rgba(251, 113, 133, 0.58)',
+      green: '#34d399',
+      greenFill: 'rgba(52, 211, 153, 0.62)',
+      orange: '#fb923c',
+      orangeFill: 'rgba(251, 146, 60, 0.62)',
+      red: '#f87171',
+      redFill: 'rgba(248, 113, 113, 0.66)'
+    };
+  }
+
+  function stableChartOptions(options = {}) {
+    const colors = climateColors();
+    const scales = options.scales || {};
+    Object.values(scales).forEach(scale => {
+      scale.ticks = { color: colors.muted, ...(scale.ticks || {}) };
+      scale.grid = { color: colors.grid, ...(scale.grid || {}) };
+      if (scale.title) scale.title = { color: colors.muted, ...scale.title };
+    });
+    options.scales = scales;
+    options.plugins = options.plugins || {};
+    options.plugins.legend = options.plugins.legend || {};
+    options.plugins.legend.labels = {
+      color: colors.text,
+      usePointStyle: true,
+      ...(options.plugins.legend.labels || {})
+    };
+    return options;
+  }
+
+  function chartOptions(unit) {
+    return stableChartOptions({
       responsive: true,
       maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
@@ -630,7 +668,7 @@ window.ClimateCenter = (() => {
         x: { grid: { display: false } },
         y: { title: { display: true, text: unit } }
       }
-    };
+    });
   }
 
   function renderCharts() {
@@ -656,14 +694,18 @@ window.ClimateCenter = (() => {
             data: normals.map(month => month.temperatureMean),
             borderWidth: 2,
             pointRadius: 2,
-            tension: 0.25
+            tension: 0.25,
+            borderColor: climateColors().blue,
+            backgroundColor: climateColors().blueFill
           },
           {
             label: String(data.currentYear.year || 'Année en cours'),
             data: currentMonths.map(month => month.temperatureMean),
             borderWidth: 2,
             pointRadius: 2,
-            tension: 0.25
+            tension: 0.25,
+            borderColor: climateColors().pink,
+            backgroundColor: climateColors().pinkFill
           }
         ]
       },
@@ -678,11 +720,17 @@ window.ClimateCenter = (() => {
         datasets: [
           {
             label: 'Normale 1991–2020',
-            data: normals.map(month => month.precipitation)
+            data: normals.map(month => month.precipitation),
+            backgroundColor: climateColors().blueFill,
+            borderColor: climateColors().blueBorder,
+            borderWidth: 1
           },
           {
             label: String(data.currentYear.year || 'Année en cours'),
-            data: currentMonths.map(month => month.precipitation)
+            data: currentMonths.map(month => month.precipitation),
+            backgroundColor: climateColors().pinkFill,
+            borderColor: climateColors().pink,
+            borderWidth: 1
           }
         ]
       },
@@ -699,7 +747,10 @@ window.ClimateCenter = (() => {
           {
             label: 'Pluie annuelle (mm)',
             data: recentYears.map(item => item.precipitation),
-            yAxisID: 'rain'
+            yAxisID: 'rain',
+            backgroundColor: climateColors().blueFill,
+            borderColor: climateColors().blueBorder,
+            borderWidth: 1
           },
           {
             label: 'Température moyenne (°C)',
@@ -708,11 +759,13 @@ window.ClimateCenter = (() => {
             borderWidth: 2,
             pointRadius: 3,
             tension: 0.2,
-            yAxisID: 'temperature'
+            yAxisID: 'temperature',
+            borderColor: climateColors().pink,
+            backgroundColor: climateColors().pinkFill
           }
         ]
       },
-      options: {
+      options: stableChartOptions({
         responsive: true,
         maintainAspectRatio: false,
         plugins: { legend: { position: 'bottom' } },
@@ -728,7 +781,7 @@ window.ClimateCenter = (() => {
             title: { display: true, text: '°C' }
           }
         }
-      }
+      })
     });
   }
 
@@ -771,7 +824,7 @@ window.ClimateCenter = (() => {
   }
 
   function anomalyOptions(unit, positiveLabel, negativeLabel) {
-    return {
+    return stableChartOptions({
       responsive: true,
       maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
@@ -795,7 +848,7 @@ window.ClimateCenter = (() => {
           suggestedMax: unit === '°C' ? 1 : 30
         }
       }
-    };
+    });
   }
 
   function renderAdvancedCharts() {
@@ -827,7 +880,9 @@ window.ClimateCenter = (() => {
           datasets: [{
             label: 'Écart à la normale (°C)',
             data: temperatureAnomalies,
-            borderWidth: 1
+            borderWidth: 1,
+            borderColor: context => Number(context.raw) >= 0 ? climateColors().red : climateColors().blueBorder,
+            backgroundColor: context => Number(context.raw) >= 0 ? climateColors().redFill : climateColors().blueFill
           }]
         },
         options: anomalyOptions('°C', 'Plus chaude que la normale', 'Plus froide que la normale')
@@ -844,7 +899,9 @@ window.ClimateCenter = (() => {
           datasets: [{
             label: 'Écart à la normale (%)',
             data: rainAnomalies,
-            borderWidth: 1
+            borderWidth: 1,
+            borderColor: context => Number(context.raw) >= 0 ? climateColors().blueBorder : climateColors().orange,
+            backgroundColor: context => Number(context.raw) >= 0 ? climateColors().blueFill : climateColors().orangeFill
           }]
         },
         options: anomalyOptions('%', 'Plus humide que la normale', 'Plus sèche que la normale')
@@ -859,8 +916,8 @@ window.ClimateCenter = (() => {
         data: {
           labels,
           datasets: [
-            { label: 'Température moyenne', data: tempValues, borderWidth: 2, pointRadius: 3, tension: .2 },
-            { label: 'Tendance linéaire', data: linearTrend(tempValues), borderDash: [8, 5], borderWidth: 2, pointRadius: 0 }
+            { label: 'Température moyenne', data: tempValues, borderWidth: 2, pointRadius: 3, tension: .2, borderColor: climateColors().blue, backgroundColor: climateColors().blueFill },
+            { label: 'Tendance linéaire', data: linearTrend(tempValues), borderDash: [8, 5], borderWidth: 2, pointRadius: 0, borderColor: climateColors().pink, backgroundColor: climateColors().pinkFill }
           ]
         },
         options: chartOptions('°C')
