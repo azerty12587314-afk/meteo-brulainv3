@@ -3,7 +3,7 @@
 window.ClimateCenter = (() => {
   const STATIC_DATA_URL = './data/climate.json';
   const ARCHIVE_URL = 'https://archive-api.open-meteo.com/v1/archive';
-  const CACHE_PREFIX = 'meteo-climate-dynamic-v4.2:';
+  const CACHE_PREFIX = 'meteo-climate-dynamic-v5.1:';
   const CACHE_DURATION_MS = 24 * 60 * 60 * 1000;
   const NORMAL_START = '1991-01-01';
   const NORMAL_END = '2020-12-31';
@@ -957,7 +957,9 @@ window.ClimateCenter = (() => {
     byId('climate-refresh')?.addEventListener('click', refresh);
     window.addEventListener('meteo-location-changed', handleLocationChange);
 
-    const location = savedLocation();
+    const location = savedLocation() || normalizeLocation(
+      window.MeteoConfig?.defaultLocation
+    );
 
     if (location) {
       try {

@@ -215,6 +215,13 @@ window.MeteoApp = (() => {
     bindEvents();
     MeteoAnimations.reveal();
 
+    // Annonce aussi la localisation initiale aux modules dynamiques.
+    // Sans cet événement, certains modules ne se synchronisaient qu'après
+    // un changement manuel de ville.
+    window.dispatchEvent(
+      new CustomEvent('meteo-location-changed', { detail: currentLocation })
+    );
+
     await registerServiceWorker();
     await loadAll();
 
