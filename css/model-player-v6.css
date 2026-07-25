@@ -637,3 +637,88 @@ button {
     left: 8px;
   }
 }
+
+/* Correctif responsive Météo Lab */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.weather-player {
+  width: 100%;
+  max-width: 100%;
+  height: 100dvh;
+  min-height: 0;
+}
+
+.weather-stage,
+.map-viewport,
+.map-canvas,
+.image-layer {
+  max-width: 100%;
+}
+
+.image-layer img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+@media (max-width: 1100px) {
+  :root {
+    --sidebar-width: 250px;
+  }
+
+  .sidebar-header {
+    padding: 14px 12px 11px;
+  }
+
+  .sidebar-section {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .model-button,
+  .variable-button {
+    padding: 7px 8px;
+  }
+
+  .timeline-button {
+    min-height: 42px;
+  }
+}
+
+@media (max-width: 850px) {
+  .weather-player {
+    height: 100dvh;
+  }
+
+  .stage-header {
+    min-height: 60px;
+    padding: 8px 10px;
+  }
+
+  .map-heading h2 {
+    max-width: calc(100vw - 76px);
+  }
+
+  .player-controls {
+    min-height: 54px;
+    padding: 7px 9px;
+  }
+
+  .desktop-controls {
+    display: none;
+  }
+
+  .mobile-controls {
+    display: flex;
+  }
+
+  .map-legend-v6 {
+    right: 7px;
+    bottom: 7px;
+    left: 7px;
+  }
+}
