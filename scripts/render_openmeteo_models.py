@@ -333,13 +333,17 @@ def axes(extent, title, subtitle):
     axis.add_feature(cfeature.OCEAN, facecolor="#07111f")
     axis.add_feature(
         cfeature.COASTLINE,
-        edgecolor="#dbeafe",
-        linewidth=0.8,
+        edgecolor="#ffffff",
+        linewidth=1.25,
+        alpha=0.92,
+        zorder=20,
     )
     axis.add_feature(
         cfeature.BORDERS,
-        edgecolor="#94a3b8",
-        linewidth=0.55,
+        edgecolor="#ffffff",
+        linewidth=0.95,
+        alpha=0.82,
+        zorder=21,
     )
     figure.patch.set_facecolor("#020617")
     axis.set_facecolor("#020617")

@@ -227,8 +227,8 @@ def setup_axes(title: str, subtitle: str):
     ax.set_extent(EUROPE_EXTENT, crs=ccrs.PlateCarree())
     ax.add_feature(cfeature.LAND, facecolor="#101827", zorder=0)
     ax.add_feature(cfeature.OCEAN, facecolor="#07111f", zorder=0)
-    ax.add_feature(cfeature.COASTLINE, edgecolor="#dbeafe", linewidth=0.8)
-    ax.add_feature(cfeature.BORDERS, edgecolor="#94a3b8", linewidth=0.55)
+    ax.add_feature(cfeature.COASTLINE, edgecolor="#ffffff", linewidth=1.25, alpha=0.92, zorder=20)
+    ax.add_feature(cfeature.BORDERS, edgecolor="#ffffff", linewidth=0.95, alpha=0.82, zorder=21)
     ax.gridlines(
         draw_labels=False, linewidth=0.25, color="#64748b", alpha=0.35
     )

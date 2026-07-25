@@ -28,42 +28,32 @@
         </button>
       </div>
 
-      <section class="sidebar-section">
-        <div class="section-heading">
-          <span>Modèle</span>
+      <section class="sidebar-section drawer-section" data-drawer="models">
+        <button class="section-heading drawer-toggle" type="button" aria-expanded="true" aria-controls="drawerModels">
+          <span>Modèle</span><span class="drawer-chevron" aria-hidden="true">⌄</span>
+        </button>
+        <div id="drawerModels" class="drawer-content">
+          <div id="modelTabs" class="model-tabs" role="tablist" aria-label="Modèles météo"></div>
         </div>
-        <div
-          id="modelTabs"
-          class="model-tabs"
-          role="tablist"
-          aria-label="Modèles météo"
-        ></div>
       </section>
 
-      <section id="variableSelectorBlock" class="sidebar-section">
-        <div class="section-heading variable-heading">
-          <span>Type de carte</span>
+      <section id="variableSelectorBlock" class="sidebar-section drawer-section" data-drawer="variables">
+        <button class="section-heading variable-heading drawer-toggle" type="button" aria-expanded="true" aria-controls="drawerVariables">
+          <span>Type de carte</span><span class="drawer-chevron" aria-hidden="true">⌄</span>
+        </button>
+        <div id="drawerVariables" class="drawer-content">
+          <div id="variableTabs" class="variable-tabs" role="tablist" aria-label="Types de cartes météo"></div>
         </div>
-        <div
-          id="variableTabs"
-          class="variable-tabs"
-          role="tablist"
-          aria-label="Types de cartes météo"
-        ></div>
       </section>
 
-      <section class="sidebar-section timeline-section">
-        <div class="section-heading timeline-heading">
+      <section class="sidebar-section timeline-section drawer-section" data-drawer="timeline">
+        <button class="section-heading timeline-heading drawer-toggle" type="button" aria-expanded="true" aria-controls="drawerTimeline">
           <span>Échéances</span>
-          <span id="frameCount" class="frame-count"></span>
+          <span class="heading-end"><span id="frameCount" class="frame-count"></span><span class="drawer-chevron" aria-hidden="true">⌄</span></span>
+        </button>
+        <div id="drawerTimeline" class="drawer-content timeline-drawer">
+          <div id="timeline" class="timeline" role="listbox" aria-label="Échéances de prévision"></div>
         </div>
-
-        <div
-          id="timeline"
-          class="timeline"
-          role="listbox"
-          aria-label="Échéances de prévision"
-        ></div>
       </section>
     </aside>
 
@@ -115,6 +105,7 @@
           </div>
           <div class="map-legend-v6-gradient"></div>
           <div class="map-legend-v6-ticks"></div>
+          <div id="legendUpdated" class="map-legend-v6-updated"></div>
         </div>
       </div>
 

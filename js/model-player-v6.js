@@ -44,7 +44,9 @@
     legendTitle: document.querySelector(".map-legend-v6-name"),
     legendUnit: document.querySelector(".map-legend-v6-unit"),
     legendGradient: document.querySelector(".map-legend-v6-gradient"),
-    legendTicks: document.querySelector(".map-legend-v6-ticks")
+    legendTicks: document.querySelector(".map-legend-v6-ticks"),
+    legendUpdated: document.getElementById("legendUpdated"),
+    drawerToggles: document.querySelectorAll(".drawer-toggle")
   };
 
   function requireElements() {
@@ -269,11 +271,20 @@
     el.legendGradient.style.background = legend.gradient;
     el.legendTicks.replaceChildren();
 
-    (Array.isArray(legend.ticks) ? legend.ticks : []).forEach(value => {
+    const ticks = Array.isArray(legend.ticks) ? legend.ticks : [];
+    ticks.forEach((value, index) => {
       const item = document.createElement("span");
       item.textContent = String(value);
+      item.style.left = ticks.length > 1 ? `${(index / (ticks.length - 1)) * 100}%` : "50%";
       el.legendTicks.appendChild(item);
     });
+
+    if (el.legendUpdated) {
+      const generated = state.manifest?.generatedAt ? new Date(state.manifest.generatedAt) : null;
+      el.legendUpdated.textContent = generated && !Number.isNaN(generated.getTime())
+        ? `Légende actualisée avec le manifeste du ${new Intl.DateTimeFormat("fr-FR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" }).format(generated)}`
+        : "Légende issue du manifeste courant";
+    }
 
     el.legend.hidden = false;
   }
@@ -318,6 +329,7 @@
     renderTimeline();
     renderLegend();
     selectFrame(0, { lock: true, immediate: options.immediate ?? true });
+    preloadSequence();
 
     localStorage.setItem(
       `meteo-lab-v6-variable:${state.modelKey}`,
@@ -413,7 +425,7 @@
     el.loader.hidden = false;
     el.error.hidden = true;
 
-    const image = new Image();
+    const image = state.preloadCache.get(url) || new Image();
     image.decoding = "async";
 
     image.onload = () => {
@@ -436,7 +448,7 @@
           el.currentMap.alt = alt;
           el.currentLayer.style.opacity = "1";
           el.nextLayer.style.opacity = "0";
-        }, 190);
+        }, 145);
       }
 
       el.loader.hidden = true;
@@ -455,7 +467,28 @@
         `Carte indisponible : ${model.label}, ${variable.label}, +${frameHour(frame)} h.`;
     };
 
-    image.src = url;
+    if (image.src !== new URL(url, document.baseURI).href) image.src = url;
+    else if (image.complete && image.naturalWidth) image.onload();
+  }
+
+  function preloadSequence() {
+    const frames = getFrames();
+    const load = () => {
+      frames.forEach(frame => {
+        const url = frameUrl(frame);
+        if (!url || state.preloadCache.has(url)) return;
+        const image = new Image();
+        image.decoding = "async";
+        image.src = url;
+        state.preloadCache.set(url, image);
+      });
+    };
+
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(load, { timeout: 1800 });
+    } else {
+      window.setTimeout(load, 180);
+    }
   }
 
   function preloadNeighbours(index) {
@@ -552,6 +585,21 @@
 
     el.sidebarClose?.addEventListener("click", () => {
       el.player.classList.remove("sidebar-open");
+    });
+
+    el.drawerToggles?.forEach(toggle => {
+      const section = toggle.closest(".drawer-section");
+      const key = section?.dataset.drawer;
+      const saved = key ? localStorage.getItem(`meteo-lab-drawer:${key}`) : null;
+      if (saved === "closed") {
+        section.classList.add("drawer-closed");
+        toggle.setAttribute("aria-expanded", "false");
+      }
+      toggle.addEventListener("click", () => {
+        const closed = section.classList.toggle("drawer-closed");
+        toggle.setAttribute("aria-expanded", String(!closed));
+        if (key) localStorage.setItem(`meteo-lab-drawer:${key}`, closed ? "closed" : "open");
+      });
     });
 
     document.addEventListener("keydown", event => {
