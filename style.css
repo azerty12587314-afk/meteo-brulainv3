@@ -2627,3 +2627,31 @@ main .card:nth-child(4) {
   .water-alert-banner { align-items: flex-start; flex-direction: column; }
 }
 \n\n/* === Météo Lab V4 — harmonisation, responsive et accessibilité === */\n:root{--surface:rgba(15,23,42,.88);--surface-2:rgba(30,41,59,.76);--line:rgba(148,163,184,.24);--accent:#38bdf8;--accent-2:#22d3ee;--text:#f8fafc;--muted:#cbd5e1;--radius:18px}\nbody{background:radial-gradient(circle at 12% 0%,rgba(14,165,233,.18),transparent 34%),linear-gradient(180deg,#020617,#0f172a 52%,#020617);color:var(--text)}\n.card{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);backdrop-filter:blur(14px);box-shadow:0 14px 40px rgba(2,6,23,.22)}\nbutton,select,input{min-height:42px} button{transition:transform .18s ease,background-color .18s ease,border-color .18s ease}button:hover{transform:translateY(-1px)}button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid rgba(56,189,248,.45);outline-offset:2px}\n.climate-chart-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.climate-subcard{border-color:var(--line);background:var(--surface-2)}\n.weather-history-heading{display:flex;justify-content:space-between;gap:1rem;align-items:center}.weather-history-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem;margin-top:1rem}.weather-history-item{display:flex;gap:.9rem;align-items:flex-start;padding:1rem;border:1px solid var(--line);border-radius:15px;background:var(--surface-2)}.weather-history-icon{font-size:1.7rem}.weather-history-item strong,.weather-history-item small{display:block}.weather-history-item p{margin:.3rem 0 0;color:var(--muted)}\n.model-player-viewer img,.model-compare-pane img{content-visibility:auto}.interactive-weather-map-card,.europe-radar-card{overflow:hidden}\n@media(max-width:1024px){main{width:min(96%,1000px)}.model-comparator-grid,.surveillance-layout,.climate-chart-grid{grid-template-columns:1fr}.model-player-controls,.model-comparator-controls,.interactive-map-toolbar,.radar-toolbar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.weather-history-list{grid-template-columns:1fr}}\n@media(max-width:700px){.hero{padding:1.5rem 1rem}.hero h1{font-size:clamp(1.55rem,8vw,2.3rem)}main{width:100%;padding:.65rem}.card{border-radius:14px;padding:1rem}.daily-forecast-heading,.chart-heading,.model-player-heading,.model-comparator-heading,.interactive-map-heading,.climate-center-heading,.weather-history-heading{align-items:stretch;flex-direction:column}.model-player-controls,.model-comparator-controls,.interactive-map-toolbar,.radar-toolbar,.surveillance-toolbar{grid-template-columns:repeat(2,minmax(0,1fr))}.model-player-controls label,.model-comparator-controls label{grid-column:span 2}.climate-kpi-grid,.observation-metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.climate-chart-shell,.observation-chart-shell{height:300px}.model-player-viewer{min-height:245px}.interactive-weather-map,.europe-radar-map,.surveillance-map{height:430px}.weather-history-heading select{width:100%}}\n@media(max-width:420px){.model-player-controls,.model-comparator-controls,.interactive-map-toolbar,.radar-toolbar,.surveillance-toolbar,.climate-kpi-grid,.observation-metric-grid{grid-template-columns:1fr}.model-player-controls label,.model-comparator-controls label{grid-column:auto}.interactive-weather-map,.europe-radar-map,.surveillance-map{height:360px}}\n@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}\n
+
+/* Accès à la page dédiée aux cartes de prévision */
+.forecast-maps-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  margin: .65rem auto 0;
+  padding: .68rem 1rem;
+  border: 1px solid rgba(255,255,255,.34);
+  border-radius: 999px;
+  color: #f8fafc;
+  background: rgba(2, 132, 199, .28);
+  box-shadow: 0 8px 24px rgba(2, 6, 23, .18);
+  font-size: .9rem;
+  font-weight: 800;
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+  transition: transform .18s ease, background-color .18s ease;
+}
+.forecast-maps-link:hover {
+  transform: translateY(-1px);
+  background: rgba(2, 132, 199, .48);
+}
+.forecast-maps-link:focus-visible {
+  outline: 3px solid rgba(125, 211, 252, .55);
+  outline-offset: 3px;
+}

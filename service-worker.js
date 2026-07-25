@@ -1,9 +1,13 @@
 'use strict';
 
-const CACHE_NAME = 'meteo-lab-v5.1-chart-manager-20260724';
+const CACHE_NAME = 'meteo-lab-v6.1-cartes-20260725';
 const APP_SHELL = [
   './',
   './index.html',
+  './maps/manifest.json',
+  './js/model-player-v6.js',
+  './css/model-player-v6.css',
+  './cartes.html',
   './style.css',
   './manifest.json',
   './js/surveillance-center.js',

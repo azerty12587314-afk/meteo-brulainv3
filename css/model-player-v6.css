@@ -13,7 +13,7 @@
   --accent: #55d5ff;
   --accent-2: #62e0ad;
   --danger: #ff8b8b;
-  --sidebar-width: 310px;
+  --sidebar-width: 260px;
 }
 
 html,
@@ -721,4 +721,59 @@ body {
     bottom: 7px;
     left: 7px;
   }
+}
+
+
+/* V6.1 — affichage compact et sans débordement horizontal */
+.back-home {
+  display: inline-block;
+  margin-bottom: 7px;
+  color: var(--accent);
+  font-size: .72rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+.back-home:hover { text-decoration: underline; }
+
+.weather-player,
+.weather-stage,
+.map-viewport,
+.map-canvas {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.map-canvas {
+  overflow: hidden;
+}
+
+.image-layer img {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+@media (max-width: 1200px) and (min-width: 851px) {
+  :root { --sidebar-width: 220px; }
+  .sidebar-header { padding: 12px 10px 10px; }
+  .sidebar-header h1 { font-size: 1.05rem; }
+  .sidebar-section { padding: 9px 8px 0; }
+  .model-button,
+  .variable-button { padding: 6px 7px; }
+  .timeline-button { min-height: 38px; padding-block: 3px; }
+  .timeline-date { font-size: .59rem; }
+}
+
+@media (max-height: 760px) and (min-width: 851px) {
+  .sidebar-header { padding-top: 10px; padding-bottom: 8px; }
+  .sidebar-section { padding-top: 8px; }
+  .model-tabs,
+  .variable-tabs { gap: 4px; }
+  .model-button,
+  .variable-button { padding-block: 5px; }
+  .timeline-button { min-height: 35px; }
+  .stage-header { min-height: 58px; padding-block: 7px; }
+  .player-controls { min-height: 52px; padding-block: 6px; }
 }
