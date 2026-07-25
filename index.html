@@ -1,88 +1,154 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Météo Lab V6 — Navigation verticale</title>
-  <link rel="stylesheet" href="css/model-player-v6.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07131f">
+  <title>Météo Lab — Cartes de prévision</title>
+  <link rel="stylesheet" href="./model-player-v6.css">
 </head>
 <body>
-<section class="weather-player" id="weatherPlayer">
-  <button class="sidebar-toggle" id="sidebarToggle" type="button"
-          aria-controls="weatherSidebar" aria-expanded="true"
-          title="Afficher ou masquer la navigation">
-    ☰
-  </button>
+  <main id="weatherPlayer" class="weather-player">
+    <aside id="weatherSidebar" class="weather-sidebar" aria-label="Navigation des cartes météo">
+      <div class="sidebar-header">
+        <div>
+          <p class="eyebrow">Météo Lab</p>
+          <h1>Cartes météo</h1>
+        </div>
 
-  <aside class="weather-sidebar" id="weatherSidebar">
-    <div class="sidebar-header">
-      <div>
-        <span class="eyebrow">Cartes météo</span>
-        <h2>Modèles</h2>
-      </div>
-      <button class="sidebar-close" id="sidebarClose" type="button" aria-label="Fermer">×</button>
-    </div>
-
-    <div class="model-tabs" id="modelTabs" role="tablist" aria-label="Modèles météo"></div>
-
-    <div class="timeline-heading">
-      <span>Échéances</span>
-      <span id="frameCount"></span>
-    </div>
-    <div class="timeline" id="timeline" role="listbox" aria-label="Échéances météo"></div>
-  </aside>
-
-  <main class="weather-stage">
-    <header class="map-toolbar">
-      <div>
-        <span class="model-badge" id="modelBadge">GFS</span>
-        <strong id="mapTitle">Carte météo</strong>
-        <div class="map-meta" id="mapMeta">Chargement…</div>
+        <button
+          id="sidebarClose"
+          class="icon-button sidebar-close"
+          type="button"
+          aria-label="Fermer le panneau"
+        >
+          ✕
+        </button>
       </div>
 
-      <div class="player-controls">
-        <button id="previousFrame" type="button" aria-label="Échéance précédente">⏮</button>
-        <button id="playPause" type="button" aria-label="Lire l’animation">▶</button>
-        <button id="nextFrame" type="button" aria-label="Échéance suivante">⏭</button>
-        <label class="speed-control">
-          <span>Vitesse</span>
-          <select id="playSpeed" aria-label="Vitesse de lecture">
-            <option value="1200">Lente</option>
-            <option value="700" selected>Normale</option>
-            <option value="350">Rapide</option>
-          </select>
-        </label>
-      </div>
-    </header>
+      <section class="sidebar-section">
+        <div class="section-heading">
+          <span>Modèle</span>
+        </div>
+        <div
+          id="modelTabs"
+          class="model-tabs"
+          role="tablist"
+          aria-label="Modèles météo"
+        ></div>
+      </section>
 
-    <div class="map-viewport" id="mapViewport">
-      <div class="image-layer current">
-        <img id="currentMap" alt="Carte météo">
-      </div>
-      <div class="image-layer next">
-        <img id="nextMap" alt="">
+      <section id="variableSelectorBlock" class="sidebar-section">
+        <div class="section-heading variable-heading">
+          <span>Type de carte</span>
+        </div>
+        <div
+          id="variableTabs"
+          class="variable-tabs"
+          role="tablist"
+          aria-label="Types de cartes météo"
+        ></div>
+      </section>
+
+      <section class="sidebar-section timeline-section">
+        <div class="section-heading timeline-heading">
+          <span>Échéances</span>
+          <span id="frameCount" class="frame-count"></span>
+        </div>
+
+        <div
+          id="timeline"
+          class="timeline"
+          role="listbox"
+          aria-label="Échéances de prévision"
+        ></div>
+      </section>
+    </aside>
+
+    <section class="weather-stage">
+      <header class="stage-header">
+        <button
+          id="sidebarToggle"
+          class="icon-button"
+          type="button"
+          aria-label="Afficher ou masquer le panneau"
+          aria-expanded="true"
+        >
+          ☰
+        </button>
+
+        <div class="map-heading">
+          <div class="map-heading-topline">
+            <span id="modelBadge" class="model-badge">Chargement</span>
+            <span id="mapMeta" class="map-meta"></span>
+          </div>
+          <h2 id="mapTitle">Chargement de la carte…</h2>
+        </div>
+      </header>
+
+      <div id="mapViewport" class="map-viewport">
+        <div class="map-canvas" aria-live="polite">
+          <div class="image-layer current">
+            <img id="currentMap" alt="">
+          </div>
+
+          <div class="image-layer next">
+            <img id="nextMap" alt="">
+          </div>
+
+          <div id="mapLoader" class="map-loader">
+            <span class="spinner" aria-hidden="true"></span>
+            <span>Chargement de la carte…</span>
+          </div>
+
+          <div id="mapError" class="map-error" hidden></div>
+
+          <div id="hoverTooltip" class="hover-tooltip" hidden></div>
+        </div>
+
+        <div id="mapLegendV6" class="map-legend-v6" hidden>
+          <div class="map-legend-v6-title">
+            <span class="map-legend-v6-name"></span>
+            <span class="map-legend-v6-unit"></span>
+          </div>
+          <div class="map-legend-v6-gradient"></div>
+          <div class="map-legend-v6-ticks"></div>
+        </div>
       </div>
 
-      <div class="map-loader" id="mapLoader" hidden>
-        <span class="spinner"></span>
-        <span>Chargement de la carte…</span>
-      </div>
+      <footer class="player-controls">
+        <div class="desktop-controls">
+          <button id="previousFrame" class="control-button" type="button" aria-label="Image précédente">
+            ◀
+          </button>
 
-      <div class="map-error" id="mapError" hidden>
-        Carte indisponible pour cette échéance.
-      </div>
+          <button id="playPause" class="control-button play-button" type="button" aria-label="Lire l’animation">
+            ▶
+          </button>
 
-      <div class="hover-tooltip" id="hoverTooltip" hidden></div>
-    </div>
+          <button id="nextFrame" class="control-button" type="button" aria-label="Image suivante">
+            ▶
+          </button>
 
-    <footer class="mobile-timeline">
-      <input id="mobileRange" type="range" min="0" max="0" value="0" step="1"
-             aria-label="Choisir une échéance">
-      <output id="mobileOutput">+0 h</output>
-    </footer>
+          <label class="speed-control" for="playSpeed">
+            <span>Vitesse</span>
+            <select id="playSpeed">
+              <option value="1200">Lente</option>
+              <option value="700" selected>Normale</option>
+              <option value="350">Rapide</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="mobile-controls">
+          <label for="mobileRange">Échéance</label>
+          <input id="mobileRange" type="range" min="0" max="0" value="0" step="1">
+          <output id="mobileOutput" for="mobileRange">+0 h</output>
+        </div>
+      </footer>
+    </section>
   </main>
-</section>
 
-<script src="js/model-player-v6.js"></script>
+  <script src="./model-player-v6.js"></script>
 </body>
 </html>
