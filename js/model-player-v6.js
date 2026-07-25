@@ -1,21 +1,6 @@
 (() => {
   "use strict";
 
-  /*
-   * Météo Lab V6 — lecteur de cartes compatible avec le manifeste réel :
-   *
-   * models
-   *   └─ gfs / icon_eu / ecmwf
-   *        └─ variables
-   *             └─ temp2m / mslp / precip / wind10 / z500_mslp
-   *                  └─ frames
-   *
-   * Chaque frame utilise :
-   * - forecastHour
-   * - validTime
-   * - image
-   */
-
   const MANIFEST_URL = "./maps/manifest.json";
 
   const state = {
@@ -35,233 +20,100 @@
     sidebar: document.getElementById("weatherSidebar"),
     sidebarToggle: document.getElementById("sidebarToggle"),
     sidebarClose: document.getElementById("sidebarClose"),
-
     modelTabs: document.getElementById("modelTabs"),
+    variableTabs: document.getElementById("variableTabs"),
     timeline: document.getElementById("timeline"),
     frameCount: document.getElementById("frameCount"),
-
     currentMap: document.getElementById("currentMap"),
     nextMap: document.getElementById("nextMap"),
     currentLayer: document.querySelector(".image-layer.current"),
     nextLayer: document.querySelector(".image-layer.next"),
-
     modelBadge: document.getElementById("modelBadge"),
     mapTitle: document.getElementById("mapTitle"),
     mapMeta: document.getElementById("mapMeta"),
-
     loader: document.getElementById("mapLoader"),
     error: document.getElementById("mapError"),
     tooltip: document.getElementById("hoverTooltip"),
-
     previous: document.getElementById("previousFrame"),
     playPause: document.getElementById("playPause"),
     next: document.getElementById("nextFrame"),
     speed: document.getElementById("playSpeed"),
-
     mobileRange: document.getElementById("mobileRange"),
-    mobileOutput: document.getElementById("mobileOutput")
+    mobileOutput: document.getElementById("mobileOutput"),
+    legend: document.getElementById("mapLegendV6"),
+    legendTitle: document.querySelector(".map-legend-v6-name"),
+    legendUnit: document.querySelector(".map-legend-v6-unit"),
+    legendGradient: document.querySelector(".map-legend-v6-gradient"),
+    legendTicks: document.querySelector(".map-legend-v6-ticks")
   };
 
-  function ensureRequiredElements() {
+  function requireElements() {
+    const optional = new Set(["sidebarToggle", "sidebarClose", "tooltip"]);
     const missing = Object.entries(el)
-      .filter(([key, value]) => !value && !["sidebarToggle", "sidebarClose", "tooltip"].includes(key))
+      .filter(([key, value]) => !value && !optional.has(key))
       .map(([key]) => key);
 
     if (missing.length) {
-      throw new Error(
-        `Lecteur météo incomplet. Éléments HTML manquants : ${missing.join(", ")}`
-      );
+      throw new Error(`Éléments HTML manquants : ${missing.join(", ")}`);
     }
   }
 
-  function createVariableSelector() {
-    let wrapper = document.getElementById("variableSelectorBlock");
+  async function loadManifest() {
+    const response = await fetch(`${MANIFEST_URL}?v=${Date.now()}`, {
+      cache: "no-store"
+    });
 
-    if (wrapper) {
-      return {
-        wrapper,
-        title: wrapper.querySelector(".variable-heading"),
-        tabs: wrapper.querySelector("#variableTabs")
-      };
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status} lors du chargement de ${MANIFEST_URL}`);
     }
 
-    wrapper = document.createElement("div");
-    wrapper.id = "variableSelectorBlock";
-    wrapper.className = "variable-selector-block";
-
-    const title = document.createElement("div");
-    title.className = "timeline-heading variable-heading";
-    title.innerHTML = "<span>Type de carte</span>";
-
-    const tabs = document.createElement("div");
-    tabs.id = "variableTabs";
-    tabs.className = "variable-tabs";
-    tabs.setAttribute("role", "tablist");
-    tabs.setAttribute("aria-label", "Types de cartes météo");
-
-    wrapper.append(title, tabs);
-
-    const timelineHeading = el.timeline.previousElementSibling;
-    el.sidebar.insertBefore(wrapper, timelineHeading);
-
-    return { wrapper, title, tabs };
+    return normalizeManifest(await response.json());
   }
 
-  const variableUI = createVariableSelector();
-
-  function injectVariableStyles() {
-    if (document.getElementById("modelPlayerVariableStyles")) return;
-
-    const style = document.createElement("style");
-    style.id = "modelPlayerVariableStyles";
-    style.textContent = `
-      .variable-selector-block {
-        padding-bottom: 12px;
-        border-bottom: 1px solid rgba(255,255,255,.10);
-      }
-
-      .variable-heading {
-        padding-top: 14px;
-      }
-
-      .variable-tabs {
-        display: grid;
-        gap: 6px;
-        padding: 0 2px 4px;
-      }
-
-      .variable-button {
-        width: 100%;
-        padding: 9px 10px;
-        color: inherit;
-        background: rgba(255,255,255,.055);
-        border: 1px solid transparent;
-        border-radius: 10px;
-        text-align: left;
-        cursor: pointer;
-        transition:
-          background .16s ease,
-          border-color .16s ease,
-          transform .16s ease;
-      }
-
-      .variable-button:hover {
-        background: rgba(85,213,255,.10);
-        border-color: rgba(85,213,255,.35);
-        transform: translateX(2px);
-      }
-
-      .variable-button.active {
-        color: #061a27;
-        background: linear-gradient(135deg,#55d5ff,#62e0ad);
-        font-weight: 800;
-      }
-
-      .variable-button-label {
-        display: block;
-        font-size: .78rem;
-        line-height: 1.25;
-      }
-
-      .variable-button-unit {
-        display: block;
-        margin-top: 2px;
-        font-size: .64rem;
-        opacity: .72;
-      }
-
-      .map-legend-v6 {
-        position: absolute;
-        z-index: 8;
-        left: 14px;
-        right: 14px;
-        bottom: 14px;
-        max-width: 720px;
-        margin-inline: auto;
-        padding: 8px 10px;
-        background: rgba(7,19,31,.88);
-        border: 1px solid rgba(255,255,255,.12);
-        border-radius: 11px;
-        backdrop-filter: blur(4px);
-        pointer-events: none;
-      }
-
-      .map-legend-v6-title {
-        display: flex;
-        justify-content: space-between;
-        gap: 12px;
-        margin-bottom: 6px;
-        color: #f5f8fc;
-        font-size: .72rem;
-        font-weight: 750;
-      }
-
-      .map-legend-v6-gradient {
-        height: 9px;
-        border-radius: 999px;
-      }
-
-      .map-legend-v6-ticks {
-        display: flex;
-        justify-content: space-between;
-        gap: 6px;
-        margin-top: 4px;
-        color: #b6c2d1;
-        font-size: .62rem;
-      }
-
-      @media (max-width: 850px) {
-        .map-legend-v6 {
-          left: 8px;
-          right: 8px;
-          bottom: 8px;
-        }
-      }
-    `;
-
-    document.head.appendChild(style);
-  }
-
-  function createLegend() {
-    let legend = document.getElementById("mapLegendV6");
-
-    if (legend) {
-      return {
-        root: legend,
-        title: legend.querySelector(".map-legend-v6-name"),
-        unit: legend.querySelector(".map-legend-v6-unit"),
-        gradient: legend.querySelector(".map-legend-v6-gradient"),
-        ticks: legend.querySelector(".map-legend-v6-ticks")
-      };
-    }
-
-    legend = document.createElement("div");
-    legend.id = "mapLegendV6";
-    legend.className = "map-legend-v6";
-    legend.hidden = true;
-    legend.innerHTML = `
-      <div class="map-legend-v6-title">
-        <span class="map-legend-v6-name"></span>
-        <span class="map-legend-v6-unit"></span>
-      </div>
-      <div class="map-legend-v6-gradient"></div>
-      <div class="map-legend-v6-ticks"></div>
-    `;
-
-    const viewport = document.getElementById("mapViewport");
-    viewport?.appendChild(legend);
-
-    return {
-      root: legend,
-      title: legend.querySelector(".map-legend-v6-name"),
-      unit: legend.querySelector(".map-legend-v6-unit"),
-      gradient: legend.querySelector(".map-legend-v6-gradient"),
-      ticks: legend.querySelector(".map-legend-v6-ticks")
+  function normalizeManifest(manifest) {
+    const output = {
+      generatedAt: manifest.generatedAt || new Date().toISOString(),
+      models: {}
     };
-  }
 
-  injectVariableStyles();
-  const legendUI = createLegend();
+    Object.entries(manifest.models || {}).forEach(([modelKey, model]) => {
+      const variables = {};
+
+      Object.entries(model.variables || {}).forEach(([variableKey, variable]) => {
+        const frames = Array.isArray(variable.frames)
+          ? variable.frames
+              .filter(frame => frame && (frame.image || frame.url))
+              .map(frame => ({
+                ...frame,
+                forecastHour: Number(frame.forecastHour ?? frame.hour ?? 0)
+              }))
+              .sort((a, b) => a.forecastHour - b.forecastHour)
+          : [];
+
+        if (!frames.length) return;
+
+        variables[variableKey] = {
+          ...variable,
+          label: variable.label || variable.legend?.title || variableKey,
+          frames
+        };
+      });
+
+      if (!Object.keys(variables).length) return;
+
+      output.models[modelKey] = {
+        ...model,
+        label: model.label || modelKey.toUpperCase(),
+        variables
+      };
+    });
+
+    if (!Object.keys(output.models).length) {
+      throw new Error("Le manifeste ne contient aucun modèle exploitable.");
+    }
+
+    return output;
+  }
 
   function getModel() {
     return state.manifest?.models?.[state.modelKey] || null;
@@ -280,7 +132,7 @@
   }
 
   function frameHour(frame) {
-    return Number(frame?.forecastHour ?? frame?.hour ?? 0);
+    return Number(frame?.forecastHour ?? 0);
   }
 
   function frameUrl(frame) {
@@ -293,7 +145,7 @@
       if (!Number.isNaN(parsed.getTime())) return parsed;
     }
 
-    const run = new Date(getModel()?.run || state.manifest?.generatedAt || Date.now());
+    const run = new Date(getModel()?.run || state.manifest.generatedAt);
     return new Date(run.getTime() + frameHour(frame) * 3600000);
   }
 
@@ -307,10 +159,10 @@
     }).format(frameDate(frame));
   }
 
-  function formatRun(dateValue) {
-    if (!dateValue) return "";
+  function formatRun(value) {
+    if (!value) return "";
 
-    const parsed = new Date(dateValue);
+    const parsed = new Date(value);
     if (Number.isNaN(parsed.getTime())) return "";
 
     return new Intl.DateTimeFormat("fr-FR", {
@@ -319,72 +171,6 @@
       hour: "2-digit",
       minute: "2-digit"
     }).format(parsed);
-  }
-
-  async function loadManifest() {
-    const response = await fetch(`${MANIFEST_URL}?v=${Date.now()}`, {
-      cache: "no-store"
-    });
-
-    if (!response.ok) {
-      throw new Error(`Impossible de charger ${MANIFEST_URL} : HTTP ${response.status}`);
-    }
-
-    const manifest = await response.json();
-
-    if (!manifest?.models || !Object.keys(manifest.models).length) {
-      throw new Error("Le manifeste ne contient aucun modèle.");
-    }
-
-    return normalizeManifest(manifest);
-  }
-
-  function normalizeManifest(manifest) {
-    const normalized = {
-      generatedAt: manifest.generatedAt || new Date().toISOString(),
-      models: {}
-    };
-
-    Object.entries(manifest.models).forEach(([modelKey, model]) => {
-      if (!model?.variables) return;
-
-      const variables = {};
-
-      Object.entries(model.variables).forEach(([variableKey, variable]) => {
-        const frames = Array.isArray(variable?.frames)
-          ? variable.frames
-              .filter(frame => frame && frameUrl(frame))
-              .map(frame => ({
-                ...frame,
-                forecastHour: frameHour(frame)
-              }))
-              .sort((a, b) => a.forecastHour - b.forecastHour)
-          : [];
-
-        if (!frames.length) return;
-
-        variables[variableKey] = {
-          ...variable,
-          label: variable.label || variable.legend?.title || variableKey,
-          legend: variable.legend || null,
-          frames
-        };
-      });
-
-      if (!Object.keys(variables).length) return;
-
-      normalized.models[modelKey] = {
-        ...model,
-        label: model.label || modelKey.toUpperCase(),
-        variables
-      };
-    });
-
-    if (!Object.keys(normalized.models).length) {
-      throw new Error("Aucun modèle exploitable dans le manifeste.");
-    }
-
-    return normalized;
   }
 
   function renderModels() {
@@ -397,11 +183,11 @@
       button.dataset.model = key;
       button.setAttribute("role", "tab");
 
-      const runLabel = formatRun(model.run);
+      const run = formatRun(model.run);
 
       button.innerHTML = `
         <span class="model-short">${escapeHtml(model.label)}</span>
-        <span class="model-resolution">${runLabel ? `Run ${runLabel}` : ""}</span>
+        <span class="model-resolution">${run ? `Run ${escapeHtml(run)}` : ""}</span>
       `;
 
       button.addEventListener("click", () => selectModel(key));
@@ -410,10 +196,9 @@
   }
 
   function renderVariables() {
-    const model = getModel();
-    variableUI.tabs.replaceChildren();
+    el.variableTabs.replaceChildren();
 
-    Object.entries(model.variables).forEach(([key, variable]) => {
+    Object.entries(getModel().variables).forEach(([key, variable]) => {
       const button = document.createElement("button");
       button.type = "button";
       button.className = "variable-button";
@@ -428,7 +213,7 @@
       `;
 
       button.addEventListener("click", () => selectVariable(key));
-      variableUI.tabs.appendChild(button);
+      el.variableTabs.appendChild(button);
     });
   }
 
@@ -437,51 +222,33 @@
     el.timeline.replaceChildren();
     el.frameCount.textContent = `${frames.length} carte${frames.length > 1 ? "s" : ""}`;
 
-    if (el.mobileRange) {
-      el.mobileRange.max = String(Math.max(0, frames.length - 1));
-      el.mobileRange.value = String(state.selectedIndex);
-    }
+    el.mobileRange.max = String(Math.max(0, frames.length - 1));
+    el.mobileRange.value = String(state.selectedIndex);
 
     frames.forEach((frame, index) => {
-      const hour = frameHour(frame);
       const button = document.createElement("button");
-
       button.type = "button";
       button.className = "timeline-button";
       button.dataset.index = String(index);
       button.setAttribute("role", "option");
       button.setAttribute(
         "aria-label",
-        `Échéance plus ${hour} heures, valide ${formatDate(frame)}`
+        `Échéance plus ${frameHour(frame)} heures, valide ${formatDate(frame)}`
       );
 
       button.innerHTML = `
         <span class="timeline-dot"></span>
         <span class="timeline-label">
-          <span class="timeline-hour">+${hour} h</span>
+          <span class="timeline-hour">+${frameHour(frame)} h</span>
           <span class="timeline-date">${escapeHtml(formatDate(frame))}</span>
         </span>
       `;
 
-      button.addEventListener("pointerenter", event => {
-        previewFrame(index, event.currentTarget);
-      });
-
-      button.addEventListener("pointerleave", event => {
-        cancelPreview(event.currentTarget);
-      });
-
-      button.addEventListener("focus", event => {
-        previewFrame(index, event.currentTarget);
-      });
-
-      button.addEventListener("blur", event => {
-        cancelPreview(event.currentTarget);
-      });
-
-      button.addEventListener("click", () => {
-        selectFrame(index, { lock: true });
-      });
+      button.addEventListener("pointerenter", () => previewFrame(index, button));
+      button.addEventListener("pointerleave", () => cancelPreview(button));
+      button.addEventListener("focus", () => previewFrame(index, button));
+      button.addEventListener("blur", () => cancelPreview(button));
+      button.addEventListener("click", () => selectFrame(index, { lock: true }));
 
       el.timeline.appendChild(button);
     });
@@ -492,32 +259,29 @@
   function renderLegend() {
     const legend = getVariable()?.legend;
 
-    if (!legend || !legend.gradient) {
-      legendUI.root.hidden = true;
+    if (!legend?.gradient) {
+      el.legend.hidden = true;
       return;
     }
 
-    legendUI.title.textContent = legend.title || getVariable()?.label || "";
-    legendUI.unit.textContent = legend.unit || "";
-    legendUI.gradient.style.background = legend.gradient;
-    legendUI.ticks.replaceChildren();
+    el.legendTitle.textContent = legend.title || getVariable().label;
+    el.legendUnit.textContent = legend.unit || "";
+    el.legendGradient.style.background = legend.gradient;
+    el.legendTicks.replaceChildren();
 
-    const ticks = Array.isArray(legend.ticks) ? legend.ticks : [];
-
-    ticks.forEach(value => {
-      const span = document.createElement("span");
-      span.textContent = String(value);
-      legendUI.ticks.appendChild(span);
+    (Array.isArray(legend.ticks) ? legend.ticks : []).forEach(value => {
+      const item = document.createElement("span");
+      item.textContent = String(value);
+      el.legendTicks.appendChild(item);
     });
 
-    legendUI.root.hidden = false;
+    el.legend.hidden = false;
   }
 
   function selectModel(modelKey) {
     if (!state.manifest.models[modelKey]) return;
 
     stopPlayback();
-
     state.modelKey = modelKey;
     state.selectedIndex = 0;
     state.previewIndex = null;
@@ -530,14 +294,10 @@
 
     renderVariables();
 
-    const savedVariable = localStorage.getItem(`meteo-lab-v6-variable:${modelKey}`);
-    const availableVariables = Object.keys(getModel().variables);
+    const available = Object.keys(getModel().variables);
+    const saved = localStorage.getItem(`meteo-lab-v6-variable:${modelKey}`);
+    selectVariable(available.includes(saved) ? saved : available[0], { immediate: true });
 
-    state.variableKey = availableVariables.includes(savedVariable)
-      ? savedVariable
-      : availableVariables[0];
-
-    selectVariable(state.variableKey, { immediate: true });
     localStorage.setItem("meteo-lab-v6-model", modelKey);
   }
 
@@ -545,12 +305,11 @@
     if (!getModel()?.variables?.[variableKey]) return;
 
     stopPlayback();
-
     state.variableKey = variableKey;
     state.selectedIndex = 0;
     state.previewIndex = null;
 
-    variableUI.tabs.querySelectorAll(".variable-button").forEach(button => {
+    el.variableTabs.querySelectorAll(".variable-button").forEach(button => {
       const active = button.dataset.variable === variableKey;
       button.classList.toggle("active", active);
       button.setAttribute("aria-selected", String(active));
@@ -566,7 +325,7 @@
     );
   }
 
-  function previewFrame(index, target) {
+  function previewFrame(index, button) {
     clearTimeout(state.hoverTimer);
 
     state.hoverTimer = window.setTimeout(() => {
@@ -575,30 +334,26 @@
 
       state.previewIndex = index;
 
-      el.timeline
-        .querySelectorAll(".timeline-button.preview")
-        .forEach(button => button.classList.remove("preview"));
+      el.timeline.querySelectorAll(".timeline-button.preview").forEach(item => {
+        item.classList.remove("preview");
+      });
 
-      target.classList.add("preview");
-
+      button.classList.add("preview");
       showImage(index, { updateSelection: false });
 
       if (el.tooltip) {
         el.tooltip.hidden = false;
         el.tooltip.textContent =
-          `Prévision +${frameHour(frame)} h — ${formatDate(frame)}. ` +
-          "Cliquer pour verrouiller.";
+          `Prévision +${frameHour(frame)} h — ${formatDate(frame)}. Cliquez pour verrouiller.`;
       }
-    }, 60);
+    }, 70);
   }
 
-  function cancelPreview(target) {
+  function cancelPreview(button) {
     clearTimeout(state.hoverTimer);
-    target?.classList.remove("preview");
+    button?.classList.remove("preview");
 
-    if (el.tooltip) {
-      el.tooltip.hidden = true;
-    }
+    if (el.tooltip) el.tooltip.hidden = true;
 
     if (state.previewIndex !== null) {
       state.previewIndex = null;
@@ -615,18 +370,12 @@
     if (options.lock) {
       state.selectedIndex = safeIndex;
       state.previewIndex = null;
-
-      if (el.tooltip) {
-        el.tooltip.hidden = true;
-      }
-
       updateSelectionUI();
       preloadNeighbours(safeIndex);
     }
 
     showImage(safeIndex, {
-      immediate: Boolean(options.immediate),
-      updateSelection: Boolean(options.lock)
+      immediate: Boolean(options.immediate)
     });
   }
 
@@ -639,21 +388,17 @@
       button.setAttribute("aria-selected", String(active));
     });
 
-    const selectedButton = el.timeline.querySelector(".timeline-button.active");
-
-    selectedButton?.scrollIntoView({
+    el.timeline.querySelector(".timeline-button.active")?.scrollIntoView({
       block: "nearest",
       behavior: "smooth"
     });
 
-    if (el.mobileRange) {
-      el.mobileRange.value = String(state.selectedIndex);
-    }
+    el.mobileRange.value = String(state.selectedIndex);
 
-    if (el.mobileOutput && frame) {
-      const label = `+${frameHour(frame)} h`;
-      el.mobileOutput.value = label;
-      el.mobileOutput.textContent = label;
+    if (frame) {
+      const value = `+${frameHour(frame)} h`;
+      el.mobileOutput.value = value;
+      el.mobileOutput.textContent = value;
     }
   }
 
@@ -665,7 +410,6 @@
     if (!model || !variable || !frame) return;
 
     const url = frameUrl(frame);
-
     el.loader.hidden = false;
     el.error.hidden = true;
 
@@ -676,16 +420,14 @@
       const alt =
         `${model.label} — ${variable.label} — échéance +${frameHour(frame)} h`;
 
-      el.nextMap.src = url;
-      el.nextMap.alt = alt;
-
       if (options.immediate || !el.currentMap.getAttribute("src")) {
         el.currentMap.src = url;
         el.currentMap.alt = alt;
         el.currentLayer.style.opacity = "1";
         el.nextLayer.style.opacity = "0";
-        el.loader.hidden = true;
       } else {
+        el.nextMap.src = url;
+        el.nextMap.alt = alt;
         el.nextLayer.style.opacity = "1";
         el.currentLayer.style.opacity = "0";
 
@@ -694,29 +436,23 @@
           el.currentMap.alt = alt;
           el.currentLayer.style.opacity = "1";
           el.nextLayer.style.opacity = "0";
-          el.loader.hidden = true;
         }, 190);
       }
 
+      el.loader.hidden = true;
       el.modelBadge.textContent = model.label;
       el.mapTitle.textContent = variable.label;
 
-      const runText = model.run ? `Run ${formatRun(model.run)} • ` : "";
-
+      const run = model.run ? `Run ${formatRun(model.run)} • ` : "";
       el.mapMeta.textContent =
-        `${runText}échéance +${frameHour(frame)} h • ` +
-        `valide ${formatDate(frame)}`;
+        `${run}échéance +${frameHour(frame)} h • valide ${formatDate(frame)}`;
     };
 
     image.onerror = () => {
       el.loader.hidden = true;
       el.error.hidden = false;
       el.error.textContent =
-        `Carte indisponible : ${model.label}, ${variable.label}, ` +
-        `+${frameHour(frame)} h.`;
-
-      el.mapMeta.textContent =
-        `Échéance +${frameHour(frame)} h indisponible`;
+        `Carte indisponible : ${model.label}, ${variable.label}, +${frameHour(frame)} h.`;
     };
 
     image.src = url;
@@ -747,10 +483,10 @@
     const frames = getFrames();
     if (!frames.length) return;
 
-    const nextIndex =
+    const index =
       (state.selectedIndex + delta + frames.length) % frames.length;
 
-    selectFrame(nextIndex, { lock: true });
+    selectFrame(index, { lock: true });
   }
 
   function startPlayback() {
@@ -758,9 +494,7 @@
 
     state.playing = true;
     el.playPause.textContent = "⏸";
-    el.playPause.classList.add("playing");
     el.playPause.setAttribute("aria-label", "Mettre en pause");
-
     scheduleNext();
   }
 
@@ -777,9 +511,7 @@
   function stopPlayback() {
     state.playing = false;
     clearTimeout(state.timer);
-
     el.playPause.textContent = "▶";
-    el.playPause.classList.remove("playing");
     el.playPause.setAttribute("aria-label", "Lire l’animation");
   }
 
@@ -804,7 +536,7 @@
       if (state.playing) scheduleNext();
     });
 
-    el.mobileRange?.addEventListener("input", event => {
+    el.mobileRange.addEventListener("input", event => {
       stopPlayback();
       selectFrame(Number(event.target.value), { lock: true });
     });
@@ -823,30 +555,20 @@
     });
 
     document.addEventListener("keydown", event => {
-      if (
-        ["INPUT", "SELECT", "TEXTAREA"].includes(
-          document.activeElement?.tagName
-        )
-      ) {
+      if (["INPUT", "SELECT", "TEXTAREA"].includes(document.activeElement?.tagName)) {
         return;
       }
 
       if (event.key === "ArrowLeft") {
         stopPlayback();
         step(-1);
-      }
-
-      if (event.key === "ArrowRight") {
+      } else if (event.key === "ArrowRight") {
         stopPlayback();
         step(1);
-      }
-
-      if (event.key === " ") {
+      } else if (event.key === " ") {
         event.preventDefault();
         togglePlayback();
-      }
-
-      if (event.key === "Escape") {
+      } else if (event.key === "Escape") {
         el.player.classList.remove("sidebar-open");
       }
     });
@@ -866,31 +588,22 @@
   }
 
   async function init() {
-    ensureRequiredElements();
+    requireElements();
     bindEvents();
 
     state.manifest = await loadManifest();
     renderModels();
 
-    const savedModel = localStorage.getItem("meteo-lab-v6-model");
     const modelKeys = Object.keys(state.manifest.models);
-
-    const initialModel = modelKeys.includes(savedModel)
-      ? savedModel
-      : modelKeys[0];
-
-    selectModel(initialModel);
+    const savedModel = localStorage.getItem("meteo-lab-v6-model");
+    selectModel(modelKeys.includes(savedModel) ? savedModel : modelKeys[0]);
   }
 
   init().catch(error => {
-    console.error("Erreur du lecteur de cartes :", error);
-
-    if (el.loader) el.loader.hidden = true;
-
-    if (el.error) {
-      el.error.hidden = false;
-      el.error.textContent =
-        "Impossible d’initialiser le lecteur de cartes météo.";
-    }
+    console.error("Erreur du lecteur météo :", error);
+    el.loader.hidden = true;
+    el.error.hidden = false;
+    el.error.textContent =
+      "Impossible d’initialiser le lecteur. Vérifiez ./maps/manifest.json et les chemins des images.";
   });
 })();
