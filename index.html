@@ -1,153 +1,627 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#07131f">
-  <title>Météo Lab — Cartes de prévision</title>
-  <link rel="stylesheet" href="./css/model-player-v6.css">
-  <script src="./js/model-player-v6.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Tableau de bord météo moderne pour Brûlain et toute autre ville.">
+<meta name="theme-color" content="#0ea5e9">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<title>Météo Lab V4</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css?v=24">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 </head>
 <body>
-  <main id="weatherPlayer" class="weather-player">
-    <aside id="weatherSidebar" class="weather-sidebar" aria-label="Navigation des cartes météo">
-      <div class="sidebar-header">
-        <div>
-          <p class="eyebrow">Météo Lab</p>
-          <h1>Cartes météo</h1>
-        </div>
+<header class="hero">
+  <h1>🌤️ Météo Lab V4</h1>
+  <p id="location">Brûlain</p>
+  <div id="current-weather">
+    <div id="weather-icon">☀️</div>
+    <div id="temperature">--°C</div>
+    <div id="description">Chargement...</div>
+  </div>
+</header>
 
-        <button
-          id="sidebarClose"
-          class="icon-button sidebar-close"
-          type="button"
-          aria-label="Fermer le panneau"
-        >
-          ✕
-        </button>
+<div id="water-banner" class="water-alert-banner" hidden></div>
+<main>
+<section id="dashboard">
+  <div class="card" id="sun-card"></div>
+  <div class="card" id="wind-card"></div>
+  <div class="card" id="uv-card"></div>
+  <div class="card" id="air-card"></div>
+</section>
+
+<section class="card">
+<h2>Prévisions horaires</h2>
+<div id="hourly"></div>
+</section>
+
+<section class="card daily-forecast-card" id="daily-forecast-section">
+  <div class="daily-forecast-heading">
+    <div>
+      <h2>Prévisions journalières</h2>
+      <p class="chart-subtitle">
+        Choisis le modèle ou utilise la fusion automatique selon l’échéance.
+      </p>
+    </div>
+
+    <label class="daily-model-selector">
+      Source
+      <select id="daily-model-select">
+        <option value="fusion">🤖 Fusion recommandée</option>
+        <option value="arome">🇫🇷 AROME</option>
+        <option value="arpege">🇫🇷 ARPEGE</option>
+        <option value="ecmwf">🌍 ECMWF</option>
+        <option value="gfs">🇺🇸 GFS</option>
+        <option value="icon">🇩🇪 ICON</option>
+      </select>
+    </label>
+  </div>
+
+  <div id="daily-model-status" class="daily-model-status">
+    Chargement de la fusion…
+  </div>
+
+  <div id="daily"></div>
+
+  <div id="daily-comparison" class="daily-comparison" hidden>
+    <div class="daily-comparison-heading">
+      <div>
+        <h3 id="daily-comparison-title">Comparaison</h3>
+        <p id="daily-comparison-confidence"></p>
       </div>
+      <button id="daily-comparison-close" type="button" aria-label="Fermer">
+        ✕
+      </button>
+    </div>
+    <div id="daily-comparison-grid" class="daily-comparison-grid"></div>
+  </div>
+</section>
 
-      <section class="sidebar-section">
-        <div class="section-heading">
-          <span>Modèle</span>
-        </div>
-        <div
-          id="modelTabs"
-          class="model-tabs"
-          role="tablist"
-          aria-label="Modèles météo"
-        ></div>
-      </section>
 
-      <section id="variableSelectorBlock" class="sidebar-section">
-        <div class="section-heading variable-heading">
-          <span>Type de carte</span>
-        </div>
-        <div
-          id="variableTabs"
-          class="variable-tabs"
-          role="tablist"
-          aria-label="Types de cartes météo"
-        ></div>
-      </section>
+<section class="card model-status-card" id="model-status-section">
+  <h2>🛰️ Dernière mise à jour des modèles</h2>
+  <p class="chart-subtitle model-status-note">
+    Heure à laquelle ce navigateur a détecté de nouvelles données.
+  </p>
+  <div id="model-update-list" class="model-update-list" aria-live="polite"></div>
+</section>
+<section class="card">
+<h2>Comparaison des modèles</h2>
+<canvas id="modelsChart"></canvas>
+</section>
 
-      <section class="sidebar-section timeline-section">
-        <div class="section-heading timeline-heading">
-          <span>Échéances</span>
-          <span id="frameCount" class="frame-count"></span>
-        </div>
+<section class="card advanced-chart-card" id="arome-section">
+  <div class="chart-heading">
+    <div>
+      <h2 class="arome-title">🎯 Maille Fine Haute Résolution (48 h)</h2>
+      <p id="arome-model-label" class="chart-subtitle">Chargement du modèle officiel AROME…</p>
+    </div>
+    <div class="chart-tabs" role="tablist" aria-label="Variable du graphique AROME">
+      <button class="chart-tab active" type="button" data-arome-type="temp" aria-pressed="true">🌡️ Temp</button>
+      <button class="chart-tab" type="button" data-arome-type="rain" aria-pressed="false">🌧️ Pluie</button>
+      <button class="chart-tab" type="button" data-arome-type="wind" aria-pressed="false">💨 Vent</button>
+    </div>
+  </div>
+  <div class="chart-shell chart-shell-large">
+    <canvas id="aromeChart"></canvas>
+  </div>
+</section>
 
-        <div
-          id="timeline"
-          class="timeline"
-          role="listbox"
-          aria-label="Échéances de prévision"
-        ></div>
-      </section>
-    </aside>
+<section class="card advanced-chart-card" id="ecmwf-long-section">
+  <div class="chart-heading">
+    <div>
+      <h2 class="ecmwf-title">🔮 Suite Long Terme : uniquement ECMWF IFS (5 à 10 jours)</h2>
+      <p class="chart-subtitle">Vue exclusive sur la fin de l’échéance via le modèle européen ECMWF IFS.</p>
+    </div>
+  </div>
+  <div class="chart-shell">
+    <canvas id="ecmwfLongChart"></canvas>
+  </div>
+</section>
 
-    <section class="weather-stage">
-      <header class="stage-header">
-        <button
-          id="sidebarToggle"
-          class="icon-button"
-          type="button"
-          aria-label="Afficher ou masquer le panneau"
-          aria-expanded="true"
-        >
-          ☰
-        </button>
 
-        <div class="map-heading">
-          <div class="map-heading-topline">
-            <span id="modelBadge" class="model-badge">Chargement</span>
-            <span id="mapMeta" class="map-meta"></span>
-          </div>
-          <h2 id="mapTitle">Chargement de la carte…</h2>
-        </div>
+
+<section class="card model-comparator-card" id="model-comparator-section">
+  <div class="model-comparator-heading">
+    <div>
+      <h2>⚖️ Comparateur de modèles</h2>
+      <p class="chart-subtitle">
+        Compare deux modèles sur la même variable et la même échéance.
+      </p>
+    </div>
+    <span id="model-comparator-status" class="model-comparator-status">
+      Chargement…
+    </span>
+  </div>
+
+  <div class="model-comparator-controls">
+    <label>
+      Modèle gauche
+      <select id="compare-model-left"></select>
+    </label>
+    <label>
+      Modèle droit
+      <select id="compare-model-right"></select>
+    </label>
+    <label>
+      Variable commune
+      <select id="compare-variable"></select>
+    </label>
+    <label>
+      Vitesse
+      <select id="compare-speed">
+        <option value="1400">Lente</option>
+        <option value="850" selected>Normale</option>
+        <option value="450">Rapide</option>
+      </select>
+    </label>
+
+    <button id="compare-prev" type="button">◀</button>
+    <button id="compare-play" type="button">▶ Lecture</button>
+    <button id="compare-next" type="button">▶</button>
+    <button id="compare-swap" type="button">⇄ Inverser</button>
+  </div>
+
+  <div class="model-comparator-timeline">
+    <input
+      id="compare-timeline"
+      type="range"
+      min="0"
+      max="0"
+      value="0"
+      step="1"
+      aria-label="Échéance comparée"
+    >
+    <strong id="compare-validity">--</strong>
+  </div>
+
+  <div class="model-comparator-grid">
+    <article class="model-compare-pane">
+      <header>
+        <strong id="compare-left-title">Modèle gauche</strong>
+        <span id="compare-left-run"></span>
       </header>
-
-      <div id="mapViewport" class="map-viewport">
-        <div class="map-canvas" aria-live="polite">
-          <div class="image-layer current">
-            <img id="currentMap" alt="">
-          </div>
-
-          <div class="image-layer next">
-            <img id="nextMap" alt="">
-          </div>
-
-          <div id="mapLoader" class="map-loader">
-            <span class="spinner" aria-hidden="true"></span>
-            <span>Chargement de la carte…</span>
-          </div>
-
-          <div id="mapError" class="map-error" hidden></div>
-
-          <div id="hoverTooltip" class="hover-tooltip" hidden></div>
-        </div>
-
-        <div id="mapLegendV6" class="map-legend-v6" hidden>
-          <div class="map-legend-v6-title">
-            <span class="map-legend-v6-name"></span>
-            <span class="map-legend-v6-unit"></span>
-          </div>
-          <div class="map-legend-v6-gradient"></div>
-          <div class="map-legend-v6-ticks"></div>
-        </div>
+      <img id="compare-left-image" alt="Carte du modèle de gauche" hidden>
+      <div id="compare-left-empty" class="model-compare-empty">
+        Aucune carte commune.
       </div>
+    </article>
 
-      <footer class="player-controls">
-        <div class="desktop-controls">
-          <button id="previousFrame" class="control-button" type="button" aria-label="Image précédente">
-            ◀
-          </button>
+    <article class="model-compare-pane">
+      <header>
+        <strong id="compare-right-title">Modèle droit</strong>
+        <span id="compare-right-run"></span>
+      </header>
+      <img id="compare-right-image" alt="Carte du modèle de droite" hidden>
+      <div id="compare-right-empty" class="model-compare-empty">
+        Aucune carte commune.
+      </div>
+    </article>
+  </div>
 
-          <button id="playPause" class="control-button play-button" type="button" aria-label="Lire l’animation">
-            ▶
-          </button>
+  <div id="compare-legend" class="model-player-legend" hidden>
+    <div class="model-player-legend-header">
+      <strong id="compare-legend-title">Échelle</strong>
+      <span id="compare-legend-unit"></span>
+    </div>
+    <div id="compare-legend-bar" class="model-player-legend-bar"></div>
+    <div id="compare-legend-ticks" class="model-player-legend-ticks"></div>
+  </div>
+</section>
 
-          <button id="nextFrame" class="control-button" type="button" aria-label="Image suivante">
-            ▶
-          </button>
 
-          <label class="speed-control" for="playSpeed">
-            <span>Vitesse</span>
-            <select id="playSpeed">
-              <option value="1200">Lente</option>
-              <option value="700" selected>Normale</option>
-              <option value="350">Rapide</option>
-            </select>
-          </label>
+<section class="card model-player-card" id="generated-models-section">
+  <div class="model-player-heading">
+    <div>
+      <h2>🗺️ Cartes modèles Europe — lecteur intégré</h2>
+      <p class="chart-subtitle">
+        Cartes générées automatiquement pour GFS, ICON-EU, ECMWF IFS, AROME et ARPEGE.
+      </p>
+    </div>
+    <span id="model-player-run" class="model-player-run">Manifest en attente…</span>
+  </div>
+
+  <div class="model-player-controls">
+    <label>
+      Modèle
+      <select id="model-player-model" aria-label="Modèle météo"></select>
+    </label>
+
+    <label>
+      Variable
+      <select id="model-player-variable"></select>
+    </label>
+
+    <label>
+      Vitesse
+      <select id="model-player-speed">
+        <option value="1400">Lente</option>
+        <option value="800" selected>Normale</option>
+        <option value="400">Rapide</option>
+      </select>
+    </label>
+
+    <button id="model-player-prev" type="button">◀</button>
+    <button id="model-player-play" type="button">▶ Lecture</button>
+    <button id="model-player-next" type="button">▶</button>
+    <button id="model-player-download" type="button">⇩ Télécharger</button>
+    <button id="model-player-fullscreen" type="button">⛶ Plein écran</button>
+  </div>
+
+  <div class="model-player-timeline-row">
+    <input
+      id="model-player-timeline"
+      type="range"
+      min="0"
+      max="0"
+      value="0"
+      step="1"
+      aria-label="Échéance du modèle"
+    >
+    <div class="model-player-time-info">
+      <strong id="model-player-validity">--</strong>
+      <span id="model-player-counter">0 / 0</span>
+    </div>
+  </div>
+
+  <div id="model-player-viewer" class="model-player-viewer">
+    <div id="model-player-placeholder" class="model-player-placeholder">
+      <strong>Aucune carte générée pour le moment.</strong>
+      <span>
+        Lance le workflow « Generate weather maps » dans l’onglet Actions de GitHub.
+      </span>
+    </div>
+    <img
+      id="model-player-image"
+      alt="Carte météo du modèle sélectionné"
+      decoding="async"
+      hidden
+    >
+    <div class="model-player-overlay">
+      <span id="model-player-label"></span>
+      <span id="model-player-hour"></span>
+    </div>
+  </div>
+
+  <div id="model-player-legend" class="model-player-legend" hidden>
+    <div class="model-player-legend-header">
+      <strong id="model-player-legend-title">Échelle</strong>
+      <span id="model-player-legend-unit"></span>
+    </div>
+    <div id="model-player-legend-bar" class="model-player-legend-bar"></div>
+    <div id="model-player-legend-ticks" class="model-player-legend-ticks"></div>
+  </div>
+
+  <p class="model-player-help">
+    Raccourcis : ← / → pour changer d’échéance · espace pour lecture/pause.
+  </p>
+
+  <p id="model-player-error" class="model-player-error" hidden></p>
+</section>
+
+
+
+
+
+<section class="card surveillance-center-card" id="surveillance-center-section"><div class="surveillance-heading"><div><h2>🚨 Centre de surveillance météo</h2><p class="chart-subtitle">Radar, satellite et signaux locaux sur une timeline unique.</p></div><span id="surveillance-updated-at">Chargement…</span></div><div id="surveillance-alerts" class="surveillance-alerts"></div><div class="surveillance-toolbar"><label>Produit<select id="surveillance-product"><option value="radar">🌧️ Radar pluie</option><option value="visible">🛰️ Satellite visible NASA</option></select></label><label>Opacité<input id="surveillance-opacity" type="range" min="20" max="100" value="72"></label><button id="surveillance-prev">◀</button><button id="surveillance-play">▶ Lecture</button><button id="surveillance-next">▶</button><button id="surveillance-local">📍 Brûlain</button><button id="surveillance-france">🇫🇷 France</button><button id="surveillance-europe">🇪🇺 Europe</button><button id="surveillance-fullscreen">⛶ Plein écran</button></div><div class="surveillance-timeline-row"><input id="surveillance-timeline" type="range" min="0" max="0" value="0"><strong id="surveillance-validity">--</strong></div><div class="surveillance-layout"><div id="surveillance-map" class="surveillance-map"></div><aside class="surveillance-sidebar"><h3>Conditions locales</h3><div id="surveillance-current" class="surveillance-current"></div><h3>État des sources</h3><div id="surveillance-providers"></div><p>Signaux automatiques : ils ne remplacent pas les bulletins officiels.</p></aside></div></section>
+
+<section class="card water-card" id="water-section">
+  <div class="water-heading">
+    <div>
+      <h2>💧 Restrictions d’usage de l’eau</h2>
+      <p class="chart-subtitle">
+        Mesures VigiEau applicables aux particuliers pour Brûlain.
+      </p>
+    </div>
+    <button id="water-refresh" type="button">↻ Actualiser</button>
+  </div>
+
+  <div id="water-status" class="water-status">
+    Chargement des restrictions…
+  </div>
+
+  <div id="water-content" class="water-content">
+    <p>Chargement des données VigiEau…</p>
+  </div>
+
+  <p class="water-notice">
+    Informations indicatives : l’arrêté préfectoral fait foi.
+  </p>
+</section>
+
+<section class="card climate-center-card" id="climate-center-section">
+  <div class="climate-center-heading">
+    <div><h2>📊 Centre climatologique</h2><p class="chart-subtitle">Normales 1991–2020, année en cours, records et indicateurs locaux.</p></div>
+    <div class="climate-center-actions"><span id="climate-updated-at" class="climate-updated-at">Chargement…</span><button id="climate-refresh" type="button">↻ Actualiser</button></div>
+  </div>
+  <div id="climate-kpi-grid" class="climate-kpi-grid"></div>
+  <div class="climate-chart-grid">
+    <article class="climate-subcard"><h3>Températures mensuelles</h3><div class="climate-chart-shell"><canvas id="climate-temperature-chart"></canvas></div></article>
+    <article class="climate-subcard"><h3>Précipitations mensuelles</h3><div class="climate-chart-shell"><canvas id="climate-precipitation-chart"></canvas></div></article>
+    <article class="climate-subcard"><h3>Comparaison des dernières années</h3><div class="climate-chart-shell"><canvas id="climate-years-chart"></canvas></div></article>
+    <article class="climate-subcard"><h3>Records locaux de la réanalyse</h3><div id="climate-record-grid" class="climate-record-grid"></div></article>
+    <article class="climate-subcard"><h3>Écart annuel de température</h3><p class="climate-chart-help">Différence en °C par rapport à la normale 1991–2020. Au-dessus de zéro = année plus chaude.</p><div class="climate-chart-shell"><canvas id="climate-temperature-anomaly-chart"></canvas></div></article>
+    <article class="climate-subcard"><h3>Écart annuel de précipitations</h3><p class="climate-chart-help">Écart en % par rapport au cumul annuel normal. Au-dessus de zéro = année plus humide.</p><div class="climate-chart-shell"><canvas id="climate-rain-anomaly-chart"></canvas></div></article>
+    <article class="climate-subcard climate-subcard-wide"><h3>Tendance des températures récentes</h3><p class="climate-chart-help">La ligne pointillée montre la tendance statistique sur les années disponibles, pas une prévision.</p><div class="climate-chart-shell"><canvas id="climate-trend-chart"></canvas></div></article>
+  </div>
+  <p class="climate-disclaimer">Ces valeurs proviennent d’une réanalyse climatique locale et non d’une station officielle implantée sur le terrain.</p>
+</section>
+
+<section class="card weather-history-card" id="weather-history-section">
+  <div class="weather-history-heading"><div><h2>🏆 Records climatiques de la commune</h2><p class="chart-subtitle">Records journaliers et années remarquables détectés dans la réanalyse disponible.</p></div></div>
+  <div id="weather-history-list" class="weather-history-list climate-record-dashboard" aria-live="polite"></div>
+  <p class="climate-disclaimer">Ces records sont indicatifs et dépendent de la résolution de la réanalyse Open-Meteo.</p>
+</section>
+<section class="card site-data-status-card" id="site-data-status-card">
+  <div class="site-data-status-heading">
+    <div>
+      <h2>⚙️ État du backend météo</h2>
+      <p class="chart-subtitle">
+        Données centralisées et mises en cache par GitHub Actions.
+      </p>
+    </div>
+    <div class="site-data-status-actions">
+      <span id="site-data-age" class="site-data-age">Chargement…</span>
+      <button id="site-data-refresh" type="button">↻ Relire le cache</button>
+    </div>
+  </div>
+  <div id="site-data-provider-grid" class="site-data-provider-grid"></div>
+</section>
+
+
+<section class="card observation-center-card" id="observation-center">
+  <div class="observation-heading">
+    <div>
+      <h2>🔭 Centre d’observation</h2>
+      <p class="chart-subtitle">
+        Air, pollens, UV, rivières, observations d’aérodromes et webcams locales.
+      </p>
+    </div>
+    <button id="observations-refresh" type="button">↻ Actualiser</button>
+  </div>
+
+  <div class="observation-tabs" role="tablist" aria-label="Catégories d’observation">
+    <button class="observation-tab active" type="button" data-observation-tab="air">
+      🍃 Air & pollens
+    </button>
+    <button class="observation-tab" type="button" data-observation-tab="rivers">
+      🌊 Rivières
+    </button>
+    <button class="observation-tab" type="button" data-observation-tab="metar">
+      🛩️ Stations proches
+    </button>
+    <button class="observation-tab" type="button" data-observation-tab="webcams">
+      📷 Webcams
+    </button>
+  </div>
+
+  <div class="observation-panel active" data-observation-panel="air">
+    <div id="air-observation-grid" class="observation-metric-grid"></div>
+
+    <div class="observation-chart-grid">
+      <article class="observation-subcard">
+        <h3>Évolution de la qualité de l’air — 24 h</h3>
+        <div class="observation-chart-shell">
+          <canvas id="air-observation-chart"></canvas>
         </div>
+      </article>
 
-        <div class="mobile-controls">
-          <label for="mobileRange">Échéance</label>
-          <input id="mobileRange" type="range" min="0" max="0" value="0" step="1">
-          <output id="mobileOutput" for="mobileRange">+0 h</output>
+      <article class="observation-subcard">
+        <h3>Pollens — 24 h</h3>
+        <div class="observation-chart-shell">
+          <canvas id="pollen-observation-chart"></canvas>
         </div>
-      </footer>
-    </section>
-  </main>
+      </article>
+    </div>
+
+    <p class="observation-note">
+      Les pollens sont des prévisions CAMS à l’échelle régionale, et non des mesures
+      effectuées directement sur ton terrain.
+    </p>
+  </div>
+
+  <div class="observation-panel" data-observation-panel="rivers" hidden>
+    <div class="observation-panel-heading">
+      <div>
+        <h3>Stations hydrométriques autour de Brûlain</h3>
+        <p>Hauteurs ou débits quasi temps réel disponibles sur le réseau français.</p>
+      </div>
+      <select id="river-radius" aria-label="Rayon de recherche des rivières">
+        <option value="0.35">Environ 30 km</option>
+        <option value="0.7" selected>Environ 60 km</option>
+        <option value="1.2">Environ 100 km</option>
+      </select>
+    </div>
+    <div id="river-observation-list" class="river-observation-list"></div>
+  </div>
+
+  <div class="observation-panel" data-observation-panel="metar" hidden>
+    <div class="observation-panel-heading">
+      <div>
+        <h3>Observations d’aérodromes proches</h3>
+        <p>
+          Données METAR mises en cache dans le dépôt pour éviter les restrictions CORS.
+        </p>
+      </div>
+      <span id="metar-updated-at" class="observation-updated-badge">En attente…</span>
+    </div>
+    <div id="metar-observation-grid" class="metar-observation-grid"></div>
+  </div>
+
+  <div class="observation-panel" data-observation-panel="webcams" hidden>
+    <div class="observation-panel-heading">
+      <div>
+        <h3>Webcams configurables</h3>
+        <p>
+          Ajoute tes propres images ou liens dans <code>js/observations-config.js</code>.
+        </p>
+      </div>
+    </div>
+    <div id="webcam-observation-grid" class="webcam-observation-grid"></div>
+  </div>
+</section>
+
+
+<section class="card interactive-weather-map-card" id="interactive-map-section">
+  <div class="interactive-map-heading">
+    <div>
+      <h2>🌍 Carte météo interactive</h2>
+      <p class="chart-subtitle">
+        Superpose le radar, le satellite et les observations ponctuelles sur une même carte.
+      </p>
+    </div>
+    <span id="interactive-map-status" class="interactive-map-status">
+      Initialisation…
+    </span>
+  </div>
+
+  <div class="interactive-map-toolbar" aria-label="Outils de la carte météo">
+    <button id="map-view-europe" type="button">🇪🇺 Europe</button>
+    <button id="map-view-france" type="button">🇫🇷 France</button>
+    <button id="map-view-local" type="button">📍 Brûlain</button>
+    <button id="map-geolocate" type="button">⌖ Ma position</button>
+    <button id="map-toggle-radar" type="button" aria-pressed="true">
+      🌧️ Radar actif
+    </button>
+    <button id="map-toggle-alerts" type="button" aria-pressed="true">🚨 Alertes</button>
+    <button id="map-toggle-satellite" type="button" aria-pressed="false">
+      🛰️ Satellite
+    </button>
+    <button id="map-fullscreen" type="button">⛶ Plein écran</button>
+  </div>
+
+  <div class="live-layer-panel" aria-label="Couches météo calculées">
+    <label for="map-live-layer">
+      Couche météo
+      <select id="map-live-layer">
+        <option value="none">Aucune</option>
+        <option value="temperature">🌡️ Température</option>
+        <option value="cloud">☁️ Nébulosité</option>
+        <option value="cape">⚡ CAPE</option>
+        <option value="pressure">🔵 Pression</option>
+      </select>
+    </label>
+
+    <button id="map-load-live-data" type="button">
+      ↻ Charger les données
+    </button>
+
+    <button id="map-toggle-wind" type="button" aria-pressed="false">
+      💨 Vent animé
+    </button>
+
+    <label for="map-grid-resolution">
+      Résolution
+      <select id="map-grid-resolution">
+        <option value="6">Économe</option>
+        <option value="4" selected>Normale</option>
+        <option value="3">Fine</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="interactive-map-time-row">
+    <button id="map-radar-prev" type="button" title="Image radar précédente">◀</button>
+    <button id="map-radar-play" type="button">▶ Animation radar</button>
+    <button id="map-radar-next" type="button" title="Image radar suivante">▶</button>
+
+    <input
+      id="map-radar-timeline"
+      type="range"
+      min="0"
+      max="0"
+      value="0"
+      step="1"
+      aria-label="Échéance radar de la carte interactive"
+    >
+
+    <strong id="map-radar-time">--:--</strong>
+  </div>
+
+  <div id="interactive-weather-map" class="interactive-weather-map"></div>
+
+  <div class="interactive-map-legend">
+    <span><i class="legend-dot radar-dot"></i> Radar pluie</span>
+    <span><i class="legend-dot satellite-dot"></i> Satellite NASA</span>
+    <span><i class="legend-dot point-dot"></i> Point météo interrogé</span>
+  </div>
+
+  <div id="map-data-legend" class="map-data-legend" hidden>
+    <div class="map-data-legend-heading">
+      <strong id="map-data-legend-title">Échelle</strong>
+      <span id="map-data-legend-unit"></span>
+    </div>
+    <div id="map-data-legend-gradient" class="map-data-legend-gradient"></div>
+    <div id="map-data-legend-ticks" class="map-data-legend-ticks"></div>
+  </div>
+
+  <div id="map-live-summary" class="map-live-summary" hidden></div>
+
+  <p class="interactive-map-help">
+    Clique n’importe où sur la carte pour obtenir la météo actuelle du point sélectionné.
+  </p>
+</section>
+
+
+<section class="card europe-radar-card" id="europe-radar-section">
+  <div class="europe-heading">
+    <div>
+      <h2>🌧️ Radar pluie Europe</h2>
+      <p class="chart-subtitle">Images radar observées avec animation des dernières heures.</p>
+    </div>
+    <span id="radar-status" class="radar-status">Initialisation…</span>
+  </div>
+  <div class="radar-toolbar" aria-label="Commandes du radar">
+    <button id="radar-prev" type="button">◀</button>
+    <button id="radar-play" type="button">▶ Lecture</button>
+    <button id="radar-next" type="button">▶</button>
+    <label class="radar-speed-label" for="radar-speed">Vitesse
+      <select id="radar-speed"><option value="1200">Lente</option><option value="700" selected>Normale</option><option value="350">Rapide</option></select>
+    </label>
+    <button id="radar-home" type="button">Europe</button>
+    <button id="radar-local" type="button">Brûlain</button>
+  </div>
+  <div class="radar-time-row">
+    <input id="radar-timeline" type="range" min="0" max="0" value="0" step="1" aria-label="Chronologie radar">
+    <strong id="radar-time-label">--:--</strong>
+  </div>
+  <div id="europe-radar-map" class="europe-radar-map"></div>
+  <p class="radar-attribution-note">Fond © OpenStreetMap · Données radar via RainViewer.</p>
+</section>
+
+<section class="card">
+<h2>Radar météo</h2>
+<iframe id="ventusky" loading="lazy"></iframe>
+</section>
+</main>
+
+<footer>
+<p>Météo Lab V4 © 2026</p>
+</footer>
+
+<script defer src="js/chart-manager.js?v=30"></script>
+<script defer src="js/config.js?v=30"></script>
+<script defer src="js/api.js?v=30"></script>
+<script defer src="js/weather.js?v=30"></script>
+<script defer src="js/charts.js?v=30"></script>
+<script defer src="js/ui.js?v=30"></script>
+<script defer src="js/animations.js?v=30"></script>
+<script defer src="js/radar.js?v=30"></script>
+<script defer src="js/europe-maps.js?v=30"></script>
+<script defer src="js/model-player.js?v=30"></script>
+<script defer src="js/model-comparator.js?v=30"></script>
+<script defer src="js/interactive-map.js?v=30"></script>
+<script defer src="js/site-data.js?v=30"></script>
+<script defer src="js/climate-center.js?v=31"></script>
+<script defer src="js/surveillance-center.js?v=30"></script>
+<script defer src="js/site-data-status.js?v=30"></script>
+<script defer src="js/weather-history.js?v=30"></script>
+<script defer src="js/observations-config.js?v=30"></script>
+<script defer src="js/observations.js?v=30"></script>
+<script defer src="js/water-restrictions.js?v=30"></script>
+<script defer src="js/app.js?v=31"></script>
 </body>
 </html>
