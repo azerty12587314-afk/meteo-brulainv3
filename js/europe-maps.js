@@ -2,7 +2,7 @@
 
 window.EuropeWeatherMaps = (() => {
   const EUROPE_VIEW = { center: [50.2, 10.0], zoom: 4 };
-  const BRULAIN_VIEW = { center: [46.2025, -0.3297], zoom: 8 };
+  const BRULAIN_VIEW = { center: [46.2006, -0.3194], zoom: 8 };
 
   let map = null;
   let radarLayer = null;

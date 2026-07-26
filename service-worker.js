@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'meteo-lab-v6.1-cartes-20260725';
+const CACHE_NAME = 'meteo-lab-v6.1-cartes-20260725-multisite';
 const APP_SHELL = [
   './',
   './index.html',

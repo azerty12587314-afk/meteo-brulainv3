@@ -16,12 +16,8 @@ from typing import Any, Callable
 import requests
 
 
-LOCATION = {
-    "name": "Brûlain",
-    "latitude": 46.2025,
-    "longitude": -0.3297,
-    "timezone": "Europe/Paris",
-}
+ROOT = Path(__file__).resolve().parents[1]
+LOCATION = json.loads((ROOT / "data" / "location.json").read_text(encoding="utf-8"))
 
 FORECAST_API = "https://api.open-meteo.com/v1/forecast"
 AIR_API = "https://air-quality-api.open-meteo.com/v1/air-quality"

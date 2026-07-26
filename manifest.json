@@ -1,7 +1,7 @@
 {
-  "name": "Météo Lab V20",
-  "short_name": "Météo Lab",
-  "description": "Tableau de bord météo moderne pour Brûlain et toute autre ville.",
+  "name": "Météo Lab Brûlain",
+  "short_name": "Météo Brûlain",
+  "description": "Tableau de bord météo moderne pour Brûlain.",
   "lang": "fr",
   "start_url": "./",
   "scope": "./",

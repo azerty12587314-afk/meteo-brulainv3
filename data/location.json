@@ -2,5 +2,6 @@
   "name": "Brûlain",
   "latitude": 46.2006,
   "longitude": -0.3194,
+  "timezone": "Europe/Paris",
   "insee": "79058"
 }

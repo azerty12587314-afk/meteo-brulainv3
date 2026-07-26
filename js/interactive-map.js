@@ -4,7 +4,7 @@ window.InteractiveWeatherMap = (() => {
   const VIEWS = {
     europe: { center: [50.2, 10], zoom: 4 },
     france: { center: [46.6, 2.4], zoom: 6 },
-    local: { center: [46.2025, -0.3297], zoom: 11 }
+    local: { center: [46.2006, -0.3194], zoom: 11 }
   };
 
   const WEATHER_CODES = {

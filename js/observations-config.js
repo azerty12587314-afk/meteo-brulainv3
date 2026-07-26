@@ -3,8 +3,8 @@
 window.ObservationsConfig = Object.freeze({
   location: {
     name: 'Brûlain',
-    latitude: 46.2025,
-    longitude: -0.3297,
+    latitude: 46.2006,
+    longitude: -0.3194,
     timezone: 'Europe/Paris'
   },
 

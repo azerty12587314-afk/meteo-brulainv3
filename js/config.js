@@ -1,11 +1,11 @@
 'use strict';
 
 window.MeteoConfig = Object.freeze({
-  appName: 'Météo Lab V2',
+  appName: 'Météo Lab Brûlain',
   defaultLocation: {
     name: 'Brûlain',
-    latitude: 46.2025,
-    longitude: -0.3297,
+    latitude: 46.2006,
+    longitude: -0.3194,
     timezone: 'Europe/Paris'
   },
   forecastDays: 10,
