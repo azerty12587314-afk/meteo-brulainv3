@@ -516,7 +516,7 @@ def icon_field(run: RunInfo, variable: str, hour: int, temp_dir: Path) -> xr.Dat
 
 
 def generate_icon(output_root: Path, hours: list[int]) -> dict[str, Any]:
-    run = latest_run(4, (0, 3, 6, 9, 12, 15, 18, 21))
+    run = latest_run(5, (0, 6, 12, 18))
     run.model = "icon_eu"
     temp_dir = Path(tempfile.mkdtemp(prefix="icon_"))
     variables = {
