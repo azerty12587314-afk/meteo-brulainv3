@@ -10,7 +10,7 @@ on:
       step:
         description: "Pas entre les cartes, en heures"
         required: false
-        default: "6"
+        default: "3"
   schedule:
     - cron: "35 1,7,13,19 * * *"
 
@@ -24,7 +24,7 @@ concurrency:
 jobs:
   generate:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 300
 
     steps:
       - name: Récupérer le dépôt
@@ -65,7 +65,7 @@ jobs:
       - name: Générer les cartes GFS, ICON-EU et ECMWF IFS
         env:
           MAX_HOUR: ${{ github.event.inputs.max_hour || '120' }}
-          MAP_STEP: ${{ github.event.inputs.step || '6' }}
+          MAP_STEP: ${{ github.event.inputs.step || '3' }}
         run: |
           python scripts/render_maps.py \
             --output . \
