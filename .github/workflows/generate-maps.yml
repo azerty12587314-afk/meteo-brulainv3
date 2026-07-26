@@ -4,13 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       max_hour:
-        description: "Dernière échéance de prévision"
+        description: "Limite facultative pour un test manuel (laisser vide pour les échéances propres à chaque modèle)"
         required: false
-        default: "120"
+        default: ""
       step:
-        description: "Pas entre les cartes, en heures"
+        description: "Pas uniforme facultatif pour un test manuel (laisser vide pour le pas hybride)"
         required: false
-        default: "3"
+        default: ""
   schedule:
     - cron: "35 1,7,13,19 * * *"
 
@@ -64,14 +64,24 @@ jobs:
 
       - name: Générer les cartes GFS, ICON-EU et ECMWF IFS
         env:
-          MAX_HOUR: ${{ github.event.inputs.max_hour || '120' }}
-          MAP_STEP: ${{ github.event.inputs.step || '3' }}
+          MAX_HOUR: ${{ github.event.inputs.max_hour }}
+          MAP_STEP: ${{ github.event.inputs.step }}
         run: |
-          python scripts/render_maps.py \
-            --output . \
-            --models gfs icon_eu ecmwf \
-            --max-hour "$MAX_HOUR" \
-            --step "$MAP_STEP"
+          args=(--output . --models gfs icon_eu ecmwf)
+
+          # Sans saisie manuelle, render_maps.py applique automatiquement :
+          # GFS : 3 h jusqu'à +144 h, puis 6 h jusqu'à +330 h
+          # ICON-EU : 3 h jusqu'à +120 h
+          # ECMWF : 3 h jusqu'à +144 h, puis 6 h jusqu'à +360 h
+          if [[ -n "${MAX_HOUR:-}" ]]; then
+            args+=(--max-hour "$MAX_HOUR")
+          fi
+
+          if [[ -n "${MAP_STEP:-}" ]]; then
+            args+=(--step "$MAP_STEP")
+          fi
+
+          python scripts/render_maps.py "${args[@]}"
 
       - name: Vérifier le manifeste et les images
         run: python scripts/validate_maps.py
