@@ -1,9 +1,25 @@
-name: Generate Weather Maps
+name: Generate weather maps
 
 on:
   workflow_dispatch:
+    inputs:
+      max_hour:
+        description: "Dernière échéance de prévision"
+        required: false
+        default: "120"
+      step:
+        description: "Pas entre les cartes, en heures"
+        required: false
+        default: "3"
   schedule:
-    - cron: "15 */6 * * *"
+    - cron: "35 1,7,13,19 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: generate-weather-maps
+  cancel-in-progress: true
 
 jobs:
   generate:
@@ -11,21 +27,62 @@ jobs:
     timeout-minutes: 300
 
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v6
         with:
-          python-version: "3.11"
+          fetch-depth: 0
 
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-
-      - name: Generate maps
-        run: |
-          python scripts/render_maps.py --output . --models gfs icon_eu ecmwf
-
-      - name: Commit generated maps
-        uses: stefanzweifel/git-auto-commit-action@v5
+      - name: Installer Python
+        uses: actions/setup-python@v6
         with:
-          commit_message: "Mise à jour automatique des cartes météo"
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: scripts/requirements-maps.txt
+
+      - name: Installer les bibliothèques système
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            libeccodes0 \
+            libeccodes-dev \
+            libeccodes-tools \
+            libgeos-dev \
+            libproj-dev \
+            proj-data \
+            proj-bin
+          sudo rm -rf /var/lib/apt/lists/*
+
+      - name: Installer les dépendances Python
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r scripts/requirements-maps.txt
+
+      - name: Vérifier les dépendances
+        run: |
+          python --version
+          python -c "import matplotlib, numpy, xarray, cfgrib, eccodes, cartopy, ecmwf.opendata; print('Dépendances OK')"
+
+      - name: Générer les cartes GFS, ICON-EU et ECMWF IFS
+        env:
+          MAX_HOUR: ${{ github.event.inputs.max_hour || '120' }}
+          MAP_STEP: ${{ github.event.inputs.step || '3' }}
+        run: |
+          python scripts/render_maps.py \
+            --output . \
+            --models gfs icon_eu ecmwf \
+            --max-hour "$MAX_HOUR" \
+            --step "$MAP_STEP"
+
+      - name: Vérifier le manifeste et les images
+        run: python scripts/validate_maps.py
+
+      - name: Afficher les fichiers générés
+        run: |
+          find maps -type f -printf '%p %k Ko\n' | sort
+          du -sh maps
+
+      - name: Publier les cartes
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "chore(maps): update forecast maps"
+          file_pattern: "maps/**"
