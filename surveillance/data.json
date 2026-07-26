@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-26T15:38:33.361681+00:00",
+  "generatedAt": "2026-07-26T15:44:09.413478+00:00",
   "location": {
     "name": "Brûlain",
     "latitude": 46.2006,
@@ -14,7 +14,7 @@
   "weather": {
     "latitude": 46.2,
     "longitude": -0.32000017,
-    "generationtime_ms": 1.1109113693237305,
+    "generationtime_ms": 0.11086463928222656,
     "utc_offset_seconds": 7200,
     "timezone": "Europe/Paris",
     "timezone_abbreviation": "GMT+2",
