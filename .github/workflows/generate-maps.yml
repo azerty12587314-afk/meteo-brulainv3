@@ -4,11 +4,11 @@ on:
   workflow_dispatch:
     inputs:
       max_hour:
-        description: "Limite facultative pour un test manuel (laisser vide pour les échéances propres à chaque modèle)"
+        description: "Limite facultative pour un test manuel (laisser vide pour les échéances automatiques)"
         required: false
         default: ""
       step:
-        description: "Pas uniforme facultatif pour un test manuel (laisser vide pour le pas hybride)"
+        description: "Pas uniforme facultatif pour un test manuel (laisser vide pour le calendrier hybride)"
         required: false
         default: ""
   schedule:
@@ -19,7 +19,7 @@ permissions:
 
 concurrency:
   group: generate-weather-maps
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   generate:
@@ -69,10 +69,6 @@ jobs:
         run: |
           args=(--output . --models gfs icon_eu ecmwf)
 
-          # Sans saisie manuelle, render_maps.py applique automatiquement :
-          # GFS : 3 h jusqu'à +144 h, puis 6 h jusqu'à +330 h
-          # ICON-EU : 3 h jusqu'à +120 h
-          # ECMWF : 3 h jusqu'à +144 h, puis 6 h jusqu'à +360 h
           if [[ -n "${MAX_HOUR:-}" ]]; then
             args+=(--max-hour "$MAX_HOUR")
           fi
@@ -92,7 +88,21 @@ jobs:
           du -sh maps
 
       - name: Publier les cartes
-        uses: stefanzweifel/git-auto-commit-action@v7
-        with:
-          commit_message: "chore(maps): update forecast maps"
-          file_pattern: "maps/**"
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add maps/
+
+          if git diff --cached --quiet; then
+            echo "Aucune modification de cartes à publier."
+            exit 0
+          fi
+
+          git commit -m "chore(maps): update forecast maps"
+
+          # Un commit peut avoir été ajouté sur main durant la génération.
+          # On récupère ces changements avant de pousser les cartes.
+          git pull --rebase origin main
+          git push origin HEAD:main
