@@ -670,7 +670,7 @@ def main() -> int:
     parser.add_argument("--output", default=".")
     parser.add_argument("--models", nargs="+", default=["gfs", "icon_eu", "ecmwf"])
     parser.add_argument("--max-hour", type=int, default=120)
-    parser.add_argument("--step", type=int, default=6)
+    parser.add_argument("--step", type=int, default=3)
     args = parser.parse_args()
 
     root = Path(args.output).resolve()
