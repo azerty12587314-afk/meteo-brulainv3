@@ -669,8 +669,24 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", default=".")
     parser.add_argument("--models", nargs="+", default=["gfs", "icon_eu", "ecmwf"])
-    parser.add_argument("--max-hour", type=int, default=120)
-    parser.add_argument("--step", type=int, default=3)
+    parser.add_argument(
+        "--max-hour",
+        type=int,
+        default=None,
+        help=(
+            "Limite facultative appliquée à toutes les échéances. "
+            "Sans cette option, chaque modèle utilise sa propre limite."
+        ),
+    )
+    parser.add_argument(
+        "--step",
+        type=int,
+        default=None,
+        help=(
+            "Pas facultatif uniforme, conservé pour les tests manuels. "
+            "Sans cette option, les pas propres à chaque modèle sont utilisés."
+        ),
+    )
     args = parser.parse_args()
 
     root = Path(args.output).resolve()
@@ -684,7 +700,31 @@ def main() -> int:
                     child.unlink()
     maps_dir.mkdir(parents=True, exist_ok=True)
 
-    hours = list(range(0, args.max_hour + 1, args.step))
+    # Échéances recommandées par modèle :
+    # - GFS : toutes les 3 h jusqu'à +144 h, puis toutes les 6 h jusqu'à +330 h.
+    # - ICON-EU : toutes les 3 h jusqu'à +120 h.
+    # - ECMWF IFS : toutes les 3 h jusqu'à +144 h, puis toutes les 6 h jusqu'à +360 h.
+    model_hours: dict[str, list[int]] = {
+        "gfs": list(range(0, 145, 3)) + list(range(150, 331, 6)),
+        "icon_eu": list(range(0, 121, 3)),
+        "ecmwf": list(range(0, 145, 3)) + list(range(150, 361, 6)),
+    }
+
+    # Les options --max-hour et --step restent disponibles pour les tests.
+    if args.step is not None:
+        if args.step <= 0:
+            parser.error("--step doit être strictement positif")
+        uniform_max = args.max_hour if args.max_hour is not None else 120
+        model_hours = {
+            model: list(range(0, uniform_max + 1, args.step))
+            for model in model_hours
+        }
+    elif args.max_hour is not None:
+        model_hours = {
+            model: [hour for hour in hours if hour <= args.max_hour]
+            for model, hours in model_hours.items()
+        }
+
     manifest: dict[str, Any] = {
         "generatedAt": datetime.now(timezone.utc).isoformat(),
         "models": {},
@@ -692,19 +732,19 @@ def main() -> int:
 
     if "gfs" in args.models:
         try:
-            manifest["models"]["gfs"] = generate_gfs(root, hours)
+            manifest["models"]["gfs"] = generate_gfs(root, model_hours["gfs"])
         except Exception as exc:
             print(f"GFS generation failed: {exc}", file=sys.stderr)
 
     if "icon_eu" in args.models:
         try:
-            manifest["models"]["icon_eu"] = generate_icon(root, hours)
+            manifest["models"]["icon_eu"] = generate_icon(root, model_hours["icon_eu"])
         except Exception as exc:
             print(f"ICON generation failed: {exc}", file=sys.stderr)
 
     if "ecmwf" in args.models:
         try:
-            manifest["models"]["ecmwf"] = generate_ecmwf(root, hours)
+            manifest["models"]["ecmwf"] = generate_ecmwf(root, model_hours["ecmwf"])
         except Exception as exc:
             print(f"ECMWF generation failed: {exc}", file=sys.stderr)
 
