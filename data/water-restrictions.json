@@ -2,7 +2,7 @@
   "status": "ok",
   "source": "VigiEau",
   "sourceUrl": "https://vigieau.gouv.fr/",
-  "generatedAt": "2026-07-28T07:59:02.269240+00:00",
+  "generatedAt": "2026-07-28T16:25:39.289159+00:00",
   "location": {
     "name": "Brûlain",
     "latitude": 46.2006,
@@ -13,7 +13,7 @@
   "highestLevelLabel": "Crise",
   "zones": [
     {
-      "id": 2152255,
+      "id": 2154852,
       "name": "Boutonne - eaux superficielles",
       "type": "SUP",
       "typeLabel": "Eaux superficielles",
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": 2152259,
+      "id": 2154853,
       "name": "Boutonne - eaux souterraines",
       "type": "SOU",
       "typeLabel": "Eaux souterraines",
