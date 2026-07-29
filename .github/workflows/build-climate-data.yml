@@ -25,12 +25,13 @@ jobs:
 
     steps:
       - name: Récupérer le dépôt
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: ${{ github.event.repository.default_branch }}
 
       - name: Installer Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
@@ -70,7 +71,28 @@ jobs:
           PY
 
       - name: Publier climate.json
-        uses: stefanzweifel/git-auto-commit-action@v7
-        with:
-          commit_message: "chore(climate): update climate data"
-          file_pattern: "data/climate.json"
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/climate.json
+          if git diff --cached --quiet; then
+            echo "Aucune modification climatique à publier."
+            exit 0
+          fi
+          git commit -m "chore(climate): update climate data"
+          publish_with_rebase() {
+            local branch="${GITHUB_REF_NAME:-main}"
+            for attempt in 1 2 3 4 5; do
+              echo "Tentative de publication ${attempt}/5 sur ${branch}"
+              git pull --rebase origin "$branch"
+              if git push origin "HEAD:$branch"; then
+                return 0
+              fi
+              git rebase --abort 2>/dev/null || true
+              sleep $((attempt * 8))
+            done
+            echo "Échec de la publication après 5 tentatives." >&2
+            return 1
+          }
+          publish_with_rebase
