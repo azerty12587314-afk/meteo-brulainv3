@@ -2,7 +2,7 @@
   "status": "ok",
   "source": "VigiEau",
   "sourceUrl": "https://vigieau.gouv.fr/",
-  "generatedAt": "2026-08-04T17:11:16.869756+00:00",
+  "generatedAt": "2026-08-05T08:02:38.441919+00:00",
   "location": {
     "name": "Brûlain",
     "latitude": 46.2006,
@@ -13,7 +13,7 @@
   "highestLevelLabel": "Crise",
   "zones": [
     {
-      "id": 2227729,
+      "id": 2287275,
       "name": "Boutonne - eaux superficielles",
       "type": "SUP",
       "typeLabel": "Eaux superficielles",
@@ -21,8 +21,8 @@
       "levelLabel": "Crise",
       "department": "79",
       "decree": {
-        "startDate": "2026-07-24T00:00:00.000Z",
-        "endDate": "2026-10-31T00:00:00.000Z",
+        "startDate": "2026-07-24",
+        "endDate": "2026-10-31",
         "url": "https://regleau.s3.gra.perf.cloud.ovh.net/arrete-restriction/37451/8_20260723_AP_Charente_Boutonne_DCR.pdf",
         "frameworkUrl": "https://regleau.s3.gra.perf.cloud.ovh.net/arrete-cadre/30447/ACi2023-ChteSeudFlCot-sign%C3%83%C2%A9.pdf"
       },
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": 2227735,
+      "id": 2287273,
       "name": "Boutonne - eaux souterraines",
       "type": "SOU",
       "typeLabel": "Eaux souterraines",
@@ -98,8 +98,8 @@
       "levelLabel": "Crise",
       "department": "79",
       "decree": {
-        "startDate": "2026-07-24T00:00:00.000Z",
-        "endDate": "2026-10-31T00:00:00.000Z",
+        "startDate": "2026-07-24",
+        "endDate": "2026-10-31",
         "url": "https://regleau.s3.gra.perf.cloud.ovh.net/arrete-restriction/37451/8_20260723_AP_Charente_Boutonne_DCR.pdf",
         "frameworkUrl": "https://regleau.s3.gra.perf.cloud.ovh.net/arrete-cadre/30447/ACi2023-ChteSeudFlCot-sign%C3%83%C2%A9.pdf"
       },
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": 2227702,
+      "id": 2287257,
       "name": "SMAEP 4B",
       "type": "AEP",
       "typeLabel": "Eau du réseau potable",
@@ -175,8 +175,8 @@
       "levelLabel": "Alerte",
       "department": "79",
       "decree": {
-        "startDate": "2026-07-29T00:00:00.000Z",
-        "endDate": "2026-10-31T00:00:00.000Z",
+        "startDate": "2026-07-29",
+        "endDate": "2026-10-31",
         "url": "https://regleau.s3.gra.perf.cloud.ovh.net/arrete-restriction/37488/2-%2020260728_AP_sign%C3%83%C2%A9_RAA.pdf",
         "frameworkUrl": "https://regleau.s3.gra.perf.cloud.ovh.net/arrete-cadre/30447/ACi2023-ChteSeudFlCot-sign%C3%83%C2%A9.pdf"
       },
