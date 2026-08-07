@@ -2,7 +2,7 @@
   "status": "ok",
   "source": "VigiEau",
   "sourceUrl": "https://vigieau.gouv.fr/",
-  "generatedAt": "2026-08-07T05:04:03.133074+00:00",
+  "generatedAt": "2026-08-07T12:33:27.818128+00:00",
   "location": {
     "name": "Brûlain",
     "latitude": 46.2006,
@@ -13,84 +13,7 @@
   "highestLevelLabel": "Crise",
   "zones": [
     {
-      "id": 2299741,
-      "name": "Boutonne - eaux souterraines",
-      "type": "SOU",
-      "typeLabel": "Eaux souterraines",
-      "level": "crise",
-      "levelLabel": "Crise",
-      "department": "79",
-      "decree": {
-        "startDate": "2026-07-24",
-        "endDate": "2026-10-31",
-        "url": "https://regleau.s3.gra.perf.cloud.ovh.net/arrete-restriction/37451/8_20260723_AP_Charente_Boutonne_DCR.pdf",
-        "frameworkUrl": "https://regleau.s3.gra.perf.cloud.ovh.net/arrete-cadre/30447/ACi2023-ChteSeudFlCot-sign%C3%83%C2%A9.pdf"
-      },
-      "usages": [
-        {
-          "name": "Alimentation des fontaines publiques et privées d’ornement",
-          "theme": "Alimenter des fontaines et autres usages de loisirs",
-          "description": "Interdiction totale"
-        },
-        {
-          "name": "Arrosage des golfs(Conformément à l'accord cadre golf et environnement 2019-2024",
-          "theme": "Arroser",
-          "description": "- Interdiction d'arroser les terrains de golf à l'exception des greens qui peuvent être arrosés entre 20h00 et 8h00 \r\n- Réduction de la consommation hebdomadaire d’au moins 70 % \r\n- Tenue d'un registre de prélèvement \r\n- Relevés de compteurs à envoyer toutes les semaines à la Direction Départementale des Territoires"
-        },
-        {
-          "name": "Arrosage des jardins potagers",
-          "theme": "Arroser",
-          "description": "Interdiction de 8h à 20h."
-        },
-        {
-          "name": "Arrosage des pelouses, massifs fleuris, jardins d’agrément, espaces verts, golfs particuliers",
-          "theme": "Arroser",
-          "description": "Interdiction totale (sauf plantations d’arbres et arbustes de moins de 3 ans - interdiction de 8h00 à 20h00 et arrosages limités à 2 fois par semaine de 20h00 à 8h00, sous réserve de restrictions plus strictes)"
-        },
-        {
-          "name": "Arrosage des terrains de sport (dont aires et centres équestres, circuits motocross ou VTT)",
-          "theme": "Arroser",
-          "description": "- Interdiction totale sauf terrains de sport d'enjeu national ou international : Interdit de 8h00 à 20h00 et limité à 2 nuits par semaine  \r\n- Interdiction totale en cas de pénurie d'eau potable"
-        },
-        {
-          "name": "Fonctionnement des douches de plages et tout autre dispositif analogue",
-          "theme": "Alimenter des fontaines et autres usages de loisirs",
-          "description": "Interdiction totale"
-        },
-        {
-          "name": "Lavage de véhicules et engins nautiques par les professionnels",
-          "theme": "Nettoyer",
-          "description": "- Interdiction totale\r\nsauf impératif sanitaire \r\n- Affichage obligatoire de l'arrêté de restriction en vigueur"
-        },
-        {
-          "name": "Lavage de véhicules et engins nautiques privés chez les particuliers",
-          "theme": "Nettoyer",
-          "description": "Interdiction totale sauf impératif sanitaire"
-        },
-        {
-          "name": "Nettoyage des façades, toitures, trottoirs et autres surfaces imperméabilisées",
-          "theme": "Nettoyer",
-          "description": "Interdiction sauf impératif sanitaire et sécuritaire"
-        },
-        {
-          "name": "Remplissage de piscines accueillant du public",
-          "theme": "Remplir ou vidanger",
-          "description": "Interdiction totale sauf impératif sanitaire soumis à validation de l'Agence Régionale de Santé"
-        },
-        {
-          "name": "Remplissage de piscines familiales",
-          "theme": "Remplir ou vidanger",
-          "description": "Interdiction totale"
-        },
-        {
-          "name": "Vidange de piscines",
-          "theme": "Remplir ou vidanger",
-          "description": "Interdiction totale sauf cas particuliers (voir arrêté préfectoral)"
-        }
-      ]
-    },
-    {
-      "id": 2299739,
+      "id": 2346716,
       "name": "Boutonne - eaux superficielles",
       "type": "SUP",
       "typeLabel": "Eaux superficielles",
@@ -167,7 +90,84 @@
       ]
     },
     {
-      "id": 2299771,
+      "id": 2346722,
+      "name": "Boutonne - eaux souterraines",
+      "type": "SOU",
+      "typeLabel": "Eaux souterraines",
+      "level": "crise",
+      "levelLabel": "Crise",
+      "department": "79",
+      "decree": {
+        "startDate": "2026-07-24",
+        "endDate": "2026-10-31",
+        "url": "https://regleau.s3.gra.perf.cloud.ovh.net/arrete-restriction/37451/8_20260723_AP_Charente_Boutonne_DCR.pdf",
+        "frameworkUrl": "https://regleau.s3.gra.perf.cloud.ovh.net/arrete-cadre/30447/ACi2023-ChteSeudFlCot-sign%C3%83%C2%A9.pdf"
+      },
+      "usages": [
+        {
+          "name": "Alimentation des fontaines publiques et privées d’ornement",
+          "theme": "Alimenter des fontaines et autres usages de loisirs",
+          "description": "Interdiction totale"
+        },
+        {
+          "name": "Arrosage des golfs(Conformément à l'accord cadre golf et environnement 2019-2024",
+          "theme": "Arroser",
+          "description": "- Interdiction d'arroser les terrains de golf à l'exception des greens qui peuvent être arrosés entre 20h00 et 8h00 \r\n- Réduction de la consommation hebdomadaire d’au moins 70 % \r\n- Tenue d'un registre de prélèvement \r\n- Relevés de compteurs à envoyer toutes les semaines à la Direction Départementale des Territoires"
+        },
+        {
+          "name": "Arrosage des jardins potagers",
+          "theme": "Arroser",
+          "description": "Interdiction de 8h à 20h."
+        },
+        {
+          "name": "Arrosage des pelouses, massifs fleuris, jardins d’agrément, espaces verts, golfs particuliers",
+          "theme": "Arroser",
+          "description": "Interdiction totale (sauf plantations d’arbres et arbustes de moins de 3 ans - interdiction de 8h00 à 20h00 et arrosages limités à 2 fois par semaine de 20h00 à 8h00, sous réserve de restrictions plus strictes)"
+        },
+        {
+          "name": "Arrosage des terrains de sport (dont aires et centres équestres, circuits motocross ou VTT)",
+          "theme": "Arroser",
+          "description": "- Interdiction totale sauf terrains de sport d'enjeu national ou international : Interdit de 8h00 à 20h00 et limité à 2 nuits par semaine  \r\n- Interdiction totale en cas de pénurie d'eau potable"
+        },
+        {
+          "name": "Fonctionnement des douches de plages et tout autre dispositif analogue",
+          "theme": "Alimenter des fontaines et autres usages de loisirs",
+          "description": "Interdiction totale"
+        },
+        {
+          "name": "Lavage de véhicules et engins nautiques par les professionnels",
+          "theme": "Nettoyer",
+          "description": "- Interdiction totale\r\nsauf impératif sanitaire \r\n- Affichage obligatoire de l'arrêté de restriction en vigueur"
+        },
+        {
+          "name": "Lavage de véhicules et engins nautiques privés chez les particuliers",
+          "theme": "Nettoyer",
+          "description": "Interdiction totale sauf impératif sanitaire"
+        },
+        {
+          "name": "Nettoyage des façades, toitures, trottoirs et autres surfaces imperméabilisées",
+          "theme": "Nettoyer",
+          "description": "Interdiction sauf impératif sanitaire et sécuritaire"
+        },
+        {
+          "name": "Remplissage de piscines accueillant du public",
+          "theme": "Remplir ou vidanger",
+          "description": "Interdiction totale sauf impératif sanitaire soumis à validation de l'Agence Régionale de Santé"
+        },
+        {
+          "name": "Remplissage de piscines familiales",
+          "theme": "Remplir ou vidanger",
+          "description": "Interdiction totale"
+        },
+        {
+          "name": "Vidange de piscines",
+          "theme": "Remplir ou vidanger",
+          "description": "Interdiction totale sauf cas particuliers (voir arrêté préfectoral)"
+        }
+      ]
+    },
+    {
+      "id": 2346713,
       "name": "SMAEP 4B",
       "type": "AEP",
       "typeLabel": "Eau du réseau potable",
@@ -176,7 +176,7 @@
       "department": "79",
       "decree": {
         "startDate": "2026-07-29",
-        "endDate": "2026-10-31",
+        "endDate": "2026-08-09",
         "url": "https://regleau.s3.gra.perf.cloud.ovh.net/arrete-restriction/37488/2-%2020260728_AP_sign%C3%83%C2%A9_RAA.pdf",
         "frameworkUrl": "https://regleau.s3.gra.perf.cloud.ovh.net/arrete-cadre/30447/ACi2023-ChteSeudFlCot-sign%C3%83%C2%A9.pdf"
       },
