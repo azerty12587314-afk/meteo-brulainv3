@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-09T15:09:10.749053+00:00",
+  "generatedAt": "2026-08-09T15:46:21.514784+00:00",
   "location": {
     "name": "Brûlain",
     "latitude": 46.2006,
@@ -664,8 +664,8 @@
       "distanceKm": 12.606011297076101,
       "reading": {
         "quantity": "H",
-        "date": "2026-08-09T15:00:00Z",
-        "value": -44.0
+        "date": "2026-08-09T15:30:00Z",
+        "value": -58.0
       }
     },
     {
@@ -696,7 +696,7 @@
       "distanceKm": 17.95353967455004,
       "reading": {
         "quantity": "H",
-        "date": "2026-08-09T15:00:00Z",
+        "date": "2026-08-09T15:20:00Z",
         "value": 11975.0
       }
     },
@@ -734,6 +734,30 @@
     }
   ],
   "metar": [
+    {
+      "icaoId": "LFBI",
+      "name": "Poitiers–Biard",
+      "reportTime": "2026-08-09T15:30:00.000Z",
+      "temp": 34,
+      "dewp": 11,
+      "wdir": "VRB",
+      "wspd": 5,
+      "visib": "6+",
+      "altim": 1013,
+      "rawOb": "METAR LFBI 091530Z AUTO VRB05KT CAVOK 34/11 Q1013 NOSIG"
+    },
+    {
+      "icaoId": "LFBH",
+      "name": "La Rochelle–Île de Ré",
+      "reportTime": "2026-08-09T15:30:00.000Z",
+      "temp": 26,
+      "dewp": 15,
+      "wdir": 300,
+      "wspd": 10,
+      "visib": "6+",
+      "altim": 1015,
+      "rawOb": "METAR LFBH 091530Z AUTO 30010KT CAVOK 26/15 Q1015 NOSIG"
+    },
     {
       "icaoId": "LFBI",
       "name": "Poitiers–Biard",
@@ -853,30 +877,6 @@
       "visib": "6+",
       "altim": 1014,
       "rawOb": "METAR LFBI 091300Z AUTO VRB03KT CAVOK 33/11 Q1014 NOSIG"
-    },
-    {
-      "icaoId": "LFBI",
-      "name": "Poitiers–Biard",
-      "reportTime": "2026-08-09T12:30:00.000Z",
-      "temp": 32,
-      "dewp": 12,
-      "wdir": 190,
-      "wspd": 3,
-      "visib": "6+",
-      "altim": 1015,
-      "rawOb": "METAR LFBI 091230Z AUTO 19003KT 080V250 CAVOK 32/12 Q1015 NOSIG"
-    },
-    {
-      "icaoId": "LFBH",
-      "name": "La Rochelle–Île de Ré",
-      "reportTime": "2026-08-09T12:30:00.000Z",
-      "temp": 26,
-      "dewp": 19,
-      "wdir": 310,
-      "wspd": 13,
-      "visib": "6+",
-      "altim": 1015,
-      "rawOb": "METAR LFBH 091230Z AUTO 31013KT CAVOK 26/19 Q1015 TEMPO SCT080TCU"
     }
   ],
   "errors": []
