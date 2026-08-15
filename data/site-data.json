@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-15T20:38:25.168088+00:00",
+  "generatedAt": "2026-08-15T20:58:58.752064+00:00",
   "location": {
     "name": "Brûlain",
     "latitude": 46.2006,
@@ -10,34 +10,34 @@
   "providers": {
     "weather": {
       "status": "ok",
-      "updatedAt": "2026-08-15T20:38:26.524433+00:00",
-      "durationSeconds": 1.36
+      "updatedAt": "2026-08-15T20:58:59.246893+00:00",
+      "durationSeconds": 0.49
     },
     "air": {
       "status": "ok",
-      "updatedAt": "2026-08-15T20:38:27.007883+00:00",
-      "durationSeconds": 0.48
+      "updatedAt": "2026-08-15T20:58:59.780902+00:00",
+      "durationSeconds": 0.53
     },
     "radar": {
       "status": "ok",
-      "updatedAt": "2026-08-15T20:38:27.447897+00:00",
-      "durationSeconds": 0.44
+      "updatedAt": "2026-08-15T20:59:00.246285+00:00",
+      "durationSeconds": 0.47
     },
     "rivers": {
       "status": "ok",
-      "updatedAt": "2026-08-15T20:38:30.309519+00:00",
-      "durationSeconds": 2.86
+      "updatedAt": "2026-08-15T20:59:02.818602+00:00",
+      "durationSeconds": 2.57
     },
     "metar": {
       "status": "ok",
-      "updatedAt": "2026-08-15T20:38:30.409431+00:00",
-      "durationSeconds": 0.1
+      "updatedAt": "2026-08-15T20:59:05.289844+00:00",
+      "durationSeconds": 2.47
     }
   },
   "weather": {
     "latitude": 46.2,
     "longitude": -0.32000017,
-    "generationtime_ms": 230.27276992797852,
+    "generationtime_ms": 18.393874168395996,
     "utc_offset_seconds": 7200,
     "timezone": "Europe/Paris",
     "timezone_abbreviation": "GMT+2",
@@ -57,18 +57,18 @@
       "wind_gusts_10m": "km/h"
     },
     "current": {
-      "time": "2026-08-15T22:30",
+      "time": "2026-08-15T22:45",
       "interval": 900,
-      "temperature_2m": 25.7,
-      "relative_humidity_2m": 66,
-      "apparent_temperature": 27.3,
+      "temperature_2m": 25.3,
+      "relative_humidity_2m": 67,
+      "apparent_temperature": 27.0,
       "precipitation": 0.0,
       "weather_code": 1,
-      "cloud_cover": 36,
-      "surface_pressure": 1008.4,
-      "wind_speed_10m": 11.5,
-      "wind_direction_10m": 270,
-      "wind_gusts_10m": 23.4
+      "cloud_cover": 40,
+      "surface_pressure": 1008.6,
+      "wind_speed_10m": 10.1,
+      "wind_direction_10m": 268,
+      "wind_gusts_10m": 23.0
     },
     "hourly_units": {
       "time": "iso8601",
@@ -3782,8 +3782,8 @@
       "distanceKm": 12.606011297076101,
       "reading": {
         "quantity": "H",
-        "date": "2026-08-15T20:20:00Z",
-        "value": -50.0
+        "date": "2026-08-15T20:40:00Z",
+        "value": -12.0
       }
     },
     {
@@ -3814,8 +3814,8 @@
       "distanceKm": 17.95353967455004,
       "reading": {
         "quantity": "H",
-        "date": "2026-08-15T20:20:00Z",
-        "value": 11949.0
+        "date": "2026-08-15T20:40:00Z",
+        "value": 11956.0
       }
     },
     {
@@ -3999,17 +3999,9 @@
   ],
   "radar": {
     "host": "https://tilecache.rainviewer.com",
-    "generated": 1786826134,
+    "generated": 1786827346,
     "radar": {
       "past": [
-        {
-          "time": 1786818600,
-          "path": "/v2/radar/387e3659de63"
-        },
-        {
-          "time": 1786819200,
-          "path": "/v2/radar/6a9a6f774d76"
-        },
         {
           "time": 1786819800,
           "path": "/v2/radar/5e8a0060a2c0"
@@ -4053,6 +4045,14 @@
         {
           "time": 1786825800,
           "path": "/v2/radar/29392e647db3"
+        },
+        {
+          "time": 1786826400,
+          "path": "/v2/radar/023f41cb7314"
+        },
+        {
+          "time": 1786827000,
+          "path": "/v2/radar/b03622775abf"
         }
       ],
       "nowcast": []
