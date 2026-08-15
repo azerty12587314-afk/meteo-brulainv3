@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-15T19:33:31.451258+00:00",
+  "generatedAt": "2026-08-15T19:55:24.020001+00:00",
   "location": {
     "name": "Brûlain",
     "latitude": 46.2006,
@@ -10,34 +10,34 @@
   "providers": {
     "weather": {
       "status": "ok",
-      "updatedAt": "2026-08-15T19:33:31.929300+00:00",
-      "durationSeconds": 0.48
+      "updatedAt": "2026-08-15T19:55:24.565461+00:00",
+      "durationSeconds": 0.55
     },
     "air": {
       "status": "ok",
-      "updatedAt": "2026-08-15T19:33:32.304725+00:00",
-      "durationSeconds": 0.38
+      "updatedAt": "2026-08-15T19:55:25.035006+00:00",
+      "durationSeconds": 0.47
     },
     "radar": {
       "status": "ok",
-      "updatedAt": "2026-08-15T19:33:32.686937+00:00",
-      "durationSeconds": 0.38
+      "updatedAt": "2026-08-15T19:55:25.423565+00:00",
+      "durationSeconds": 0.39
     },
     "rivers": {
       "status": "ok",
-      "updatedAt": "2026-08-15T19:33:35.293189+00:00",
-      "durationSeconds": 2.61
+      "updatedAt": "2026-08-15T19:55:27.813862+00:00",
+      "durationSeconds": 2.39
     },
     "metar": {
       "status": "ok",
-      "updatedAt": "2026-08-15T19:33:35.354261+00:00",
-      "durationSeconds": 0.06
+      "updatedAt": "2026-08-15T19:55:27.904736+00:00",
+      "durationSeconds": 0.09
     }
   },
   "weather": {
     "latitude": 46.2,
     "longitude": -0.32000017,
-    "generationtime_ms": 35.692453384399414,
+    "generationtime_ms": 60.778260231018066,
     "utc_offset_seconds": 7200,
     "timezone": "Europe/Paris",
     "timezone_abbreviation": "GMT+2",
@@ -57,18 +57,18 @@
       "wind_gusts_10m": "km/h"
     },
     "current": {
-      "time": "2026-08-15T21:30",
+      "time": "2026-08-15T21:45",
       "interval": 900,
-      "temperature_2m": 28.4,
-      "relative_humidity_2m": 52,
-      "apparent_temperature": 29.7,
+      "temperature_2m": 27.9,
+      "relative_humidity_2m": 54,
+      "apparent_temperature": 29.3,
       "precipitation": 0.0,
       "weather_code": 1,
-      "cloud_cover": 42,
-      "surface_pressure": 1007.9,
-      "wind_speed_10m": 9.6,
-      "wind_direction_10m": 283,
-      "wind_gusts_10m": 20.5
+      "cloud_cover": 32,
+      "surface_pressure": 1008.0,
+      "wind_speed_10m": 9.3,
+      "wind_direction_10m": 286,
+      "wind_gusts_10m": 18.7
     },
     "hourly_units": {
       "time": "iso8601",
@@ -2214,54 +2214,54 @@
         12.3,
         14.3,
         15.4,
-        13.1,
-        11.4,
-        11.1,
-        11.1,
-        11.8,
-        12.2,
-        12.5,
-        12.7,
-        13.0,
-        13.3,
         13.5,
-        13.5,
-        13.5,
-        13.6,
-        13.7,
-        13.8,
-        13.9,
-        14.1,
-        14.3,
-        14.6,
-        14.9,
-        15.2,
-        15.6,
-        16.2,
-        16.7,
-        17.2,
-        17.9,
-        18.6,
-        19.3,
-        20.1,
-        20.8,
-        21.5,
-        21.9,
-        22.0,
-        22.0,
-        22.0,
-        22.0,
-        21.7,
-        21.6,
-        21.3,
-        20.8,
-        20.5,
-        20.0,
-        19.6,
-        19.2,
-        18.6,
+        12.0,
+        11.6,
+        11.9,
+        13.2,
+        14.5,
+        15.9,
+        17.0,
+        17.8,
         18.2,
-        17.7
+        18.1,
+        17.9,
+        17.5,
+        17.2,
+        16.9,
+        16.8,
+        16.7,
+        16.5,
+        16.5,
+        16.4,
+        16.0,
+        15.5,
+        15.1,
+        14.4,
+        14.0,
+        13.6,
+        13.1,
+        12.4,
+        11.8,
+        11.1,
+        10.2,
+        9.2,
+        7.7,
+        5.5,
+        2.8,
+        0.4,
+        3.2,
+        5.7,
+        7.2,
+        7.6,
+        7.4,
+        6.9,
+        6.5,
+        6.2,
+        5.9,
+        5.5,
+        4.9,
+        4.3
       ],
       "wind_direction_10m": [
         297,
@@ -2456,54 +2456,54 @@
         130,
         124,
         123,
-        97,
-        79,
+        111,
+        100,
+        83,
+        61,
+        60,
         58,
-        34,
-        39,
-        43,
-        45,
-        47,
-        49,
-        50,
-        52,
-        52,
-        52,
-        51,
-        51,
-        49,
-        47,
-        43,
-        41,
-        39,
-        38,
-        39,
-        40,
-        43,
-        45,
-        47,
-        49,
-        51,
-        53,
+        56,
+        54,
+        54,
         54,
         55,
+        56,
+        56,
         57,
+        56,
+        55,
+        52,
+        49,
+        46,
+        44,
+        43,
+        45,
+        49,
+        54,
         59,
-        61,
         64,
         67,
-        70,
-        73,
-        74,
-        72,
-        69,
-        65,
-        61,
-        58,
-        58,
-        60,
-        65,
-        73
+        68,
+        66,
+        63,
+        59,
+        55,
+        53,
+        52,
+        50,
+        180,
+        227,
+        229,
+        231,
+        236,
+        244,
+        255,
+        267,
+        277,
+        282,
+        279,
+        272,
+        255
       ],
       "wind_gusts_10m": [
         8.3,
@@ -3782,8 +3782,8 @@
       "distanceKm": 12.606011297076101,
       "reading": {
         "quantity": "H",
-        "date": "2026-08-15T19:10:00Z",
-        "value": -63.0
+        "date": "2026-08-15T19:40:00Z",
+        "value": -20.0
       }
     },
     {
@@ -3814,8 +3814,8 @@
       "distanceKm": 17.95353967455004,
       "reading": {
         "quantity": "H",
-        "date": "2026-08-15T19:10:00Z",
-        "value": 11951.0
+        "date": "2026-08-15T19:40:00Z",
+        "value": 11950.0
       }
     },
     {
@@ -3853,18 +3853,6 @@
   ],
   "metar": [
     {
-      "icaoId": "LFBI",
-      "name": "Poitiers–Biard",
-      "reportTime": "2026-08-15T19:30:00.000Z",
-      "temp": 29,
-      "dewp": 17,
-      "wdir": 30,
-      "wspd": 7,
-      "visib": "6+",
-      "altim": 1014,
-      "rawOb": "METAR LFBI 151930Z AUTO 03007KT 9999 ///CB 29/17 Q1014 TEMPO 4000 SHRA NSC"
-    },
-    {
       "icaoId": "LFBH",
       "name": "La Rochelle–Île de Ré",
       "reportTime": "2026-08-15T19:30:00.000Z",
@@ -3875,6 +3863,18 @@
       "visib": "6+",
       "altim": 1015,
       "rawOb": "METAR LFBH 151930Z AUTO 28009KT CAVOK 24/20 Q1015 NOSIG"
+    },
+    {
+      "icaoId": "LFBI",
+      "name": "Poitiers–Biard",
+      "reportTime": "2026-08-15T19:30:00.000Z",
+      "temp": 29,
+      "dewp": 17,
+      "wdir": 30,
+      "wspd": 7,
+      "visib": "6+",
+      "altim": 1014,
+      "rawOb": "METAR LFBI 151930Z AUTO 03007KT 9999 ///CB 29/17 Q1014 TEMPO 4000 SHRA NSC"
     },
     {
       "icaoId": "LFBI",
@@ -3901,18 +3901,6 @@
       "rawOb": "METAR LFBH 151900Z AUTO 27006KT CAVOK 24/20 Q1015 NOSIG"
     },
     {
-      "icaoId": "LFBI",
-      "name": "Poitiers–Biard",
-      "reportTime": "2026-08-15T18:30:00.000Z",
-      "temp": 31,
-      "dewp": 17,
-      "wdir": 250,
-      "wspd": 2,
-      "visib": "6+",
-      "altim": 1014,
-      "rawOb": "METAR LFBI 151830Z AUTO 25002KT CAVOK 31/17 Q1014 NOSIG"
-    },
-    {
       "icaoId": "LFBH",
       "name": "La Rochelle–Île de Ré",
       "reportTime": "2026-08-15T18:30:00.000Z",
@@ -3927,14 +3915,14 @@
     {
       "icaoId": "LFBI",
       "name": "Poitiers–Biard",
-      "reportTime": "2026-08-15T18:00:00.000Z",
-      "temp": 32,
+      "reportTime": "2026-08-15T18:30:00.000Z",
+      "temp": 31,
       "dewp": 17,
-      "wdir": 260,
+      "wdir": 250,
       "wspd": 2,
       "visib": "6+",
-      "altim": 1013,
-      "rawOb": "METAR LFBI 151800Z AUTO 26002KT CAVOK 32/17 Q1013 NOSIG"
+      "altim": 1014,
+      "rawOb": "METAR LFBI 151830Z AUTO 25002KT CAVOK 31/17 Q1014 NOSIG"
     },
     {
       "icaoId": "LFBH",
@@ -3947,6 +3935,18 @@
       "visib": "6+",
       "altim": 1014,
       "rawOb": "METAR LFBH 151800Z AUTO 26005KT 230V290 CAVOK 26/20 Q1014 NOSIG"
+    },
+    {
+      "icaoId": "LFBI",
+      "name": "Poitiers–Biard",
+      "reportTime": "2026-08-15T18:00:00.000Z",
+      "temp": 32,
+      "dewp": 17,
+      "wdir": 260,
+      "wspd": 2,
+      "visib": "6+",
+      "altim": 1013,
+      "rawOb": "METAR LFBI 151800Z AUTO 26002KT CAVOK 32/17 Q1013 NOSIG"
     },
     {
       "icaoId": "LFBI",
@@ -3999,17 +3999,9 @@
   ],
   "radar": {
     "host": "https://tilecache.rainviewer.com",
-    "generated": 1786822231,
+    "generated": 1786823425,
     "radar": {
       "past": [
-        {
-          "time": 1786815000,
-          "path": "/v2/radar/5c16ef995ceb"
-        },
-        {
-          "time": 1786815600,
-          "path": "/v2/radar/1e870051af38"
-        },
         {
           "time": 1786816200,
           "path": "/v2/radar/a14df679cbfa"
@@ -4053,6 +4045,14 @@
         {
           "time": 1786822200,
           "path": "/v2/radar/fd559b93e4e3"
+        },
+        {
+          "time": 1786822800,
+          "path": "/v2/radar/cd31be042186"
+        },
+        {
+          "time": 1786823400,
+          "path": "/v2/radar/6722bcc4900f"
         }
       ],
       "nowcast": []
