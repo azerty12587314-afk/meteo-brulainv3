@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17T22:33:08.845567+00:00",
+  "generatedAt": "2026-08-17T22:54:48.122341+00:00",
   "location": {
     "name": "Brûlain",
     "latitude": 46.2006,
@@ -11,43 +11,17 @@
     "provider": "RainViewer",
     "status": "client-side"
   },
-  "weather": {
-    "latitude": 46.2,
-    "longitude": -0.32000017,
-    "generationtime_ms": 0.4916191101074219,
-    "utc_offset_seconds": 7200,
-    "timezone": "Europe/Paris",
-    "timezone_abbreviation": "GMT+2",
-    "elevation": 60.0,
-    "current_units": {
-      "time": "iso8601",
-      "interval": "seconds",
-      "temperature_2m": "°C",
-      "relative_humidity_2m": "%",
-      "precipitation": "mm",
-      "wind_speed_10m": "km/h",
-      "wind_gusts_10m": "km/h",
-      "surface_pressure": "hPa"
-    },
-    "current": {
-      "time": "2026-08-18T00:30",
-      "interval": 900,
-      "temperature_2m": 20.7,
-      "relative_humidity_2m": 57,
-      "precipitation": 0.0,
-      "wind_speed_10m": 9.8,
-      "wind_gusts_10m": 18.0,
-      "surface_pressure": 1011.5
-    }
-  },
+  "weather": null,
   "alerts": [],
   "providers": {
     "radar": {
       "status": "ok"
     },
     "weather": {
-      "status": "ok"
+      "status": "error"
     }
   },
-  "errors": []
+  "errors": [
+    "Météo: 429 Client Error: Too Many Requests for url: https://api.open-meteo.com/v1/forecast?latitude=46.2006&longitude=-0.3194&current=temperature_2m%2Crelative_humidity_2m%2Cprecipitation%2Cwind_speed_10m%2Cwind_gusts_10m%2Csurface_pressure&timezone=Europe%2FParis"
+  ]
 }
