@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17T15:38:56.556471+00:00",
+  "generatedAt": "2026-08-17T15:59:28.140169+00:00",
   "location": {
     "name": "Brûlain",
     "latitude": 46.2006,
@@ -10,34 +10,34 @@
   "providers": {
     "weather": {
       "status": "ok",
-      "updatedAt": "2026-08-17T15:38:57.075801+00:00",
-      "durationSeconds": 0.52
+      "updatedAt": "2026-08-17T15:59:28.560728+00:00",
+      "durationSeconds": 0.42
     },
     "air": {
       "status": "ok",
-      "updatedAt": "2026-08-17T15:38:57.653458+00:00",
-      "durationSeconds": 0.58
+      "updatedAt": "2026-08-17T15:59:28.952007+00:00",
+      "durationSeconds": 0.39
     },
     "radar": {
       "status": "ok",
-      "updatedAt": "2026-08-17T15:38:58.099324+00:00",
-      "durationSeconds": 0.45
+      "updatedAt": "2026-08-17T15:59:29.374868+00:00",
+      "durationSeconds": 0.42
     },
     "rivers": {
       "status": "ok",
-      "updatedAt": "2026-08-17T15:39:01.158908+00:00",
-      "durationSeconds": 3.06
+      "updatedAt": "2026-08-17T15:59:31.770629+00:00",
+      "durationSeconds": 2.4
     },
     "metar": {
       "status": "ok",
-      "updatedAt": "2026-08-17T15:39:01.452238+00:00",
-      "durationSeconds": 0.29
+      "updatedAt": "2026-08-17T15:59:31.861175+00:00",
+      "durationSeconds": 0.09
     }
   },
   "weather": {
     "latitude": 46.2,
     "longitude": -0.32000017,
-    "generationtime_ms": 12.372732162475586,
+    "generationtime_ms": 23.27871322631836,
     "utc_offset_seconds": 7200,
     "timezone": "Europe/Paris",
     "timezone_abbreviation": "GMT+2",
@@ -57,18 +57,18 @@
       "wind_gusts_10m": "km/h"
     },
     "current": {
-      "time": "2026-08-17T17:30",
+      "time": "2026-08-17T17:45",
       "interval": 900,
       "temperature_2m": 31.9,
       "relative_humidity_2m": 36,
-      "apparent_temperature": 31.9,
+      "apparent_temperature": 31.8,
       "precipitation": 0.0,
       "weather_code": 3,
-      "cloud_cover": 83,
-      "surface_pressure": 1010.3,
-      "wind_speed_10m": 11.6,
-      "wind_direction_10m": 306,
-      "wind_gusts_10m": 23.4
+      "cloud_cover": 84,
+      "surface_pressure": 1010.2,
+      "wind_speed_10m": 11.8,
+      "wind_direction_10m": 308,
+      "wind_gusts_10m": 24.1
     },
     "hourly_units": {
       "time": "iso8601",
@@ -951,62 +951,62 @@
         18,
         18,
         18,
+        17,
+        17,
+        16,
+        15,
+        15,
+        15,
+        15,
+        15,
+        16,
+        16,
+        17,
         18,
-        18,
-        17,
-        17,
-        17,
-        17,
-        17,
-        18,
-        19,
         20,
+        21,
         22,
         24,
         25,
         27,
         29,
-        31,
-        33,
-        34,
-        35,
-        35,
-        35,
-        34,
-        33,
-        32,
         30,
-        28,
+        32,
+        33,
+        35,
+        37,
+        39,
+        41,
+        42,
+        44,
+        46,
+        47,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        54,
+        55,
+        55,
+        56,
+        56,
+        56,
+        56,
+        55,
+        54,
+        53,
+        51,
+        49,
+        47,
+        45,
+        43,
+        41,
+        39,
+        32,
         26,
-        24,
-        23,
-        22,
-        21,
-        20,
-        20,
-        20,
-        21,
-        21,
-        22,
-        23,
-        24,
-        25,
-        26,
-        26,
-        26,
-        26,
-        26,
-        26,
-        26,
-        26,
-        25,
-        24,
-        23,
-        21,
         19,
-        17,
-        16,
-        14,
         13,
         11,
         10,
@@ -3058,9 +3058,9 @@
         14,
         9,
         18,
-        35,
-        26,
-        19,
+        46,
+        56,
+        32,
         55
       ],
       "precipitation_sum": [
@@ -3814,8 +3814,8 @@
       "distanceKm": 17.95353967455004,
       "reading": {
         "quantity": "H",
-        "date": "2026-08-17T15:20:00Z",
-        "value": 11970.0
+        "date": "2026-08-17T15:40:00Z",
+        "value": 11971.0
       }
     },
     {
@@ -3999,21 +3999,9 @@
   ],
   "radar": {
     "host": "https://tilecache.rainviewer.com",
-    "generated": 1786981108,
+    "generated": 1786982341,
     "radar": {
       "past": [
-        {
-          "time": 1786972800,
-          "path": "/v2/radar/a7bd31f4840a"
-        },
-        {
-          "time": 1786973400,
-          "path": "/v2/radar/889ed01982ce"
-        },
-        {
-          "time": 1786974000,
-          "path": "/v2/radar/ae424b3db043"
-        },
         {
           "time": 1786974600,
           "path": "/v2/radar/465a14dffb2b"
@@ -4040,19 +4028,27 @@
         },
         {
           "time": 1786978200,
-          "path": "/v2/radar/6a235db4e121"
+          "path": "/v2/radar/d11350f65e7a"
         },
         {
           "time": 1786978800,
-          "path": "/v2/radar/c0420096bee5"
+          "path": "/v2/radar/14d13bc04afb"
         },
         {
           "time": 1786979400,
-          "path": "/v2/radar/a3bde2f71fa8"
+          "path": "/v2/radar/2740b8810066"
         },
         {
           "time": 1786980000,
           "path": "/v2/radar/a80091c53748"
+        },
+        {
+          "time": 1786981200,
+          "path": "/v2/radar/e3020f338555"
+        },
+        {
+          "time": 1786981800,
+          "path": "/v2/radar/883da0a866b1"
         }
       ],
       "nowcast": []
