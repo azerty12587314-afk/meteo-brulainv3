@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T07:04:13.050411+00:00",
+  "generatedAt": "2026-08-18T07:53:43.552763+00:00",
   "location": {
     "name": "Brûlain",
     "latitude": 46.2006,
@@ -10,34 +10,34 @@
   "providers": {
     "weather": {
       "status": "ok",
-      "updatedAt": "2026-08-18T07:04:13.742620+00:00",
-      "durationSeconds": 0.69
+      "updatedAt": "2026-08-18T07:53:44.262316+00:00",
+      "durationSeconds": 0.71
     },
     "air": {
       "status": "ok",
-      "updatedAt": "2026-08-18T07:04:14.356314+00:00",
-      "durationSeconds": 0.61
+      "updatedAt": "2026-08-18T07:53:44.890880+00:00",
+      "durationSeconds": 0.63
     },
     "radar": {
       "status": "ok",
-      "updatedAt": "2026-08-18T07:04:14.903729+00:00",
-      "durationSeconds": 0.55
+      "updatedAt": "2026-08-18T07:53:45.408191+00:00",
+      "durationSeconds": 0.52
     },
     "rivers": {
       "status": "ok",
-      "updatedAt": "2026-08-18T07:04:19.053638+00:00",
-      "durationSeconds": 4.15
+      "updatedAt": "2026-08-18T07:53:49.375440+00:00",
+      "durationSeconds": 3.97
     },
     "metar": {
       "status": "ok",
-      "updatedAt": "2026-08-18T07:04:19.173126+00:00",
-      "durationSeconds": 0.12
+      "updatedAt": "2026-08-18T07:53:49.620560+00:00",
+      "durationSeconds": 0.25
     }
   },
   "weather": {
     "latitude": 46.2,
     "longitude": -0.32000017,
-    "generationtime_ms": 14.479279518127441,
+    "generationtime_ms": 17.525553703308105,
     "utc_offset_seconds": 7200,
     "timezone": "Europe/Paris",
     "timezone_abbreviation": "GMT+2",
@@ -57,18 +57,18 @@
       "wind_gusts_10m": "km/h"
     },
     "current": {
-      "time": "2026-08-18T09:00",
+      "time": "2026-08-18T09:45",
       "interval": 900,
-      "temperature_2m": 20.7,
-      "relative_humidity_2m": 71,
-      "apparent_temperature": 21.9,
+      "temperature_2m": 22.3,
+      "relative_humidity_2m": 65,
+      "apparent_temperature": 23.3,
       "precipitation": 0.0,
       "weather_code": 0,
       "cloud_cover": 0,
-      "surface_pressure": 1012.2,
-      "wind_speed_10m": 3.6,
-      "wind_direction_10m": 315,
-      "wind_gusts_10m": 5.4
+      "surface_pressure": 1012.4,
+      "wind_speed_10m": 5.1,
+      "wind_direction_10m": 321,
+      "wind_gusts_10m": 8.6
     },
     "hourly_units": {
       "time": "iso8601",
@@ -1108,8 +1108,8 @@
         0.0,
         0.0,
         0.0,
-        0.1,
-        0.1,
+        0.05,
+        0.08,
         0.0,
         0.0,
         0.0,
@@ -2762,44 +2762,44 @@
         0.0,
         10.0,
         10.0,
-        10.0,
         20.0,
         20.0,
         20.0,
-        10.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        10.0,
-        10.0,
-        20.0,
-        20.0,
-        0.0,
-        10.0,
-        10.0,
-        10.0,
-        40.0,
-        65.0,
-        45.0,
         20.0,
         10.0,
         0.0,
         0.0,
         0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        10.0,
+        20.0,
+        0.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        0.0,
+        50.0,
+        80.0,
+        80.0,
+        110.0,
+        110.0,
+        150.0,
+        140.0,
         0.0,
         0.0,
         0.0,
@@ -3066,7 +3066,7 @@
       "precipitation_sum": [
         0.0,
         0.0,
-        0.2,
+        0.13,
         0.0,
         9.0,
         0.3,
@@ -3782,8 +3782,8 @@
       "distanceKm": 12.606011297076101,
       "reading": {
         "quantity": "H",
-        "date": "2026-08-18T06:30:00Z",
-        "value": -22.0
+        "date": "2026-08-18T07:20:00Z",
+        "value": -37.0
       }
     },
     {
@@ -3794,7 +3794,7 @@
       "distanceKm": 13.23720501845931,
       "reading": {
         "quantity": "H",
-        "date": "2026-08-18T06:00:00Z",
+        "date": "2026-08-18T07:00:00Z",
         "value": -3.0
       }
     },
@@ -3814,8 +3814,8 @@
       "distanceKm": 17.95353967455004,
       "reading": {
         "quantity": "H",
-        "date": "2026-08-18T06:40:00Z",
-        "value": 11966.0
+        "date": "2026-08-18T07:30:00Z",
+        "value": 11965.0
       }
     },
     {
@@ -3855,14 +3855,26 @@
     {
       "icaoId": "LFBI",
       "name": "Poitiers–Biard",
-      "reportTime": "2026-08-18T07:00:00.000Z",
-      "temp": 20,
-      "dewp": 16,
+      "reportTime": "2026-08-18T07:30:00.000Z",
+      "temp": 21,
+      "dewp": 17,
       "wdir": 330,
       "wspd": 8,
       "visib": "6+",
       "altim": 1019,
-      "rawOb": "METAR LFBI 180700Z AUTO 33008KT 310V010 CAVOK 20/16 Q1019 NOSIG"
+      "rawOb": "METAR LFBI 180730Z AUTO 33008KT 300V360 CAVOK 21/17 Q1019 NOSIG"
+    },
+    {
+      "icaoId": "LFBH",
+      "name": "La Rochelle–Île de Ré",
+      "reportTime": "2026-08-18T07:30:00.000Z",
+      "temp": 23,
+      "dewp": 17,
+      "wdir": 40,
+      "wspd": 4,
+      "visib": "6+",
+      "altim": 1019,
+      "rawOb": "METAR LFBH 180730Z AUTO 04004KT CAVOK 23/17 Q1019 NOSIG"
     },
     {
       "icaoId": "LFBH",
@@ -3875,6 +3887,18 @@
       "visib": "6+",
       "altim": 1019,
       "rawOb": "METAR LFBH 180700Z AUTO 04004KT 010V070 CAVOK 22/17 Q1019 NOSIG"
+    },
+    {
+      "icaoId": "LFBI",
+      "name": "Poitiers–Biard",
+      "reportTime": "2026-08-18T07:00:00.000Z",
+      "temp": 20,
+      "dewp": 16,
+      "wdir": 330,
+      "wspd": 8,
+      "visib": "6+",
+      "altim": 1019,
+      "rawOb": "METAR LFBI 180700Z AUTO 33008KT 310V010 CAVOK 20/16 Q1019 NOSIG"
     },
     {
       "icaoId": "LFBI",
@@ -3925,18 +3949,6 @@
       "rawOb": "METAR LFBI 180600Z AUTO VRB02KT CAVOK 18/16 Q1018 NOSIG"
     },
     {
-      "icaoId": "LFBI",
-      "name": "Poitiers–Biard",
-      "reportTime": "2026-08-18T05:30:00.000Z",
-      "temp": 18,
-      "dewp": 16,
-      "wdir": 300,
-      "wspd": 3,
-      "visib": "6+",
-      "altim": 1018,
-      "rawOb": "METAR LFBI 180530Z AUTO 30003KT CAVOK 18/16 Q1018 NOSIG"
-    },
-    {
       "icaoId": "LFBH",
       "name": "La Rochelle–Île de Ré",
       "reportTime": "2026-08-18T05:30:00.000Z",
@@ -3951,14 +3963,14 @@
     {
       "icaoId": "LFBI",
       "name": "Poitiers–Biard",
-      "reportTime": "2026-08-18T05:00:00.000Z",
+      "reportTime": "2026-08-18T05:30:00.000Z",
       "temp": 18,
       "dewp": 16,
-      "wdir": 320,
-      "wspd": 4,
+      "wdir": 300,
+      "wspd": 3,
       "visib": "6+",
       "altim": 1018,
-      "rawOb": "METAR LFBI 180500Z AUTO 32004KT CAVOK 18/16 Q1018 NOSIG"
+      "rawOb": "METAR LFBI 180530Z AUTO 30003KT CAVOK 18/16 Q1018 NOSIG"
     },
     {
       "icaoId": "LFBH",
@@ -3973,55 +3985,23 @@
       "rawOb": "METAR LFBH 180500Z AUTO 03004KT CAVOK 19/17 Q1018 NOSIG"
     },
     {
-      "icaoId": "LFBH",
-      "name": "La Rochelle–Île de Ré",
-      "reportTime": "2026-08-18T04:30:00.000Z",
-      "temp": 19,
-      "dewp": 17,
-      "wdir": 20,
+      "icaoId": "LFBI",
+      "name": "Poitiers–Biard",
+      "reportTime": "2026-08-18T05:00:00.000Z",
+      "temp": 18,
+      "dewp": 16,
+      "wdir": 320,
       "wspd": 4,
       "visib": "6+",
       "altim": 1018,
-      "rawOb": "METAR LFBH 180430Z AUTO 02004KT CAVOK 19/17 Q1018 NOSIG"
-    },
-    {
-      "icaoId": "LFBI",
-      "name": "Poitiers–Biard",
-      "reportTime": "2026-08-18T04:30:00.000Z",
-      "temp": 17,
-      "dewp": 16,
-      "wdir": 300,
-      "wspd": 2,
-      "visib": "6+",
-      "altim": 1018,
-      "rawOb": "METAR LFBI 180430Z AUTO 30002KT CAVOK 17/16 Q1018 NOSIG"
+      "rawOb": "METAR LFBI 180500Z AUTO 32004KT CAVOK 18/16 Q1018 NOSIG"
     }
   ],
   "radar": {
     "host": "https://tilecache.rainviewer.com",
-    "generated": 1787036631,
+    "generated": 1787039435,
     "radar": {
       "past": [
-        {
-          "time": 1787029200,
-          "path": "/v2/radar/52a6a4b98d98"
-        },
-        {
-          "time": 1787029800,
-          "path": "/v2/radar/1eb85549def8"
-        },
-        {
-          "time": 1787030400,
-          "path": "/v2/radar/3c6be799d599"
-        },
-        {
-          "time": 1787031000,
-          "path": "/v2/radar/05148b6b5edb"
-        },
-        {
-          "time": 1787031600,
-          "path": "/v2/radar/57d1312187cb"
-        },
         {
           "time": 1787032200,
           "path": "/v2/radar/1bde06afb2da"
@@ -4036,23 +4016,43 @@
         },
         {
           "time": 1787034000,
-          "path": "/v2/radar/adcbaa25ab57"
+          "path": "/v2/radar/7a4c05ee6479"
         },
         {
           "time": 1787034600,
-          "path": "/v2/radar/e8b8182112bd"
+          "path": "/v2/radar/666156206bdf"
         },
         {
           "time": 1787035200,
-          "path": "/v2/radar/4be34b0ea4c5"
+          "path": "/v2/radar/369a02ff997d"
         },
         {
           "time": 1787035800,
-          "path": "/v2/radar/1735e57bb53f"
+          "path": "/v2/radar/631727f8870d"
         },
         {
           "time": 1787036400,
           "path": "/v2/radar/9171775e739b"
+        },
+        {
+          "time": 1787037000,
+          "path": "/v2/radar/c4d81849b1ad"
+        },
+        {
+          "time": 1787037600,
+          "path": "/v2/radar/7968a3419c15"
+        },
+        {
+          "time": 1787038200,
+          "path": "/v2/radar/16e1135fafb7"
+        },
+        {
+          "time": 1787038800,
+          "path": "/v2/radar/5708f00af51e"
+        },
+        {
+          "time": 1787039400,
+          "path": "/v2/radar/c6d1a7a0911d"
         }
       ],
       "nowcast": []
