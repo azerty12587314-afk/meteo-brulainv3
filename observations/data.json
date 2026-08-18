@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T23:35:58.102013+00:00",
+  "generatedAt": "2026-08-18T23:59:22.711156+00:00",
   "location": {
     "name": "Brûlain",
     "latitude": 46.2006,
@@ -664,8 +664,8 @@
       "distanceKm": 12.606011297076101,
       "reading": {
         "quantity": "H",
-        "date": "2026-08-18T23:10:00Z",
-        "value": -22.0
+        "date": "2026-08-18T23:40:00Z",
+        "value": -21.0
       }
     },
     {
@@ -696,7 +696,7 @@
       "distanceKm": 17.95353967455004,
       "reading": {
         "quantity": "H",
-        "date": "2026-08-18T23:10:00Z",
+        "date": "2026-08-18T23:40:00Z",
         "value": 11966.0
       }
     },
@@ -759,18 +759,6 @@
       "rawOb": "METAR LFBI 182330Z AUTO 24005KT CAVOK 20/15 Q1014 NOSIG"
     },
     {
-      "icaoId": "LFBI",
-      "name": "Poitiers–Biard",
-      "reportTime": "2026-08-18T23:00:00.000Z",
-      "temp": 21,
-      "dewp": 15,
-      "wdir": 250,
-      "wspd": 5,
-      "visib": "6+",
-      "altim": 1014,
-      "rawOb": "METAR LFBI 182300Z AUTO 25005KT CAVOK 21/15 Q1014 NOSIG"
-    },
-    {
       "icaoId": "LFBH",
       "name": "La Rochelle–Île de Ré",
       "reportTime": "2026-08-18T23:00:00.000Z",
@@ -785,14 +773,14 @@
     {
       "icaoId": "LFBI",
       "name": "Poitiers–Biard",
-      "reportTime": "2026-08-18T22:30:00.000Z",
+      "reportTime": "2026-08-18T23:00:00.000Z",
       "temp": 21,
       "dewp": 15,
-      "wdir": 240,
-      "wspd": 4,
+      "wdir": 250,
+      "wspd": 5,
       "visib": "6+",
       "altim": 1014,
-      "rawOb": "METAR LFBI 182230Z AUTO 24004KT 200V260 CAVOK 21/15 Q1014 NOSIG"
+      "rawOb": "METAR LFBI 182300Z AUTO 25005KT CAVOK 21/15 Q1014 NOSIG"
     },
     {
       "icaoId": "LFBH",
@@ -805,6 +793,18 @@
       "visib": "6+",
       "altim": 1015,
       "rawOb": "METAR LFBH 182230Z AUTO 29011KT 9999 BKN011 21/18 Q1015 TEMPO BKN006"
+    },
+    {
+      "icaoId": "LFBI",
+      "name": "Poitiers–Biard",
+      "reportTime": "2026-08-18T22:30:00.000Z",
+      "temp": 21,
+      "dewp": 15,
+      "wdir": 240,
+      "wspd": 4,
+      "visib": "6+",
+      "altim": 1014,
+      "rawOb": "METAR LFBI 182230Z AUTO 24004KT 200V260 CAVOK 21/15 Q1014 NOSIG"
     },
     {
       "icaoId": "LFBI",
