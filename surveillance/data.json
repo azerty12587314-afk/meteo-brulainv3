@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T11:57:47.223729+00:00",
+  "generatedAt": "2026-08-18T13:00:01.148833+00:00",
   "location": {
     "name": "Brûlain",
     "latitude": 46.2006,
@@ -11,43 +11,17 @@
     "provider": "RainViewer",
     "status": "client-side"
   },
-  "weather": {
-    "latitude": 46.2,
-    "longitude": -0.32000017,
-    "generationtime_ms": 18.257975578308105,
-    "utc_offset_seconds": 7200,
-    "timezone": "Europe/Paris",
-    "timezone_abbreviation": "GMT+2",
-    "elevation": 60.0,
-    "current_units": {
-      "time": "iso8601",
-      "interval": "seconds",
-      "temperature_2m": "°C",
-      "relative_humidity_2m": "%",
-      "precipitation": "mm",
-      "wind_speed_10m": "km/h",
-      "wind_gusts_10m": "km/h",
-      "surface_pressure": "hPa"
-    },
-    "current": {
-      "time": "2026-08-18T13:45",
-      "interval": 900,
-      "temperature_2m": 29.6,
-      "relative_humidity_2m": 43,
-      "precipitation": 0.0,
-      "wind_speed_10m": 9.6,
-      "wind_gusts_10m": 20.5,
-      "surface_pressure": 1011.0
-    }
-  },
+  "weather": null,
   "alerts": [],
   "providers": {
     "radar": {
       "status": "ok"
     },
     "weather": {
-      "status": "ok"
+      "status": "error"
     }
   },
-  "errors": []
+  "errors": [
+    "Météo: 503 Server Error: Service Unavailable for url: https://api.open-meteo.com/v1/forecast?latitude=46.2006&longitude=-0.3194&current=temperature_2m%2Crelative_humidity_2m%2Cprecipitation%2Cwind_speed_10m%2Cwind_gusts_10m%2Csurface_pressure&timezone=Europe%2FParis"
+  ]
 }
