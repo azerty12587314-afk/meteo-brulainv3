@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T19:05:24.148544+00:00",
+  "generatedAt": "2026-08-18T19:40:05.874839+00:00",
   "location": {
     "name": "Brûlain",
     "latitude": 46.2006,
@@ -664,8 +664,8 @@
       "distanceKm": 12.606011297076101,
       "reading": {
         "quantity": "H",
-        "date": "2026-08-18T19:00:00Z",
-        "value": -48.0
+        "date": "2026-08-18T19:20:00Z",
+        "value": -36.0
       }
     },
     {
@@ -696,7 +696,7 @@
       "distanceKm": 17.95353967455004,
       "reading": {
         "quantity": "H",
-        "date": "2026-08-18T19:00:00Z",
+        "date": "2026-08-18T19:20:00Z",
         "value": 11967.0
       }
     },
@@ -735,16 +735,28 @@
   ],
   "metar": [
     {
+      "icaoId": "LFBH",
+      "name": "La Rochelle–Île de Ré",
+      "reportTime": "2026-08-18T19:30:00.000Z",
+      "temp": 21,
+      "dewp": 18,
+      "wdir": 280,
+      "wspd": 14,
+      "visib": "6+",
+      "altim": 1015,
+      "rawOb": "METAR LFBH 181930Z AUTO 28014KT CAVOK 21/18 Q1015 NOSIG"
+    },
+    {
       "icaoId": "LFBI",
       "name": "Poitiers–Biard",
-      "reportTime": "2026-08-18T19:00:00.000Z",
-      "temp": 28,
-      "dewp": 17,
+      "reportTime": "2026-08-18T19:30:00.000Z",
+      "temp": 27,
+      "dewp": 16,
       "wdir": 260,
-      "wspd": 7,
+      "wspd": 8,
       "visib": "6+",
       "altim": 1014,
-      "rawOb": "METAR LFBI 181900Z AUTO 26007KT CAVOK 28/17 Q1014 NOSIG"
+      "rawOb": "METAR LFBI 181930Z AUTO 26008KT CAVOK 27/16 Q1014 NOSIG"
     },
     {
       "icaoId": "LFBH",
@@ -757,6 +769,18 @@
       "visib": "6+",
       "altim": 1015,
       "rawOb": "METAR LFBH 181900Z AUTO 28013KT CAVOK 21/17 Q1015 NOSIG"
+    },
+    {
+      "icaoId": "LFBI",
+      "name": "Poitiers–Biard",
+      "reportTime": "2026-08-18T19:00:00.000Z",
+      "temp": 28,
+      "dewp": 17,
+      "wdir": 260,
+      "wspd": 7,
+      "visib": "6+",
+      "altim": 1014,
+      "rawOb": "METAR LFBI 181900Z AUTO 26007KT CAVOK 28/17 Q1014 NOSIG"
     },
     {
       "icaoId": "LFBI",
@@ -853,30 +877,6 @@
       "visib": "6+",
       "altim": 1016,
       "rawOb": "METAR LFBH 181700Z AUTO 29016KT CAVOK 23/17 Q1016 NOSIG"
-    },
-    {
-      "icaoId": "LFBH",
-      "name": "La Rochelle–Île de Ré",
-      "reportTime": "2026-08-18T16:30:00.000Z",
-      "temp": 23,
-      "dewp": 17,
-      "wdir": 300,
-      "wspd": 17,
-      "visib": "6+",
-      "altim": 1016,
-      "rawOb": "METAR LFBH 181630Z AUTO 30017KT CAVOK 23/17 Q1016 NOSIG"
-    },
-    {
-      "icaoId": "LFBI",
-      "name": "Poitiers–Biard",
-      "reportTime": "2026-08-18T16:30:00.000Z",
-      "temp": 31,
-      "dewp": 15,
-      "wdir": 250,
-      "wspd": 8,
-      "visib": "6+",
-      "altim": 1015,
-      "rawOb": "METAR LFBI 181630Z AUTO 25008KT 190V310 CAVOK 31/15 Q1015 NOSIG"
     }
   ],
   "errors": []
