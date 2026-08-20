@@ -2,7 +2,7 @@
   "status": "ok",
   "source": "VigiEau",
   "sourceUrl": "https://vigieau.gouv.fr/",
-  "generatedAt": "2026-08-20T10:47:47.309463+00:00",
+  "generatedAt": "2026-08-20T16:53:20.652075+00:00",
   "location": {
     "name": "Brûlain",
     "latitude": 46.2006,
@@ -13,7 +13,7 @@
   "highestLevelLabel": "Crise",
   "zones": [
     {
-      "id": 2904525,
+      "id": 3046238,
       "name": "Boutonne - eaux souterraines",
       "type": "SOU",
       "typeLabel": "Eaux souterraines",
@@ -22,7 +22,7 @@
       "department": "79",
       "decree": {
         "startDate": "2026-08-14T00:00:00.000Z",
-        "endDate": "2026-10-31T00:00:00.000Z",
+        "endDate": "2026-08-21T00:00:00.000Z",
         "url": "https://regleau.s3.gra.perf.cloud.ovh.net/arrete-restriction/37715/5030b4e6-45d4-4b45-82ee-04c6e1309a78/9_20260813_AP_Charente_amont.pdf",
         "frameworkUrl": "https://regleau.s3.gra.perf.cloud.ovh.net/arrete-cadre/30447/ACi2023-ChteSeudFlCot-sign%C3%83%C2%A9.pdf"
       },
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": 2904526,
+      "id": 3046237,
       "name": "Boutonne - eaux superficielles",
       "type": "SUP",
       "typeLabel": "Eaux superficielles",
@@ -99,7 +99,7 @@
       "department": "79",
       "decree": {
         "startDate": "2026-08-14T00:00:00.000Z",
-        "endDate": "2026-10-31T00:00:00.000Z",
+        "endDate": "2026-08-21T00:00:00.000Z",
         "url": "https://regleau.s3.gra.perf.cloud.ovh.net/arrete-restriction/37715/5030b4e6-45d4-4b45-82ee-04c6e1309a78/9_20260813_AP_Charente_amont.pdf",
         "frameworkUrl": "https://regleau.s3.gra.perf.cloud.ovh.net/arrete-cadre/30447/ACi2023-ChteSeudFlCot-sign%C3%83%C2%A9.pdf"
       },
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": 2904554,
+      "id": 3046252,
       "name": "SMAEP 4B",
       "type": "AEP",
       "typeLabel": "Eau du réseau potable",
