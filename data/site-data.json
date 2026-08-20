@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-20T11:43:18.056396+00:00",
+  "generatedAt": "2026-08-20T12:03:29.351998+00:00",
   "location": {
     "name": "Brûlain",
     "latitude": 46.2006,
@@ -10,34 +10,34 @@
   "providers": {
     "weather": {
       "status": "ok",
-      "updatedAt": "2026-08-20T11:43:18.675271+00:00",
-      "durationSeconds": 0.62
+      "updatedAt": "2026-08-20T12:03:29.966068+00:00",
+      "durationSeconds": 0.61
     },
     "air": {
       "status": "ok",
-      "updatedAt": "2026-08-20T11:43:19.307256+00:00",
-      "durationSeconds": 0.63
+      "updatedAt": "2026-08-20T12:03:30.587799+00:00",
+      "durationSeconds": 0.62
     },
     "radar": {
       "status": "ok",
-      "updatedAt": "2026-08-20T11:43:19.840011+00:00",
-      "durationSeconds": 0.53
+      "updatedAt": "2026-08-20T12:03:31.079551+00:00",
+      "durationSeconds": 0.49
     },
     "rivers": {
-      "status": "ok",
-      "updatedAt": "2026-08-20T11:43:23.789580+00:00",
-      "durationSeconds": 3.95
+      "status": "error",
+      "updatedAt": "2026-08-20T12:05:01.805204+00:00",
+      "message": "ConnectTimeout: HTTPSConnectionPool(host='hubeau.eaufrance.fr', port=443): Max retries exceeded with url: /api/v2/hydrometrie/referentiel/stations?bbox=-1.1194000000000002%2C45.400600000000004%2C0.4806%2C47.0006&size=100&format=json (Caused by ConnectTimeoutError(<HTTPSConnection(host='hubeau.eaufrance.fr', port=443) at 0x7fb0a01ae540>, 'Connection to hubeau.eaufrance.fr timed out. (connect timeout=90)'))"
     },
     "metar": {
       "status": "ok",
-      "updatedAt": "2026-08-20T11:43:24.742997+00:00",
-      "durationSeconds": 0.95
+      "updatedAt": "2026-08-20T12:05:05.707792+00:00",
+      "durationSeconds": 3.9
     }
   },
   "weather": {
     "latitude": 46.2,
     "longitude": -0.32000017,
-    "generationtime_ms": 11.19542121887207,
+    "generationtime_ms": 21.91340923309326,
     "utc_offset_seconds": 7200,
     "timezone": "Europe/Paris",
     "timezone_abbreviation": "GMT+2",
@@ -57,18 +57,18 @@
       "wind_gusts_10m": "km/h"
     },
     "current": {
-      "time": "2026-08-20T13:30",
+      "time": "2026-08-20T14:00",
       "interval": 900,
-      "temperature_2m": 24.4,
-      "relative_humidity_2m": 42,
-      "apparent_temperature": 22.4,
+      "temperature_2m": 25.0,
+      "relative_humidity_2m": 40,
+      "apparent_temperature": 22.8,
       "precipitation": 0.0,
       "weather_code": 3,
       "cloud_cover": 100,
-      "surface_pressure": 1006.3,
-      "wind_speed_10m": 15.2,
-      "wind_direction_10m": 263,
-      "wind_gusts_10m": 27.0
+      "surface_pressure": 1006.2,
+      "wind_speed_10m": 15.6,
+      "wind_direction_10m": 262,
+      "wind_gusts_10m": 27.7
     },
     "hourly_units": {
       "time": "iso8601",
@@ -3127,18 +3127,18 @@
   },
   "air": {
     "current": {
-      "time": "2026-08-20T13:00",
+      "time": "2026-08-20T14:00",
       "interval": 3600,
-      "european_aqi": 31,
-      "pm10": 11.0,
-      "pm2_5": 4.9,
-      "nitrogen_dioxide": 0.8,
-      "ozone": 78.0,
-      "uv_index": 4.35,
+      "european_aqi": 30,
+      "pm10": 9.9,
+      "pm2_5": 4.7,
+      "nitrogen_dioxide": 0.7,
+      "ozone": 76.0,
+      "uv_index": 4.6,
       "grass_pollen": 3.6,
       "birch_pollen": 0.0,
       "alder_pollen": 0.0,
-      "mugwort_pollen": 0.3,
+      "mugwort_pollen": 0.2,
       "ragweed_pollen": 0.1
     },
     "currentUnits": {
@@ -3158,7 +3158,6 @@
     },
     "hourly": {
       "time": [
-        "2026-08-20T13:00",
         "2026-08-20T14:00",
         "2026-08-20T15:00",
         "2026-08-20T16:00",
@@ -3205,10 +3204,10 @@
         "2026-08-22T09:00",
         "2026-08-22T10:00",
         "2026-08-22T11:00",
-        "2026-08-22T12:00"
+        "2026-08-22T12:00",
+        "2026-08-22T13:00"
       ],
       "european_aqi": [
-        31,
         30,
         29,
         28,
@@ -3255,10 +3254,10 @@
         20,
         25,
         24,
-        27
+        27,
+        28
       ],
       "pm10": [
-        11.0,
         9.9,
         8.9,
         9.2,
@@ -3305,10 +3304,10 @@
         8.2,
         7.1,
         7.3,
-        6.9
+        6.9,
+        6.2
       ],
       "pm2_5": [
-        4.9,
         4.7,
         4.2,
         4.4,
@@ -3355,10 +3354,10 @@
         5.0,
         3.9,
         3.3,
-        3.1
+        3.1,
+        2.9
       ],
       "nitrogen_dioxide": [
-        0.8,
         0.7,
         0.7,
         0.8,
@@ -3405,10 +3404,10 @@
         3.0,
         2.0,
         1.8,
-        1.1
+        1.1,
+        1.0
       ],
       "ozone": [
-        78.0,
         76.0,
         72.0,
         71.0,
@@ -3455,10 +3454,10 @@
         51.0,
         63.0,
         60.0,
-        68.0
+        68.0,
+        71.0
       ],
       "uv_index": [
-        4.35,
         4.6,
         4.1,
         2.8,
@@ -3505,10 +3504,10 @@
         0.75,
         1.9,
         3.45,
-        5.0
+        5.0,
+        5.25
       ],
       "grass_pollen": [
-        3.6,
         3.6,
         3.5,
         3.3,
@@ -3555,7 +3554,8 @@
         0.6,
         3.1,
         3.7,
-        3.1
+        3.1,
+        2.9
       ],
       "birch_pollen": [
         0.0,
@@ -3658,7 +3658,6 @@
         0.0
       ],
       "mugwort_pollen": [
-        0.3,
         0.2,
         0.2,
         0.2,
@@ -3705,11 +3704,11 @@
         0.4,
         0.3,
         0.3,
-        0.3
+        0.3,
+        0.4
       ],
       "ragweed_pollen": [
         0.1,
-        0.1,
         0.0,
         0.0,
         0.0,
@@ -3755,7 +3754,8 @@
         0.0,
         0.0,
         0.1,
-        0.2
+        0.2,
+        0.4
       ]
     },
     "hourlyUnits": {
@@ -3773,96 +3773,31 @@
       "ragweed_pollen": "grains/m³"
     }
   },
-  "rivers": [
-    {
-      "code": "N420001001",
-      "name": "Le Lambon à Mougon",
-      "latitude": 46.306139587,
-      "longitude": -0.259529815,
-      "distanceKm": 12.606011297076101,
-      "reading": {
-        "quantity": "H",
-        "date": "2026-08-20T11:10:00Z",
-        "value": -6.0
-      }
-    },
-    {
-      "code": "N601401401",
-      "name": "La Courance à Granzay-Gript",
-      "latitude": 46.223771784,
-      "longitude": -0.488142601,
-      "distanceKm": 13.23720501845931,
-      "reading": {
-        "quantity": "H",
-        "date": "2026-08-20T11:00:00Z",
-        "value": -3.0
-      }
-    },
-    {
-      "code": "N420401001",
-      "name": "Le Lambon à Fressines [Vaumoreau]",
-      "latitude": 46.326713951,
-      "longitude": -0.320105982,
-      "distanceKm": 14.02333654767814,
-      "reading": null
-    },
-    {
-      "code": "N430062401",
-      "name": "La Sèvre niortaise à Niort [Centre ville]",
-      "latitude": 46.327176036,
-      "longitude": -0.464392922,
-      "distanceKm": 17.95353967455004,
-      "reading": {
-        "quantity": "H",
-        "date": "2026-08-20T11:30:00Z",
-        "value": 11967.0
-      }
-    },
-    {
-      "code": "N430521001",
-      "name": "La Guirande à Frontenay-Rohan-Rohan [L'Illeau]",
-      "latitude": 46.281582504,
-      "longitude": -0.548478189,
-      "distanceKm": 19.785257807180255,
-      "reading": null
-    },
-    {
-      "code": "N600301001",
-      "name": "Le Mignon à Usseau [Madrid]",
-      "latitude": 46.16879325,
-      "longitude": -0.573431266,
-      "distanceKm": 19.873630487533706,
-      "reading": null
-    },
-    {
-      "code": "N401521001",
-      "name": "L'Hermitain à Romans [Les Fontenelles]",
-      "latitude": 46.376772966,
-      "longitude": -0.233457641,
-      "distanceKm": 20.672651803686865,
-      "reading": null
-    },
-    {
-      "code": "N410403002",
-      "name": "Le Chambon à la Crèche - Loubigné",
-      "latitude": 46.387954642,
-      "longitude": -0.32722866,
-      "distanceKm": 20.841566724474333,
-      "reading": null
-    }
-  ],
+  "rivers": [],
   "metar": [
+    {
+      "icaoId": "LFBH",
+      "name": "La Rochelle–Île de Ré",
+      "reportTime": "2026-08-20T12:00:00.000Z",
+      "temp": 23,
+      "dewp": 15,
+      "wdir": 290,
+      "wspd": 8,
+      "visib": "6+",
+      "altim": 1014,
+      "rawOb": "METAR LFBH 201200Z AUTO 29008KT 230V310 9999 FEW024 BKN052 OVC066 23/15 Q1014 NOSIG"
+    },
     {
       "icaoId": "LFBI",
       "name": "Poitiers–Biard",
-      "reportTime": "2026-08-20T11:30:00.000Z",
+      "reportTime": "2026-08-20T12:00:00.000Z",
       "temp": 24,
-      "dewp": 12,
-      "wdir": 250,
-      "wspd": 9,
+      "dewp": 11,
+      "wdir": 280,
+      "wspd": 8,
       "visib": "6+",
       "altim": 1013,
-      "rawOb": "METAR LFBI 201130Z AUTO 25009KT 210V290 9999 BKN048 BKN054 24/12 Q1013 NOSIG"
+      "rawOb": "METAR LFBI 201200Z AUTO 28008KT 230V320 CAVOK 24/11 Q1013 NOSIG"
     },
     {
       "icaoId": "LFBH",
@@ -3875,6 +3810,18 @@
       "visib": "6+",
       "altim": 1014,
       "rawOb": "METAR LFBH 201130Z AUTO 26013KT 9999 FEW022 BKN031 BKN039 21/15 Q1014 NOSIG"
+    },
+    {
+      "icaoId": "LFBI",
+      "name": "Poitiers–Biard",
+      "reportTime": "2026-08-20T11:30:00.000Z",
+      "temp": 24,
+      "dewp": 12,
+      "wdir": 250,
+      "wspd": 9,
+      "visib": "6+",
+      "altim": 1013,
+      "rawOb": "METAR LFBI 201130Z AUTO 25009KT 210V290 9999 BKN048 BKN054 24/12 Q1013 NOSIG"
     },
     {
       "icaoId": "LFBI",
@@ -3949,18 +3896,6 @@
       "rawOb": "METAR LFBI 201000Z AUTO 25007KT 210V320 9999 BKN044 22/12 Q1013 NOSIG"
     },
     {
-      "icaoId": "LFBH",
-      "name": "La Rochelle–Île de Ré",
-      "reportTime": "2026-08-20T09:30:00.000Z",
-      "temp": 22,
-      "dewp": 13,
-      "wdir": 300,
-      "wspd": 10,
-      "visib": "6+",
-      "altim": 1013,
-      "rawOb": "METAR LFBH 200930Z AUTO 30010KT CAVOK 22/13 Q1013 NOSIG"
-    },
-    {
       "icaoId": "LFBI",
       "name": "Poitiers–Biard",
       "reportTime": "2026-08-20T09:30:00.000Z",
@@ -3975,45 +3910,21 @@
     {
       "icaoId": "LFBH",
       "name": "La Rochelle–Île de Ré",
-      "reportTime": "2026-08-20T09:00:00.000Z",
+      "reportTime": "2026-08-20T09:30:00.000Z",
       "temp": 22,
       "dewp": 13,
-      "wdir": 280,
-      "wspd": 9,
+      "wdir": 300,
+      "wspd": 10,
       "visib": "6+",
       "altim": 1013,
-      "rawOb": "METAR LFBH 200900Z AUTO 28009KT 230V320 9999 SCT033 SCT058 22/13 Q1013 NOSIG"
-    },
-    {
-      "icaoId": "LFBI",
-      "name": "Poitiers–Biard",
-      "reportTime": "2026-08-20T09:00:00.000Z",
-      "temp": 21,
-      "dewp": 11,
-      "wdir": 270,
-      "wspd": 7,
-      "visib": "6+",
-      "altim": 1013,
-      "rawOb": "METAR LFBI 200900Z AUTO 27007KT 200V310 CAVOK 21/11 Q1013 NOSIG"
+      "rawOb": "METAR LFBH 200930Z AUTO 30010KT CAVOK 22/13 Q1013 NOSIG"
     }
   ],
   "radar": {
     "host": "https://tilecache.rainviewer.com",
-    "generated": 1787225726,
+    "generated": 1787227225,
     "radar": {
       "past": [
-        {
-          "time": 1787218200,
-          "path": "/v2/radar/57815e568c3e"
-        },
-        {
-          "time": 1787218800,
-          "path": "/v2/radar/774ed3cf6acb"
-        },
-        {
-          "time": 1787219400,
-          "path": "/v2/radar/f6810f95be16"
-        },
         {
           "time": 1787220000,
           "path": "/v2/radar/4c77a232bb9e"
@@ -4053,6 +3964,18 @@
         {
           "time": 1787225400,
           "path": "/v2/radar/1099c8d63c6d"
+        },
+        {
+          "time": 1787226000,
+          "path": "/v2/radar/7066cd647f4f"
+        },
+        {
+          "time": 1787226600,
+          "path": "/v2/radar/e898a0ecfa7a"
+        },
+        {
+          "time": 1787227200,
+          "path": "/v2/radar/d3409c4a5ed9"
         }
       ],
       "nowcast": []
@@ -4061,5 +3984,7 @@
       "infrared": []
     }
   },
-  "errors": []
+  "errors": [
+    "rivers: ConnectTimeout: HTTPSConnectionPool(host='hubeau.eaufrance.fr', port=443): Max retries exceeded with url: /api/v2/hydrometrie/referentiel/stations?bbox=-1.1194000000000002%2C45.400600000000004%2C0.4806%2C47.0006&size=100&format=json (Caused by ConnectTimeoutError(<HTTPSConnection(host='hubeau.eaufrance.fr', port=443) at 0x7fb0a01ae540>, 'Connection to hubeau.eaufrance.fr timed out. (connect timeout=90)'))"
+  ]
 }
