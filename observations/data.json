@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-22T10:00:32.920698+00:00",
+  "generatedAt": "2026-08-22T10:40:28.883056+00:00",
   "location": {
     "name": "Brûlain",
     "latitude": 46.2006,
@@ -655,8 +655,133 @@
       "ragweed_pollen": "grains/m³"
     }
   },
-  "rivers": [],
+  "rivers": [
+    {
+      "code": "N420001001",
+      "name": "Le Lambon à Mougon",
+      "latitude": 46.306139587,
+      "longitude": -0.259529815,
+      "distanceKm": 12.606011297076101,
+      "reading": {
+        "quantity": "H",
+        "date": "2026-08-22T10:00:00Z",
+        "value": 10.0
+      }
+    },
+    {
+      "code": "N601401401",
+      "name": "La Courance à Granzay-Gript",
+      "latitude": 46.223771784,
+      "longitude": -0.488142601,
+      "distanceKm": 13.23720501845931,
+      "reading": {
+        "quantity": "H",
+        "date": "2026-08-22T10:00:00Z",
+        "value": -2.0
+      }
+    },
+    {
+      "code": "N420401001",
+      "name": "Le Lambon à Fressines [Vaumoreau]",
+      "latitude": 46.326713951,
+      "longitude": -0.320105982,
+      "distanceKm": 14.02333654767814,
+      "reading": null
+    },
+    {
+      "code": "N430062401",
+      "name": "La Sèvre niortaise à Niort [Centre ville]",
+      "latitude": 46.327176036,
+      "longitude": -0.464392922,
+      "distanceKm": 17.95353967455004,
+      "reading": {
+        "quantity": "H",
+        "date": "2026-08-22T10:20:00Z",
+        "value": 11951.0
+      }
+    },
+    {
+      "code": "N430521001",
+      "name": "La Guirande à Frontenay-Rohan-Rohan [L'Illeau]",
+      "latitude": 46.281582504,
+      "longitude": -0.548478189,
+      "distanceKm": 19.785257807180255,
+      "reading": null
+    },
+    {
+      "code": "N600301001",
+      "name": "Le Mignon à Usseau [Madrid]",
+      "latitude": 46.16879325,
+      "longitude": -0.573431266,
+      "distanceKm": 19.873630487533706,
+      "reading": null
+    },
+    {
+      "code": "N401521001",
+      "name": "L'Hermitain à Romans [Les Fontenelles]",
+      "latitude": 46.376772966,
+      "longitude": -0.233457641,
+      "distanceKm": 20.672651803686865,
+      "reading": null
+    },
+    {
+      "code": "N410403002",
+      "name": "Le Chambon à la Crèche - Loubigné",
+      "latitude": 46.387954642,
+      "longitude": -0.32722866,
+      "distanceKm": 20.841566724474333,
+      "reading": null
+    }
+  ],
   "metar": [
+    {
+      "icaoId": "LFBH",
+      "name": "La Rochelle–Île de Ré",
+      "reportTime": "2026-08-22T10:30:00.000Z",
+      "temp": 23,
+      "dewp": 10,
+      "wdir": 50,
+      "wspd": 8,
+      "visib": "6+",
+      "altim": 1020,
+      "rawOb": "METAR LFBH 221030Z AUTO 05008KT 360V090 CAVOK 23/10 Q1020 NOSIG"
+    },
+    {
+      "icaoId": "LFBI",
+      "name": "Poitiers–Biard",
+      "reportTime": "2026-08-22T10:30:00.000Z",
+      "temp": 21,
+      "dewp": 11,
+      "wdir": 50,
+      "wspd": 7,
+      "visib": "6+",
+      "altim": 1021,
+      "rawOb": "METAR LFBI 221030Z AUTO 05007KT 360V100 CAVOK 21/11 Q1021 NOSIG"
+    },
+    {
+      "icaoId": "LFBH",
+      "name": "La Rochelle–Île de Ré",
+      "reportTime": "2026-08-22T10:00:00.000Z",
+      "temp": 21,
+      "dewp": 11,
+      "wdir": 70,
+      "wspd": 8,
+      "visib": "6+",
+      "altim": 1020,
+      "rawOb": "METAR LFBH 221000Z AUTO 07008KT 030V110 CAVOK 21/11 Q1020 NOSIG"
+    },
+    {
+      "icaoId": "LFBI",
+      "name": "Poitiers–Biard",
+      "reportTime": "2026-08-22T10:00:00.000Z",
+      "temp": 20,
+      "dewp": 11,
+      "wdir": 70,
+      "wspd": 5,
+      "visib": "6+",
+      "altim": 1021,
+      "rawOb": "METAR LFBI 221000Z AUTO 07005KT 350V130 CAVOK 20/11 Q1021 NOSIG"
+    },
     {
       "icaoId": "LFBI",
       "name": "Poitiers–Biard",
@@ -682,18 +807,6 @@
       "rawOb": "METAR LFBH 220930Z AUTO 07008KT CAVOK 20/11 Q1020 NOSIG"
     },
     {
-      "icaoId": "LFBI",
-      "name": "Poitiers–Biard",
-      "reportTime": "2026-08-22T09:00:00.000Z",
-      "temp": 18,
-      "dewp": 12,
-      "wdir": 70,
-      "wspd": 4,
-      "visib": "6+",
-      "altim": 1021,
-      "rawOb": "METAR LFBI 220900Z AUTO 07004KT 030V130 CAVOK 18/12 Q1021 NOSIG"
-    },
-    {
       "icaoId": "LFBH",
       "name": "La Rochelle–Île de Ré",
       "reportTime": "2026-08-22T09:00:00.000Z",
@@ -706,16 +819,16 @@
       "rawOb": "METAR LFBH 220900Z AUTO 08008KT 050V110 CAVOK 20/12 Q1020 NOSIG"
     },
     {
-      "icaoId": "LFBH",
-      "name": "La Rochelle–Île de Ré",
-      "reportTime": "2026-08-22T08:30:00.000Z",
+      "icaoId": "LFBI",
+      "name": "Poitiers–Biard",
+      "reportTime": "2026-08-22T09:00:00.000Z",
       "temp": 18,
       "dewp": 12,
-      "wdir": 80,
-      "wspd": 9,
+      "wdir": 70,
+      "wspd": 4,
       "visib": "6+",
-      "altim": 1020,
-      "rawOb": "METAR LFBH 220830Z AUTO 08009KT CAVOK 18/12 Q1020 NOSIG"
+      "altim": 1021,
+      "rawOb": "METAR LFBI 220900Z AUTO 07004KT 030V130 CAVOK 18/12 Q1021 NOSIG"
     },
     {
       "icaoId": "LFBI",
@@ -728,6 +841,18 @@
       "visib": "6+",
       "altim": 1021,
       "rawOb": "METAR LFBI 220830Z AUTO 06004KT 350V120 CAVOK 17/12 Q1021 NOSIG"
+    },
+    {
+      "icaoId": "LFBH",
+      "name": "La Rochelle–Île de Ré",
+      "reportTime": "2026-08-22T08:30:00.000Z",
+      "temp": 18,
+      "dewp": 12,
+      "wdir": 80,
+      "wspd": 9,
+      "visib": "6+",
+      "altim": 1020,
+      "rawOb": "METAR LFBH 220830Z AUTO 08009KT CAVOK 18/12 Q1020 NOSIG"
     },
     {
       "icaoId": "LFBH",
@@ -752,33 +877,7 @@
       "visib": "6+",
       "altim": 1020,
       "rawOb": "METAR LFBI 220800Z AUTO 06004KT 030V090 CAVOK 15/12 Q1020 NOSIG"
-    },
-    {
-      "icaoId": "LFBI",
-      "name": "Poitiers–Biard",
-      "reportTime": "2026-08-22T07:30:00.000Z",
-      "temp": 15,
-      "dewp": 12,
-      "wdir": 40,
-      "wspd": 5,
-      "visib": "6+",
-      "altim": 1020,
-      "rawOb": "METAR LFBI 220730Z AUTO 04005KT 020V080 CAVOK 15/12 Q1020 NOSIG"
-    },
-    {
-      "icaoId": "LFBH",
-      "name": "La Rochelle–Île de Ré",
-      "reportTime": "2026-08-22T07:30:00.000Z",
-      "temp": 17,
-      "dewp": 12,
-      "wdir": 90,
-      "wspd": 10,
-      "visib": "6+",
-      "altim": 1020,
-      "rawOb": "METAR LFBH 220730Z AUTO 09010KT CAVOK 17/12 Q1020 NOSIG"
     }
   ],
-  "errors": [
-    "rivers: ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
-  ]
+  "errors": []
 }
