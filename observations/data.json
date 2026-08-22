@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-22T10:40:28.883056+00:00",
+  "generatedAt": "2026-08-22T10:59:56.729084+00:00",
   "location": {
     "name": "Brûlain",
     "latitude": 46.2006,
@@ -664,8 +664,8 @@
       "distanceKm": 12.606011297076101,
       "reading": {
         "quantity": "H",
-        "date": "2026-08-22T10:00:00Z",
-        "value": 10.0
+        "date": "2026-08-22T10:40:00Z",
+        "value": 16.0
       }
     },
     {
@@ -696,7 +696,7 @@
       "distanceKm": 17.95353967455004,
       "reading": {
         "quantity": "H",
-        "date": "2026-08-22T10:20:00Z",
+        "date": "2026-08-22T10:40:00Z",
         "value": 11951.0
       }
     },
@@ -831,18 +831,6 @@
       "rawOb": "METAR LFBI 220900Z AUTO 07004KT 030V130 CAVOK 18/12 Q1021 NOSIG"
     },
     {
-      "icaoId": "LFBI",
-      "name": "Poitiers–Biard",
-      "reportTime": "2026-08-22T08:30:00.000Z",
-      "temp": 17,
-      "dewp": 12,
-      "wdir": 60,
-      "wspd": 4,
-      "visib": "6+",
-      "altim": 1021,
-      "rawOb": "METAR LFBI 220830Z AUTO 06004KT 350V120 CAVOK 17/12 Q1021 NOSIG"
-    },
-    {
       "icaoId": "LFBH",
       "name": "La Rochelle–Île de Ré",
       "reportTime": "2026-08-22T08:30:00.000Z",
@@ -855,28 +843,16 @@
       "rawOb": "METAR LFBH 220830Z AUTO 08009KT CAVOK 18/12 Q1020 NOSIG"
     },
     {
-      "icaoId": "LFBH",
-      "name": "La Rochelle–Île de Ré",
-      "reportTime": "2026-08-22T08:00:00.000Z",
-      "temp": 18,
-      "dewp": 12,
-      "wdir": 80,
-      "wspd": 10,
-      "visib": "6+",
-      "altim": 1020,
-      "rawOb": "METAR LFBH 220800Z AUTO 08010KT CAVOK 18/12 Q1020 NOSIG"
-    },
-    {
       "icaoId": "LFBI",
       "name": "Poitiers–Biard",
-      "reportTime": "2026-08-22T08:00:00.000Z",
-      "temp": 15,
+      "reportTime": "2026-08-22T08:30:00.000Z",
+      "temp": 17,
       "dewp": 12,
       "wdir": 60,
       "wspd": 4,
       "visib": "6+",
-      "altim": 1020,
-      "rawOb": "METAR LFBI 220800Z AUTO 06004KT 030V090 CAVOK 15/12 Q1020 NOSIG"
+      "altim": 1021,
+      "rawOb": "METAR LFBI 220830Z AUTO 06004KT 350V120 CAVOK 17/12 Q1021 NOSIG"
     }
   ],
   "errors": []
