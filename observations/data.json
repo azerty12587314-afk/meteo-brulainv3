@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-22T15:35:08.975642+00:00",
+  "generatedAt": "2026-08-22T15:58:52.834544+00:00",
   "location": {
     "name": "Brûlain",
     "latitude": 46.2006,
@@ -664,8 +664,8 @@
       "distanceKm": 12.606011297076101,
       "reading": {
         "quantity": "H",
-        "date": "2026-08-22T15:20:00Z",
-        "value": -52.0
+        "date": "2026-08-22T15:40:00Z",
+        "value": -14.0
       }
     },
     {
@@ -696,7 +696,7 @@
       "distanceKm": 17.95353967455004,
       "reading": {
         "quantity": "H",
-        "date": "2026-08-22T15:20:00Z",
+        "date": "2026-08-22T15:40:00Z",
         "value": 11952.0
       }
     },
@@ -783,18 +783,6 @@
       "rawOb": "METAR LFBI 221500Z AUTO 07008KT 020V190 CAVOK 25/08 Q1019 NOSIG"
     },
     {
-      "icaoId": "LFBH",
-      "name": "La Rochelle–Île de Ré",
-      "reportTime": "2026-08-22T14:30:00.000Z",
-      "temp": 25,
-      "dewp": 7,
-      "wdir": 40,
-      "wspd": 11,
-      "visib": "6+",
-      "altim": 1018,
-      "rawOb": "METAR LFBH 221430Z AUTO 04011KT 010V070 CAVOK 25/07 Q1018 TEMPO 30010KT"
-    },
-    {
       "icaoId": "LFBI",
       "name": "Poitiers–Biard",
       "reportTime": "2026-08-22T14:30:00.000Z",
@@ -809,14 +797,14 @@
     {
       "icaoId": "LFBH",
       "name": "La Rochelle–Île de Ré",
-      "reportTime": "2026-08-22T14:00:00.000Z",
-      "temp": 26,
-      "dewp": 8,
-      "wdir": 50,
-      "wspd": 10,
+      "reportTime": "2026-08-22T14:30:00.000Z",
+      "temp": 25,
+      "dewp": 7,
+      "wdir": 40,
+      "wspd": 11,
       "visib": "6+",
       "altim": 1018,
-      "rawOb": "METAR LFBH 221400Z AUTO 05010KT 360V100 CAVOK 26/08 Q1018 TEMPO 30010KT"
+      "rawOb": "METAR LFBH 221430Z AUTO 04011KT 010V070 CAVOK 25/07 Q1018 TEMPO 30010KT"
     },
     {
       "icaoId": "LFBI",
@@ -829,6 +817,18 @@
       "visib": "6+",
       "altim": 1019,
       "rawOb": "METAR LFBI 221400Z AUTO 04010KT 360V070 CAVOK 24/08 Q1019 NOSIG"
+    },
+    {
+      "icaoId": "LFBH",
+      "name": "La Rochelle–Île de Ré",
+      "reportTime": "2026-08-22T14:00:00.000Z",
+      "temp": 26,
+      "dewp": 8,
+      "wdir": 50,
+      "wspd": 10,
+      "visib": "6+",
+      "altim": 1018,
+      "rawOb": "METAR LFBH 221400Z AUTO 05010KT 360V100 CAVOK 26/08 Q1018 TEMPO 30010KT"
     },
     {
       "icaoId": "LFBH",
