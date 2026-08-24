@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-24T20:05:40.452031+00:00",
+  "generatedAt": "2026-08-24T20:48:14.818314+00:00",
   "location": {
     "name": "Brûlain",
     "latitude": 46.2006,
@@ -664,8 +664,8 @@
       "distanceKm": 12.606011297076101,
       "reading": {
         "quantity": "H",
-        "date": "2026-08-24T20:00:00Z",
-        "value": -21.0
+        "date": "2026-08-24T20:30:00Z",
+        "value": -20.0
       }
     },
     {
@@ -696,8 +696,8 @@
       "distanceKm": 17.95353967455004,
       "reading": {
         "quantity": "H",
-        "date": "2026-08-24T20:00:00Z",
-        "value": 11979.0
+        "date": "2026-08-24T20:30:00Z",
+        "value": 11978.0
       }
     },
     {
@@ -737,14 +737,26 @@
     {
       "icaoId": "LFBI",
       "name": "Poitiers–Biard",
-      "reportTime": "2026-08-24T20:00:00.000Z",
+      "reportTime": "2026-08-24T20:30:00.000Z",
       "temp": 18,
-      "dewp": 17,
-      "wdir": 90,
+      "dewp": 16,
+      "wdir": 110,
       "wspd": 5,
       "visib": "6+",
       "altim": 1009,
-      "rawOb": "METAR LFBI 242000Z AUTO 09005KT 060V120 CAVOK 18/17 Q1009 NOSIG"
+      "rawOb": "METAR LFBI 242030Z AUTO 11005KT 080V140 CAVOK 18/16 Q1009 NOSIG"
+    },
+    {
+      "icaoId": "LFBH",
+      "name": "La Rochelle–Île de Ré",
+      "reportTime": "2026-08-24T20:30:00.000Z",
+      "temp": 22,
+      "dewp": 18,
+      "wdir": 120,
+      "wspd": 10,
+      "visib": "6+",
+      "altim": 1007,
+      "rawOb": "METAR LFBH 242030Z AUTO 12010KT CAVOK 22/18 Q1007 NOSIG"
     },
     {
       "icaoId": "LFBH",
@@ -757,6 +769,18 @@
       "visib": "6+",
       "altim": 1007,
       "rawOb": "METAR LFBH 242000Z AUTO 09009KT CAVOK 22/17 Q1007 NOSIG"
+    },
+    {
+      "icaoId": "LFBI",
+      "name": "Poitiers–Biard",
+      "reportTime": "2026-08-24T20:00:00.000Z",
+      "temp": 18,
+      "dewp": 17,
+      "wdir": 90,
+      "wspd": 5,
+      "visib": "6+",
+      "altim": 1009,
+      "rawOb": "METAR LFBI 242000Z AUTO 09005KT 060V120 CAVOK 18/17 Q1009 NOSIG"
     },
     {
       "icaoId": "LFBH",
@@ -807,18 +831,6 @@
       "rawOb": "METAR LFBI 241900Z AUTO 13003KT 090V150 CAVOK 18/17 Q1009 NOSIG"
     },
     {
-      "icaoId": "LFBH",
-      "name": "La Rochelle–Île de Ré",
-      "reportTime": "2026-08-24T18:30:00.000Z",
-      "temp": 23,
-      "dewp": 17,
-      "wdir": 70,
-      "wspd": 8,
-      "visib": "6+",
-      "altim": 1006,
-      "rawOb": "METAR LFBH 241830Z AUTO 07008KT CAVOK 23/17 Q1006 NOSIG"
-    },
-    {
       "icaoId": "LFBI",
       "name": "Poitiers–Biard",
       "reportTime": "2026-08-24T18:30:00.000Z",
@@ -831,16 +843,16 @@
       "rawOb": "METAR LFBI 241830Z AUTO 11005KT 070V140 CAVOK 18/17 Q1009 NOSIG"
     },
     {
-      "icaoId": "LFBI",
-      "name": "Poitiers–Biard",
-      "reportTime": "2026-08-24T18:00:00.000Z",
-      "temp": 18,
-      "dewp": 16,
-      "wdir": 60,
-      "wspd": 7,
+      "icaoId": "LFBH",
+      "name": "La Rochelle–Île de Ré",
+      "reportTime": "2026-08-24T18:30:00.000Z",
+      "temp": 23,
+      "dewp": 17,
+      "wdir": 70,
+      "wspd": 8,
       "visib": "6+",
-      "altim": 1008,
-      "rawOb": "METAR LFBI 241800Z AUTO 06007KT 040V100 CAVOK 18/16 Q1008 TEMPO -TSRA BKN010 BKN040CB"
+      "altim": 1006,
+      "rawOb": "METAR LFBH 241830Z AUTO 07008KT CAVOK 23/17 Q1006 NOSIG"
     },
     {
       "icaoId": "LFBH",
@@ -855,28 +867,16 @@
       "rawOb": "METAR LFBH 241800Z AUTO 06011KT CAVOK 24/15 Q1006 NOSIG"
     },
     {
-      "icaoId": "LFBH",
-      "name": "La Rochelle–Île de Ré",
-      "reportTime": "2026-08-24T17:30:00.000Z",
-      "temp": 26,
-      "dewp": 15,
-      "wdir": 60,
-      "wspd": 11,
-      "visib": "6+",
-      "altim": 1006,
-      "rawOb": "METAR LFBH 241730Z AUTO 06011KT CAVOK 26/15 Q1006 NOSIG"
-    },
-    {
       "icaoId": "LFBI",
       "name": "Poitiers–Biard",
-      "reportTime": "2026-08-24T17:30:00.000Z",
+      "reportTime": "2026-08-24T18:00:00.000Z",
       "temp": 18,
-      "dewp": 17,
-      "wdir": "VRB",
-      "wspd": 3,
+      "dewp": 16,
+      "wdir": 60,
+      "wspd": 7,
       "visib": "6+",
       "altim": 1008,
-      "rawOb": "METAR LFBI 241730Z AUTO VRB03KT 9999 ///TCU 18/17 Q1008 TEMPO -TSRA BKN010 BKN040CB"
+      "rawOb": "METAR LFBI 241800Z AUTO 06007KT 040V100 CAVOK 18/16 Q1008 TEMPO -TSRA BKN010 BKN040CB"
     }
   ],
   "errors": []
