@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-24T23:10:55.742513+00:00",
+  "generatedAt": "2026-08-24T23:36:36.788305+00:00",
   "location": {
     "name": "Brûlain",
     "latitude": 46.2006,
@@ -10,34 +10,34 @@
   "providers": {
     "weather": {
       "status": "ok",
-      "updatedAt": "2026-08-24T23:10:56.391986+00:00",
-      "durationSeconds": 0.65
+      "updatedAt": "2026-08-24T23:36:37.481461+00:00",
+      "durationSeconds": 0.69
     },
     "air": {
       "status": "ok",
-      "updatedAt": "2026-08-24T23:10:57.022189+00:00",
-      "durationSeconds": 0.63
+      "updatedAt": "2026-08-24T23:36:38.134630+00:00",
+      "durationSeconds": 0.65
     },
     "radar": {
       "status": "ok",
-      "updatedAt": "2026-08-24T23:10:57.531964+00:00",
+      "updatedAt": "2026-08-24T23:36:38.645945+00:00",
       "durationSeconds": 0.51
     },
     "rivers": {
       "status": "ok",
-      "updatedAt": "2026-08-24T23:11:01.217643+00:00",
-      "durationSeconds": 3.69
+      "updatedAt": "2026-08-24T23:36:42.711341+00:00",
+      "durationSeconds": 4.07
     },
     "metar": {
       "status": "ok",
-      "updatedAt": "2026-08-24T23:11:01.386788+00:00",
-      "durationSeconds": 0.17
+      "updatedAt": "2026-08-24T23:36:42.860521+00:00",
+      "durationSeconds": 0.15
     }
   },
   "weather": {
     "latitude": 46.2,
     "longitude": -0.32000017,
-    "generationtime_ms": 6.713628768920898,
+    "generationtime_ms": 14.73987102508545,
     "utc_offset_seconds": 7200,
     "timezone": "Europe/Paris",
     "timezone_abbreviation": "GMT+2",
@@ -57,17 +57,17 @@
       "wind_gusts_10m": "km/h"
     },
     "current": {
-      "time": "2026-08-25T01:00",
+      "time": "2026-08-25T01:30",
       "interval": 900,
-      "temperature_2m": 18.6,
-      "relative_humidity_2m": 88,
-      "apparent_temperature": 19.4,
+      "temperature_2m": 18.3,
+      "relative_humidity_2m": 89,
+      "apparent_temperature": 19.2,
       "precipitation": 0.0,
-      "weather_code": 2,
-      "cloud_cover": 60,
-      "surface_pressure": 1001.7,
-      "wind_speed_10m": 9.7,
-      "wind_direction_10m": 153,
+      "weather_code": 1,
+      "cloud_cover": 46,
+      "surface_pressure": 1002.0,
+      "wind_speed_10m": 9.2,
+      "wind_direction_10m": 149,
       "wind_gusts_10m": 15.8
     },
     "hourly_units": {
@@ -3112,15 +3112,15 @@
         "2026-09-03T20:36"
       ],
       "uv_index_max": [
-        6.0,
-        6.1,
+        6.2,
         5.3,
-        6.15,
-        5.9,
-        3.8,
-        5.5,
+        4.9,
         5.55,
-        6.9,
+        5.7,
+        3.65,
+        4.35,
+        6.25,
+        6.05,
         5.45
       ]
     }
@@ -3782,7 +3782,7 @@
       "distanceKm": 12.606011297076101,
       "reading": {
         "quantity": "H",
-        "date": "2026-08-24T22:30:00Z",
+        "date": "2026-08-24T23:10:00Z",
         "value": -23.0
       }
     },
@@ -3814,8 +3814,8 @@
       "distanceKm": 17.95353967455004,
       "reading": {
         "quantity": "H",
-        "date": "2026-08-24T22:40:00Z",
-        "value": 11978.0
+        "date": "2026-08-24T23:20:00Z",
+        "value": 11977.0
       }
     },
     {
@@ -3852,6 +3852,30 @@
     }
   ],
   "metar": [
+    {
+      "icaoId": "LFBI",
+      "name": "Poitiers–Biard",
+      "reportTime": "2026-08-24T23:30:00.000Z",
+      "temp": 17,
+      "dewp": 16,
+      "wdir": 160,
+      "wspd": 4,
+      "visib": "6+",
+      "altim": 1009,
+      "rawOb": "METAR LFBI 242330Z AUTO 16004KT CAVOK 17/16 Q1009 NOSIG"
+    },
+    {
+      "icaoId": "LFBH",
+      "name": "La Rochelle–Île de Ré",
+      "reportTime": "2026-08-24T23:30:00.000Z",
+      "temp": 21,
+      "dewp": 19,
+      "wdir": 170,
+      "wspd": 5,
+      "visib": "6+",
+      "altim": 1007,
+      "rawOb": "METAR LFBH 242330Z AUTO 17005KT 9999 FEW007 21/19 Q1007 TEMPO BKN006"
+    },
     {
       "icaoId": "LFBI",
       "name": "Poitiers–Biard",
@@ -3901,18 +3925,6 @@
       "rawOb": "METAR LFBI 242230Z AUTO 14004KT CAVOK 17/16 Q1009 TEMPO BKN007"
     },
     {
-      "icaoId": "LFBH",
-      "name": "La Rochelle–Île de Ré",
-      "reportTime": "2026-08-24T22:00:00.000Z",
-      "temp": 21,
-      "dewp": 18,
-      "wdir": 120,
-      "wspd": 4,
-      "visib": "6+",
-      "altim": 1007,
-      "rawOb": "METAR LFBH 242200Z AUTO 12004KT CAVOK 21/18 Q1007 TEMPO BKN007"
-    },
-    {
       "icaoId": "LFBI",
       "name": "Poitiers–Biard",
       "reportTime": "2026-08-24T22:00:00.000Z",
@@ -3923,6 +3935,18 @@
       "visib": "6+",
       "altim": 1008,
       "rawOb": "METAR LFBI 242200Z AUTO 17004KT CAVOK 17/16 Q1008 NOSIG"
+    },
+    {
+      "icaoId": "LFBH",
+      "name": "La Rochelle–Île de Ré",
+      "reportTime": "2026-08-24T22:00:00.000Z",
+      "temp": 21,
+      "dewp": 18,
+      "wdir": 120,
+      "wspd": 4,
+      "visib": "6+",
+      "altim": 1007,
+      "rawOb": "METAR LFBH 242200Z AUTO 12004KT CAVOK 21/18 Q1007 TEMPO BKN007"
     },
     {
       "icaoId": "LFBI",
@@ -3971,45 +3995,13 @@
       "visib": "6+",
       "altim": 1007,
       "rawOb": "METAR LFBH 242100Z AUTO 12009KT CAVOK 22/18 Q1007 NOSIG"
-    },
-    {
-      "icaoId": "LFBH",
-      "name": "La Rochelle–Île de Ré",
-      "reportTime": "2026-08-24T20:30:00.000Z",
-      "temp": 22,
-      "dewp": 18,
-      "wdir": 120,
-      "wspd": 10,
-      "visib": "6+",
-      "altim": 1007,
-      "rawOb": "METAR LFBH 242030Z AUTO 12010KT CAVOK 22/18 Q1007 NOSIG"
-    },
-    {
-      "icaoId": "LFBI",
-      "name": "Poitiers–Biard",
-      "reportTime": "2026-08-24T20:30:00.000Z",
-      "temp": 18,
-      "dewp": 16,
-      "wdir": 110,
-      "wspd": 5,
-      "visib": "6+",
-      "altim": 1009,
-      "rawOb": "METAR LFBI 242030Z AUTO 11005KT 080V140 CAVOK 18/16 Q1009 NOSIG"
     }
   ],
   "radar": {
     "host": "https://tilecache.rainviewer.com",
-    "generated": 1787613022,
+    "generated": 1787614522,
     "radar": {
       "past": [
-        {
-          "time": 1787605800,
-          "path": "/v2/radar/67bc12cbf4ee"
-        },
-        {
-          "time": 1787606400,
-          "path": "/v2/radar/5fbbcbcf9a84"
-        },
         {
           "time": 1787607000,
           "path": "/v2/radar/ffdb56a6ebdc"
@@ -4053,6 +4045,14 @@
         {
           "time": 1787613000,
           "path": "/v2/radar/26ccf400ec33"
+        },
+        {
+          "time": 1787613600,
+          "path": "/v2/radar/b0b0e9a0f5aa"
+        },
+        {
+          "time": 1787614200,
+          "path": "/v2/radar/067eb821c622"
         }
       ],
       "nowcast": []
