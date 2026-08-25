@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25T21:49:38.917913+00:00",
+  "generatedAt": "2026-08-25T22:04:09.232628+00:00",
   "location": {
     "name": "Brûlain",
     "latitude": 46.2006,
@@ -14,7 +14,7 @@
   "weather": {
     "latitude": 46.2,
     "longitude": -0.32000017,
-    "generationtime_ms": 0.3876686096191406,
+    "generationtime_ms": 0.23925304412841797,
     "utc_offset_seconds": 7200,
     "timezone": "Europe/Paris",
     "timezone_abbreviation": "GMT+2",
@@ -30,14 +30,14 @@
       "surface_pressure": "hPa"
     },
     "current": {
-      "time": "2026-08-25T23:45",
+      "time": "2026-08-26T00:00",
       "interval": 900,
-      "temperature_2m": 19.4,
-      "relative_humidity_2m": 88,
+      "temperature_2m": 19.2,
+      "relative_humidity_2m": 89,
       "precipitation": 0.0,
-      "wind_speed_10m": 3.0,
-      "wind_gusts_10m": 7.6,
-      "surface_pressure": 1007.0
+      "wind_speed_10m": 2.6,
+      "wind_gusts_10m": 6.5,
+      "surface_pressure": 1007.1
     }
   },
   "alerts": [],
