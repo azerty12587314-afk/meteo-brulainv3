@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-11T17:12:43.634804+00:00",
+  "generatedAt": "2026-09-11T21:56:30.176846+00:00",
   "models": {
     "gfs": {
       "label": "GFS",
@@ -2118,6 +2118,46 @@
           },
           "frames": [
             {
+              "forecastHour": 0,
+              "validTime": "2026-09-11T12:00:00+00:00",
+              "image": "./maps/icon_eu/temp2m/f000.webp"
+            },
+            {
+              "forecastHour": 3,
+              "validTime": "2026-09-11T15:00:00+00:00",
+              "image": "./maps/icon_eu/temp2m/f003.webp"
+            },
+            {
+              "forecastHour": 6,
+              "validTime": "2026-09-11T18:00:00+00:00",
+              "image": "./maps/icon_eu/temp2m/f006.webp"
+            },
+            {
+              "forecastHour": 9,
+              "validTime": "2026-09-11T21:00:00+00:00",
+              "image": "./maps/icon_eu/temp2m/f009.webp"
+            },
+            {
+              "forecastHour": 12,
+              "validTime": "2026-09-12T00:00:00+00:00",
+              "image": "./maps/icon_eu/temp2m/f012.webp"
+            },
+            {
+              "forecastHour": 15,
+              "validTime": "2026-09-12T03:00:00+00:00",
+              "image": "./maps/icon_eu/temp2m/f015.webp"
+            },
+            {
+              "forecastHour": 18,
+              "validTime": "2026-09-12T06:00:00+00:00",
+              "image": "./maps/icon_eu/temp2m/f018.webp"
+            },
+            {
+              "forecastHour": 21,
+              "validTime": "2026-09-12T09:00:00+00:00",
+              "image": "./maps/icon_eu/temp2m/f021.webp"
+            },
+            {
               "forecastHour": 24,
               "validTime": "2026-09-12T12:00:00+00:00",
               "image": "./maps/icon_eu/temp2m/f024.webp"
@@ -2299,6 +2339,46 @@
             "gradient": "linear-gradient(90deg,#312e81,#2563eb,#22d3ee,#4ade80,#fde047,#fb923c,#ef4444)"
           },
           "frames": [
+            {
+              "forecastHour": 0,
+              "validTime": "2026-09-11T12:00:00+00:00",
+              "image": "./maps/icon_eu/mslp/f000.webp"
+            },
+            {
+              "forecastHour": 3,
+              "validTime": "2026-09-11T15:00:00+00:00",
+              "image": "./maps/icon_eu/mslp/f003.webp"
+            },
+            {
+              "forecastHour": 6,
+              "validTime": "2026-09-11T18:00:00+00:00",
+              "image": "./maps/icon_eu/mslp/f006.webp"
+            },
+            {
+              "forecastHour": 9,
+              "validTime": "2026-09-11T21:00:00+00:00",
+              "image": "./maps/icon_eu/mslp/f009.webp"
+            },
+            {
+              "forecastHour": 12,
+              "validTime": "2026-09-12T00:00:00+00:00",
+              "image": "./maps/icon_eu/mslp/f012.webp"
+            },
+            {
+              "forecastHour": 15,
+              "validTime": "2026-09-12T03:00:00+00:00",
+              "image": "./maps/icon_eu/mslp/f015.webp"
+            },
+            {
+              "forecastHour": 18,
+              "validTime": "2026-09-12T06:00:00+00:00",
+              "image": "./maps/icon_eu/mslp/f018.webp"
+            },
+            {
+              "forecastHour": 21,
+              "validTime": "2026-09-12T09:00:00+00:00",
+              "image": "./maps/icon_eu/mslp/f021.webp"
+            },
             {
               "forecastHour": 24,
               "validTime": "2026-09-12T12:00:00+00:00",
@@ -2483,6 +2563,41 @@
             "gradient": "linear-gradient(90deg,#dff7ff,#8fe7ff,#29b6f6,#0066ff,#1840c9,#6026b8,#a316c6,#e500a4,#ff1744,#ff7a00,#fff200)"
           },
           "frames": [
+            {
+              "forecastHour": 0,
+              "validTime": "2026-09-11T12:00:00+00:00",
+              "image": "./maps/icon_eu/precip/f000.webp"
+            },
+            {
+              "forecastHour": 3,
+              "validTime": "2026-09-11T15:00:00+00:00",
+              "image": "./maps/icon_eu/precip/f003.webp"
+            },
+            {
+              "forecastHour": 6,
+              "validTime": "2026-09-11T18:00:00+00:00",
+              "image": "./maps/icon_eu/precip/f006.webp"
+            },
+            {
+              "forecastHour": 9,
+              "validTime": "2026-09-11T21:00:00+00:00",
+              "image": "./maps/icon_eu/precip/f009.webp"
+            },
+            {
+              "forecastHour": 12,
+              "validTime": "2026-09-12T00:00:00+00:00",
+              "image": "./maps/icon_eu/precip/f012.webp"
+            },
+            {
+              "forecastHour": 15,
+              "validTime": "2026-09-12T03:00:00+00:00",
+              "image": "./maps/icon_eu/precip/f015.webp"
+            },
+            {
+              "forecastHour": 18,
+              "validTime": "2026-09-12T06:00:00+00:00",
+              "image": "./maps/icon_eu/precip/f018.webp"
+            },
             {
               "forecastHour": 21,
               "validTime": "2026-09-12T09:00:00+00:00",
@@ -2671,6 +2786,41 @@
             "gradient": "linear-gradient(90deg,#26104f,#3b1b8f,#2447d8,#0877ff,#00b8ff,#00e5d4,#2cff81,#b4ff23,#fff000,#ff9800,#ff3300,#a80000)"
           },
           "frames": [
+            {
+              "forecastHour": 0,
+              "validTime": "2026-09-11T12:00:00+00:00",
+              "image": "./maps/icon_eu/wind10/f000.webp"
+            },
+            {
+              "forecastHour": 3,
+              "validTime": "2026-09-11T15:00:00+00:00",
+              "image": "./maps/icon_eu/wind10/f003.webp"
+            },
+            {
+              "forecastHour": 6,
+              "validTime": "2026-09-11T18:00:00+00:00",
+              "image": "./maps/icon_eu/wind10/f006.webp"
+            },
+            {
+              "forecastHour": 9,
+              "validTime": "2026-09-11T21:00:00+00:00",
+              "image": "./maps/icon_eu/wind10/f009.webp"
+            },
+            {
+              "forecastHour": 12,
+              "validTime": "2026-09-12T00:00:00+00:00",
+              "image": "./maps/icon_eu/wind10/f012.webp"
+            },
+            {
+              "forecastHour": 15,
+              "validTime": "2026-09-12T03:00:00+00:00",
+              "image": "./maps/icon_eu/wind10/f015.webp"
+            },
+            {
+              "forecastHour": 18,
+              "validTime": "2026-09-12T06:00:00+00:00",
+              "image": "./maps/icon_eu/wind10/f018.webp"
+            },
             {
               "forecastHour": 21,
               "validTime": "2026-09-12T09:00:00+00:00",
