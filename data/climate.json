@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-10-08T12:08:21.823684+00:00",
+  "generatedAt": "2026-10-09T12:00:09.205691+00:00",
   "source": {
     "name": "Open-Meteo Historical Weather API",
     "model": "best_match",
-    "archiveEnd": "2026-10-01"
+    "archiveEnd": "2026-10-02"
   },
   "location": {
     "name": "Brûlain",
@@ -103,15 +103,15 @@
   },
   "currentYear": {
     "year": 2026,
-    "daysAvailable": 274,
+    "daysAvailable": 275,
     "temperatureMean": 16.5,
     "precipitation": 552.0,
-    "sunshineHours": 2802.4,
-    "evapotranspiration": 978.2,
+    "sunshineHours": 2813.7,
+    "evapotranspiration": 981.3,
     "frostDays": 8,
     "hotDays": 52,
     "tropicalNights": 25,
-    "heatingDegreeDays": 1094.0,
+    "heatingDegreeDays": 1095.0,
     "monthly": [
       {
         "month": 1,
@@ -178,9 +178,9 @@
       },
       {
         "month": 10,
-        "temperatureMean": 17.3,
-        "temperatureMax": 20.9,
-        "temperatureMin": 14.4,
+        "temperatureMean": 17.0,
+        "temperatureMax": 21.9,
+        "temperatureMin": 12.9,
         "precipitation": 0.1
       },
       {
