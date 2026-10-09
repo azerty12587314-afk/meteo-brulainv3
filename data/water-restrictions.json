@@ -2,7 +2,7 @@
   "status": "ok",
   "source": "VigiEau",
   "sourceUrl": "https://vigieau.gouv.fr/",
-  "generatedAt": "2026-10-09T11:22:12.259439+00:00",
+  "generatedAt": "2026-10-09T20:55:37.949114+00:00",
   "location": {
     "name": "Brûlain",
     "latitude": 46.2006,
@@ -13,7 +13,7 @@
   "highestLevelLabel": "Crise",
   "zones": [
     {
-      "id": 6425779,
+      "id": 6454310,
       "name": "Boutonne - eaux souterraines",
       "type": "SOU",
       "typeLabel": "Eaux souterraines",
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": 6425774,
+      "id": 6454307,
       "name": "Boutonne - eaux superficielles",
       "type": "SUP",
       "typeLabel": "Eaux superficielles",
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": 6425793,
+      "id": 6454280,
       "name": "SMAEP 4B",
       "type": "AEP",
       "typeLabel": "Eau du réseau potable",
@@ -176,7 +176,7 @@
       "department": "79",
       "decree": {
         "startDate": "2026-09-12T00:00:00.000Z",
-        "endDate": "2026-10-31T00:00:00.000Z",
+        "endDate": "2026-10-11T00:00:00.000Z",
         "url": "https://regleau.s3.gra.perf.cloud.ovh.net/arrete-restriction/38105/3f24416b-eef9-43a1-933b-fb7aaec49745/3-20260911_AEP_lev%C3%83%C2%A9e_SMEG.pdf",
         "frameworkUrl": "https://regleau.s3.gra.perf.cloud.ovh.net/arrete-cadre/30841/63d166d1-3b78-4543-bf67-7b873a84560f/ACS-2026_SNMP-VF-annexes-RAA.pdf"
       },
