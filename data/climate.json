@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-10-12T13:25:06.817916+00:00",
+  "generatedAt": "2026-10-14T10:19:50.881876+00:00",
   "source": {
     "name": "Open-Meteo Historical Weather API",
     "model": "best_match",
-    "archiveEnd": "2026-10-05"
+    "archiveEnd": "2026-10-07"
   },
   "location": {
     "name": "Brûlain",
@@ -19,169 +19,169 @@
         "month": 1,
         "temperatureMean": 5.8,
         "temperatureMax": 8.8,
-        "temperatureMin": 3.2,
+        "temperatureMin": 3.1,
         "precipitation": 83.7
       },
       {
         "month": 2,
         "temperatureMean": 6.0,
         "temperatureMax": 9.8,
-        "temperatureMin": 2.8,
+        "temperatureMin": 2.7,
         "precipitation": 63.7
       },
       {
         "month": 3,
         "temperatureMean": 8.8,
         "temperatureMax": 13.1,
-        "temperatureMin": 5.0,
-        "precipitation": 64.8
+        "temperatureMin": 4.9,
+        "precipitation": 64.7
       },
       {
         "month": 4,
         "temperatureMean": 11.3,
         "temperatureMax": 15.7,
-        "temperatureMin": 7.0,
-        "precipitation": 67.6
+        "temperatureMin": 6.9,
+        "precipitation": 67.7
       },
       {
         "month": 5,
         "temperatureMean": 14.9,
         "temperatureMax": 19.4,
-        "temperatureMin": 10.5,
-        "precipitation": 72.5
+        "temperatureMin": 10.4,
+        "precipitation": 72.4
       },
       {
         "month": 6,
         "temperatureMean": 18.3,
-        "temperatureMax": 22.7,
-        "temperatureMin": 13.8,
-        "precipitation": 61.7
+        "temperatureMax": 22.8,
+        "temperatureMin": 13.6,
+        "precipitation": 61.6
       },
       {
         "month": 7,
         "temperatureMean": 20.3,
         "temperatureMax": 25.0,
-        "temperatureMin": 15.6,
+        "temperatureMin": 15.5,
         "precipitation": 44.5
       },
       {
         "month": 8,
         "temperatureMean": 20.4,
         "temperatureMax": 25.3,
-        "temperatureMin": 15.7,
+        "temperatureMin": 15.6,
         "precipitation": 49.6
       },
       {
         "month": 9,
         "temperatureMean": 17.4,
-        "temperatureMax": 22.0,
-        "temperatureMin": 13.0,
-        "precipitation": 54.9
+        "temperatureMax": 22.1,
+        "temperatureMin": 12.9,
+        "precipitation": 55.0
       },
       {
         "month": 10,
         "temperatureMean": 13.7,
         "temperatureMax": 17.6,
-        "temperatureMin": 10.5,
+        "temperatureMin": 10.3,
         "precipitation": 80.7
       },
       {
         "month": 11,
         "temperatureMean": 9.1,
         "temperatureMax": 12.3,
-        "temperatureMin": 6.3,
-        "precipitation": 84.2
+        "temperatureMin": 6.2,
+        "precipitation": 84.1
       },
       {
         "month": 12,
         "temperatureMean": 6.4,
         "temperatureMax": 9.3,
-        "temperatureMin": 3.8,
-        "precipitation": 91.6
+        "temperatureMin": 3.7,
+        "precipitation": 91.7
       }
     ]
   },
   "currentYear": {
     "year": 2026,
-    "daysAvailable": 278,
+    "daysAvailable": 280,
     "temperatureMean": 16.5,
-    "precipitation": 555.4,
-    "sunshineHours": 2844.4,
-    "evapotranspiration": 990.0,
+    "precipitation": 567.8,
+    "sunshineHours": 2857.9,
+    "evapotranspiration": 994.4,
     "frostDays": 8,
-    "hotDays": 52,
+    "hotDays": 53,
     "tropicalNights": 25,
     "heatingDegreeDays": 1096.0,
     "monthly": [
       {
         "month": 1,
         "temperatureMean": 5.6,
-        "temperatureMax": 8.8,
-        "temperatureMin": 3.0,
+        "temperatureMax": 8.9,
+        "temperatureMin": 2.8,
         "precipitation": 119.4
       },
       {
         "month": 2,
         "temperatureMean": 9.6,
         "temperatureMax": 13.0,
-        "temperatureMin": 6.8,
+        "temperatureMin": 6.7,
         "precipitation": 160.2
       },
       {
         "month": 3,
         "temperatureMean": 10.0,
         "temperatureMax": 15.0,
-        "temperatureMin": 5.7,
-        "precipitation": 41.6
+        "temperatureMin": 5.6,
+        "precipitation": 41.7
       },
       {
         "month": 4,
         "temperatureMean": 14.3,
         "temperatureMax": 19.7,
-        "temperatureMin": 9.1,
-        "precipitation": 12.1
+        "temperatureMin": 9.0,
+        "precipitation": 12.0
       },
       {
         "month": 5,
         "temperatureMean": 17.4,
         "temperatureMax": 22.2,
-        "temperatureMin": 12.7,
+        "temperatureMin": 12.6,
         "precipitation": 77.4
       },
       {
         "month": 6,
         "temperatureMean": 22.3,
         "temperatureMax": 27.8,
-        "temperatureMin": 16.8,
+        "temperatureMin": 16.7,
         "precipitation": 30.2
       },
       {
         "month": 7,
         "temperatureMean": 25.1,
         "temperatureMax": 31.0,
-        "temperatureMin": 19.2,
+        "temperatureMin": 19.1,
         "precipitation": 24.5
       },
       {
         "month": 8,
         "temperatureMean": 23.3,
         "temperatureMax": 29.0,
-        "temperatureMin": 18.3,
+        "temperatureMin": 18.2,
         "precipitation": 65.1
       },
       {
         "month": 9,
         "temperatureMean": 20.1,
         "temperatureMax": 26.2,
-        "temperatureMin": 14.6,
+        "temperatureMin": 14.4,
         "precipitation": 21.4
       },
       {
         "month": 10,
-        "temperatureMean": 18.3,
-        "temperatureMax": 23.5,
-        "temperatureMin": 13.8,
-        "precipitation": 3.5
+        "temperatureMean": 18.5,
+        "temperatureMax": 23.7,
+        "temperatureMin": 14.0,
+        "precipitation": 15.9
       },
       {
         "month": 11,
@@ -207,7 +207,7 @@
       "precipitation": 784.6,
       "sunshineHours": 3101.6,
       "evapotranspiration": 870.0,
-      "frostDays": 12,
+      "frostDays": 13,
       "hotDays": 16,
       "tropicalNights": 4,
       "heatingDegreeDays": 2122.0,
@@ -216,84 +216,84 @@
           "month": 1,
           "temperatureMean": 7.3,
           "temperatureMax": 10.2,
-          "temperatureMin": 4.8,
+          "temperatureMin": 4.7,
           "precipitation": 141.4
         },
         {
           "month": 2,
           "temperatureMean": 7.2,
           "temperatureMax": 10.1,
-          "temperatureMin": 4.3,
+          "temperatureMin": 4.2,
           "precipitation": 118.6
         },
         {
           "month": 3,
           "temperatureMean": 7.9,
           "temperatureMax": 11.8,
-          "temperatureMin": 4.1,
+          "temperatureMin": 4.0,
           "precipitation": 89.7
         },
         {
           "month": 4,
           "temperatureMean": 10.0,
           "temperatureMax": 14.3,
-          "temperatureMin": 5.8,
+          "temperatureMin": 5.7,
           "precipitation": 59.0
         },
         {
           "month": 5,
           "temperatureMean": 14.5,
           "temperatureMax": 18.5,
-          "temperatureMin": 10.5,
-          "precipitation": 134.9
+          "temperatureMin": 10.4,
+          "precipitation": 135.1
         },
         {
           "month": 6,
           "temperatureMean": 17.5,
           "temperatureMax": 21.2,
-          "temperatureMin": 13.8,
-          "precipitation": 50.3
+          "temperatureMin": 13.7,
+          "precipitation": 50.1
         },
         {
           "month": 7,
           "temperatureMean": 20.3,
           "temperatureMax": 25.1,
-          "temperatureMin": 15.4,
+          "temperatureMin": 15.3,
           "precipitation": 3.7
         },
         {
           "month": 8,
           "temperatureMean": 21.7,
           "temperatureMax": 27.0,
-          "temperatureMin": 16.5,
+          "temperatureMin": 16.4,
           "precipitation": 20.8
         },
         {
           "month": 9,
           "temperatureMean": 19.6,
-          "temperatureMax": 24.8,
-          "temperatureMin": 14.7,
+          "temperatureMax": 24.9,
+          "temperatureMin": 14.6,
           "precipitation": 27.4
         },
         {
           "month": 10,
           "temperatureMean": 13.2,
           "temperatureMax": 17.8,
-          "temperatureMin": 9.4,
+          "temperatureMin": 9.3,
           "precipitation": 26.3
         },
         {
           "month": 11,
           "temperatureMean": 9.4,
           "temperatureMax": 12.3,
-          "temperatureMin": 6.5,
+          "temperatureMin": 6.4,
           "precipitation": 94.3
         },
         {
           "month": 12,
           "temperatureMean": 6.8,
           "temperatureMax": 10.7,
-          "temperatureMin": 3.9,
+          "temperatureMin": 3.8,
           "precipitation": 18.2
         }
       ]
@@ -304,95 +304,95 @@
       "temperatureMean": 12.9,
       "precipitation": 662.7,
       "sunshineHours": 3026.4,
-      "evapotranspiration": 915.7,
-      "frostDays": 32,
+      "evapotranspiration": 915.8,
+      "frostDays": 33,
       "hotDays": 17,
-      "tropicalNights": 10,
+      "tropicalNights": 9,
       "heatingDegreeDays": 2148.0,
       "monthly": [
         {
           "month": 1,
           "temperatureMean": 3.3,
           "temperatureMax": 7.3,
-          "temperatureMin": 0.4,
+          "temperatureMin": 0.3,
           "precipitation": 33.0
         },
         {
           "month": 2,
           "temperatureMean": 7.8,
           "temperatureMax": 11.5,
-          "temperatureMin": 4.6,
+          "temperatureMin": 4.4,
           "precipitation": 71.7
         },
         {
           "month": 3,
           "temperatureMean": 10.5,
           "temperatureMax": 14.4,
-          "temperatureMin": 6.7,
+          "temperatureMin": 6.6,
           "precipitation": 82.4
         },
         {
           "month": 4,
           "temperatureMean": 11.2,
-          "temperatureMax": 16.4,
-          "temperatureMin": 6.2,
-          "precipitation": 23.2
+          "temperatureMax": 16.5,
+          "temperatureMin": 6.1,
+          "precipitation": 23.3
         },
         {
           "month": 5,
           "temperatureMean": 16.2,
-          "temperatureMax": 21.2,
-          "temperatureMin": 11.4,
-          "precipitation": 86.0
+          "temperatureMax": 21.3,
+          "temperatureMin": 11.3,
+          "precipitation": 85.9
         },
         {
           "month": 6,
           "temperatureMean": 20.5,
           "temperatureMax": 25.5,
-          "temperatureMin": 15.5,
+          "temperatureMin": 15.4,
           "precipitation": 57.2
         },
         {
           "month": 7,
           "temperatureMean": 20.6,
           "temperatureMax": 25.3,
-          "temperatureMin": 16.3,
+          "temperatureMin": 16.2,
           "precipitation": 49.5
         },
         {
           "month": 8,
           "temperatureMean": 20.3,
-          "temperatureMax": 25.6,
-          "temperatureMin": 15.2,
+          "temperatureMax": 25.7,
+          "temperatureMin": 15.0,
           "precipitation": 28.3
         },
         {
           "month": 9,
           "temperatureMean": 15.8,
           "temperatureMax": 20.3,
-          "temperatureMin": 11.7,
+          "temperatureMin": 11.6,
           "precipitation": 69.9
         },
         {
           "month": 10,
           "temperatureMean": 14.9,
           "temperatureMax": 19.2,
-          "temperatureMin": 11.2,
+          "temperatureMin": 11.0,
           "precipitation": 16.5
         },
         {
           "month": 11,
           "temperatureMean": 8.1,
           "temperatureMax": 12.4,
-          "temperatureMin": 4.7,
-          "precipitation": 31.1
+          "temperatureMin": 4.6,
+          "precipitation": 31.3
         },
         {
           "month": 12,
           "temperatureMean": 5.6,
           "temperatureMax": 8.7,
-          "temperatureMin": 2.4,
-          "precipitation": 113.9
+          "temperatureMin": 2.2,
+          "precipitation": 113.7
         }
       ]
     },
@@ -402,7 +402,7 @@
       "temperatureMean": 13.6,
       "precipitation": 1021.0,
       "sunshineHours": 3060.5,
-      "evapotranspiration": 964.0,
+      "evapotranspiration": 963.9,
       "frostDays": 25,
       "hotDays": 22,
       "tropicalNights": 7,
@@ -412,84 +412,84 @@
           "month": 1,
           "temperatureMean": 8.3,
           "temperatureMax": 10.7,
-          "temperatureMin": 5.8,
-          "precipitation": 147.3
+          "temperatureMin": 5.6,
+          "precipitation": 147.7
         },
         {
           "month": 2,
           "temperatureMean": 3.0,
           "temperatureMax": 6.6,
-          "temperatureMin": -0.2,
+          "temperatureMin": -0.4,
           "precipitation": 60.2
         },
         {
           "month": 3,
           "temperatureMean": 7.8,
           "temperatureMax": 11.5,
-          "temperatureMin": 4.6,
-          "precipitation": 147.1
+          "temperatureMin": 4.4,
+          "precipitation": 146.7
         },
         {
           "month": 4,
           "temperatureMean": 12.6,
-          "temperatureMax": 17.4,
-          "temperatureMin": 8.6,
+          "temperatureMax": 17.5,
+          "temperatureMin": 8.5,
           "precipitation": 75.2
         },
         {
           "month": 5,
           "temperatureMean": 15.7,
           "temperatureMax": 20.5,
-          "temperatureMin": 11.2,
+          "temperatureMin": 11.1,
           "precipitation": 46.0
         },
         {
           "month": 6,
           "temperatureMean": 19.6,
           "temperatureMax": 24.0,
-          "temperatureMin": 15.4,
+          "temperatureMin": 15.3,
           "precipitation": 99.0
         },
         {
           "month": 7,
           "temperatureMean": 22.6,
           "temperatureMax": 27.8,
-          "temperatureMin": 17.6,
+          "temperatureMin": 17.5,
           "precipitation": 27.5
         },
         {
           "month": 8,
           "temperatureMean": 22.1,
           "temperatureMax": 27.7,
-          "temperatureMin": 16.6,
+          "temperatureMin": 16.5,
           "precipitation": 22.6
         },
         {
           "month": 9,
           "temperatureMean": 19.0,
           "temperatureMax": 24.8,
-          "temperatureMin": 13.2,
+          "temperatureMin": 13.0,
           "precipitation": 30.2
         },
         {
           "month": 10,
           "temperatureMean": 14.3,
           "temperatureMax": 19.1,
-          "temperatureMin": 10.4,
-          "precipitation": 59.7
+          "temperatureMin": 10.3,
+          "precipitation": 60.2
         },
         {
           "month": 11,
           "temperatureMean": 9.1,
           "temperatureMax": 12.5,
-          "temperatureMin": 6.6,
-          "precipitation": 146.4
+          "temperatureMin": 6.4,
+          "precipitation": 145.9
         },
         {
           "month": 12,
           "temperatureMean": 8.3,
           "temperatureMax": 11.0,
-          "temperatureMin": 5.8,
+          "temperatureMin": 5.7,
           "precipitation": 159.8
         }
       ]
@@ -500,7 +500,7 @@
       "temperatureMean": 13.3,
       "precipitation": 993.2,
       "sunshineHours": 3074.0,
-      "evapotranspiration": 942.6,
+      "evapotranspiration": 942.5,
       "frostDays": 10,
       "hotDays": 17,
       "tropicalNights": 7,
@@ -509,86 +509,86 @@
         {
           "month": 1,
           "temperatureMean": 4.7,
-          "temperatureMax": 7.6,
-          "temperatureMin": 1.8,
-          "precipitation": 54.4
+          "temperatureMax": 7.7,
+          "temperatureMin": 1.7,
+          "precipitation": 54.5
         },
         {
           "month": 2,
           "temperatureMean": 8.0,
           "temperatureMax": 13.1,
-          "temperatureMin": 4.3,
-          "precipitation": 36.9
+          "temperatureMin": 4.2,
+          "precipitation": 36.8
         },
         {
           "month": 3,
           "temperatureMean": 9.6,
           "temperatureMax": 13.8,
-          "temperatureMin": 5.8,
+          "temperatureMin": 5.6,
           "precipitation": 61.8
         },
         {
           "month": 4,
           "temperatureMean": 11.3,
           "temperatureMax": 15.8,
-          "temperatureMin": 7.2,
+          "temperatureMin": 7.1,
           "precipitation": 77.3
         },
         {
           "month": 5,
           "temperatureMean": 13.5,
           "temperatureMax": 17.9,
-          "temperatureMin": 9.3,
+          "temperatureMin": 9.2,
           "precipitation": 72.4
         },
         {
           "month": 6,
           "temperatureMean": 18.8,
           "temperatureMax": 23.7,
-          "temperatureMin": 14.2,
+          "temperatureMin": 14.1,
           "precipitation": 64.2
         },
         {
           "month": 7,
           "temperatureMean": 22.4,
           "temperatureMax": 27.6,
-          "temperatureMin": 17.3,
+          "temperatureMin": 17.1,
           "precipitation": 34.7
         },
         {
           "month": 8,
           "temperatureMean": 20.5,
           "temperatureMax": 25.8,
-          "temperatureMin": 15.3,
+          "temperatureMin": 15.1,
           "precipitation": 28.7
         },
         {
           "month": 9,
           "temperatureMean": 18.2,
-          "temperatureMax": 23.2,
-          "temperatureMin": 13.6,
+          "temperatureMax": 23.3,
+          "temperatureMin": 13.5,
           "precipitation": 72.1
         },
         {
           "month": 10,
           "temperatureMean": 14.5,
           "temperatureMax": 18.0,
-          "temperatureMin": 11.8,
+          "temperatureMin": 11.6,
           "precipitation": 149.0
         },
         {
           "month": 11,
           "temperatureMean": 8.5,
           "temperatureMax": 11.4,
-          "temperatureMin": 6.0,
-          "precipitation": 213.0
+          "temperatureMin": 5.8,
+          "precipitation": 213.1
         },
         {
           "month": 12,
           "temperatureMean": 8.6,
-          "temperatureMax": 11.3,
-          "temperatureMin": 6.1,
-          "precipitation": 128.7
+          "temperatureMax": 11.4,
+          "temperatureMin": 5.9,
+          "precipitation": 128.6
         }
       ]
     },
@@ -598,7 +598,7 @@
       "temperatureMean": 13.8,
       "precipitation": 1050.4,
       "sunshineHours": 3042.7,
-      "evapotranspiration": 940.9,
+      "evapotranspiration": 940.8,
       "frostDays": 4,
       "hotDays": 15,
       "tropicalNights": 6,
@@ -608,84 +608,84 @@
           "month": 1,
           "temperatureMean": 7.7,
           "temperatureMax": 10.5,
-          "temperatureMin": 5.3,
+          "temperatureMin": 5.2,
           "precipitation": 105.3
         },
         {
           "month": 2,
           "temperatureMean": 9.2,
-          "temperatureMax": 12.4,
-          "temperatureMin": 6.3,
-          "precipitation": 95.3
+          "temperatureMax": 12.5,
+          "temperatureMin": 6.1,
+          "precipitation": 95.4
         },
         {
           "month": 3,
           "temperatureMean": 9.4,
           "temperatureMax": 13.3,
-          "temperatureMin": 5.8,
-          "precipitation": 119.4
+          "temperatureMin": 5.7,
+          "precipitation": 119.3
         },
         {
           "month": 4,
           "temperatureMean": 14.2,
           "temperatureMax": 19.1,
           "temperatureMin": 9.9,
-          "precipitation": 100.4
+          "precipitation": 100.8
         },
         {
           "month": 5,
           "temperatureMean": 16.6,
           "temperatureMax": 21.4,
-          "temperatureMin": 12.0,
-          "precipitation": 100.6
+          "temperatureMin": 11.9,
+          "precipitation": 100.2
         },
         {
           "month": 6,
           "temperatureMean": 17.1,
           "temperatureMax": 21.1,
-          "temperatureMin": 13.0,
+          "temperatureMin": 12.9,
           "precipitation": 98.1
         },
         {
           "month": 7,
           "temperatureMean": 20.9,
           "temperatureMax": 26.0,
-          "temperatureMin": 15.7,
+          "temperatureMin": 15.6,
           "precipitation": 7.4
         },
         {
           "month": 8,
           "temperatureMean": 21.0,
           "temperatureMax": 26.1,
-          "temperatureMin": 16.4,
+          "temperatureMin": 16.2,
           "precipitation": 39.9
         },
         {
           "month": 9,
           "temperatureMean": 18.6,
           "temperatureMax": 23.8,
-          "temperatureMin": 13.8,
+          "temperatureMin": 13.7,
           "precipitation": 36.6
         },
         {
           "month": 10,
           "temperatureMean": 12.7,
           "temperatureMax": 15.8,
-          "temperatureMin": 10.0,
-          "precipitation": 155.0
+          "temperatureMin": 9.9,
+          "precipitation": 156.8
         },
         {
           "month": 11,
           "temperatureMean": 10.5,
-          "temperatureMax": 14.5,
-          "temperatureMin": 7.5,
-          "precipitation": 36.3
+          "temperatureMax": 14.6,
+          "temperatureMin": 7.4,
+          "precipitation": 34.5
         },
         {
           "month": 12,
           "temperatureMean": 7.1,
           "temperatureMax": 9.7,
-          "temperatureMin": 4.5,
+          "temperatureMin": 4.3,
           "precipitation": 156.1
         }
       ]
@@ -696,94 +696,94 @@
       "temperatureMean": 12.4,
       "precipitation": 860.8,
       "sunshineHours": 3127.5,
-      "evapotranspiration": 885.6,
-      "frostDays": 31,
+      "evapotranspiration": 885.7,
+      "frostDays": 32,
       "hotDays": 9,
-      "tropicalNights": 2,
+      "tropicalNights": 1,
       "heatingDegreeDays": 2234.0,
       "monthly": [
         {
           "month": 1,
           "temperatureMean": 4.8,
           "temperatureMax": 7.7,
-          "temperatureMin": 1.9,
-          "precipitation": 115.6
+          "temperatureMin": 1.8,
+          "precipitation": 115.7
         },
         {
           "month": 2,
           "temperatureMean": 8.3,
           "temperatureMax": 11.9,
-          "temperatureMin": 5.1,
-          "precipitation": 105.8
+          "temperatureMin": 5.0,
+          "precipitation": 105.7
         },
         {
           "month": 3,
           "temperatureMean": 8.6,
           "temperatureMax": 13.2,
-          "temperatureMin": 4.3,
+          "temperatureMin": 4.2,
           "precipitation": 22.6
         },
         {
           "month": 4,
           "temperatureMean": 11.2,
-          "temperatureMax": 16.1,
-          "temperatureMin": 6.3,
-          "precipitation": 19.4
+          "temperatureMax": 16.2,
+          "temperatureMin": 6.1,
+          "precipitation": 19.7
         },
         {
           "month": 5,
           "temperatureMean": 13.2,
           "temperatureMax": 17.3,
-          "temperatureMin": 9.4,
-          "precipitation": 110.5
+          "temperatureMin": 9.1,
+          "precipitation": 110.2
         },
         {
           "month": 6,
           "temperatureMean": 19.3,
           "temperatureMax": 23.6,
-          "temperatureMin": 14.9,
+          "temperatureMin": 14.7,
           "precipitation": 144.9
         },
         {
           "month": 7,
           "temperatureMean": 19.3,
-          "temperatureMax": 23.7,
-          "temperatureMin": 15.2,
+          "temperatureMax": 23.8,
+          "temperatureMin": 15.1,
           "precipitation": 58.9
         },
         {
           "month": 8,
           "temperatureMean": 19.0,
           "temperatureMax": 23.0,
-          "temperatureMin": 14.9,
+          "temperatureMin": 14.8,
           "precipitation": 28.3
         },
         {
           "month": 9,
           "temperatureMean": 18.7,
           "temperatureMax": 23.7,
-          "temperatureMin": 14.4,
+          "temperatureMin": 14.2,
           "precipitation": 32.2
         },
         {
           "month": 10,
           "temperatureMean": 12.8,
           "temperatureMax": 17.7,
-          "temperatureMin": 8.8,
+          "temperatureMin": 8.7,
           "precipitation": 61.3
         },
         {
           "month": 11,
           "temperatureMean": 6.8,
           "temperatureMax": 10.3,
-          "temperatureMin": 3.7,
+          "temperatureMin": 3.6,
           "precipitation": 24.0
         },
         {
           "month": 12,
           "temperatureMean": 6.9,
           "temperatureMax": 10.2,
-          "temperatureMin": 4.1,
+          "temperatureMin": 3.9,
           "precipitation": 137.3
         }
       ]
@@ -794,94 +794,94 @@
       "temperatureMean": 14.2,
       "precipitation": 762.0,
       "sunshineHours": 3146.3,
-      "evapotranspiration": 1056.9,
+      "evapotranspiration": 1057.0,
       "frostDays": 27,
       "hotDays": 35,
-      "tropicalNights": 13,
+      "tropicalNights": 11,
       "heatingDegreeDays": 1854.0,
       "monthly": [
         {
           "month": 1,
           "temperatureMean": 4.8,
           "temperatureMax": 7.9,
-          "temperatureMin": 2.1,
+          "temperatureMin": 2.0,
           "precipitation": 46.6
         },
         {
           "month": 2,
           "temperatureMean": 7.8,
-          "temperatureMax": 11.6,
-          "temperatureMin": 4.1,
+          "temperatureMax": 11.7,
+          "temperatureMin": 3.8,
           "precipitation": 44.4
         },
         {
           "month": 3,
           "temperatureMean": 10.3,
           "temperatureMax": 15.0,
-          "temperatureMin": 6.5,
+          "temperatureMin": 6.3,
           "precipitation": 50.4
         },
         {
           "month": 4,
           "temperatureMean": 11.7,
           "temperatureMax": 16.4,
-          "temperatureMin": 7.4,
+          "temperatureMin": 7.3,
           "precipitation": 76.0
         },
         {
           "month": 5,
           "temperatureMean": 17.5,
           "temperatureMax": 23.0,
-          "temperatureMin": 12.1,
+          "temperatureMin": 12.0,
           "precipitation": 32.3
         },
         {
           "month": 6,
           "temperatureMean": 20.2,
           "temperatureMax": 25.2,
-          "temperatureMin": 15.2,
+          "temperatureMin": 15.0,
           "precipitation": 92.2
         },
         {
           "month": 7,
           "temperatureMean": 22.5,
-          "temperatureMax": 28.5,
-          "temperatureMin": 16.5,
+          "temperatureMax": 28.6,
+          "temperatureMin": 16.4,
           "precipitation": 26.5
         },
         {
           "month": 8,
           "temperatureMean": 23.6,
           "temperatureMax": 29.4,
-          "temperatureMin": 18.2,
+          "temperatureMin": 18.1,
           "precipitation": 27.1
         },
         {
           "month": 9,
           "temperatureMean": 17.6,
-          "temperatureMax": 23.1,
-          "temperatureMin": 12.9,
-          "precipitation": 61.2
+          "temperatureMax": 23.2,
+          "temperatureMin": 12.8,
+          "precipitation": 61.4
         },
         {
           "month": 10,
           "temperatureMean": 17.2,
-          "temperatureMax": 21.4,
-          "temperatureMin": 13.8,
-          "precipitation": 95.0
+          "temperatureMax": 21.5,
+          "temperatureMin": 13.7,
+          "precipitation": 94.8
         },
         {
           "month": 11,
           "temperatureMean": 10.7,
           "temperatureMax": 14.2,
-          "temperatureMin": 7.7,
+          "temperatureMin": 7.5,
           "precipitation": 94.5
         },
         {
           "month": 12,
           "temperatureMean": 6.5,
           "temperatureMax": 9.2,
-          "temperatureMin": 4.0,
+          "temperatureMin": 3.9,
           "precipitation": 115.8
         }
       ]
@@ -890,97 +890,97 @@
       "year": 2023,
       "daysAvailable": 365,
       "temperatureMean": 13.8,
-      "precipitation": 1317.7,
+      "precipitation": 1318.2,
       "sunshineHours": 3067.7,
-      "evapotranspiration": 937.6,
+      "evapotranspiration": 937.5,
       "frostDays": 26,
       "hotDays": 17,
-      "tropicalNights": 10,
+      "tropicalNights": 9,
       "heatingDegreeDays": 1908.0,
       "monthly": [
         {
           "month": 1,
           "temperatureMean": 6.3,
           "temperatureMax": 8.8,
-          "temperatureMin": 3.7,
+          "temperatureMin": 3.5,
           "precipitation": 140.3
         },
         {
           "month": 2,
           "temperatureMean": 5.9,
           "temperatureMax": 10.5,
-          "temperatureMin": 2.4,
+          "temperatureMin": 2.3,
           "precipitation": 43.7
         },
         {
           "month": 3,
           "temperatureMean": 9.4,
-          "temperatureMax": 13.3,
-          "temperatureMin": 5.9,
-          "precipitation": 162.7
+          "temperatureMax": 13.4,
+          "temperatureMin": 5.8,
+          "precipitation": 162.9
         },
         {
           "month": 4,
           "temperatureMean": 11.4,
           "temperatureMax": 15.7,
-          "temperatureMin": 7.2,
-          "precipitation": 80.7
+          "temperatureMin": 7.0,
+          "precipitation": 80.5
         },
         {
           "month": 5,
           "temperatureMean": 15.8,
           "temperatureMax": 20.6,
-          "temperatureMin": 11.1,
+          "temperatureMin": 10.9,
           "precipitation": 50.7
         },
         {
           "month": 6,
           "temperatureMean": 21.2,
-          "temperatureMax": 26.4,
-          "temperatureMin": 16.1,
+          "temperatureMax": 26.5,
+          "temperatureMin": 16.0,
           "precipitation": 100.5
         },
         {
           "month": 7,
           "temperatureMean": 19.9,
           "temperatureMax": 24.9,
-          "temperatureMin": 15.3,
+          "temperatureMin": 15.1,
           "precipitation": 60.6
         },
         {
           "month": 8,
           "temperatureMean": 20.7,
           "temperatureMax": 25.8,
-          "temperatureMin": 16.2,
+          "temperatureMin": 16.0,
           "precipitation": 46.8
         },
         {
           "month": 9,
           "temperatureMean": 20.8,
           "temperatureMax": 26.2,
-          "temperatureMin": 16.2,
+          "temperatureMin": 16.1,
           "precipitation": 82.3
         },
         {
           "month": 10,
           "temperatureMean": 15.8,
-          "temperatureMax": 20.5,
-          "temperatureMin": 11.9,
+          "temperatureMax": 20.6,
+          "temperatureMin": 11.8,
           "precipitation": 192.5
         },
         {
           "month": 11,
           "temperatureMean": 10.1,
           "temperatureMax": 12.9,
-          "temperatureMin": 7.3,
+          "temperatureMin": 7.1,
           "precipitation": 193.6
         },
         {
           "month": 12,
           "temperatureMean": 7.9,
-          "temperatureMax": 10.6,
-          "temperatureMin": 5.3,
-          "precipitation": 163.3
+          "temperatureMax": 10.7,
+          "temperatureMin": 5.2,
+          "precipitation": 163.8
         }
       ]
     },
@@ -988,96 +988,96 @@
       "year": 2024,
       "daysAvailable": 366,
       "temperatureMean": 13.1,
-      "precipitation": 1193.9,
+      "precipitation": 1193.4,
       "sunshineHours": 2837.5,
-      "evapotranspiration": 827.9,
-      "frostDays": 14,
+      "evapotranspiration": 827.8,
+      "frostDays": 17,
       "hotDays": 7,
-      "tropicalNights": 6,
+      "tropicalNights": 5,
       "heatingDegreeDays": 1996.0,
       "monthly": [
         {
           "month": 1,
           "temperatureMean": 6.3,
-          "temperatureMax": 9.5,
-          "temperatureMin": 3.5,
-          "precipitation": 83.1
+          "temperatureMax": 9.6,
+          "temperatureMin": 3.4,
+          "precipitation": 82.6
         },
         {
           "month": 2,
           "temperatureMean": 9.0,
           "temperatureMax": 12.1,
-          "temperatureMin": 6.0,
+          "temperatureMin": 5.7,
           "precipitation": 157.5
         },
         {
           "month": 3,
           "temperatureMean": 9.6,
           "temperatureMax": 13.7,
-          "temperatureMin": 6.2,
+          "temperatureMin": 6.1,
           "precipitation": 143.2
         },
         {
           "month": 4,
           "temperatureMean": 11.8,
-          "temperatureMax": 16.1,
-          "temperatureMin": 7.7,
+          "temperatureMax": 16.2,
+          "temperatureMin": 7.6,
           "precipitation": 91.8
         },
         {
           "month": 5,
           "temperatureMean": 14.0,
           "temperatureMax": 18.2,
-          "temperatureMin": 10.4,
+          "temperatureMin": 10.2,
           "precipitation": 154.4
         },
         {
           "month": 6,
           "temperatureMean": 17.8,
           "temperatureMax": 22.4,
-          "temperatureMin": 13.6,
+          "temperatureMin": 13.5,
           "precipitation": 97.1
         },
         {
           "month": 7,
           "temperatureMean": 20.2,
-          "temperatureMax": 25.2,
-          "temperatureMin": 15.5,
+          "temperatureMax": 25.3,
+          "temperatureMin": 15.4,
           "precipitation": 21.2
         },
         {
           "month": 8,
           "temperatureMean": 20.6,
-          "temperatureMax": 26.0,
-          "temperatureMin": 15.4,
+          "temperatureMax": 26.1,
+          "temperatureMin": 15.3,
           "precipitation": 41.1
         },
         {
           "month": 9,
           "temperatureMean": 15.8,
           "temperatureMax": 19.7,
-          "temperatureMin": 12.2,
-          "precipitation": 149.0
+          "temperatureMin": 12.1,
+          "precipitation": 149.1
         },
         {
           "month": 10,
           "temperatureMean": 14.5,
           "temperatureMax": 18.4,
-          "temperatureMin": 11.3,
-          "precipitation": 150.3
+          "temperatureMin": 11.2,
+          "precipitation": 150.2
         },
         {
           "month": 11,
           "temperatureMean": 10.6,
           "temperatureMax": 14.6,
-          "temperatureMin": 7.8,
+          "temperatureMin": 7.6,
           "precipitation": 48.5
         },
         {
           "month": 12,
           "temperatureMean": 6.8,
           "temperatureMax": 9.8,
-          "temperatureMin": 3.9,
+          "temperatureMin": 3.8,
           "precipitation": 56.7
         }
       ]
@@ -1088,45 +1088,45 @@
       "temperatureMean": 13.6,
       "precipitation": 911.1,
       "sunshineHours": 3203.1,
-      "evapotranspiration": 978.0,
-      "frostDays": 23,
+      "evapotranspiration": 978.1,
+      "frostDays": 24,
       "hotDays": 29,
-      "tropicalNights": 11,
+      "tropicalNights": 10,
       "heatingDegreeDays": 2005.0,
       "monthly": [
         {
           "month": 1,
           "temperatureMean": 6.0,
-          "temperatureMax": 9.4,
-          "temperatureMin": 3.0,
-          "precipitation": 202.9
+          "temperatureMax": 9.5,
+          "temperatureMin": 2.8,
+          "precipitation": 204.1
         },
         {
           "month": 2,
           "temperatureMean": 7.1,
-          "temperatureMax": 11.6,
-          "temperatureMin": 3.5,
-          "precipitation": 57.2
+          "temperatureMax": 11.7,
+          "temperatureMin": 3.4,
+          "precipitation": 56.0
         },
         {
           "month": 3,
           "temperatureMean": 9.0,
           "temperatureMax": 13.5,
-          "temperatureMin": 5.3,
+          "temperatureMin": 5.1,
           "precipitation": 45.6
         },
         {
           "month": 4,
           "temperatureMean": 12.8,
           "temperatureMax": 17.6,
-          "temperatureMin": 8.6,
+          "temperatureMin": 8.5,
           "precipitation": 85.9
         },
         {
           "month": 5,
           "temperatureMean": 15.3,
           "temperatureMax": 20.3,
-          "temperatureMin": 10.8,
+          "temperatureMin": 10.7,
           "precipitation": 35.5
         },
         {
@@ -1140,42 +1140,42 @@
           "month": 7,
           "temperatureMean": 21.5,
           "temperatureMax": 26.5,
-          "temperatureMin": 16.4,
+          "temperatureMin": 16.3,
           "precipitation": 43.5
         },
         {
           "month": 8,
           "temperatureMean": 22.3,
-          "temperatureMax": 28.2,
-          "temperatureMin": 16.6,
+          "temperatureMax": 28.3,
+          "temperatureMin": 16.5,
           "precipitation": 63.3
         },
         {
           "month": 9,
           "temperatureMean": 16.2,
           "temperatureMax": 20.7,
-          "temperatureMin": 12.4,
+          "temperatureMin": 12.2,
           "precipitation": 80.1
         },
         {
           "month": 10,
           "temperatureMean": 13.4,
           "temperatureMax": 17.9,
-          "temperatureMin": 9.8,
+          "temperatureMin": 9.7,
           "precipitation": 106.0
         },
         {
           "month": 11,
           "temperatureMean": 9.8,
           "temperatureMax": 13.4,
-          "temperatureMin": 6.7,
+          "temperatureMin": 6.5,
           "precipitation": 104.3
         },
         {
           "month": 12,
           "temperatureMean": 7.2,
-          "temperatureMax": 10.2,
-          "temperatureMin": 4.8,
+          "temperatureMax": 10.3,
+          "temperatureMin": 4.6,
           "precipitation": 62.8
         }
       ]
@@ -1193,7 +1193,7 @@
       "estimated": true
     },
     "wettestDay": {
-      "value": 56.7,
+      "value": 53.0,
       "date": "2006-10-03",
       "estimated": true
     },
