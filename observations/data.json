@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-20T23:26:46.523453+00:00",
+  "generatedAt": "2026-10-21T02:03:17.296476+00:00",
   "location": {
     "name": "Brûlain",
     "latitude": 46.2006,
@@ -9,13 +9,13 @@
   },
   "air": {
     "current": {
-      "time": "2026-10-21T01:00",
+      "time": "2026-10-21T04:00",
       "interval": 3600,
-      "european_aqi": 18,
-      "pm10": 7.1,
-      "pm2_5": 4.5,
-      "nitrogen_dioxide": 2.8,
-      "ozone": 54.0,
+      "european_aqi": 21,
+      "pm10": 4.5,
+      "pm2_5": 3.1,
+      "nitrogen_dioxide": 2.2,
+      "ozone": 62.0,
       "uv_index": 0.0,
       "grass_pollen": 0.0,
       "birch_pollen": 0.0,
@@ -40,9 +40,6 @@
     },
     "hourly": {
       "time": [
-        "2026-10-21T01:00",
-        "2026-10-21T02:00",
-        "2026-10-21T03:00",
         "2026-10-21T04:00",
         "2026-10-21T05:00",
         "2026-10-21T06:00",
@@ -87,12 +84,12 @@
         "2026-10-22T21:00",
         "2026-10-22T22:00",
         "2026-10-22T23:00",
-        "2026-10-23T00:00"
+        "2026-10-23T00:00",
+        "2026-10-23T01:00",
+        "2026-10-23T02:00",
+        "2026-10-23T03:00"
       ],
       "european_aqi": [
-        18,
-        19,
-        20,
         21,
         21,
         21,
@@ -137,12 +134,12 @@
         24,
         25,
         25,
-        25
+        25,
+        26,
+        25,
+        26
       ],
       "pm10": [
-        7.1,
-        6.4,
-        5.6,
         4.5,
         3.9,
         3.0,
@@ -187,12 +184,12 @@
         6.5,
         6.3,
         6.4,
-        6.0
+        6.0,
+        5.8,
+        5.5,
+        4.7
       ],
       "pm2_5": [
-        4.5,
-        4.0,
-        3.8,
         3.1,
         2.9,
         2.2,
@@ -237,12 +234,12 @@
         3.6,
         3.6,
         3.8,
-        4.0
+        4.0,
+        3.4,
+        3.0,
+        2.4
       ],
       "nitrogen_dioxide": [
-        2.8,
-        2.5,
-        2.3,
         2.2,
         2.4,
         2.0,
@@ -287,12 +284,12 @@
         2.5,
         2.3,
         2.2,
-        2.5
+        2.5,
+        2.5,
+        2.0,
+        1.3
       ],
       "ozone": [
-        54.0,
-        58.0,
-        59.0,
         62.0,
         61.0,
         62.0,
@@ -337,12 +334,12 @@
         67.0,
         69.0,
         69.0,
-        69.0
+        69.0,
+        71.0,
+        69.0,
+        72.0
       ],
       "uv_index": [
-        0.0,
-        0.0,
-        0.0,
         0.0,
         0.0,
         0.0,
@@ -387,6 +384,9 @@
         0.0,
         0.0,
         0.0,
+        0.0,
+        0.0,
+        0.0,
         0.0
       ],
       "grass_pollen": [
@@ -397,9 +397,6 @@
         0.0,
         0.0,
         0.0,
-        0.0,
-        0.0,
-        0.0,
         0.1,
         0.1,
         0.1,
@@ -437,6 +434,9 @@
         0.0,
         0.0,
         0.1,
+        0.0,
+        0.0,
+        0.0,
         0.0
       ],
       "birch_pollen": [
@@ -664,8 +664,8 @@
       "distanceKm": 12.606011297076101,
       "reading": {
         "quantity": "H",
-        "date": "2026-10-20T23:00:00Z",
-        "value": -10.0
+        "date": "2026-10-21T01:20:00Z",
+        "value": -15.0
       }
     },
     {
@@ -676,7 +676,7 @@
       "distanceKm": 13.23720501845931,
       "reading": {
         "quantity": "H",
-        "date": "2026-10-20T23:00:00Z",
+        "date": "2026-10-21T01:00:00Z",
         "value": -3.0
       }
     },
@@ -696,8 +696,8 @@
       "distanceKm": 17.95353967455004,
       "reading": {
         "quantity": "H",
-        "date": "2026-10-20T23:00:00Z",
-        "value": 11974.0
+        "date": "2026-10-21T01:30:00Z",
+        "value": 11979.0
       }
     },
     {
@@ -737,146 +737,146 @@
     {
       "icaoId": "LFBI",
       "name": "Poitiers–Biard",
-      "reportTime": "2026-10-20T23:00:00.000Z",
+      "reportTime": "2026-10-21T02:00:00.000Z",
+      "temp": 11,
+      "dewp": 10,
+      "wdir": 180,
+      "wspd": 14,
+      "visib": "6+",
+      "altim": 1008,
+      "rawOb": "METAR LFBI 210200Z AUTO 18014KT 9999 -DZ FEW017 SCT024 BKN031 11/10 Q1008 TEMPO 18015G30KT 2500 RA BKN007 SCT020CB"
+    },
+    {
+      "icaoId": "LFBH",
+      "name": "La Rochelle–Île de Ré",
+      "reportTime": "2026-10-21T02:00:00.000Z",
+      "temp": 14,
+      "dewp": 13,
+      "wdir": 240,
+      "wspd": 13,
+      "visib": "6+",
+      "altim": 1008,
+      "rawOb": "METAR LFBH 210200Z AUTO 24013KT 9999 -RA FEW008/// SCT023/// BKN043/// ///CB 14/13 Q1008 TEMPO 4500 -SHRA BECMG 30015G30KT"
+    },
+    {
+      "icaoId": "LFBI",
+      "name": "Poitiers–Biard",
+      "reportTime": "2026-10-21T01:30:00.000Z",
+      "temp": 11,
+      "dewp": 9,
+      "wdir": 180,
+      "wspd": 12,
+      "visib": "6+",
+      "altim": 1009,
+      "rawOb": "METAR LFBI 210130Z AUTO 18012KT 9999 -RADZ BKN028 OVC038 11/09 Q1009 TEMPO 18015G30KT 2500 RA BKN007 SCT020CB"
+    },
+    {
+      "icaoId": "LFBH",
+      "name": "La Rochelle–Île de Ré",
+      "reportTime": "2026-10-21T01:30:00.000Z",
+      "temp": 15,
+      "dewp": 13,
+      "wdir": 230,
+      "wspd": 19,
+      "visib": 3.73,
+      "altim": 1008,
+      "rawOb": "METAR LFBH 210130Z AUTO 23019KT 6000 +RA SCT012/// BKN019/// OVC025/// ///CB 15/13 Q1008 TEMPO 4500 -SHRA BECMG 30015G30KT"
+    },
+    {
+      "icaoId": "LFBI",
+      "name": "Poitiers–Biard",
+      "reportTime": "2026-10-21T01:00:00.000Z",
+      "temp": 11,
+      "dewp": 8,
+      "wdir": 180,
+      "wspd": 13,
+      "visib": "6+",
+      "altim": 1009,
+      "rawOb": "METAR LFBI 210100Z AUTO 18013KT 9999 FEW026 BKN034 BKN041 11/08 Q1009 TEMPO 18015G30KT 2500 RA BKN007 SCT020CB"
+    },
+    {
+      "icaoId": "LFBH",
+      "name": "La Rochelle–Île de Ré",
+      "reportTime": "2026-10-21T01:00:00.000Z",
+      "temp": 15,
+      "dewp": 13,
+      "wdir": 200,
+      "wspd": 17,
+      "visib": "6+",
+      "altim": 1007,
+      "rawOb": "METAR LFBH 210100Z AUTO 20017KT 9999 -RA FEW026/// BKN031/// BKN041/// ///CB 15/13 Q1007 TEMPO 4500 -SHRA BKN012 SCT020CB BECMG 30015G30KT"
+    },
+    {
+      "icaoId": "LFBH",
+      "name": "La Rochelle–Île de Ré",
+      "reportTime": "2026-10-21T00:30:00.000Z",
+      "temp": 16,
+      "dewp": 12,
+      "wdir": 210,
+      "wspd": 18,
+      "visib": "6+",
+      "altim": 1008,
+      "rawOb": "METAR LFBH 210030Z AUTO 21018G29KT 9999 -RA BKN031/// BKN039/// OVC080/// ///TCU 16/12 Q1008 TEMPO 4500 -SHRA BKN035CB BECMG 30015G30KT"
+    },
+    {
+      "icaoId": "LFBI",
+      "name": "Poitiers–Biard",
+      "reportTime": "2026-10-21T00:30:00.000Z",
+      "temp": 11,
+      "dewp": 8,
+      "wdir": 170,
+      "wspd": 12,
+      "visib": "6+",
+      "altim": 1009,
+      "rawOb": "METAR LFBI 210030Z AUTO 17012KT 9999 FEW027 BKN044 OVC052 11/08 Q1009 TEMPO 18015G30KT 2500 RA BKN007 SCT020CB"
+    },
+    {
+      "icaoId": "LFBI",
+      "name": "Poitiers–Biard",
+      "reportTime": "2026-10-21T00:00:00.000Z",
       "temp": 10,
       "dewp": 8,
       "wdir": 170,
-      "wspd": 8,
+      "wspd": 10,
       "visib": "6+",
-      "altim": 1011,
-      "rawOb": "METAR LFBI 202300Z AUTO 17008KT CAVOK 10/08 Q1011 NOSIG"
+      "altim": 1010,
+      "rawOb": "METAR LFBI 210000Z AUTO 17010KT CAVOK 10/08 Q1010 NOSIG"
     },
     {
       "icaoId": "LFBH",
       "name": "La Rochelle–Île de Ré",
-      "reportTime": "2026-10-20T23:00:00.000Z",
+      "reportTime": "2026-10-21T00:00:00.000Z",
       "temp": 16,
       "dewp": 13,
       "wdir": 210,
-      "wspd": 13,
+      "wspd": 16,
       "visib": "6+",
-      "altim": 1009,
-      "rawOb": "METAR LFBH 202300Z AUTO 21013KT 9999 -RA BKN021 BKN027 OVC035 16/13 Q1009 BECMG 4500 -RA"
+      "altim": 1008,
+      "rawOb": "METAR LFBH 210000Z AUTO 21016KT 9999 FEW025 BKN035 OVC041 16/13 Q1008 TEMPO 20020G40KT 2500 RA BKN012 SCT020CB"
     },
     {
       "icaoId": "LFBI",
       "name": "Poitiers–Biard",
-      "reportTime": "2026-10-20T22:30:00.000Z",
-      "temp": 9,
-      "dewp": 7,
-      "wdir": 180,
-      "wspd": 8,
-      "visib": "6+",
-      "altim": 1011,
-      "rawOb": "METAR LFBI 202230Z AUTO 18008KT CAVOK 09/07 Q1011 NOSIG"
-    },
-    {
-      "icaoId": "LFBH",
-      "name": "La Rochelle–Île de Ré",
-      "reportTime": "2026-10-20T22:30:00.000Z",
-      "temp": 15,
-      "dewp": 11,
-      "wdir": 200,
-      "wspd": 12,
-      "visib": "6+",
-      "altim": 1009,
-      "rawOb": "METAR LFBH 202230Z AUTO 20012KT 9999 -DZ FEW036 BKN044 BKN050 15/11 Q1009 BECMG 4500 -RA"
-    },
-    {
-      "icaoId": "LFBI",
-      "name": "Poitiers–Biard",
-      "reportTime": "2026-10-20T22:00:00.000Z",
-      "temp": 8,
-      "dewp": 7,
+      "reportTime": "2026-10-20T23:30:00.000Z",
+      "temp": 10,
+      "dewp": 8,
       "wdir": 170,
-      "wspd": 6,
-      "visib": "6+",
-      "altim": 1011,
-      "rawOb": "METAR LFBI 202200Z AUTO 17006KT 9999 FEW035 SCT250 08/07 Q1011 NOSIG"
-    },
-    {
-      "icaoId": "LFBH",
-      "name": "La Rochelle–Île de Ré",
-      "reportTime": "2026-10-20T22:00:00.000Z",
-      "temp": 15,
-      "dewp": 11,
-      "wdir": 210,
-      "wspd": 13,
-      "visib": "6+",
-      "altim": 1010,
-      "rawOb": "METAR LFBH 202200Z AUTO 21013KT 180V250 9999 -RA SCT028 SCT037 BKN052 15/11 Q1010 BECMG 4500 -RA"
-    },
-    {
-      "icaoId": "LFBI",
-      "name": "Poitiers–Biard",
-      "reportTime": "2026-10-20T21:30:00.000Z",
-      "temp": 8,
-      "dewp": 7,
-      "wdir": 160,
-      "wspd": 7,
-      "visib": "6+",
-      "altim": 1012,
-      "rawOb": "METAR LFBI 202130Z AUTO 16007KT 9999 BKN035 BKN100 BKN210 08/07 Q1012 NOSIG"
-    },
-    {
-      "icaoId": "LFBH",
-      "name": "La Rochelle–Île de Ré",
-      "reportTime": "2026-10-20T21:30:00.000Z",
-      "temp": 16,
-      "dewp": 10,
-      "wdir": 210,
-      "wspd": 12,
-      "visib": "6+",
-      "altim": 1010,
-      "rawOb": "METAR LFBH 202130Z AUTO 21012KT 9999 FEW033 OVC056 16/10 Q1010 BECMG 4500 -RA"
-    },
-    {
-      "icaoId": "LFBH",
-      "name": "La Rochelle–Île de Ré",
-      "reportTime": "2026-10-20T21:00:00.000Z",
-      "temp": 16,
-      "dewp": 10,
-      "wdir": 200,
       "wspd": 10,
       "visib": "6+",
       "altim": 1010,
-      "rawOb": "METAR LFBH 202100Z AUTO 20010KT 9999 FEW028 OVC066 16/10 Q1010 BECMG 4500 -RA"
-    },
-    {
-      "icaoId": "LFBI",
-      "name": "Poitiers–Biard",
-      "reportTime": "2026-10-20T21:00:00.000Z",
-      "temp": 8,
-      "dewp": 7,
-      "wdir": 150,
-      "wspd": 6,
-      "visib": "6+",
-      "altim": 1012,
-      "rawOb": "METAR LFBI 202100Z AUTO 15006KT CAVOK 08/07 Q1012 NOSIG"
+      "rawOb": "METAR LFBI 202330Z AUTO 17010KT CAVOK 10/08 Q1010 BECMG 4500 -RA"
     },
     {
       "icaoId": "LFBH",
       "name": "La Rochelle–Île de Ré",
-      "reportTime": "2026-10-20T20:30:00.000Z",
+      "reportTime": "2026-10-20T23:30:00.000Z",
       "temp": 16,
-      "dewp": 11,
-      "wdir": 200,
-      "wspd": 10,
+      "dewp": 12,
+      "wdir": 210,
+      "wspd": 17,
       "visib": "6+",
-      "altim": 1010,
-      "rawOb": "METAR LFBH 202030Z AUTO 20010KT 9999 FEW028 SCT056 OVC074 16/11 Q1010 BECMG 4500 -RA"
-    },
-    {
-      "icaoId": "LFBI",
-      "name": "Poitiers–Biard",
-      "reportTime": "2026-10-20T20:30:00.000Z",
-      "temp": 8,
-      "dewp": 6,
-      "wdir": 150,
-      "wspd": 5,
-      "visib": "6+",
-      "altim": 1012,
-      "rawOb": "METAR LFBI 202030Z AUTO 15005KT CAVOK 08/06 Q1012 NOSIG"
+      "altim": 1009,
+      "rawOb": "METAR LFBH 202330Z AUTO 21017KT 9999 -RA FEW026 SCT031 BKN038 16/12 Q1009 TEMPO 20020G40KT 2500 RA BKN012 SCT020CB"
     }
   ],
   "errors": []
