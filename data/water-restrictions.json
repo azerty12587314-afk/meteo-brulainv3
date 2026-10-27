@@ -1,5 +1,5 @@
 {
-  "status": "ok",
+  "status": "stale",
   "source": "VigiEau",
   "sourceUrl": "https://vigieau.gouv.fr/",
   "generatedAt": "2026-10-27T09:49:44.936945+00:00",
@@ -244,5 +244,7 @@
       ]
     }
   ],
-  "notice": "Informations indicatives : l’arrêté préfectoral fait foi."
+  "notice": "Informations indicatives : l’arrêté préfectoral fait foi.",
+  "lastAttemptAt": "2026-10-27T16:17:39.815500+00:00",
+  "lastError": "HTTP Error 504: Gateway Time-out"
 }
