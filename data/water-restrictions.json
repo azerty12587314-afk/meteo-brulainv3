@@ -2,7 +2,7 @@
   "status": "ok",
   "source": "VigiEau",
   "sourceUrl": "https://vigieau.gouv.fr/",
-  "generatedAt": "2026-11-01T20:30:44.624345+00:00",
+  "generatedAt": "2026-11-02T01:31:33.476943+00:00",
   "location": {
     "name": "Brûlain",
     "latitude": 46.2006,
@@ -13,7 +13,7 @@
   "highestLevelLabel": "Alerte",
   "zones": [
     {
-      "id": 7895700,
+      "id": 7904647,
       "name": "SMAEP 4B",
       "type": "AEP",
       "typeLabel": "Eau du réseau potable",
