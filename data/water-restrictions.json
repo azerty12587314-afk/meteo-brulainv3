@@ -2,7 +2,7 @@
   "status": "ok",
   "source": "VigiEau",
   "sourceUrl": "https://vigieau.gouv.fr/",
-  "generatedAt": "2026-11-04T12:07:11.541901+00:00",
+  "generatedAt": "2026-11-04T21:53:53.068598+00:00",
   "location": {
     "name": "Brûlain",
     "latitude": 46.2006,
@@ -13,39 +13,7 @@
   "highestLevelLabel": "Alerte",
   "zones": [
     {
-      "id": 8090740,
-      "name": "Boutonne - eaux souterraines",
-      "type": "SOU",
-      "typeLabel": "Eaux souterraines",
-      "level": "alerte",
-      "levelLabel": "Alerte",
-      "department": "79",
-      "decree": {
-        "startDate": "2026-11-01T00:00:00.000Z",
-        "endDate": "2026-11-30T00:00:00.000Z",
-        "url": "https://regleau.s3.gra.perf.cloud.ovh.net/arrete-restriction/38461/2b40097e-e61e-4fdf-a5e5-e863bb3b51ba/20261031_AP_tt_d%C3%83%C2%A9partement_plan_eau1_RAA.pdf",
-        "frameworkUrl": "https://regleau.s3.gra.perf.cloud.ovh.net/arrete-cadre/30447/ACi2023-ChteSeudFlCot-sign%C3%83%C2%A9.pdf"
-      },
-      "usages": []
-    },
-    {
-      "id": 8090738,
-      "name": "Boutonne - eaux superficielles",
-      "type": "SUP",
-      "typeLabel": "Eaux superficielles",
-      "level": "alerte",
-      "levelLabel": "Alerte",
-      "department": "79",
-      "decree": {
-        "startDate": "2026-11-01T00:00:00.000Z",
-        "endDate": "2026-11-30T00:00:00.000Z",
-        "url": "https://regleau.s3.gra.perf.cloud.ovh.net/arrete-restriction/38461/2b40097e-e61e-4fdf-a5e5-e863bb3b51ba/20261031_AP_tt_d%C3%83%C2%A9partement_plan_eau1_RAA.pdf",
-        "frameworkUrl": "https://regleau.s3.gra.perf.cloud.ovh.net/arrete-cadre/30447/ACi2023-ChteSeudFlCot-sign%C3%83%C2%A9.pdf"
-      },
-      "usages": []
-    },
-    {
-      "id": 8090716,
+      "id": 8098646,
       "name": "SMAEP 4B",
       "type": "AEP",
       "typeLabel": "Eau du réseau potable",
@@ -120,6 +88,38 @@
           "description": "Sensibiliser le grand public et les collectivités aux règles de bon usage d'économie d'eau."
         }
       ]
+    },
+    {
+      "id": 8098670,
+      "name": "Boutonne - eaux souterraines",
+      "type": "SOU",
+      "typeLabel": "Eaux souterraines",
+      "level": "alerte",
+      "levelLabel": "Alerte",
+      "department": "79",
+      "decree": {
+        "startDate": "2026-11-01T00:00:00.000Z",
+        "endDate": "2026-11-30T00:00:00.000Z",
+        "url": "https://regleau.s3.gra.perf.cloud.ovh.net/arrete-restriction/38461/2b40097e-e61e-4fdf-a5e5-e863bb3b51ba/20261031_AP_tt_d%C3%83%C2%A9partement_plan_eau1_RAA.pdf",
+        "frameworkUrl": "https://regleau.s3.gra.perf.cloud.ovh.net/arrete-cadre/30447/ACi2023-ChteSeudFlCot-sign%C3%83%C2%A9.pdf"
+      },
+      "usages": []
+    },
+    {
+      "id": 8098668,
+      "name": "Boutonne - eaux superficielles",
+      "type": "SUP",
+      "typeLabel": "Eaux superficielles",
+      "level": "alerte",
+      "levelLabel": "Alerte",
+      "department": "79",
+      "decree": {
+        "startDate": "2026-11-01T00:00:00.000Z",
+        "endDate": "2026-11-30T00:00:00.000Z",
+        "url": "https://regleau.s3.gra.perf.cloud.ovh.net/arrete-restriction/38461/2b40097e-e61e-4fdf-a5e5-e863bb3b51ba/20261031_AP_tt_d%C3%83%C2%A9partement_plan_eau1_RAA.pdf",
+        "frameworkUrl": "https://regleau.s3.gra.perf.cloud.ovh.net/arrete-cadre/30447/ACi2023-ChteSeudFlCot-sign%C3%83%C2%A9.pdf"
+      },
+      "usages": []
     }
   ],
   "notice": "Informations indicatives : l’arrêté préfectoral fait foi."
