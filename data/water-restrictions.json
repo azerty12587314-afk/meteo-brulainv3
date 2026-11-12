@@ -2,7 +2,7 @@
   "status": "ok",
   "source": "VigiEau",
   "sourceUrl": "https://vigieau.gouv.fr/",
-  "generatedAt": "2026-11-11T22:43:31.508299+00:00",
+  "generatedAt": "2026-11-12T12:42:28.600629+00:00",
   "location": {
     "name": "Brûlain",
     "latitude": 46.2006,
@@ -13,7 +13,7 @@
   "highestLevelLabel": "Alerte",
   "zones": [
     {
-      "id": 8378521,
+      "id": 8401861,
       "name": "SMAEP 4B",
       "type": "AEP",
       "typeLabel": "Eau du réseau potable",
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": 8378562,
+      "id": 8401833,
       "name": "Boutonne - eaux superficielles",
       "type": "SUP",
       "typeLabel": "Eaux superficielles",
@@ -106,7 +106,7 @@
       "usages": []
     },
     {
-      "id": 8378563,
+      "id": 8401832,
       "name": "Boutonne - eaux souterraines",
       "type": "SOU",
       "typeLabel": "Eaux souterraines",
