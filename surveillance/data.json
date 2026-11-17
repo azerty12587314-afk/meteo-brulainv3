@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-16T23:52:15.092734+00:00",
+  "generatedAt": "2026-11-17T05:20:01.357319+00:00",
   "location": {
     "name": "Brûlain",
     "latitude": 46.2006,
@@ -11,43 +11,17 @@
     "provider": "RainViewer",
     "status": "client-side"
   },
-  "weather": {
-    "latitude": 46.199364,
-    "longitude": -0.3190677,
-    "generationtime_ms": 0.1176595687866211,
-    "utc_offset_seconds": 3600,
-    "timezone": "Europe/Paris",
-    "timezone_abbreviation": "GMT+1",
-    "elevation": 60.0,
-    "current_units": {
-      "time": "iso8601",
-      "interval": "seconds",
-      "temperature_2m": "°C",
-      "relative_humidity_2m": "%",
-      "precipitation": "mm",
-      "wind_speed_10m": "km/h",
-      "wind_gusts_10m": "km/h",
-      "surface_pressure": "hPa"
-    },
-    "current": {
-      "time": "2026-11-17T00:45",
-      "interval": 900,
-      "temperature_2m": 15.2,
-      "relative_humidity_2m": 84,
-      "precipitation": 0.0,
-      "wind_speed_10m": 24.5,
-      "wind_gusts_10m": 41.8,
-      "surface_pressure": 993.8
-    }
-  },
+  "weather": null,
   "alerts": [],
   "providers": {
     "radar": {
       "status": "ok"
     },
     "weather": {
-      "status": "ok"
+      "status": "error"
     }
   },
-  "errors": []
+  "errors": [
+    "Météo: HTTPSConnectionPool(host='api.open-meteo.com', port=443): Read timed out. (read timeout=30)"
+  ]
 }
